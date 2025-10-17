@@ -1,7 +1,7 @@
 "use client"
 
 import { supabase } from '@/lib/supabaseClient';
-import { usePathname } from 'next/navigation';
+import { redirect, usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 // Helper component for SVG icons
@@ -147,8 +147,8 @@ export default function App() {
         });
     };
 
-    const handleView = () => {
-
+    const handleView = (id) => {
+        redirect(`/blog/${id}`)
     }
 
     const handleDelete = async (id) => {
@@ -165,13 +165,12 @@ export default function App() {
         }
     }
 
-    const handleEdit = () => {
-
+    const handleEdit = (id) => {
+        redirect(`/admin/blogs/edit/${id}`)
     }
 
     useEffect(() => {
         fetchBlogs();
-
     }, [])
 
     return (

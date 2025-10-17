@@ -1,7 +1,6 @@
 "use client"
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
-import { redirect } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
 export default function LoginPage() {
@@ -24,11 +23,11 @@ export default function LoginPage() {
         if (authError) {
             setError(authError.message || 'Login failed. Please try again.');
         } else {
-            console.log('Login successful:', data);
-            localStorage.setItem("access_token", data["access_token"])
-            redirect("/admin")
+            document.cookie = `access_token=${data.session.access_token}; path=/; max-age=86400; secure; samesite=lax`;
+            redirect("/admin");
         }
 
+        setLoading(false);
     };
 
     return (
