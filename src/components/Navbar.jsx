@@ -115,12 +115,21 @@ export default function Navbar() {
                                     <Link href="/tests/interest" onClick={closeMenu}>
                                         Interest and Aptitude Test
                                     </Link>
-                                    <Link href="/tests/language" onClick={closeMenu}>
-                                        Language Test Preparation
+                                    <Link href="/tests/ielts-toefl" onClick={closeMenu}>
+                                        IELTS & TOEFL Preparation
                                     </Link>
-                                    <Link href="/tests/standardized" onClick={closeMenu}>
+                                    <Link href="/tests/hsk" onClick={closeMenu}>
+                                        HSK Preparation
+                                    </Link>
+                                    <Link href="/tests/sat" onClick={closeMenu}>
+                                        SAT Preparation
+                                    </Link>
+                                    <Link href="/tests/gmat" onClick={closeMenu}>
+                                        GMAT Preparation
+                                    </Link>
+                                    {/* <Link href="/tests/standardized" onClick={closeMenu}>
                                         Standardized Test Preparation
-                                    </Link>
+                                    </Link> */}
                                     <Link href="/tests/paket" onClick={closeMenu}>
                                         Paket A, B, C
                                     </Link>

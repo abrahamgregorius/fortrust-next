@@ -1770,7 +1770,7 @@ ul {
 /* Dark Mode color for the SVG's stroke */
 @media (prefers-color-scheme: dark) {
     .hamburger svg {
-        stroke: var(--neutral-100); /* Warna stroke terang */
+        stroke: var(--neutral-900); /* Warna stroke terang */
     }
 }
 

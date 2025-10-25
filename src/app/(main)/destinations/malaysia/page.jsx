@@ -1,6 +1,5 @@
-"use client"
+"use client";
 
-import { useState } from "react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import {
@@ -12,8 +11,9 @@ import {
     LayoutGrid,
     Wallet,
 } from "lucide-react";
+import { useState } from "react";
 
-export default function Malaysia() {
+export default function Australia() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
@@ -34,13 +34,11 @@ export default function Malaysia() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Study in Australia: Your Fast-Track to a Global
-                            Career
+                            Malaysia, Affordable and Globally Recognized Education
                         </h1>
                         <p>
-                            Gain the world’s longest post‑study work rights, a
-                            globally respected degree, and a direct pathway to
-                            Permanent Residence.
+                            Dynamic education hubs, offering a rare combination of
+                            high-quality degrees, and affordable lifestyle.
                         </p>
                     </div>
                 </section>
@@ -64,31 +62,498 @@ export default function Malaysia() {
                         {/* Tabs Content */}
                         <div className="tab-content">
                             {activeTab === "overview" && (
-                                <></>
+                                <div id="overview" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>Why Study in Malaysia?</h2>
+                                        <p>
+                                            Malaysia offers advantages that are harder
+                                            to find elsewhere — especially for students
+                                            who value both quality and practicality.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Key Benefits of Studying in Malaysia</h3>
+                                        <ul>
+                                            <li>
+                                                <strong
+                                                >Dual Degrees from World-Class
+                                                    Universities:</strong
+                                                >
+                                                Earn a degree from top UK or Australian
+                                                universities like Monash or Nottingham
+                                                at a fraction of the cost, without
+                                                leaving Malaysia.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >Affordable World-Class
+                                                    Education:</strong
+                                                >
+                                                With tuition fees around
+                                                $4,000–$7,000/year and low living costs,
+                                                you can graduate with a respected degree
+                                                debt-free.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >English as a Main Language of
+                                                    Instruction:</strong
+                                                >
+                                                English is widely used in universities,
+                                                removing language barriers while
+                                                allowing you to learn strategic Asian
+                                                languages like Malay and Mandarin.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >Multicultural Environment:</strong
+                                                >
+                                                Malaysia’s unique blend of Malay,
+                                                Chinese, and Indian cultures provides an
+                                                edge in cross-cultural communication
+                                                skills.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >Strategic Location for Exploring
+                                                    Asia:</strong
+                                                >
+                                                Situated in the heart of Southeast Asia,
+                                                Malaysia is a budget airline hub,
+                                                perfect for networking and cultural
+                                                exploration.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >Growing Opportunities in
+                                                    Fast-Developing Sectors:</strong
+                                                >
+                                                Find internship and job opportunities in
+                                                tech, healthcare, and sustainable
+                                                industries.
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Top 5 Cities to Study in Malaysia</h3>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>City</th>
+                                                        <th>Key Institutions</th>
+                                                        <th>City Highlights</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Kuala Lumpur</td>
+                                                        <td>
+                                                            University of Nottingham
+                                                            Malaysia, Sunway University
+                                                        </td>
+                                                        <td>
+                                                            The buzzing capital with
+                                                            modern skyscrapers, rich
+                                                            cultural diversity, and
+                                                            endless career networking
+                                                            opportunities.
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Putrajaya</td>
+                                                        <td>
+                                                            Heriot-Watt University
+                                                            Malaysia
+                                                        </td>
+                                                        <td>
+                                                            Safe and affordable
+                                                            environment with unique
+                                                            modern architecture and
+                                                            green spaces.
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Johor Bahru</td>
+                                                        <td>
+                                                            Newcastle University
+                                                            Medicine Malaysia (NUMed)
+                                                        </td>
+                                                        <td>
+                                                            Affordable living with quick
+                                                            access to Singapore for
+                                                            cross-border internships.
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sarawak</td>
+                                                        <td>
+                                                            Curtin University, Swinburne
+                                                            University
+                                                        </td>
+                                                        <td>
+                                                            Rich, diverse culture and
+                                                            incredible natural
+                                                            environment for hands-on
+                                                            learning.
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Selangor</td>
+                                                        <td>
+                                                            Monash University Malaysia,
+                                                            Xiamen University
+                                                        </td>
+                                                        <td>
+                                                            A student-friendly state
+                                                            with a dynamic environment
+                                                            and gateway to the capital.
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             )}
 
                             {activeTab === "requirements" && (
-                                <></>
+                                <div id="requirements" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>Entry Requirements</h2>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Program</th>
+                                                        <th>Academic Requirements</th>
+                                                        <th>Language Requirements</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <strong
+                                                            >Bachelor’s
+                                                                Degree</strong
+                                                            >
+                                                        </td>
+                                                        <td>
+                                                            Completed secondary/high
+                                                            school with at least 70–80%
+                                                            average.
+                                                        </td>
+                                                        <td>
+                                                            IELTS 5.5–6.0 or TOEFL iBT
+                                                            60–78.
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong
+                                                            >Master’s Degree</strong
+                                                            >
+                                                        </td>
+                                                        <td>
+                                                            A Bachelor’s degree in a
+                                                            related field with min. GPA
+                                                            3.0/4.0.
+                                                        </td>
+                                                        <td>
+                                                            IELTS 6.0–6.5 or TOEFL iBT
+                                                            79–90.
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>PhD Degree</strong>
+                                                        </td>
+                                                        <td>
+                                                            Master’s degree in a
+                                                            relevant discipline with a
+                                                            strong research background.
+                                                        </td>
+                                                        <td>
+                                                            IELTS 6.5+ or TOEFL iBT 90+.
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             )}
 
                             {activeTab === "costs" && (
-                                <></>
+                                <div id="costs" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>Tuition & Living Costs in Malaysia</h2>
+                                        <p>
+                                            Malaysia is known for offering some of the
+                                            most affordable tuition fees and living
+                                            costs in Asia. Here’s a breakdown to help
+                                            you plan your budget.
+                                        </p>
+                                    </div>
+                                    <div className="content-block">
+                                        <h3>Tuition Fees (per year)</h3>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>City</th>
+                                                        <th>Undergraduate</th>
+                                                        <th>Graduate</th>
+                                                        <th>College/Diploma</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Kuala Lumpur</td>
+                                                        <td>USD 4,000 – 6,500</td>
+                                                        <td>USD 5,000 – 8,000</td>
+                                                        <td>USD 2,500 – 4,000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Penang</td>
+                                                        <td>USD 3,500 – 6,000</td>
+                                                        <td>USD 4,500 – 7,000</td>
+                                                        <td>USD 2,200 – 3,800</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Johor Bahru</td>
+                                                        <td>USD 3,200 – 5,500</td>
+                                                        <td>USD 4,000 – 6,500</td>
+                                                        <td>USD 2,000 – 3,500</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div className="content-block">
+                                        <h3>Estimated Monthly Living Costs</h3>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>City</th>
+                                                        <th>Housing (Shared)</th>
+                                                        <th>
+                                                            Food, Transport & Utilities
+                                                        </th>
+                                                        <th>Total Monthly Cost</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Kuala Lumpur</td>
+                                                        <td>USD 150 – 250</td>
+                                                        <td>USD 215 - 340</td>
+                                                        <td>USD 365 – 590</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Penang</td>
+                                                        <td>USD 130 – 200</td>
+                                                        <td>USD 195 - 300</td>
+                                                        <td>USD 325 – 500</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Johor Bahru</td>
+                                                        <td>USD 120 – 180</td>
+                                                        <td>USD 185 - 285</td>
+                                                        <td>USD 305 – 465</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             )}
 
                             {activeTab === "work" && (
-                                <></>
+                                <div id="work" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>Work Rights for Students</h2>
+                                        <ul>
+                                            <li>
+                                                <strong
+                                                >Part-Time Work During
+                                                    Studies:</strong
+                                                >
+                                                International students are allowed to
+                                                work part-time for up to 20 hours per
+                                                week during semester breaks or holidays
+                                                of more than 7 days.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >Work Permit Requirements:</strong
+                                                >
+                                                You must apply for approval through the
+                                                Immigration Department of Malaysia with
+                                                the help of your university before
+                                                starting work.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >Post-Study Work
+                                                    Opportunities:</strong
+                                                >
+                                                While Malaysia doesn’t have an open
+                                                post-study work visa, you can secure an
+                                                Employment Pass if you receive a
+                                                full-time job offer from a Malaysian
+                                                company.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             )}
 
                             {activeTab === "scholarships" && (
-                                <></>
+                                <div id="scholarships" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>Scholarships in Malaysia</h2>
+                                        <p>
+                                            Malaysia offers numerous scholarships that
+                                            can make your education even more
+                                            accessible. From government awards to
+                                            university-specific funding, Malaysia is
+                                            opening doors for talented students from all
+                                            over the world.
+                                        </p>
+                                        <a
+                                            href="contact.html"
+                                            className="btn btn--primary"
+                                            style="margin-top: 20px"
+                                        >Inquire About Scholarships</a
+                                        >
+                                    </div>
+                                    <div className="content-block">
+                                        <h3>Key Types of Scholarships</h3>
+                                        <ul>
+                                            <li>
+                                                <strong
+                                                >Malaysia International Scholarship
+                                                    (MIS):</strong
+                                                >
+                                                Offered by the Malaysian Ministry of
+                                                Education, this scholarship supports
+                                                outstanding postgraduate students and
+                                                often covers tuition fees and a living
+                                                allowance.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >University-Specific
+                                                    Scholarships:</strong
+                                                >
+                                                Most Malaysian universities have their
+                                                own merit-based scholarships, such as
+                                                the University of Malaya Excellence
+                                                Award and Monash University Malaysia
+                                                Scholarships.
+                                            </li>
+                                            <li>
+                                                <strong
+                                                >Belt and Road Scholarship:</strong
+                                                >
+                                                For students from Belt and Road
+                                                Initiative countries, Malaysia
+                                                participates in collaborative programs
+                                                that cover tuition and living expenses.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             )}
 
                             {activeTab === "partners" && (
-                                <></>
+                                <div id="partners" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>Our Partner Institutions</h2>
+                                        <p>
+                                            We partner with Malaysia's top private
+                                            universities and international branch
+                                            campuses.
+                                        </p>
+                                        <div className="partners-grid">
+                                            <div className="partner-logo">
+                                                <img
+                                                    src="https://placehold.co/150x50/cccccc/000000?text=Monash+MY"
+                                                    alt="Monash University Malaysia"
+                                                />
+                                            </div>
+                                            <div className="partner-logo">
+                                                <img
+                                                    src="https://placehold.co/150x50/cccccc/000000?text=Nottingham+MY"
+                                                    alt="University of Nottingham Malaysia"
+                                                />
+                                            </div>
+                                            <div className="partner-logo">
+                                                <img
+                                                    src="https://placehold.co/150x50/cccccc/000000?text=Sunway"
+                                                    alt="Sunway University"
+                                                />
+                                            </div>
+                                            <div className="partner-logo">
+                                                <img
+                                                    src="https://placehold.co/150x50/cccccc/000000?text=Taylor's"
+                                                    alt="Taylor's University"
+                                                />
+                                            </div>
+                                        </div>
+                                        <p className="partners__many">...and many more</p>
+                                    </div>
+                                </div>
                             )}
 
                             {activeTab === "intakes" && (
-                                <></>
+                                <div id="intakes" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>Application Timeline</h2>
+                                        <p>
+                                            Planning ahead is essential. Malaysia offers
+                                            two main intakes for most universities, but
+                                            this can vary.
+                                        </p>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Intake</th>
+                                                        <th>Application Period</th>
+                                                        <th>Classes Begin</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Fall Intake</td>
+                                                        <td>January – June</td>
+                                                        <td>September</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Spring Intake</td>
+                                                        <td>
+                                                            September – December
+                                                            (previous year)
+                                                        </td>
+                                                        <td>March</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <p style="margin-top: 20px">
+                                            <strong>Pro Tip:</strong> Always apply at
+                                            least 3–4 months before the deadline to
+                                            avoid last-minute stress. This buffer helps
+                                            you secure accommodation, flights, and your
+                                            student visa on time.
+                                        </p>
+                                    </div>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -96,13 +561,13 @@ export default function Malaysia() {
 
                 <section className="final-cta">
                     <div className="container final-cta__container">
-                        <h2>Ready to Study in Malaysia?</h2>
+                        <h2>Ready to Study in Australia?</h2>
                         <p>
                             Let our expert counsellors guide you through every
                             step of the process.
                         </p>
                         <a
-                            href="/contact"
+                            href="contact.html"
                             className="btn btn--primary btn--large"
                         >
                             Talk to a Counsellor for Free
@@ -113,5 +578,5 @@ export default function Malaysia() {
 
             <Footer></Footer>
         </>
-    )
+    );
 }

@@ -1,7 +1,8 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
 
-export default function Language() {
+export default function IeltsToefl() {
     return (
         <>
             <Navbar></Navbar>
@@ -82,7 +83,7 @@ export default function Language() {
                             </table>
                         </div>
 
-                        <h3 style={{marginTop: 'var(--space-8)'}}>When should you take the IELTS or TOEFL Test?</h3>
+                        <h3 style={{ marginTop: 'var(--space-8)' }}>When should you take the IELTS or TOEFL Test?</h3>
                         <p>
                             You should plan to take the IELTS or TOEFL test in the first semester of your final year of high school, or several months before your university application deadlines. This timing gives you a comfortable window to receive your results, and, if needed, to retake the test to improve your score. Early preparation ensures you meet application requirements and gives you the best chance of achieving your desired results before important deadlines.
                         </p>
@@ -123,7 +124,7 @@ export default function Language() {
                         </div>
 
 
-                        <h3 style={{marginTop: 'var(--space-8)'}}>IELTS, TOEFL, Cambridge English Exam Equivalency</h3>
+                        <h3 style={{ marginTop: 'var(--space-8)' }}>IELTS, TOEFL, Cambridge English Exam Equivalency</h3>
                         <p>Choosing the right test can also depend on how the scores translate across various English exams. Below is a commonly accepted equivalency chart:</p>
                         <div className="table-responsive">
                             <table className="data-table">
@@ -203,16 +204,16 @@ export default function Language() {
                                 </tbody>
                             </table>
                         </div>
-                        <p style={{fontSize: '0.9rem', color: 'var(--neutral-400)', marginTop: 'var(--space-2)'}}>
+                        <p style={{ fontSize: '0.9rem', color: 'var(--neutral-400)', marginTop: 'var(--space-2)' }}>
                             *Good score range for IELTS, TOEFL, and Cambridge English Test is within the highlighted area.
                         </p>
 
-                        <p style={{marginTop: 'var(--space-8)'}}>
+                        <p style={{ marginTop: 'var(--space-8)' }}>
                             Preparing for the TOEFL doesn’t have to be overwhelming. At Fortrust, we offer expert resources, tailored study plans, and ongoing support to help you achieve your best score. Reach out to Fortrust today and take the next step toward your academic dreams!
                         </p>
 
-                        <div style={{textAlign: 'center', marginTop: 'var(--space-12)'}}>
-                            <a href="contact.html" className="btn btn--primary btn--large">Get Free Consultation</a>
+                        <div style={{ textAlign: 'center', marginTop: 'var(--space-12)' }}>
+                            <Link href="/contact" className="btn btn--primary btn--large">Get Free Consultation</Link>
                         </div>
 
                     </div>
