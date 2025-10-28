@@ -1,14 +1,15 @@
+export const dynamic = "force-dynamic";
+
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import { supabase } from "@/lib/supabaseClient"
 import Link from "next/link"
 
 export default async function Blog() {
-    const { data, error } = await supabase.from("blogs").select("*")
+    const { data, error } = await supabase.from("blogs").select("*");
+
     if (error) {
-        alert(error)
-    } else {
-        console.log(data)
+        console.error(error);
     }
 
 

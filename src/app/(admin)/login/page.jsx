@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
+import { redirect } from 'next/navigation';
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
