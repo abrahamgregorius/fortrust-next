@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
           name="description"
           content="Get expert counselling, applications, visas, and pre-departure support for studying abroad in Australia, the UK, and more."
         />
-
+        <link rel="icon" href="/favicon-new.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />
         <link
