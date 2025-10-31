@@ -75,43 +75,43 @@ export default function Footer() {
                             <h4>Destinations</h4>
                             <ul>
                                 <li>
-                                    <a href="destination-australia.html">
+                                    <a href="/destinations/australia">
                                         Australia
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="destination-canada.html">Canada</a>
+                                    <a href="/destinations/canada">Canada</a>
                                 </li>
                                 <li>
-                                    <a href="destination-china.html">China</a>
+                                    <a href="/destinations/china">China</a>
                                 </li>
                                 <li>
-                                    <a href="destination-malaysia.html">
+                                    <a href="/destinations/malaysia">
                                         Malaysia
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="destination-newzealand.html">
+                                    <a href="/destinations/newzealand">
                                         New Zealand
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="destination-uk.html">
+                                    <a href="/destinations/uk">
                                         United Kingdom
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="destination-switzerland.html">
+                                    <a href="/destinations/switzerland">
                                         Switzerland
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="destination-singapore.html">
+                                    <a href="/destinations/singapore">
                                         Singapore
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="destination-usa.html">USA</a>
+                                    <a href="/destinations/usa">USA</a>
                                 </li>
                             </ul>
                         </div>
