@@ -204,9 +204,8 @@ export default function Home() {
                         {slides.map((slide, idx) => (
                             <div
                                 key={slide.id}
-                                className={`carousel-slide ${
-                                    idx === currentSlide ? "active" : ""
-                                }`}
+                                className={`carousel-slide ${idx === currentSlide ? "active" : ""
+                                    }`}
                                 style={{
                                     backgroundImage: `url('${slide.img}')`,
                                 }}
@@ -339,9 +338,8 @@ export default function Home() {
                         {slides.map((_, idx) => (
                             <span
                                 key={idx}
-                                className={`dot ${
-                                    idx === currentSlide ? "active" : ""
-                                }`}
+                                className={`dot ${idx === currentSlide ? "active" : ""
+                                    }`}
                                 onClick={() => setCurrentSlide(idx)}
                             />
                         ))}
@@ -404,9 +402,8 @@ export default function Home() {
                             {testimonials.map((t, index) => (
                                 <div
                                     key={index}
-                                    className={`card testimonial-card ${
-                                        index === current ? "active" : ""
-                                    }`}
+                                    className={`card testimonial-card ${index === current ? "active" : ""
+                                        }`}
                                 >
                                     <p className="testimonial-card__content">
                                         "{t.quote}"
