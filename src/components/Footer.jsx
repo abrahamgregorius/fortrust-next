@@ -58,16 +58,16 @@ export default function Footer() {
                             <h4>Quick Links</h4>
                             <ul>
                                 <li>
-                                    <a href="about.html">About Us</a>
+                                    <a href="/about">About Us</a>
                                 </li>
                                 <li>
-                                    <a href="about.html">Offices</a>
+                                    <a href="/contact">Offices</a>
                                 </li>
                                 <li>
-                                    <a href="events.html">Events</a>
+                                    <a href="/events">Events</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">Contact Us</a>
+                                    <a href="/contact">Contact Us</a>
                                 </li>
                             </ul>
                         </div>
@@ -145,9 +145,9 @@ export default function Footer() {
                             rights reserved.
                         </p>
                         <div className="footer__legal">
-                            <a href="policy-privacy.html">Privacy Policy</a>
+                            <a href="/policy/privacy">Privacy Policy</a>
                             <span>|</span>
-                            <a href="policy-cookie.html">Cookie Policy</a>
+                            <a href="/policy/cookie">Cookie Policy</a>
                         </div>
                     </div>
                 </div>

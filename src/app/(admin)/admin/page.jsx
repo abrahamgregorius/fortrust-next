@@ -30,10 +30,11 @@ const ICONS = {
 // Sidebar component
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     const menuItems = [
-        { href: "/admin", icon: ICONS.dashboard, name: 'Dashboard' },
-        { href: "/admin/blogs", icon: ICONS.orders, name: 'Blog' },
-        { href: "/admin/testimonials", icon: ICONS.users, name: 'Testimonials' },
-        { href: "/admin/settings", icon: ICONS.settings, name: 'Settings' },
+        { href: "/admin", icon: ICONS.dashboard, name: "Dashboard" },
+        { href: "/admin/blogs", icon: ICONS.orders, name: "Blog" },
+        { href: "/admin/events", icon: ICONS.products, name: "Events" },
+        { href: "/admin/testimonials", icon: ICONS.users, name: "Testimonials" },
+        { href: "/admin/settings", icon: ICONS.settings, name: "Settings" },
     ];
 
     return (
