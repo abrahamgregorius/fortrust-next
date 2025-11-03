@@ -21,7 +21,7 @@ export default function Events() {
                 <section className="events-page-section">
                     <div className="container">
                         <div className="section-header">
-                            <h2>Upcoming Events</h2>
+                            <h2>Events</h2>
                         </div>
                         <div className="events__list">
                             <div className="card event-card">

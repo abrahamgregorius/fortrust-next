@@ -394,11 +394,11 @@ export default function Australia() {
                                                         <td>Melbourne</td>
                                                         <td>
                                                             AUD $25,000 –
-                                                            $35,000
+                                                            $55,000
                                                         </td>
                                                         <td>
-                                                            AUD $20,000 –
-                                                            $40,000
+                                                            AUD $30,000 –
+                                                            $55,000
                                                         </td>
                                                         <td>
                                                             AUD $6,000 – $18,000
@@ -407,12 +407,12 @@ export default function Australia() {
                                                     <tr>
                                                         <td>Sydney</td>
                                                         <td>
-                                                            AUD $30,000 –
+                                                            AUD $25,000 –
                                                             $50,000
                                                         </td>
                                                         <td>
-                                                            AUD $25,000 –
-                                                            $45,000
+                                                            AUD $30,000 –
+                                                            $55,000
                                                         </td>
                                                         <td>
                                                             AUD $8,000 – $20,000
@@ -421,12 +421,12 @@ export default function Australia() {
                                                     <tr>
                                                         <td>Brisbane</td>
                                                         <td>
-                                                            AUD $22,000 –
-                                                            $30,000
+                                                            AUD $25,000 –
+                                                            $50,000
                                                         </td>
                                                         <td>
-                                                            AUD $20,000 –
-                                                            $35,000
+                                                            AUD $30,000 –
+                                                            $55,000
                                                         </td>
                                                         <td>
                                                             AUD $6,000 – $17,000
@@ -435,12 +435,12 @@ export default function Australia() {
                                                     <tr>
                                                         <td>Perth</td>
                                                         <td>
-                                                            AUD $20,000 –
-                                                            $28,000
+                                                            AUD $25,000 –
+                                                            $50,000
                                                         </td>
                                                         <td>
-                                                            AUD $17,000 –
-                                                            $30,000
+                                                            AUD $30,000 –
+                                                            $55,000
                                                         </td>
                                                         <td>
                                                             AUD $5,000 – $15,000
@@ -453,8 +453,8 @@ export default function Australia() {
                                                             $27,000
                                                         </td>
                                                         <td>
-                                                            AUD $18,000 –
-                                                            $30,000
+                                                            AUD $30,000 –
+                                                            $55,000
                                                         </td>
                                                         <td>
                                                             AUD $5,000 – $15,000

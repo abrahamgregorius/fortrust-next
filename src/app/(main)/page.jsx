@@ -601,7 +601,7 @@ export default function Home() {
                 <section className="events">
                     <div className="container events__container">
                         <div className="section-header">
-                            <h2>Upcoming Events & Webinars</h2>
+                            <h2>Events & Webinars</h2>
                             <p>
                                 Join our free sessions to get all your questions
                                 answered.
