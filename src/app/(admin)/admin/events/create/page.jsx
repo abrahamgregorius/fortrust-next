@@ -23,30 +23,19 @@ const ICONS = {
     "M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z",
   arrowUp: "M7 14l5-5 5 5z",
   arrowDown: "M7 10l5 5 5-5z",
-  link: "M7 17q-2.075 0-3.537-1.463T2 12t1.463-3.537T7 7h3q.425 0 .713.288T11 8t-.288.713T10 9H7q-1.25 0-2.125.875T4 12t.875 2.125T7 15h3q.425 0 .713.288T11 16t-.288.713T10 17zm2-4q-.425 0-.712-.288T8 12t.288-.712T9 11h6q.425 0 .713.288T16 12t-.288.713T15 13zm5 4q-.425 0-.712-.288T13 16t.288-.712T14 15h3q1.25 0 2.125-.875T20 12t-.875-2.125T17 9h-3q-.425 0-.712-.288T13 8t.288-.712T14 7h3q2.075 0 3.538 1.463T22 12t-1.463 3.538T17 17z"
+  link: "M7 17q-2.075 0-3.537-1.463T2 12t1.463-3.537T7 7h3q.425 0 .713.288T11 8t-.288.713T10 9H7q-1.25 0-2.125.875T4 12t.875 2.125T7 15h3q.425 0 .713.288T11 16t-.288.713T10 17zm2-4q-.425 0-.712-.288T8 12t.288-.712T9 11h6q.425 0 .713.288T16 12t-.288.713T15 13zm5 4q-.425 0-.712-.288T13 16t.288-.712T14 15h3q1.25 0 2.125-.875T20 12t-.875-2.125T17 9h-3q-.425 0-.712-.288T13 8t.288-.712T14 7h3q2.075 0 3.538 1.463T22 12t-1.463 3.538T17 17z",
 };
-
-const uploadFile = async (file, filePath) => {
-  const { data, error } = await supabase.storage
-    .from("public-assets")
-    .upload(filePath, file);
-  if (error) {
-    console.error(error);
-    return null;
-  }
-  return data;
-}; 
 
 export default function CreateEventsPage() {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    start_date: "",
-    end_date: "",
+    start_at: "",
+    end_at: "",
     registration_link: "",
     status: "pending",
+    is_public: true,
   });
-  const [imageFile, setImageFile] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
   const handleChange = (e) => {
@@ -54,46 +43,23 @@ export default function CreateEventsPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImageFile(e.target.files[0]);
-    }
-  };
-
-  const handleRemoveImage = () => {
-    setImageFile(null);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmissionStatus({ message: "Submitting event...", type: "info" });
 
     try {
-      let imageUrl = "";
-
-      // Upload image if file is selected
-      if (imageFile) {
-        const filePath = `testimonials/${Date.now()}-${imageFile.name}`;
-        const uploadResult = await uploadFile(imageFile, filePath);
-
-        if (uploadResult) {
-          const { data: publicUrlData } = supabase.storage
-            .from("public-assets")
-            .getPublicUrl(filePath);
-          imageUrl = publicUrlData.publicUrl;
-        } else {
-          throw new Error("Failed to upload image");
-        }
-      }
-
       const eventData = {
         name: formData.name,
         description: formData.description,
-        start_date: formData.start_date ? new Date(formData.start_date).toISOString() : null,
-        end_date: formData.end_date ? new Date(formData.end_date).toISOString() : null,
+        start_at: formData.start_at
+          ? new Date(formData.start_at).toISOString()
+          : null,
+        end_at: formData.end_at
+          ? new Date(formData.end_at).toISOString()
+          : null,
         registration_link: formData.registration_link || null,
-        status: formData.status || "draft",
-        image_url: imageUrl || null,
+        status: formData.status,
+        is_public: formData.is_public,
         created_at: new Date().toISOString(),
       };
 
@@ -104,18 +70,21 @@ export default function CreateEventsPage() {
 
       if (insertError) throw insertError;
 
-      setSubmissionStatus({ message: "Event submitted successfully!", type: "success" });
+      setSubmissionStatus({
+        message: "Event submitted successfully!",
+        type: "success",
+      });
 
       setTimeout(() => {
         setFormData({
           name: "",
           description: "",
-          start_date: "",
-          end_date: "",
+          start_at: "",
+          end_at: "",
           registration_link: "",
-          status: "draft",
+          status: "pending",
+          is_public: true,
         });
-        setImageFile(null);
         setSubmissionStatus(null);
       }, 2000);
     } catch (err) {
@@ -202,7 +171,7 @@ export default function CreateEventsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label
-                htmlFor="start_date"
+                htmlFor="start_at"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
                 Start date
@@ -213,9 +182,9 @@ export default function CreateEventsPage() {
                 </span>
                 <input
                   type="datetime-local"
-                  id="start_date"
-                  name="start_date"
-                  value={formData.start_date}
+                  id="start_at"
+                  name="start_at"
+                  value={formData.start_at}
                   onChange={handleChange}
                   className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
@@ -223,7 +192,7 @@ export default function CreateEventsPage() {
             </div>
             <div>
               <label
-                htmlFor="end_date"
+                htmlFor="end_at"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
                 End date
@@ -234,9 +203,9 @@ export default function CreateEventsPage() {
                 </span>
                 <input
                   type="datetime-local"
-                  id="end_date"
-                  name="end_date"
-                  value={formData.end_date}
+                  id="end_at"
+                  name="end_at"
+                  value={formData.end_at}
                   onChange={handleChange}
                   className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
@@ -267,10 +236,13 @@ export default function CreateEventsPage() {
             </div>
           </div>
 
-          {/* extra controls: status and image upload */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* extra controls: status and visibility */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="status"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Status
               </label>
               <select
@@ -278,38 +250,47 @@ export default function CreateEventsPage() {
                 name="status"
                 value={formData.status}
                 onChange={handleChange}
-                className="pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
-                <option value="draft">Draft</option>
-                <option value="published">Published</option>
-                <option value="cancelled">Cancelled</option>
+                <option value="pending">Pending</option>
+                <option value="success">Success</option>
               </select>
             </div>
 
-            <div className="md:col-span-2">
-              <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
-                Event Image (optional)
+            <div>
+              <label
+                htmlFor="is_public"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Visibility
               </label>
-              <div className="flex items-center space-x-4">
-                <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange} />
-                {imageFile && (
-                  <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-600">{imageFile.name}</span>
-                    <button type="button" onClick={handleRemoveImage} className="text-sm text-red-600">Remove</button>
-                  </div>
-                )}
-              </div>
+              <select
+                id="is_public"
+                name="is_public"
+                value={formData.is_public.toString()}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    is_public: e.target.value === "true",
+                  }))
+                }
+                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="true">Public</option>
+                <option value="false">Private</option>
+              </select>
             </div>
           </div>
 
           {submissionStatus && (
             <div
-              className={`p-4 rounded-md text-sm ${submissionStatus.type === "success"
-                ? "bg-green-100 text-green-800"
-                : submissionStatus.type === "error"
+              className={`p-4 rounded-md text-sm ${
+                submissionStatus.type === "success"
+                  ? "bg-green-100 text-green-800"
+                  : submissionStatus.type === "error"
                   ? "bg-red-100 text-red-800"
                   : "bg-blue-100 text-blue-800"
-                }`}
+              }`}
             >
               {submissionStatus.message}
             </div>
@@ -317,7 +298,7 @@ export default function CreateEventsPage() {
 
           <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200">
             <a
-              href="/admin/event"
+              href="/admin/events"
               className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100 transition-colors"
             >
               Cancel
