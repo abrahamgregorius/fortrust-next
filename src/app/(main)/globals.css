@@ -421,12 +421,21 @@ ul {
     gap: var(--space-4);
 }
 .testimonial-card__author img {
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     object-fit: cover;
     object-position: center;
     border-radius: 50%;
 }
+.author-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+.author-info p {
+    margin: 0;
+}
+
 .author-info strong {
     color: var(--brand-700);
 }

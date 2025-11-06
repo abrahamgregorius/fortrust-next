@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function Home() {
     // State untuk carousel
@@ -45,7 +46,7 @@ export default function Home() {
         },
     ];
 
-    const testimonials = [
+    const testimonials1 = [
         {
             quote: "All good with Fortrust, I got advice and suggestions that I needed during application to NZ universities. Fortrust staff, mbak Sarah also have assisted me throughout my application journey to several universities until I decided AIS is the most suitable for me. I'm thankful to be given the opportunity to live my NZ dreams with my family. Thank you, Fortrust!",
             author: "Oltariani Laswinta Fitri",
@@ -71,6 +72,18 @@ export default function Home() {
             img: "/people/Charlotte-Erika-Javly.jpg",
         },
     ];
+
+    const [testimonials, setTestimonials] = useState([]);
+    const fetchTestimonials = async () => {
+        const { data, error } = await supabase.from("testimonials").select("*");
+        if (error) {
+            console.error("Error fetching testimonials:", error);
+        } else {
+            setTestimonials(data || []);
+        }
+
+        console.log(data);
+    };
 
     const universities = [
         {
@@ -176,6 +189,10 @@ export default function Home() {
         }, 5000);
         return () => clearInterval(timer);
     }, [slides.length]);
+
+    useEffect(() => {
+        fetchTestimonials();
+    }, [])
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -401,21 +418,21 @@ export default function Home() {
                         <div className="testimonial-slider-wrapper">
                             {testimonials.map((t, index) => (
                                 <div
-                                    key={index}
+                                    key={t.id}
                                     className={`card testimonial-card ${index === current ? "active" : ""
                                         }`}
                                 >
                                     <p className="testimonial-card__content">
-                                        "{t.quote}"
+                                        "{t.testimonial}"
                                     </p>
                                     <div className="testimonial-card__author">
                                         <img
-                                            src={t.img}
-                                            alt={`Photo of ${t.author}`}
+                                            src={t.image_url}
+                                            alt={`Photo of ${t.person_name}`}
                                         />
                                         <div className="author-info">
-                                            <strong>{t.author}</strong>
-                                            <p>{t.role}</p>
+                                            <strong>{t.person_name}</strong>
+                                            <p>{t.person_institution}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -461,7 +478,7 @@ export default function Home() {
                                         World-class education, vibrant cities,
                                         and stunning natural landscapes.
                                     </p>
-                                    <a href="destination-australia.html">
+                                    <a href="/destinations/australia">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
@@ -477,7 +494,7 @@ export default function Home() {
                                         World-class education, vibrant cities,
                                         and stunning natural landscapes.
                                     </p>
-                                    <a href="destination-canada.html">
+                                    <a href="/destinations/canada">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
@@ -493,7 +510,7 @@ export default function Home() {
                                         World-class education, vibrant cities,
                                         and stunning natural landscapes.
                                     </p>
-                                    <a href="destination-china.html">
+                                    <a href="/destinations/china">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
@@ -509,7 +526,7 @@ export default function Home() {
                                         World-class education, vibrant cities,
                                         and stunning natural landscapes.
                                     </p>
-                                    <a href="destination-malaysia.html">
+                                    <a href="/destinations/malaysia">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
@@ -525,7 +542,7 @@ export default function Home() {
                                         Innovative learning in one of the safest
                                         and most beautiful countries.
                                     </p>
-                                    <a href="destination-newzealand.html">
+                                    <a href="/destinations/newzealand">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
@@ -541,7 +558,7 @@ export default function Home() {
                                         A global hub of technology, finance, and
                                         multicultural experiences.
                                     </p>
-                                    <a href="destination-singapore.html">
+                                    <a href="/destinations/singapore">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
@@ -557,7 +574,7 @@ export default function Home() {
                                         A global hub of technology, finance, and
                                         multicultural experiences.
                                     </p>
-                                    <a href="destination-switzerland.html">
+                                    <a href="/destinations/switzerland">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
@@ -573,7 +590,7 @@ export default function Home() {
                                         Home to historic universities with a
                                         legacy of academic excellence.
                                     </p>
-                                    <a href="destination-uk.html">
+                                    <a href="/destinations/uk">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
@@ -589,7 +606,7 @@ export default function Home() {
                                         Home to historic universities with a
                                         legacy of academic excellence.
                                     </p>
-                                    <a href="destination-usa.html">
+                                    <a href="/destinations/usa">
                                         Learn More <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
