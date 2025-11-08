@@ -58,6 +58,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     { href: "/admin", icon: ICONS.dashboard, name: "Dashboard" },
     { href: "/admin/blogs", icon: ICONS.orders, name: "Blog" },
     { href: "/admin/events", icon: ICONS.products, name: "Events" },
+    { href: "/admin/banners", icon: ICONS.banner, name: "Banners" },
     { href: "/admin/testimonials", icon: ICONS.users, name: "Testimonials" },
     { href: "/admin/settings", icon: ICONS.settings, name: "Settings" },
   ];
@@ -66,14 +67,16 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     <>
       {/* Overlay for mobile */}
       <div
-        className={`admin-sidebar-overlay fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden ${isSidebarOpen ? "block" : "hidden"
-          }`}
+        className={`admin-sidebar-overlay fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden ${
+          isSidebarOpen ? "block" : "hidden"
+        }`}
         onClick={toggleSidebar}
       ></div>
 
       <aside
-        className={`admin-sidebar fixed top-0 left-0 h-full bg-gray-800 text-gray-100 w-64 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } lg:translate-x-0 transition-transform duration-300 ease-in-out z-40 flex flex-col`}
+        className={`admin-sidebar fixed top-0 left-0 h-full bg-gray-800 text-gray-100 w-64 transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 transition-transform duration-300 ease-in-out z-40 flex flex-col`}
       >
         <div className="admin-sidebar-header p-4 flex items-center justify-between border-b border-gray-700">
           <h1 className="text-2xl font-bold text-white">Fortrust Admin</h1>
@@ -90,10 +93,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <li key={index} className="px-4 py-2">
                 <a
                   href={item.href || "#"}
-                  className={`flex items-center p-2 rounded-lg transition-colors ${item.href === pathname
-                    ? "bg-indigo-600 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white"
-                    }`}
+                  className={`flex items-center p-2 rounded-lg transition-colors ${
+                    item.href === pathname
+                      ? "bg-indigo-600 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                  }`}
                 >
                   <Icon path={item.icon} className="w-5 h-5 mr-3" />
                   <span>{item.name}</span>
@@ -581,12 +585,13 @@ export default function App() {
 
                   {editStatus && (
                     <div
-                      className={`p-4 rounded-md text-sm ${editStatus.type === "success"
-                        ? "bg-green-100 text-green-800"
-                        : editStatus.type === "error"
+                      className={`p-4 rounded-md text-sm ${
+                        editStatus.type === "success"
+                          ? "bg-green-100 text-green-800"
+                          : editStatus.type === "error"
                           ? "bg-red-100 text-red-800"
                           : "bg-blue-100 text-blue-800"
-                        }`}
+                      }`}
                     >
                       {editStatus.message}
                     </div>

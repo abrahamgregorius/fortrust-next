@@ -168,27 +168,63 @@ const Header = ({ toggleSidebar }) => {
   );
 };
 
-export default function Events() {
-  const [events, setEvents] = useState([]);
+export default function Banners() {
+  const [banners, setBanners] = useState([]);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isViewModalOpen, setIsViewModalOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [selectedBanner, setSelectedBanner] = useState(null);
   const [editFormData, setEditFormData] = useState({
-    name: "",
-    description: "",
-    start_at: "",
-    end_at: "",
-    registration_link: "",
-    status: "pending",
-    is_public: true,
+    title: "",
+    image_url: "",
+    link_url: "",
+    event_id: "",
+    display_order: 0,
+    is_active: true,
   });
   const [editStatus, setEditStatus] = useState(null);
+  const [events, setEvents] = useState([]);
+  const [editImageFile, setEditImageFile] = useState(null);
+  const [editImagePreview, setEditImagePreview] = useState(null);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
+  const uploadFile = async (file, filePath) => {
+    const { data, error } = await supabase.storage
+      .from("public-assets")
+      .upload(filePath, file);
+    if (error) {
+      console.error(error);
+      return null;
+    }
+    return data;
+  };
+
+  const fetchBanners = async () => {
+    const { data, error } = await supabase
+      .from("banners")
+      .select(
+        `
+        *,
+        events (
+          id,
+          name
+        )
+      `
+      )
+      .order("display_order", "asc");
+    if (error) {
+      console.error("Error fetching banners:", error);
+    } else {
+      setBanners(data || []);
+    }
+  };
+
   const fetchEvents = async () => {
-    const { data, error } = await supabase.from("events").select("*");
+    const { data, error } = await supabase
+      .from("events")
+      .select("id, name")
+      .order("name");
     if (error) {
       console.error("Error fetching events:", error);
     } else {
@@ -204,95 +240,151 @@ export default function Events() {
     });
   };
 
-  const handleView = (event) => {
-    setSelectedEvent(event);
+  const handleView = (banner) => {
+    setSelectedBanner(banner);
     setIsViewModalOpen(true);
   };
 
   const handleDelete = async (id) => {
     try {
       const { data, error } = await supabase
-        .from("events")
+        .from("banners")
         .delete()
         .eq("id", id);
       if (error) {
-        console.error("Error deleting event:", error);
+        console.error("Error deleting banner:", error);
       } else {
-        fetchEvents();
+        fetchBanners();
       }
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleEdit = (event) => {
-    setSelectedEvent(event);
+  const handleEdit = (banner) => {
+    setSelectedBanner(banner);
     setEditFormData({
-      name: event.name,
-      description: event.description || "",
-      start_at: event.start_at
-        ? new Date(event.start_at).toISOString().slice(0, 16)
-        : "",
-      end_at: event.end_at
-        ? new Date(event.end_at).toISOString().slice(0, 16)
-        : "",
-      registration_link: event.registration_link || "",
-      status: event.status || "pending",
-      is_public: event.is_public !== undefined ? event.is_public : true,
+      title: banner.title,
+      image_url: banner.image_url,
+      link_url: banner.link_url || "",
+      event_id: banner.event_id || "",
+      display_order: banner.display_order || 0,
+      is_active: banner.is_active !== undefined ? banner.is_active : true,
     });
+    setEditImageFile(null);
+    setEditImagePreview(null);
     setIsEditModalOpen(true);
   };
 
   const handleEditFormChange = (e) => {
-    const { name, value } = e.target;
-    setEditFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    setEditFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? e.target.checked : value,
+    }));
+  };
+
+  const handleEditFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEditImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveEditImage = () => {
+    setEditImageFile(null);
+    setEditImagePreview(null);
+  };
+
+  const deleteOldImage = async (imageUrl) => {
+    if (!imageUrl) return;
+
+    try {
+      // Extract file path from URL
+      const urlParts = imageUrl.split("/");
+      const fileName = urlParts[urlParts.length - 1];
+      const filePath = `banners/${fileName}`;
+
+      const { error } = await supabase.storage
+        .from("public-assets")
+        .remove([filePath]);
+
+      if (error) {
+        console.error("Error deleting old image:", error);
+      } else {
+        console.log("Old image deleted successfully");
+      }
+    } catch (error) {
+      console.error("Error deleting old image:", error);
+    }
   };
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    setEditStatus({ message: "Updating event...", type: "info" });
+    setEditStatus({ message: "Updating banner...", type: "info" });
 
     try {
+      let imageUrl = editFormData.image_url;
+
+      // If new image is uploaded, delete old image and upload new one
+      if (editImageFile) {
+        // Delete old image if exists
+        if (editFormData.image_url) {
+          await deleteOldImage(editFormData.image_url);
+        }
+
+        // Upload new image
+        const filePath = `banners/${Date.now()}-${editImageFile.name}`;
+        await uploadFile(editImageFile, filePath);
+        const { data: publicUrlData } = supabase.storage
+          .from("public-assets")
+          .getPublicUrl(filePath);
+        imageUrl = publicUrlData.publicUrl;
+      }
+
       const { data, error } = await supabase
-        .from("events")
+        .from("banners")
         .update({
-          name: editFormData.name,
-          description: editFormData.description,
-          start_at: editFormData.start_at
-            ? new Date(editFormData.start_at).toISOString()
-            : null,
-          end_at: editFormData.end_at
-            ? new Date(editFormData.end_at).toISOString()
-            : null,
-          registration_link: editFormData.registration_link,
-          status: editFormData.status,
-          is_public: editFormData.is_public,
+          title: editFormData.title,
+          image_url: imageUrl,
+          link_url: editFormData.link_url || null,
+          event_id: editFormData.event_id || null,
+          display_order: editFormData.display_order,
+          is_active: editFormData.is_active,
           updated_at: new Date().toISOString(),
         })
-        .eq("id", selectedEvent.id)
+        .eq("id", selectedBanner.id)
         .select();
 
       if (error) throw error;
 
-      console.log("✅ Event updated:", data);
+      console.log("✅ Banner updated:", data);
       setEditStatus({
-        message: "Event updated successfully!",
+        message: "Banner updated successfully!",
         type: "success",
       });
-      fetchEvents();
+      fetchBanners();
 
       setTimeout(() => {
         setIsEditModalOpen(false);
-        setSelectedEvent(null);
+        setSelectedBanner(null);
+        setEditImageFile(null);
+        setEditImagePreview(null);
         setEditStatus(null);
       }, 2000);
     } catch (err) {
-      console.error("❌ Error updating event:", err);
+      console.error("❌ Error updating banner:", err);
       setEditStatus({ message: `Error: ${err.message}`, type: "error" });
     }
   };
 
   useEffect(() => {
+    fetchBanners();
     fetchEvents();
   }, []);
 
@@ -302,7 +394,7 @@ export default function Events() {
 
       <main className="admin-main-content lg:ml-64 p-4 md:p-6 transition-all duration-300 ease-in-out">
         <div className="">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Events</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Banners</h2>
 
           <div className="bg-gray-100 min-h-screen p-4 sm:p-6 lg:p-8 font-sans">
             <div className="max-w-7xl mx-auto">
@@ -310,41 +402,41 @@ export default function Events() {
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6">
                 <div>
                   <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
-                    Events
+                    Banners
                   </h1>
                   <p className="mt-1 text-sm text-gray-500">
-                    Manage, edit, and create new events.
+                    Manage, edit, and create new banners.
                   </p>
                 </div>
                 <a
-                  href="/admin/events/create"
+                  href="/admin/banners/create"
                   className="mt-4 sm:mt-0 flex items-center justify-center bg-indigo-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-300"
                 >
                   <Icon path={ICONS.plus} className="w-5 h-5 mr-2" />
-                  Create New Event
+                  Create New Banner
                 </a>
               </div>
 
-              {/* Blog Table Card */}
+              {/* Banners Table Card */}
               <div className="bg-white rounded-xl shadow-md overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                       <tr>
                         <th scope="col" className="px-6 py-3 min-w-[200px]">
-                          Event Name
+                          Title
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Image
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Event
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Order
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Status
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Start Date
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          End Date
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Public
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
                           Actions
@@ -352,60 +444,56 @@ export default function Events() {
                       </tr>
                     </thead>
                     <tbody>
-                      {events.map((event) => (
+                      {banners.map((banner) => (
                         <tr
-                          key={event.id}
+                          key={banner.id}
                           className="bg-white hover:bg-gray-50 transition-colors duration-200"
                         >
                           <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {event.name}
+                            {banner.title}
                           </td>
+                          <td className="px-6 py-4">
+                            {banner.image_url && (
+                              <img
+                                src={banner.image_url}
+                                alt={banner.title}
+                                className="h-16 w-24 object-cover rounded-md"
+                              />
+                            )}
+                          </td>
+                          <td className="px-6 py-4">
+                            {banner.events?.name || "-"}
+                          </td>
+                          <td className="px-6 py-4">{banner.display_order}</td>
                           <td className="px-6 py-4">
                             <span
                               className={`px-2 py-1 text-xs font-medium rounded-full ${
-                                event.status === "success"
-                                  ? "bg-green-100 text-green-800"
-                                  : "bg-yellow-100 text-yellow-800"
-                              }`}
-                            >
-                              {event.status}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4">
-                            {event.start_at ? formatDate(event.start_at) : "-"}
-                          </td>
-                          <td className="px-6 py-4">
-                            {event.end_at ? formatDate(event.end_at) : "-"}
-                          </td>
-                          <td className="px-6 py-4">
-                            <span
-                              className={`px-2 py-1 text-xs font-medium rounded-full ${
-                                event.is_public
+                                banner.is_active
                                   ? "bg-green-100 text-green-800"
                                   : "bg-gray-100 text-gray-800"
                               }`}
                             >
-                              {event.is_public ? "Public" : "Private"}
+                              {banner.is_active ? "Active" : "Inactive"}
                             </span>
                           </td>
                           <td className="px-6 py-4">
                             <div className="flex items-center justify-center space-x-3">
                               <button
-                                onClick={() => handleView(event)}
+                                onClick={() => handleView(banner)}
                                 className="text-gray-500 hover:text-blue-600"
                                 title="View"
                               >
                                 <Icon path={ICONS.view} />
                               </button>
                               <button
-                                onClick={() => handleEdit(event)}
+                                onClick={() => handleEdit(banner)}
                                 className="text-gray-500 hover:text-green-600"
                                 title="Edit"
                               >
                                 <Icon path={ICONS.edit} />
                               </button>
                               <button
-                                onClick={() => handleDelete(event.id)}
+                                onClick={() => handleDelete(banner.id)}
                                 className="text-gray-500 hover:text-red-600"
                                 title="Delete"
                               >
@@ -430,7 +518,7 @@ export default function Events() {
               <div className="p-6">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-xl font-bold text-gray-800">
-                    Edit Event
+                    Edit Banner
                   </h2>
                   <button
                     onClick={() => setIsEditModalOpen(false)}
@@ -443,16 +531,16 @@ export default function Events() {
                 <form onSubmit={handleEditSubmit} className="space-y-4">
                   <div>
                     <label
-                      htmlFor="edit_name"
+                      htmlFor="edit_title"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Event Name
+                      Title
                     </label>
                     <input
                       type="text"
-                      id="edit_name"
-                      name="name"
-                      value={editFormData.name}
+                      id="edit_title"
+                      name="title"
+                      value={editFormData.title}
                       onChange={handleEditFormChange}
                       required
                       className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -460,112 +548,157 @@ export default function Events() {
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="edit_description"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Description
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Banner Image
                     </label>
-                    <textarea
-                      id="edit_description"
-                      name="description"
-                      value={editFormData.description}
-                      onChange={handleEditFormChange}
-                      rows="3"
-                      className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    ></textarea>
-                  </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="edit_start_at"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                      >
-                        Start Date
-                      </label>
-                      <input
-                        type="datetime-local"
-                        id="edit_start_at"
-                        name="start_at"
-                        value={editFormData.start_at}
-                        onChange={handleEditFormChange}
-                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="edit_end_at"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                      >
-                        End Date
-                      </label>
-                      <input
-                        type="datetime-local"
-                        id="edit_end_at"
-                        name="end_at"
-                        value={editFormData.end_at}
-                        onChange={handleEditFormChange}
-                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                      />
-                    </div>
-                  </div>
+                    {/* Current Image Display */}
+                    {editFormData.image_url && !editImagePreview && (
+                      <div className="mt-2 mb-4">
+                        <div className="relative group">
+                          <img
+                            src={editFormData.image_url}
+                            alt="Current banner image"
+                            className="h-48 w-full object-contain bg-gray-100 rounded-md"
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity rounded-md flex items-center justify-center">
+                            <p className="text-white text-sm">Current Image</p>
+                          </div>
+                        </div>
+                        <p className="mt-1 text-sm text-gray-600">
+                          Current banner image
+                        </p>
+                      </div>
+                    )}
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="edit_registration_link"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                      >
-                        Registration Link
-                      </label>
-                      <input
-                        type="url"
-                        id="edit_registration_link"
-                        name="registration_link"
-                        value={editFormData.registration_link}
-                        onChange={handleEditFormChange}
-                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        placeholder="https://"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="edit_status"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                      >
-                        Status
-                      </label>
-                      <select
-                        id="edit_status"
-                        name="status"
-                        value={editFormData.status}
-                        onChange={handleEditFormChange}
-                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                      >
-                        <option value="pending">Pending</option>
-                        <option value="success">Success</option>
-                      </select>
+                    {/* New Image Preview */}
+                    {editImagePreview && (
+                      <div className="mt-2 mb-4">
+                        <div className="relative group">
+                          <img
+                            src={editImagePreview}
+                            alt="New banner preview"
+                            className="h-48 w-full object-contain bg-gray-100 rounded-md"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleRemoveEditImage}
+                            className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <Icon path={ICONS.close} className="w-4 h-4" />
+                          </button>
+                        </div>
+                        <p className="mt-1 text-sm text-gray-600">
+                          New image preview (will replace current image)
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Upload New Image */}
+                    <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      <div className="space-y-1 text-center">
+                        <Icon
+                          path={ICONS.upload}
+                          className="mx-auto h-12 w-12 text-gray-400"
+                        />
+                        <div className="flex justify-center items-center text-sm text-gray-600">
+                          <label
+                            htmlFor="edit-file-upload"
+                            className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500"
+                          >
+                            <span>Upload new image</span>
+                            <input
+                              id="edit-file-upload"
+                              name="edit-file-upload"
+                              type="file"
+                              onChange={handleEditFileChange}
+                              className="sr-only"
+                              accept="image/*"
+                            />
+                          </label>
+                          <p className="pl-1">to replace current</p>
+                        </div>
+                        <p className="text-xs text-gray-500">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
+                      </div>
                     </div>
                   </div>
 
                   <div>
                     <label
-                      htmlFor="edit_is_public"
+                      htmlFor="edit_link_url"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Visibility
+                      Link URL
                     </label>
-                    <select
-                      id="edit_is_public"
-                      name="is_public"
-                      value={editFormData.is_public.toString()}
+                    <input
+                      type="url"
+                      id="edit_link_url"
+                      name="link_url"
+                      value={editFormData.link_url}
                       onChange={handleEditFormChange}
                       className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      placeholder="https://"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="edit_event_id"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Event
+                      </label>
+                      <select
+                        id="edit_event_id"
+                        name="event_id"
+                        value={editFormData.event_id}
+                        onChange={handleEditFormChange}
+                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      >
+                        <option value="">Select Event</option>
+                        {events.map((event) => (
+                          <option key={event.id} value={event.id}>
+                            {event.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="edit_display_order"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Display Order
+                      </label>
+                      <input
+                        type="number"
+                        id="edit_display_order"
+                        name="display_order"
+                        value={editFormData.display_order}
+                        onChange={handleEditFormChange}
+                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id="edit_is_active"
+                      name="is_active"
+                      checked={editFormData.is_active}
+                      onChange={handleEditFormChange}
+                      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                    />
+                    <label
+                      htmlFor="edit_is_active"
+                      className="ml-2 block text-sm text-gray-700"
                     >
-                      <option value="true">Public</option>
-                      <option value="false">Private</option>
-                    </select>
+                      Active
+                    </label>
                   </div>
 
                   {editStatus && (
@@ -594,7 +727,7 @@ export default function Events() {
                       type="submit"
                       className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 transition-colors"
                     >
-                      Update Event
+                      Update Banner
                     </button>
                   </div>
                 </form>
@@ -604,13 +737,13 @@ export default function Events() {
         )}
 
         {/* View Modal */}
-        {isViewModalOpen && selectedEvent && (
+        {isViewModalOpen && selectedBanner && (
           <div className="fixed inset-0 bg-black/30 z-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-xl font-bold text-gray-800">
-                    Event Details
+                    Banner Details
                   </h2>
                   <button
                     onClick={() => setIsViewModalOpen(false)}
@@ -623,100 +756,72 @@ export default function Events() {
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800">
-                      {selectedEvent.name}
+                      {selectedBanner.title}
                     </h3>
                     <div className="mt-2">
                       <span
                         className={`px-2 py-1 text-xs font-medium rounded-full ${
-                          selectedEvent.status === "success"
+                          selectedBanner.is_active
                             ? "bg-green-100 text-green-800"
-                            : "bg-yellow-100 text-yellow-800"
+                            : "bg-gray-100 text-gray-800"
                         }`}
                       >
-                        {selectedEvent.status}
+                        {selectedBanner.is_active ? "Active" : "Inactive"}
                       </span>
                     </div>
                   </div>
 
-                  {selectedEvent.description && (
+                  {selectedBanner.image_url && (
                     <div>
                       <h4 className="text-sm font-medium text-gray-700 mb-2">
-                        Description:
+                        Banner Image:
                       </h4>
-                      <p className="text-gray-800 bg-gray-50 p-4 rounded-lg">
-                        {selectedEvent.description}
-                      </p>
+                      <img
+                        src={selectedBanner.image_url}
+                        alt={selectedBanner.title}
+                        className="w-full h-48 object-contain bg-gray-100 rounded-lg"
+                      />
                     </div>
                   )}
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {selectedBanner.link_url && (
                     <div>
                       <h4 className="text-sm font-medium text-gray-700 mb-1">
-                        Start Date:
-                      </h4>
-                      <p className="text-gray-800">
-                        {selectedEvent.start_at
-                          ? formatDate(selectedEvent.start_at)
-                          : "Not set"}
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-medium text-gray-700 mb-1">
-                        End Date:
-                      </h4>
-                      <p className="text-gray-800">
-                        {selectedEvent.end_at
-                          ? formatDate(selectedEvent.end_at)
-                          : "Not set"}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <h4 className="text-sm font-medium text-gray-700 mb-1">
-                        Visibility:
-                      </h4>
-                      <p className="text-gray-800">
-                        <span
-                          className={`px-2 py-1 text-xs font-medium rounded-full ${
-                            selectedEvent.is_public
-                              ? "bg-green-100 text-green-800"
-                              : "bg-gray-100 text-gray-800"
-                          }`}
-                        >
-                          {selectedEvent.is_public ? "Public" : "Private"}
-                        </span>
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-medium text-gray-700 mb-1">
-                        Updated:
-                      </h4>
-                      <p className="text-gray-800">
-                        {formatDate(selectedEvent.updated_at)}
-                      </p>
-                    </div>
-                  </div>
-
-                  {selectedEvent.registration_link && (
-                    <div>
-                      <h4 className="text-sm font-medium text-gray-700 mb-1">
-                        Registration Link:
+                        Link URL:
                       </h4>
                       <a
-                        href={selectedEvent.registration_link}
+                        href={selectedBanner.link_url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-indigo-600 hover:text-indigo-800 underline"
                       >
-                        {selectedEvent.registration_link}
+                        {selectedBanner.link_url}
                       </a>
                     </div>
                   )}
 
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-1">
+                        Event:
+                      </h4>
+                      <p className="text-gray-800">
+                        {selectedBanner.events?.name || "No event linked"}
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-1">
+                        Display Order:
+                      </h4>
+                      <p className="text-gray-800">
+                        {selectedBanner.display_order}
+                      </p>
+                    </div>
+                  </div>
+
                   <div className="text-sm text-gray-500">
-                    <p>Created: {formatDate(selectedEvent.created_at)}</p>
+                    <p>Created: {formatDate(selectedBanner.created_at)}</p>
+                    <p>Updated: {formatDate(selectedBanner.updated_at)}</p>
                   </div>
 
                   <div className="flex justify-end pt-4 border-t border-gray-200">
