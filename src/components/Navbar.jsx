@@ -2,11 +2,17 @@
 
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
+    const pathname = usePathname();
+
+    // Detect if we're on Indonesian locale pages
+    const isIndonesian = pathname?.startsWith("/id");
+    const localePrefix = isIndonesian ? "/id" : "";
 
     // Toggle hamburger menu
     const toggleMenu = () => {
@@ -25,13 +31,13 @@ export default function Navbar() {
     const closeMenu = () => {
         setMenuOpen(false);
         setActiveDropdown(null);
-    };
+    }; 
 
     return (
         <>
             <header className="header">
                 <div className="container header__container">
-                    <Link href="/" className="header__logo">
+                    <Link href={localePrefix || "/"} className="header__logo">
                         <img
                             src="/logo-fortrust.png"
                             className="logo-light"
@@ -65,31 +71,31 @@ export default function Navbar() {
                                     <ChevronDown style={{ margin: "0 5px" }} size={13} />
                                 </Link>
                                 <div className="dropdown-menu">
-                                    <Link href="/destinations/australia" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/australia`} onClick={closeMenu}>
                                         Australia
                                     </Link>
-                                    <Link href="/destinations/canada" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/canada`} onClick={closeMenu}>
                                         Canada
                                     </Link>
-                                    <Link href="/destinations/china" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/china`} onClick={closeMenu}>
                                         China
                                     </Link>
-                                    <Link href="/destinations/malaysia" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/malaysia`} onClick={closeMenu}>
                                         Malaysia
                                     </Link>
-                                    <Link href="/destinations/newzealand" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/newzealand`} onClick={closeMenu}>
                                         New Zealand
                                     </Link>
-                                    <Link href="/destinations/singapore" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/singapore`} onClick={closeMenu}>
                                         Singapore
                                     </Link>
-                                    <Link href="/destinations/switzerland" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/switzerland`} onClick={closeMenu}>
                                         Switzerland
                                     </Link>
-                                    <Link href="/destinations/uk" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/uk`} onClick={closeMenu}>
                                         United Kingdom
                                     </Link>
-                                    <Link href="/destinations/usa" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/destinations/usa`} onClick={closeMenu}>
                                         USA
                                     </Link>
                                 </div>
@@ -112,25 +118,16 @@ export default function Navbar() {
                                     <ChevronDown style={{ margin: "0 5px" }} size={13} />
                                 </Link>
                                 <div className="dropdown-menu">
-                                    <Link href="/tests/interest" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/tests/interest`} onClick={closeMenu}>
                                         Interest and Aptitude Test
                                     </Link>
-                                    <Link href="/tests/ielts-toefl" onClick={closeMenu}>
-                                        IELTS & TOEFL Preparation
+                                    <Link href={`${localePrefix}/tests/language-prep`} onClick={closeMenu}>
+                                        Language Prep (IELTS, TOEFL, HSK)
                                     </Link>
-                                    <Link href="/tests/hsk" onClick={closeMenu}>
-                                        HSK Preparation
+                                    <Link href={`${localePrefix}/tests/standardized`} onClick={closeMenu}>
+                                        Standardized Test Prep (SAT, GMAT, CSCA)
                                     </Link>
-                                    <Link href="/tests/sat" onClick={closeMenu}>
-                                        SAT Preparation
-                                    </Link>
-                                    <Link href="/tests/gmat" onClick={closeMenu}>
-                                        GMAT Preparation
-                                    </Link>
-                                    {/* <Link href="/tests/standardized" onClick={closeMenu}>
-                                        Standardized Test Preparation
-                                    </Link> */}
-                                    <Link href="/tests/paket" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/tests/paket`} onClick={closeMenu}>
                                         Paket A, B, C
                                     </Link>
                                 </div>
@@ -153,13 +150,13 @@ export default function Navbar() {
                                     <ChevronDown style={{ margin: "0 5px" }} size={13} />
                                 </Link>
                                 <div className="dropdown-menu">
-                                    <Link href="/services/university" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/services/university`} onClick={closeMenu}>
                                         University Placement
                                     </Link>
-                                    <Link href="/services/study-tour" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/services/study-tour`} onClick={closeMenu}>
                                         Study Tour
                                     </Link>
-                                    <Link href="/services/internship" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/services/internship`} onClick={closeMenu}>
                                         Internship Program
                                     </Link>
                                 </div>
@@ -182,7 +179,7 @@ export default function Navbar() {
                                     <ChevronDown style={{ margin: "0 5px" }} size={13} />
                                 </Link>
                                 <div className="dropdown-menu">
-                                    <Link href="/alumni/success-stories" onClick={closeMenu}>
+                                    <Link href={`${localePrefix}/alumni/success-stories`} onClick={closeMenu}>
                                         Success story
                                     </Link>
                                     <Link href="#" onClick={closeMenu}>
@@ -196,23 +193,52 @@ export default function Navbar() {
 
                             {/* Normal Links */}
                             <li>
-                                <Link href="/events" className="nav__link" onClick={closeMenu}>
+                                <Link href={`${localePrefix}/events`} className="nav__link" onClick={closeMenu}>
                                     Events
                                 </Link>
                             </li>
-                            <li>
-                                <Link href="/about" className="nav__link" onClick={closeMenu}>
+
+                            {/* Dropdown 5 - Why Us? */}
+                            <li
+                                className={`nav-item--dropdown ${activeDropdown === 4 ? "active" : ""
+                                    }`}
+                            >
+                                <Link
+                                    href="#"
+                                    className="nav__link"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        toggleDropdown(4);
+                                    }}
+                                >
                                     Why Us?
+                                    <ChevronDown style={{ margin: "0 5px" }} size={13} />
                                 </Link>
+                                <div className="dropdown-menu">
+                                    <Link href={`${localePrefix}/about`} onClick={closeMenu}>
+                                        About
+                                    </Link>
+                                    <Link href={`${localePrefix}/blog`} onClick={closeMenu}>
+                                        Blog
+                                    </Link>
+                                </div>
                             </li>
                         </ul>
                     </nav>
 
                     <div className="header__actions">
                         <div className="lang-switcher">
-                            <span>EN</span> | <Link href="#">ID</Link>
+                            {isIndonesian ? (
+                                <>
+                                    <Link href={pathname.replace(/^\/id/, "") || "/"}>EN</Link> | <span>ID</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span>EN</span> | <Link href={`/id${pathname}`}>ID</Link>
+                                </>
+                            )}
                         </div>
-                        <Link href="/contact" className="btn btn--primary">
+                        <Link href={`${localePrefix}/contact`} className="btn btn--primary">
                             Free Consultation
                         </Link>
                         <button

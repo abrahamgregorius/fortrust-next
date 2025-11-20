@@ -3,6 +3,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import { redirect, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import AdminSidebar from "@/components/admin/AdminSidebar";
 
 // Helper component for SVG icons
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -44,76 +45,9 @@ const ICONS = {
   edit: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z",
   delete:
     "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z",
-};
+  banner:
+    "M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM5 7h14v2H5V7zm0 4h14v2H5v-2zm0 4h14v2H5v-2z",
 
-// Sidebar component
-const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
-  const pathname = usePathname();
-
-  const menuItems = [
-    { href: "/admin", icon: ICONS.dashboard, name: "Dashboard" },
-    { href: "/admin/blogs", icon: ICONS.orders, name: "Blog" },
-    { href: "/admin/events", icon: ICONS.products, name: "Events" },
-    { href: "/admin/banners", icon: ICONS.banner, name: "Banners" },
-    { href: "/admin/testimonials", icon: ICONS.users, name: "Testimonials" },
-    { href: "/admin/settings", icon: ICONS.settings, name: "Settings" },
-  ];
-
-  return (
-    <>
-      {/* Overlay for mobile */}
-      <div
-        className={`admin-sidebar-overlay fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden ${
-          isSidebarOpen ? "block" : "hidden"
-        }`}
-        onClick={toggleSidebar}
-      ></div>
-
-      <aside
-        className={`admin-sidebar fixed top-0 left-0 h-full bg-gray-800 text-gray-100 w-64 transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 transition-transform duration-300 ease-in-out z-40 flex flex-col`}
-      >
-        <div className="admin-sidebar-header p-4 flex items-center justify-between border-b border-gray-700">
-          <h1 className="text-2xl font-bold text-white">Fortrust Admin</h1>
-          <button
-            onClick={toggleSidebar}
-            className="lg:hidden text-gray-300 hover:text-white"
-          >
-            <Icon path={ICONS.close} />
-          </button>
-        </div>
-        <nav className="admin-sidebar-nav mt-6 flex-grow">
-          <ul>
-            {menuItems.map((item, index) => (
-              <li key={index} className="px-4 py-2">
-                <a
-                  href={item.href || "#"}
-                  className={`flex items-center p-2 rounded-lg transition-colors ${
-                    item.href === pathname
-                      ? "bg-indigo-600 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white"
-                  }`}
-                >
-                  <Icon path={item.icon} className="w-5 h-5 mr-3" />
-                  <span>{item.name}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div className="admin-sidebar-footer p-4 border-t border-gray-700">
-          <a
-            href="#"
-            className="flex items-center p-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white"
-          >
-            <Icon path={ICONS.logout} className="w-5 h-5 mr-3" />
-            <span>Logout</span>
-          </a>
-        </div>
-      </aside>
-    </>
-  );
 };
 
 // Header component
@@ -214,7 +148,7 @@ export default function App() {
 
   return (
     <div className="admin-dashboard-container bg-gray-100 font-sans min-h-screen">
-      <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <AdminSidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       <main className="admin-main-content lg:ml-64 p-4 md:p-6 transition-all duration-300 ease-in-out">
         <div className="">

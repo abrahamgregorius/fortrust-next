@@ -431,7 +431,7 @@ export default function UK() {
                                                 competitive, so early preparation is key.
                                             </p>
                                             <a
-                                                href="contact.html"
+                                                href="/contact"
                                                 className="btn btn--primary"
                                                 style={{ marginTop: "20px" }}
                                             >Inquire About Scholarships</a

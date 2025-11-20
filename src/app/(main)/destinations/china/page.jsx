@@ -362,7 +362,7 @@ export default function China() {
                                             application process accessible to students worldwide.
                                         </p>
                                         <a
-                                            href="contact.html"
+                                            href="/contact"
                                             className="btn btn--primary"
                                             style={{ marginTop: "20px" }}
                                         >Inquire About Scholarships</a

@@ -516,7 +516,7 @@ export default function USA() {
                                                 extracurricular accomplishments.
                                             </p>
                                             <a
-                                                href="contact.html"
+                                                href="/contact"
                                                 className="btn btn--primary"
                                                 style={{ marginTop: "20px" }}
                                             >Inquire About Scholarships</a

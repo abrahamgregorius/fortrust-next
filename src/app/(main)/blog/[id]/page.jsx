@@ -75,7 +75,7 @@ export default async function BlogPost({ params }) {
                                     marginBottom: '1rem'
                                 }}>
                                     <iframe
-                                        src={`https://www.youtube.com/embed/${data.youtube_url}`}
+                                        src={`https://www.youtube.com/embed/${data.youtube_url}?rel=0`}
                                         title="YouTube video player"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                         allowFullScreen

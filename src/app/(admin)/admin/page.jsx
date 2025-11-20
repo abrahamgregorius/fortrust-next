@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import AdminSidebar from "@/components/admin/AdminSidebar";
 import "../admin.css"
 
 // Helper component for SVG icons
@@ -25,54 +26,9 @@ const ICONS = {
     revenue: "M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 3h2.21l3.58 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20.21 4H5.21l-.94-2H1v2z",
     arrowUp: "M7 14l5-5 5 5z",
     arrowDown: "M7 10l5 5 5 5z",
-};
+    banner:
+        "M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM5 7h14v2H5V7zm0 4h14v2H5v-2zm0 4h14v2H5v-2z",
 
-// Sidebar component
-const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
-    const menuItems = [
-        { href: "/admin", icon: ICONS.dashboard, name: "Dashboard" },
-        { href: "/admin/blogs", icon: ICONS.orders, name: "Blog" },
-        { href: "/admin/events", icon: ICONS.products, name: "Events" },
-        { href: "/admin/testimonials", icon: ICONS.users, name: "Testimonials" },
-        { href: "/admin/settings", icon: ICONS.settings, name: "Settings" },
-    ];
-
-    return (
-        <>
-            {/* Overlay for mobile */}
-            <div
-                className={`admin-sidebar-overlay fixed inset-0 bg-black bg-opacity-40 z-30 lg:hidden ${isSidebarOpen ? 'block' : 'hidden'}`}
-                onClick={toggleSidebar}
-            ></div>
-
-            <aside className={`admin-sidebar fixed top-0 left-0 h-full bg-gray-800 text-gray-100 w-64 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 ease-in-out z-40 flex flex-col`}>
-                <div className="admin-sidebar-header p-4 flex items-center justify-between border-b border-gray-700">
-                    <h1 className="text-2xl font-bold text-white">Fortrust Admin</h1>
-                    <button onClick={toggleSidebar} className="lg:hidden text-gray-300 hover:text-white">
-                        <Icon path={ICONS.close} />
-                    </button>
-                </div>
-                <nav className="admin-sidebar-nav mt-6 flex-grow">
-                    <ul>
-                        {menuItems.map((item, index) => (
-                            <li key={index} className="px-4 py-2">
-                                <a href={item.href || "#"} className={`flex items-center p-2 rounded-lg transition-colors ${index === 0 ? 'bg-indigo-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'}`}>
-                                    <Icon path={item.icon} className="w-5 h-5 mr-3" />
-                                    <span>{item.name}</span>
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-                <div className="admin-sidebar-footer p-4 border-t border-gray-700">
-                    <a href="#" className="flex items-center p-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white">
-                        <Icon path={ICONS.logout} className="w-5 h-5 mr-3" />
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </aside>
-        </>
-    );
 };
 
 // Header component
@@ -198,7 +154,7 @@ export default function App() {
 
     return (
         <div className="admin-dashboard-container bg-gray-100 font-sans min-h-screen">
-            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+            <AdminSidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
             <main className="admin-main-content lg:ml-64 p-4 md:p-6 transition-all duration-300 ease-in-out">
                 <Header toggleSidebar={toggleSidebar} />

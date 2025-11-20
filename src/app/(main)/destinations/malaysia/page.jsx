@@ -425,9 +425,9 @@ export default function Australia() {
                                             over the world.
                                         </p>
                                         <a
-                                            href="contact.html"
+                                            href="/contact"
                                             className="btn btn--primary"
-                                            style="margin-top: 20px"
+                                            style={{ marginTop: "20px" }}
                                         >Inquire About Scholarships</a
                                         >
                                     </div>
@@ -545,7 +545,7 @@ export default function Australia() {
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p style="margin-top: 20px">
+                                        <p style={{ marginTop: "20px" }}>
                                             <strong>Pro Tip:</strong> Always apply at
                                             least 3–4 months before the deadline to
                                             avoid last-minute stress. This buffer helps

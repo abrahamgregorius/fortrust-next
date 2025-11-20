@@ -49,7 +49,7 @@ export default function LoginPage() {
                 )}
 
                 {/* Form Content */}
-                <div className="space-y-5">
+                <form className="space-y-5" onSubmit={handleSubmit}>
                     {/* Email Field */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -119,7 +119,7 @@ export default function LoginPage() {
                     >
                         {loading ? 'Signing in...' : 'Sign in'}
                     </button>
-                </div>
+                </form>
 
                 {/* Footer */}
                 <p className="text-center text-sm text-gray-600 mt-6">

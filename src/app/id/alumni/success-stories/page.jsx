@@ -1,0 +1,70 @@
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
+import { supabase } from "@/lib/supabaseClient";
+
+export default async function SuccessStories() {
+    const { data: testimonials, error } = await supabase
+        .from("testimonials")
+        .select("*")
+        .order("created_at", { ascending: false })
+
+    if (error) {
+        console.error(error)
+        return <p>Error loading testimonials.</p>
+    }
+
+
+    return (
+        <>
+            <Navbar></Navbar>
+
+            <main>
+                <section className="page-header">
+                    <div className="container">
+                        <h1>Dari Mimpi Menjadi Kenyataan</h1>
+                        <p>
+                            Dengarkan kisah mahasiswa yang berhasil menempuh perjalanan studi mereka bersama kami.
+                        </p>
+                    </div>
+                </section>
+
+                <section className="stories-section">
+                    <div className="container">
+                        <div className="story-filters">
+                            <button className="filter-tag active" data-filter="all">
+                                Semua Cerita
+                            </button>
+                        </div>
+
+                        <div className="story-grid">
+                            {testimonials?.map((t) => (
+                                <div
+                                    key={t.id}
+                                    className="card story-card rounded-2xl shadow-md overflow-hidden"
+                                    data-tags={t.person_institution?.toLowerCase() || ""}
+                                >
+                                    <img
+                                        src={t.image_url || "/placeholder.jpg"}
+                                        alt={`Photo of ${t.person_name}`}
+                                        className="w-full h-64 object-cover"
+                                    />
+                                    <div className="card__content p-4">
+                                        <blockquote className="italic mb-3 text-gray-700">
+                                            “{t.testimonial}”
+                                        </blockquote>
+                                        <p className="author font-semibold text-sm text-gray-900">
+                                            - {t.person_name}, {t.person_institution}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <Footer></Footer>
+
+        </>
+    )
+}

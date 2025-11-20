@@ -1,8 +1,54 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { supabase } from "@/lib/supabaseClient";
 import { Clock, MapPin, Newspaper } from "lucide-react";
 
-export default function Events() {
+export default async function Events() {
+    const { data: events, error } = await supabase
+        .from("events")
+        .select("*")
+        .order("created_at", { ascending: false })
+
+    if (error) {
+        console.error(error)
+        return <p>Error loading testimonials.</p>
+    }
+
+    const formatTimeJakarta = (isoString) => {
+        try {
+            const d = new Date(isoString);
+            const t = new Intl.DateTimeFormat("en-US", {
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "Asia/Jakarta",
+            }).format(d);
+            // Convert 1:00 PM -> 1.00 PM
+            return t.replace(":", ".");
+        } catch (_) {
+            return isoString;
+        }
+    };
+
+    const getMonthDayJakarta = (isoString) => {
+        try {
+            const d = new Date(isoString);
+            const month = new Intl.DateTimeFormat("en-US", {
+                month: "short",
+                timeZone: "Asia/Jakarta",
+            })
+                .format(d)
+                .toUpperCase();
+            const day = new Intl.DateTimeFormat("en-US", {
+                day: "2-digit",
+                timeZone: "Asia/Jakarta",
+            }).format(d);
+            return { month, day };
+        } catch (_) {
+            return { month: "---", day: "--" };
+        }
+    };
+
     return (
         <>
             <Navbar></Navbar>
@@ -24,21 +70,30 @@ export default function Events() {
                             <h2>Events</h2>
                         </div>
                         <div className="events__list">
-                            <div className="card event-card">
-                                <div className="event-card__date">
-                                    <span className="month">SEP</span><span className="day">28</span>
-                                </div>
-                                <div className="event-card__info">
-                                    <h4>Fortrust International Edu Expo 2025</h4>
-                                    <p><Clock></Clock> 1:00 PM (Asia/Jakarta)</p>
-                                    <p><MapPin></MapPin> Atria Hotel Gading Serpong</p>
-                                </div>
-                                <a
-                                    href="https://docs.google.com/forms/d/e/1FAIpQLScb58C3bbmq0-j1GfWilomVgXG5bQ_MgS4bUfFFJprhKBys3w/viewform?usp=header"
-                                    className="btn btn--secondary"
-                                >RSVP Now</a
-                                >
-                            </div>
+                            {
+                                events?.map((event, i) => {
+                                    const { month, day } = getMonthDayJakarta(event.start_at);
+                                    const timeStr = formatTimeJakarta(event.start_at);
+                                    return (
+                                    <div key={i} className="card event-card">
+                                        <div className="event-card__date">
+                                            <span className="month">{month}</span><span className="day">{day}</span>
+                                        </div>
+                                        <div className="event-card__info">
+                                            <h4>{event.name}</h4>
+                                            <p><Clock></Clock> {timeStr} (Asia/Jakarta)</p>
+                                            <p><MapPin></MapPin> At {event?.metadata?.venue}</p>
+                                        </div>
+                                        <a
+                                            href={event.registration_link}
+                                            className="btn btn--secondary"
+                                        >RSVP Now</a>
+                                    </div>
+
+                                    // id, name, description, start_at, end_at, is_public, metadata, created_at, updated_at, deleted_at, registration_link, status
+                                    );
+                                })
+                            }
 
                         </div>
                     </div>
