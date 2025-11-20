@@ -108,7 +108,7 @@ export default function Contact() {
                                 <p>
                                     Kompleks Rajawali Centre Point, Jl. Bangau No
                                     171A (Depan gerbang Universitas Musi Charitas)
-                                    Palembang, 30113, Indonesia
+                                    Palembang, 30113
                                     <br />Phone: +6271 1555 6501 <br />Mobile:
                                     +62811 730 686
                                 </p>
@@ -122,10 +122,18 @@ export default function Contact() {
                                 </p>
                             </div>
                             <div className="office-location">
+                                <h4>Jogjakarta, ID</h4>
+                                <p>
+                                    Jl. Mlati Glondong RT 03/19, Sendangadi,
+                                    Mlati, Sleman, Yogyakarta, 55284 <br />
+                                    Mobile: +62813 2504 7973
+                                </p>
+                            </div>
+                            <div className="office-location">
                                 <h4>Surabaya, ID</h4>
                                 <p>
-                                    Ciputra World office tower Lt 15, Unit 15-16 Jl
-                                    Mayjend Sungkono No.89, Surabaya 60225
+                                    Jl. Mayjend. H.R Muhammad 75A, Pradahkalikendal,
+                                    Dukuhpakis, Surabaya, 60226
                                     <br />Mobile: +62877 7778 4932
                                 </p>
                             </div>

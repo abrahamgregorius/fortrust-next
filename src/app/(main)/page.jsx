@@ -87,20 +87,20 @@ export default function Home() {
 
     const universities = [
         {
-            src: "/universities/Australia/Monash.png",
-            alt: "NUS Logo",
+            src: "/universities/Logo/oaut.png",
+            alt: "University Logo",
         },
         {
-            src: "/universities/Australia/USyd.png",
-            alt: "USyd Logo",
+            src: "/universities/Logo/uoauck.jpg",
+            alt: "University Logo",
+        },
+        {
+            src: "/universities/Logo/uotago.jpg",
+            alt: "University Logo",
         },
         {
             src: "/universities/Logo/UTS.png",
-            alt: "UTS Logo",
-        },
-        {
-            src: "/universities/Australia/UWA.png",
-            alt: "Monash University Logo",
+            alt: "University Logo",
         },
         {
             src: "/universities/Logo/apu.png",
@@ -127,6 +127,10 @@ export default function Home() {
             alt: "University Logo",
         },
         {
+            src: "/universities/Logo/falmouth.jpg",
+            alt: "University Logo",
+        },
+        {
             src: "/universities/Logo/griffith.png",
             alt: "University Logo",
         },
@@ -143,7 +147,15 @@ export default function Home() {
             alt: "University Logo",
         },
         {
+            src: "/universities/Logo/lincoln.jpg",
+            alt: "University Logo",
+        },
+        {
             src: "/universities/Logo/manchester.png",
+            alt: "University Logo",
+        },
+        {
+            src: "/universities/Logo/massey.jpg",
             alt: "University Logo",
         },
         {
@@ -168,6 +180,10 @@ export default function Home() {
         },
         {
             src: "/universities/Logo/UIC.png",
+            alt: "University Logo",
+        },
+        {
+            src: "/universities/Logo/uwell.jpg",
             alt: "University Logo",
         },
         {
