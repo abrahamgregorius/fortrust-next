@@ -102,19 +102,19 @@ export default function LanguagePrep() {
                                                 <tbody>
                                                     <tr>
                                                         <td>IELTS</td>
-                                                        <td>UK, Australia, Canada, NZ</td>
-                                                        <td>10,000+ institutions worldwide</td>
+                                                        <td>UK, Australia, Canada, NZ, US</td>
+                                                        <td>11,000+ institutions worldwide</td>
                                                         <td>Paper-based or Computer-based</td>
                                                     </tr>
                                                     <tr>
                                                         <td>TOEFL</td>
-                                                        <td>USA, Canada</td>
-                                                        <td>11,500+ institutions</td>
+                                                        <td>USA, Canada, Global Education</td>
+                                                        <td>Thousands of institutions (especially US)</td>
                                                         <td>Internet-based (iBT)</td>
                                                     </tr>
                                                     <tr>
                                                         <td>HSK</td>
-                                                        <td>China studies & work</td>
+                                                        <td>China studies & work (Chinese proficiency)</td>
                                                         <td>Chinese universities & employers</td>
                                                         <td>Computer-based or Paper-based</td>
                                                     </tr>
@@ -127,49 +127,53 @@ export default function LanguagePrep() {
 
                             {activeTab === "ielts" && (
                                 <div id="ielts" className="tab-pane active">
+                                    {/* --- Konten IELTS dari Artikel Anda --- */}
                                     <div className="content-block">
-                                        <h2>IELTS Preparation</h2>
+                                        <h2>Your Complete Guide to IELTS</h2>
                                         <p>
-                                            The International English Language Testing System (IELTS) is the world's most popular English language test for higher education and global migration. We offer specialized preparation for both IELTS Academic and IELTS General Training.
+                                            Proving your English proficiency is often a mandatory requirement when you plan to study or work overseas. **IELTS** is one of the most recognized English language proficiency tests worldwide. It is accepted by over 11,000 institutions, including top-ranked universities and professional organizations.
+                                        </p>
+                                        <p>
+                                            **What is IELTS?** IELTS evaluates your English skills through four sections: Listening, Reading, Writing, and Speaking. Offered in both Academic and General Training versions, IELTS is a top choice for university admissions, immigration, and professional registration in the **UK, Australia, Canada, New Zealand, and increasingly in the US**. Test-takers can choose between paper-based and computer-based formats.
                                         </p>
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>IELTS Test Structure</h3>
+                                        <h3>Key Differences between IELTS & TOEFL</h3>
                                         <div className="table-responsive">
                                             <table className="data-table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Section</th>
-                                                        <th>Duration</th>
-                                                        <th>Questions</th>
-                                                        <th>Description</th>
+                                                        <th>Feature</th>
+                                                        <th>IELTS</th>
+                                                        <th>Benefits</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>Listening</td>
-                                                        <td>30 minutes</td>
-                                                        <td>40 questions</td>
-                                                        <td>4 recordings of native speakers</td>
+                                                        <td>Speaking Section</td>
+                                                        <td>Face-to-face with examiner</td>
+                                                        <td>More natural & Personal</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Reading</td>
-                                                        <td>60 minutes</td>
-                                                        <td>40 questions</td>
-                                                        <td>3 long passages with tasks</td>
+                                                        <td>Question Types</td>
+                                                        <td>Varied formats</td>
+                                                        <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Writing</td>
-                                                        <td>60 minutes</td>
-                                                        <td>2 tasks</td>
-                                                        <td>Task 1 (150 words) & Task 2 (250 words)</td>
+                                                        <td>Test Duration</td>
+                                                        <td>Around 3 hours</td>
+                                                        <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Speaking</td>
-                                                        <td>11-14 minutes</td>
-                                                        <td>3 parts</td>
-                                                        <td>Face-to-face interview with examiner</td>
+                                                        <td>Test Result Availability</td>
+                                                        <td>Results in 13 days</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Score Validity</td>
+                                                        <td>Valid for two years</td>
+                                                        <td></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -177,214 +181,307 @@ export default function LanguagePrep() {
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>IELTS Band Score Requirements</h3>
-                                        <ul>
-                                            <li><strong>Band 9:</strong> Expert user - Full operational command</li>
-                                            <li><strong>Band 8:</strong> Very good user - Fully operational command</li>
-                                            <li><strong>Band 7:</strong> Good user - Operational command (most universities require 6.5-7.0)</li>
-                                            <li><strong>Band 6:</strong> Competent user - Effective command</li>
-                                            <li><strong>Band 5:</strong> Modest user - Partial command</li>
-                                        </ul>
+                                        <h3>When should you take the IELTS?</h3>
+                                        <p>
+                                            You should plan to take the IELTS test in the first semester of your final year of high school, or several months before your university application deadlines. This timing gives you a comfortable window to receive your results, and, if needed, to retake the test to improve your score. Early preparation ensures you meet application requirements and gives you the best chance of achieving your desired results before important deadlines.
+                                        </p>
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Our IELTS Preparation Program</h3>
-                                        <p><strong>Course Duration:</strong> 4-12 weeks (depending on starting level)</p>
-                                        <p><strong>Class Schedule:</strong> Weekday evening or weekend batches available</p>
-                                        <p><strong>What You'll Get:</strong></p>
-                                        <ul>
-                                            <li>Comprehensive study materials and practice tests</li>
-                                            <li>Speaking practice sessions with feedback</li>
-                                            <li>Writing correction and improvement strategies</li>
-                                            <li>Reading and listening skill development</li>
-                                            <li>Full-length mock tests every week</li>
-                                            <li>One-on-one counseling sessions</li>
-                                        </ul>
+                                        <h3>IELTS Exam Format</h3>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Feature / Section</th>
+                                                        <th>Section</th>
+                                                        <th>No of Questions</th>
+                                                        <th>Duration</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Reading</td>
+                                                        <td>3 sections</td>
+                                                        <td>40 questions</td>
+                                                        <td>60 mins</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Listening</td>
+                                                        <td>4 sections</td>
+                                                        <td>40 questions</td>
+                                                        <td>30 Minutes</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Writing</td>
+                                                        <td>2 tasks</td>
+                                                        <td></td>
+                                                        <td>60 mins</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Speaking</td>
+                                                        <td>3 parts</td>
+                                                        <td>Face to face</td>
+                                                        <td>11-14 mins</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+
+                                    <div className="content-block">
+                                        <h3>IELTS, TOEFL, Cambridge English Exam Equivalency</h3>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>IELTS Band</th>
+                                                        <th>TOEFL iBT</th>
+                                                        <th>Cambridge English Scale</th>
+                                                        <th>Cambridge Exam</th>
+                                                        <th>General Entry Requirement for</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><td>9</td><td>118–120</td><td>200–230</td><td>C2 Proficiency (CPE)</td><td></td></tr>
+                                                    <tr><td>8.5</td><td>115–117</td><td>191–199</td><td>C2 Proficiency (CPE)</td><td></td></tr>
+                                                    <tr><td>8</td><td>110–114</td><td>185–190</td><td>C2 Proficiency (CPE)</td><td></td></tr>
+                                                    <tr><td>**7.5**</td><td>**102–109**</td><td>**176–184**</td><td>**C1 Advanced (CAE)**</td><td>**Master Degree**</td></tr>
+                                                    <tr><td>**7**</td><td>**94–101**</td><td>**169–175**</td><td>**C1 Advanced (CAE)**</td><td>**Master Degree**</td></tr>
+                                                    <tr><td>**6.5**</td><td>**79–93**</td><td>**162–168**</td><td>**B2 First (FCE)**</td><td>**Bachelor / Master Degree (depend on subject)**</td></tr>
+                                                    <tr><td>**6**</td><td>**60–78**</td><td>**154–161**</td><td>**B2 First (FCE)**</td><td>**Bachelor Degree**</td></tr>
+                                                    <tr><td>5.5</td><td>46–59</td><td>147–153</td><td>B2 First (FCE)</td><td>Diploma</td></tr>
+                                                    <tr><td>5</td><td>35–45</td><td>140–146</td><td>B1 Preliminary (PET)</td><td>Diploma</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <p>
+                                            *Good score range for IELTS, TOEFL and Cambridge English Test, is within the highlighted area.*
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Preparing for IELTS</h3>
+                                        <p>
+                                            Preparing for the IELTS doesn’t have to be overwhelming. At Fortrust, we specialize in helping students achieve their target IELTS scores with tailored coaching, mock tests, and 1-on-1 guidance or in a group format, online and offline. Don’t let English be a barrier — let it be your passport to the world.
+                                        </p>
+                                    </div>
+                                    {/* Tombol ke WA disarankan ada di bagian CTA akhir */}
                                 </div>
                             )}
 
                             {activeTab === "toefl" && (
                                 <div id="toefl" className="tab-pane active">
+                                    {/* --- Konten TOEFL dari Artikel Anda --- */}
                                     <div className="content-block">
-                                        <h2>TOEFL Preparation</h2>
+                                        <h2>Your Complete Guide to TOEFL</h2>
                                         <p>
-                                            The Test of English as a Foreign Language (TOEFL) iBT is widely accepted by universities in the USA and Canada. Our TOEFL preparation program focuses on academic English skills needed for university success.
+                                            Dreaming of studying in the **USA** or a world-class university overseas? Your English skills can be your passport — and the TOEFL is your ticket. This test doesn’t just measure grammar or vocabulary; it measures your readiness to thrive in an English-speaking academic world. A strong TOEFL score can open direct pathways to universities abroad and special academic programs.
+                                        </p>
+                                        <p>
+                                            **What is TOEFL?** The Test of English as a Foreign Language (TOEFL) is among the most trusted English proficiency tests worldwide. While it’s required by all universities in the USA, it is also accepted by thousands of institutions in countries like **Canada, Australia, the UK, Malaysia, and Singapore**. The most popular version, **TOEFL iBT**, evaluates Reading, Listening, Speaking, and Writing, giving universities a clear picture of your practical English skills.
                                         </p>
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>TOEFL iBT Test Structure</h3>
+                                        <h3>Key Differences between TOEFL & IELTS</h3>
                                         <div className="table-responsive">
                                             <table className="data-table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Section</th>
-                                                        <th>Duration</th>
+                                                        <th>Feature</th>
+                                                        <th>TOEFL</th>
+                                                        <th>Benefits</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Speaking Section</td>
+                                                        <td>Spoken into a microphone</td>
+                                                        <td>No face-to-face examiner stress</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Question Types</td>
+                                                        <td>Mostly multiple-choice</td>
+                                                        <td>Making it straightforward for test-takers</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Test Duration</td>
+                                                        <td>Around 3 hours</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Test Result Availability</td>
+                                                        <td>Results in 6 days</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Score Validity</td>
+                                                        <td>Valid for two years</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>When should you take the TOEFL Test?</h3>
+                                        <p>
+                                            You should plan to take the TOEFL test in the first semester of your final year of high school, or several months before your university application deadlines. This timing gives you a comfortable window to receive your results, and, if needed, to retake the test to improve your score. Early preparation ensures you meet application requirements and gives you the best chance of achieving your desired results before important deadlines.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>TOEFL Exam Format (iBT)</h3>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Feature / Section</th>
+                                                        <th>Sections</th>
                                                         <th>Questions</th>
-                                                        <th>Score Range</th>
+                                                        <th>Duration</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <td>Reading</td>
-                                                        <td>54-72 minutes</td>
-                                                        <td>30-40 questions</td>
-                                                        <td>0-30</td>
+                                                        <td>3 sections</td>
+                                                        <td>36-56 questions</td>
+                                                        <td>60-80 mins</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Listening</td>
-                                                        <td>41-57 minutes</td>
+                                                        <td>4 sections</td>
                                                         <td>28-39 questions</td>
-                                                        <td>0-30</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Speaking</td>
-                                                        <td>17 minutes</td>
-                                                        <td>4 tasks</td>
-                                                        <td>0-30</td>
+                                                        <td>41-57 mins</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Writing</td>
-                                                        <td>50 minutes</td>
                                                         <td>2 tasks</td>
-                                                        <td>0-30</td>
+                                                        <td></td>
+                                                        <td>50 mins</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Speaking</td>
+                                                        <td>6 tasks</td>
+                                                        <td>(recorded)</td>
+                                                        <td>20 mins</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p><strong>Total Test Time:</strong> About 3 hours</p>
-                                        <p><strong>Total Score Range:</strong> 0-120</p>
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>TOEFL Score Requirements</h3>
-                                        <ul>
-                                            <li><strong>100-120:</strong> Highly competitive universities (Ivy League, top 20)</li>
-                                            <li><strong>90-99:</strong> Good universities (top 50-100)</li>
-                                            <li><strong>80-89:</strong> Most universities minimum requirement</li>
-                                            <li><strong>70-79:</strong> Community colleges and some universities</li>
-                                        </ul>
+                                        <h3>TOEFL Score Equivalency</h3>
+                                        <p>Lihat tabel di bagian IELTS untuk perbandingan skor lengkap antara IELTS, TOEFL, dan Cambridge English.</p>
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Our TOEFL Preparation Program</h3>
-                                        <p><strong>Course Duration:</strong> 6-10 weeks</p>
-                                        <p><strong>Class Schedule:</strong> Flexible weekday and weekend options</p>
-                                        <p><strong>Program Highlights:</strong></p>
-                                        <ul>
-                                            <li>Computer-based practice using official TOEFL software</li>
-                                            <li>Note-taking strategies for listening section</li>
-                                            <li>Integrated task preparation (Reading-Listening-Speaking/Writing)</li>
-                                            <li>Academic vocabulary building</li>
-                                            <li>Template-based writing approaches</li>
-                                            <li>Weekly full-length mock tests</li>
-                                            <li>Performance analysis and personalized feedback</li>
-                                        </ul>
+                                        <h3>Preparing for TOEFL</h3>
+                                        <p>
+                                            Preparing for TOEFL doesn’t have to be stressful. Take practice tests, focus on daily English use, and get guidance from experts. At Fortrust, we provide tailored study plans, mock exams, and feedback so you can reach your target score with confidence.
+                                        </p>
                                     </div>
+                                    {/* Tombol ke WA disarankan ada di bagian CTA akhir */}
                                 </div>
                             )}
 
                             {activeTab === "hsk" && (
                                 <div id="hsk" className="tab-pane active">
+                                    {/* --- Konten HSK dari Artikel Anda --- */}
                                     <div className="content-block">
-                                        <h2>HSK Preparation</h2>
+                                        <h2>Your Complete Guide to the HSK</h2>
                                         <p>
-                                            The Hanyu Shuiping Kaoshi (HSK) is China's standardized test of Chinese language proficiency for non-native speakers. It's essential for studying in China or working with Chinese companies.
+                                            If you’re learning Chinese and starting to think about studying, working, or living in China, you’ve probably heard of the **HSK**. Short for **“Hanyu Shuiping Kaoshi,”** it’s the official Chinese language proficiency test for non-native speakers. Getting a good HSK score can open up doors at Chinese universities, help you qualify for scholarships, or even boost your resume for jobs that require Mandarin.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>When Should You Take the HSK?</h3>
+                                        <p>
+                                            It’s a smart move to take the HSK a few months before any deadlines—like for university admissions or job applications—so you have time to get your results or retake the test if needed. Since each school or company might have different requirements, be sure to check exactly which HSK level you’ll need.
                                         </p>
                                     </div>
 
                                     <div className="content-block">
                                         <h3>HSK Level Structure</h3>
+                                        <p>The HSK comes in six levels, from beginner (HSK 1) to advanced (HSK 6).</p>
                                         <div className="table-responsive">
                                             <table className="data-table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Level</th>
-                                                        <th>Vocabulary</th>
-                                                        <th>Test Duration</th>
-                                                        <th>Description</th>
+                                                        <th>HSK Level</th>
+                                                        <th>Sections</th>
+                                                        <th>Types of Questions</th>
+                                                        <th>Test Time</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>HSK 1</td>
-                                                        <td>150 words</td>
-                                                        <td>40 minutes</td>
-                                                        <td>Basic communication</td>
+                                                        <td>HSK 1 & 2</td>
+                                                        <td>Listening + Reading</td>
+                                                        <td>Multiple choice</td>
+                                                        <td>40–55 mins</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>HSK 2</td>
-                                                        <td>300 words</td>
-                                                        <td>55 minutes</td>
-                                                        <td>Simple daily topics</td>
+                                                        <td>HSK 3 & 4</td>
+                                                        <td>Listening, Reading, Writing</td>
+                                                        <td>MCQ & writing short answers</td>
+                                                        <td>90–105 mins</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>HSK 3</td>
-                                                        <td>600 words</td>
-                                                        <td>90 minutes</td>
-                                                        <td>Everyday situations</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>HSK 4</td>
-                                                        <td>1,200 words</td>
-                                                        <td>105 minutes</td>
-                                                        <td>Intermediate fluency (university entry)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>HSK 5</td>
-                                                        <td>2,500 words</td>
-                                                        <td>125 minutes</td>
-                                                        <td>Advanced reading comprehension</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>HSK 6</td>
-                                                        <td>5,000+ words</td>
-                                                        <td>140 minutes</td>
-                                                        <td>Professional proficiency</td>
+                                                        <td>HSK 5 & 6</td>
+                                                        <td>Listening, Reading, Writing</td>
+                                                        <td>MCQ & essay writing</td>
+                                                        <td>120–140 mins</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <ul>
+                                            <li>**Listening:** You’ll hear recordings in Chinese and answer questions</li>
+                                            <li>**Reading:** Read passages and pick the right answers</li>
+                                            <li>**Writing:** Only on levels 3 and above – write words, sentences, or essays</li>
+                                        </ul>
+                                        <p>There’s also an optional HSK Speaking (HSKK) test if you want to show off your spoken Chinese.</p>
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>HSK Level Requirements</h3>
+                                        <h3>HSK Score & Cost Requirements</h3>
                                         <ul>
-                                            <li><strong>HSK 4:</strong> Required for undergraduate programs in China (Chinese-taught)</li>
-                                            <li><strong>HSK 5:</strong> Required for master's programs and Chinese language scholarships</li>
-                                            <li><strong>HSK 6:</strong> Doctoral programs and professional work in China</li>
+                                            <li>**Level Requirement:**
+                                                <ul>
+                                                    <li>**HSK 4:** Required for undergraduate programs in China (Chinese-taught)</li>
+                                                    <li>**HSK 5/6:** Required for graduate programs and Chinese language scholarships</li>
+                                                </ul>
+                                            </li>
+                                            <li>**Test Cost:** HSK fees vary by country and test level but typically range from **$20 to $100 USD**.</li>
                                         </ul>
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Our HSK Preparation Program</h3>
-                                        <p><strong>Course Duration:</strong> Varies by level (3-6 months per level)</p>
-                                        <p><strong>Class Schedule:</strong> Small group classes, 2-3 times per week</p>
-                                        <p><strong>What's Included:</strong></p>
+                                        <h3>Top Tips for HSK Prep</h3>
                                         <ul>
-                                            <li>Pinyin and character recognition training</li>
-                                            <li>Systematic vocabulary building with flashcards</li>
-                                            <li>Grammar patterns and sentence structures</li>
-                                            <li>Listening comprehension practice</li>
-                                            <li>Reading comprehension strategies</li>
-                                            <li>Writing practice (HSK 3 and above)</li>
-                                            <li>Speaking practice (separate HSKK preparation available)</li>
-                                            <li>Official HSK practice tests</li>
-                                            <li>Cultural context and practical usage</li>
+                                            <li>**Get Familiar:** Practice with real test papers so you know what to expect.</li>
+                                            <li>**Keep Practicing:** Flashcards, quizzes, and mock exams are your friends!</li>
+                                            <li>**Master the Vocabulary:** Download the official word list for your chosen level.</li>
+                                            <li>**Listen Up:** Watch Chinese shows, listen to podcasts, or use HSK listening practice apps.</li>
+                                            <li>**Read & Write Every Day:** Try reading news articles and writing short paragraphs in Chinese.</li>
+                                            <li>**Study With Others:** Joining a class or finding a study buddy makes learning easier and more fun.</li>
+                                            <li>**Check Past Exams:** Review previous HSK tests to spot trends in questions.</li>
                                         </ul>
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Why Study Chinese?</h3>
-                                        <ul>
-                                            <li>Access scholarships for studying in China</li>
-                                            <li>Enhance career prospects with Chinese companies</li>
-                                            <li>Communicate with 1.4 billion native speakers</li>
-                                            <li>Understand Chinese culture and business practices</li>
-                                            <li>Stand out in the global job market</li>
-                                        </ul>
+                                        <h3>Preparing for HSK with Fortrust</h3>
+                                        <p>
+                                            Ready to take the next step in your Chinese language journey? If you need support preparing for your HSK, Fortrust is here to help you. Reach out to our team today—we’ll guide you with expert resources, personalized study plans, and proven exam strategies, so you can take the test with confidence and achieve your goals!
+                                        </p>
                                     </div>
+                                    {/* Tombol ke WA disarankan ada di bagian CTA akhir */}
                                 </div>
                             )}
                         </div>
@@ -395,13 +492,15 @@ export default function LanguagePrep() {
                     <div className="container final-cta__container">
                         <h2>Ready to Ace Your Language Test?</h2>
                         <p>
-                            Let our expert instructors guide you to achieve your target score.
+                            Don’t let language be a barrier — let it be your passport to the world. Book your free trial class with Fortrust today!
                         </p>
                         <a
-                            href="/contact"
+                            href="LINK_KE_WHATSAPP_ANDA"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="btn btn--primary btn--large"
                         >
-                            Book Your Free Consultation
+                            Get Free Trial Class
                         </a>
                     </div>
                 </section>
