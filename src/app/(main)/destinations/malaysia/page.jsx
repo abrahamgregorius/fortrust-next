@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-export default function Australia() {
+export default function Malaysia() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
@@ -473,39 +473,32 @@ export default function Australia() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Our Partner Institutions</h2>
+                                        <h2>All Institutions in Malaysia</h2>
                                         <p>
                                             We partner with Malaysia's top private
                                             universities and international branch
                                             campuses.
                                         </p>
-                                        <div className="partners-grid">
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Monash+MY"
-                                                    alt="Monash University Malaysia"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Nottingham+MY"
-                                                    alt="University of Nottingham Malaysia"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Sunway"
-                                                    alt="Sunway University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Taylor's"
-                                                    alt="Taylor's University"
-                                                />
-                                            </div>
-                                        </div>
-                                        <p className="partners__many">...and many more</p>
+                                        <ul>
+                                            <li>University of Malaya (UM)</li>
+                                            <li>Universiti Putra Malaysia (UPM)</li>
+                                            <li>Universiti Kebangsaan Malaysia (UKM)</li>
+                                            <li>Universiti Sains Malaysia (USM)</li>
+                                            <li>Universiti Teknologi Malaysia (UTM)</li>
+                                            <li>Taylor's University</li>
+                                            <li>UCSI University</li>
+                                            <li>Sunway University</li>
+                                            <li>Multimedia University (MMU)</li>
+                                            <li>Universiti Teknologi MARA (UiTM)</li>
+                                            <li>Universiti Utara Malaysia (UUM)</li>
+                                            <li>INTI International University</li>
+                                            <li>HELP University</li>
+                                            <li>SEGi University</li>
+                                            <li>Asia Pacific University of Technology & Innovation (APU)</li>
+                                        </ul>
+
+                                        <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
+
                                     </div>
                                 </div>
                             )}

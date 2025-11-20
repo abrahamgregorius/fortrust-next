@@ -472,38 +472,31 @@ export default function UK() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Our Partner Institutions</h2>
+                                            <h2>All Institutions in UK</h2>
                                             <p>
                                                 We have strong partnerships with many of the
                                                 UK's most respected universities.
                                             </p>
-                                            <div className="partners-grid">
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=UCL"
-                                                        alt="UCL"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=Imperial"
-                                                        alt="Imperial College London"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=KCL"
-                                                        alt="King's College London"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=Manchester"
-                                                        alt="University of Manchester"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <p className="partners__many">...and many more</p>
+                                            <ul>
+                                                <li>University of Oxford</li>
+                                                <li>University of Cambridge</li>
+                                                <li>Imperial College London</li>
+                                                <li>University College London (UCL)</li>
+                                                <li>London School of Economics (LSE)</li>
+                                                <li>University of Edinburgh</li>
+                                                <li>King’s College London</li>
+                                                <li>University of Manchester</li>
+                                                <li>University of Warwick</li>
+                                                <li>University of Bristol</li>
+                                                <li>University of Glasgow</li>
+                                                <li>Durham University</li>
+                                                <li>University of Southampton</li>
+                                                <li>University of Birmingham</li>
+                                                <li>Queen Mary University of London</li>
+                                            </ul>
+
+                                            <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
+
                                         </div>
                                     </div>
                                 </>

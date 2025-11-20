@@ -507,39 +507,32 @@ export default function Switzerland() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Our Partner Institutions</h2>
+                                            <h2>All Institutions in Switzerland</h2>
                                             <p>
                                                 We partner with Switzerland's world-leading
                                                 institutions in technology, hospitality, and
                                                 research.
                                             </p>
-                                            <div className="partners-grid">
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=ETH+Zurich"
-                                                        alt="ETH Zurich"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=EPFL"
-                                                        alt="EPFL"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=EHL"
-                                                        alt="EHL"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=U+Geneva"
-                                                        alt="University of Geneva"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <p className="partners__many">...and many more</p>
+                                            <ul>
+                                                <li>ETH Zurich</li>
+                                                <li>École Polytechnique Fédérale de Lausanne (EPFL)</li>
+                                                <li>University of Zurich</li>
+                                                <li>University of Geneva</li>
+                                                <li>University of Bern</li>
+                                                <li>University of Basel</li>
+                                                <li>University of Lausanne</li>
+                                                <li>University of Fribourg</li>
+                                                <li>University of St. Gallen</li>
+                                                <li>University of Neuchâtel</li>
+                                                <li>Zurich University of Applied Sciences</li>
+                                                <li>Lucerne University of Applied Sciences & Arts</li>
+                                                <li>University of Applied Sciences and Arts Western Switzerland</li>
+                                                <li>University of Applied Sciences of Eastern Switzerland</li>
+                                                <li>FernUni Schweiz (Swiss Distance University)</li>
+                                            </ul>
+
+                                            <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
+
                                         </div>
                                     </div>
 

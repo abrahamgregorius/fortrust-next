@@ -441,50 +441,31 @@ export default function Canada() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Our Partner Institutions</h2>
+                                        <h2>All Institutions in Canada</h2>
                                         <p>
                                             We partner with many of Canada's most prestigious universities
                                             and colleges.
                                         </p>
-                                        <div className="partners-grid">
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=U+of+Toronto"
-                                                    alt="University of Toronto"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=UBC"
-                                                    alt="University of British Columbia"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=McGill"
-                                                    alt="McGill University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Waterloo"
-                                                    alt="University of Waterloo"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=SFU"
-                                                    alt="Simon Fraser University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=York+U"
-                                                    alt="York University"
-                                                />
-                                            </div>
-                                        </div>
-                                        <p className="partners__many">...and many more</p>
+                                        <ul>
+                                            <li>University of Toronto</li>
+                                            <li>University of British Columbia</li>
+                                            <li>McGill University</li>
+                                            <li>University of Alberta</li>
+                                            <li>University of Waterloo</li>
+                                            <li>Western University</li>
+                                            <li>Queen's University</li>
+                                            <li>McMaster University</li>
+                                            <li>University of Calgary</li>
+                                            <li>Simon Fraser University</li>
+                                            <li>Dalhousie University</li>
+                                            <li>University of Ottawa</li>
+                                            <li>York University</li>
+                                            <li>University of Manitoba</li>
+                                            <li>University of Victoria</li>
+                                        </ul>
+
+                                        <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
+
                                     </div>
                                 </div>
                             )}

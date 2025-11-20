@@ -1,4 +1,4 @@
- "use client"
+"use client"
 
 import { useState } from "react";
 import Footer from "@/components/Footer";
@@ -65,10 +65,10 @@ export default function NewZealand() {
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
                                             <img src="./public/destinations/banners/New Zealand.png" className="content__banner" alt="" />
-                                                <h2>Why Study in New Zealand?</h2>
-                                                <p>
-                                                    New Zealand stands alone for study destination that delivers unforgettable experiences alongside global qualification.
-                                                </p>
+                                            <h2>Why Study in New Zealand?</h2>
+                                            <p>
+                                                New Zealand stands alone for study destination that delivers unforgettable experiences alongside global qualification.
+                                            </p>
                                         </div>
 
                                         <div className="content-block">
@@ -315,15 +315,28 @@ export default function NewZealand() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Our Partner Institutions</h2>
+                                            <h2>All Institutions in New Zealand</h2>
                                             <p>We partner with all eight of New Zealand's world-class universities, known for their research excellence and supportive learning environments.</p>
-                                            <div className="partners-grid">
-                                                <div className="partner-logo"><img src="https://placehold.co/150x50/cccccc/000000?text=U+of+Auckland" alt="University of Auckland" /></div>
-                                                <div className="partner-logo"><img src="https://placehold.co/150x50/cccccc/000000?text=U+of+Otago" alt="University of Otago" /></div>
-                                                <div className="partner-logo"><img src="https://placehold.co/150x50/cccccc/000000?text=Victoria+U" alt="Victoria University of Wellington" /></div>
-                                                <div className="partner-logo"><img src="https://placehold.co/150x50/cccccc/000000?text=U+of+Canterbury" alt="University of Canterbury" /></div>
-                                            </div>
-                                            <p className="partners__many">...and many more</p>
+                                            <ul>
+                                                <li>University of Auckland</li>
+                                                <li>University of Otago</li>
+                                                <li>Victoria University of Wellington</li>
+                                                <li>University of Canterbury</li>
+                                                <li>Massey University</li>
+                                                <li>University of Waikato</li>
+                                                <li>Lincoln University</li>
+                                                <li>Auckland University of Technology (AUT)</li>
+                                                <li>Eastern Institute of Technology</li>
+                                                <li>Unitec Institute of Technology</li>
+                                                <li>Waikato Institute of Technology</li>
+                                                <li>Southern Institute of Technology</li>
+                                                <li>Manukau Institute of Technology</li>
+                                                <li>Otago Polytechnic</li>
+                                                <li>Toi Ohomai Institute of Technology</li>
+                                            </ul>
+
+                                            <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
+
                                         </div>
                                     </div>
                                 </>

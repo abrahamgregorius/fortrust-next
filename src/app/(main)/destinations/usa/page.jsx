@@ -555,39 +555,31 @@ export default function USA() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Our Partner Institutions</h2>
+                                            <h2>All Institutions in USA</h2>
                                             <p>
                                                 We partner with a wide range of
                                                 world-renowned universities and colleges
                                                 across the United States.
                                             </p>
-                                            <div className="partners-grid">
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=Harvard"
-                                                        alt="Harvard University"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=MIT"
-                                                        alt="MIT"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=Stanford"
-                                                        alt="Stanford University"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=NYU"
-                                                        alt="New York University"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <p className="partners__many">...and many more</p>
+                                            <ul>
+                                                <li>Massachusetts Institute of Technology (MIT)</li>
+                                                <li>Stanford University</li>
+                                                <li>Harvard University</li>
+                                                <li>Caltech</li>
+                                                <li>University of Chicago</li>
+                                                <li>Princeton University</li>
+                                                <li>Columbia University</li>
+                                                <li>Yale University</li>
+                                                <li>University of Pennsylvania</li>
+                                                <li>Cornell University</li>
+                                                <li>University of California, Berkeley</li>
+                                                <li>University of California, Los Angeles (UCLA)</li>
+                                                <li>New York University (NYU)</li>
+                                                <li>Johns Hopkins University</li>
+                                                <li>University of Michigan</li>
+                                            </ul>
+
+                                            <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
                                         </div>
                                     </div>
                                 </>

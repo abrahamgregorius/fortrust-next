@@ -207,18 +207,18 @@ export default function China() {
                                         <h3>Bachelor's Degree</h3>
                                         <ul>
                                             <li>
-                                                <strong>Academic Requirements</strong> <br/> Official transcript
-                                                    of secondary education with good academic standing (minimum
-                                                    60-80% depending on university tier).
+                                                <strong>Academic Requirements</strong> <br /> Official transcript
+                                                of secondary education with good academic standing (minimum
+                                                60-80% depending on university tier).
                                             </li>
                                             <li>
-                                                <strong>Language Proficiency</strong> <br/> For English-taught
-                                                    programs, IELTS 6.5+ or TOEFL 80-90+. For Mandarin-taught
-                                                    programs, HSK Level 4.
+                                                <strong>Language Proficiency</strong> <br /> For English-taught
+                                                programs, IELTS 6.5+ or TOEFL 80-90+. For Mandarin-taught
+                                                programs, HSK Level 4.
                                             </li>
                                             <li>
-                                                <strong>Other</strong> <br/> Entrance exams or interviews may be
-                                                    required for competitive programs.
+                                                <strong>Other</strong> <br /> Entrance exams or interviews may be
+                                                required for competitive programs.
                                             </li>
                                         </ul>
                                     </div>
@@ -226,19 +226,19 @@ export default function China() {
                                         <h3>Master's Degree</h3>
                                         <ul>
                                             <li>
-                                                <strong>Academic Requirements</strong> <br/> A relevant
-                                                    Bachelor’s degree with a minimum GPA of 3.0/4.0 or
-                                                    equivalent.
+                                                <strong>Academic Requirements</strong> <br /> A relevant
+                                                Bachelor’s degree with a minimum GPA of 3.0/4.0 or
+                                                equivalent.
                                             </li>
                                             <li>
-                                                <strong>Language Proficiency</strong> <br/> For English-taught
-                                                    programs, IELTS 6.5–7.0 or TOEFL 90–100+. For
-                                                    Mandarin-taught programs, HSK Level 5.
+                                                <strong>Language Proficiency</strong> <br /> For English-taught
+                                                programs, IELTS 6.5–7.0 or TOEFL 90–100+. For
+                                                Mandarin-taught programs, HSK Level 5.
                                             </li>
                                             <li>
-                                                <strong>Supporting Documents</strong> <br/> 2+ letters of
-                                                    recommendation, Statement of Purpose (SOP), and a research
-                                                    proposal for research-based programs.
+                                                <strong>Supporting Documents</strong> <br /> 2+ letters of
+                                                recommendation, Statement of Purpose (SOP), and a research
+                                                proposal for research-based programs.
                                             </li>
                                         </ul>
                                     </div>
@@ -246,18 +246,18 @@ export default function China() {
                                         <h3>PhD (Doctoral) Degree</h3>
                                         <ul>
                                             <li>
-                                                <strong>Academic Requirements</strong> <br/> A Master’s degree in
-                                                    a related field with a strong research background.
+                                                <strong>Academic Requirements</strong> <br /> A Master’s degree in
+                                                a related field with a strong research background.
                                             </li>
                                             <li>
-                                                <strong>Language Proficiency</strong> <br/> IELTS 6.5–7.0+ or
-                                                    TOEFL 90–100+ for English programs. HSK Level 5 or higher
-                                                    for Mandarin programs.
+                                                <strong>Language Proficiency</strong> <br /> IELTS 6.5–7.0+ or
+                                                TOEFL 90–100+ for English programs. HSK Level 5 or higher
+                                                for Mandarin programs.
                                             </li>
                                             <li>
-                                                <strong>Supporting Documents</strong> <br/> Detailed research
-                                                    proposal, 3 letters of recommendation, and evidence of
-                                                    research publications.
+                                                <strong>Supporting Documents</strong> <br /> Detailed research
+                                                proposal, 3 letters of recommendation, and evidence of
+                                                research publications.
                                             </li>
                                         </ul>
                                     </div>
@@ -330,16 +330,16 @@ export default function China() {
                                         </p>
                                         <ul>
                                             <li>
-                                                <strong>Part-time Work</strong> <br/> Students can work up to 20
-                                                    hours per week during semesters (and full-time during
-                                                    breaks) after obtaining approval from their university and
-                                                    the local Public Security Bureau (PSB).
+                                                <strong>Part-time Work</strong> <br /> Students can work up to 20
+                                                hours per week during semesters (and full-time during
+                                                breaks) after obtaining approval from their university and
+                                                the local Public Security Bureau (PSB).
                                             </li>
                                             <li>
-                                                <strong>Post-Study Work</strong> <br/> Graduates who secure a job
-                                                    contract with a Chinese employer can convert their student
-                                                    visa to a Z visa (work visa) to be legally employed in
-                                                    China.
+                                                <strong>Post-Study Work</strong> <br /> Graduates who secure a job
+                                                contract with a Chinese employer can convert their student
+                                                visa to a Z visa (work visa) to be legally employed in
+                                                China.
                                             </li>
                                         </ul>
                                         <p>
@@ -372,32 +372,32 @@ export default function China() {
                                         <h3>Types of Scholarships Available</h3>
                                         <ul>
                                             <li>
-                                                <strong>Chinese Government Scholarship (CSC)</strong> <br/> The
-                                                    most comprehensive program, covering full tuition,
-                                                    accommodation, a living stipend, and medical insurance for
-                                                    all degree levels.
+                                                <strong>Chinese Government Scholarship (CSC)</strong> <br /> The
+                                                most comprehensive program, covering full tuition,
+                                                accommodation, a living stipend, and medical insurance for
+                                                all degree levels.
                                             </li>
                                             <li>
-                                                <strong>Confucius Institute Scholarship</strong> <br/> Designed
-                                                    for students interested in Chinese language and cultural
-                                                    studies, providing generous funding for language programs.
+                                                <strong>Confucius Institute Scholarship</strong> <br /> Designed
+                                                for students interested in Chinese language and cultural
+                                                studies, providing generous funding for language programs.
                                             </li>
                                             <li>
-                                                <strong>Local Government Scholarships</strong> <br/> Major cities
-                                                    like Beijing and Shanghai offer scholarships to attract top
-                                                    global talent, often including tuition waivers and living
-                                                    expenses.
+                                                <strong>Local Government Scholarships</strong> <br /> Major cities
+                                                like Beijing and Shanghai offer scholarships to attract top
+                                                global talent, often including tuition waivers and living
+                                                expenses.
                                             </li>
                                             <li>
-                                                <strong>University-Specific Scholarships</strong> <br/> Top
-                                                    institutions like Tsinghua and Peking University provide
-                                                    merit-based awards for academic excellence and research
-                                                    potential.
+                                                <strong>University-Specific Scholarships</strong> <br /> Top
+                                                institutions like Tsinghua and Peking University provide
+                                                merit-based awards for academic excellence and research
+                                                potential.
                                             </li>
                                             <li>
-                                                <strong>Belt and Road Scholarship</strong> <br/> Designated
-                                                    scholarships for students from participating countries to
-                                                    foster educational exchange and global cooperation.
+                                                <strong>Belt and Road Scholarship</strong> <br /> Designated
+                                                scholarships for students from participating countries to
+                                                foster educational exchange and global cooperation.
                                             </li>
                                         </ul>
                                     </div>
@@ -407,45 +407,32 @@ export default function China() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Our Partner Institutions</h2>
+                                        <h2>All Institutions in China</h2>
                                         <p>
                                             We partner with China's most elite universities, including
                                             members of the prestigious 211, 985, and Double First Class
                                             initiatives.
                                         </p>
-                                        <div className="partners-grid">
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Tsinghua+U"
-                                                    alt="Tsinghua University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Peking+U"
-                                                    alt="Peking University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Fudan+U"
-                                                    alt="Fudan University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=SJTU"
-                                                    alt="Shanghai Jiao Tong University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Zhejiang+U"
-                                                    alt="Zhejiang University"
-                                                />
-                                            </div>
-                                        </div>
-                                        <p className="partners__many">...and many more</p>
+                                        <ul>
+                                            <li>Tsinghua University</li>
+                                            <li>Peking University</li>
+                                            <li>Fudan University</li>
+                                            <li>Zhejiang University</li>
+                                            <li>Shanghai Jiao Tong University</li>
+                                            <li>University of Science and Technology of China</li>
+                                            <li>Nanjing University</li>
+                                            <li>Wuhan University</li>
+                                            <li>Sun Yat-sen University</li>
+                                            <li>Harbin Institute of Technology</li>
+                                            <li>Beijing Normal University</li>
+                                            <li>Xi’an Jiaotong University</li>
+                                            <li>Tongji University</li>
+                                            <li>Sichuan University</li>
+                                            <li>Shandong University</li>
+                                        </ul>
+
+                                        <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
+
                                     </div>
                                 </div>
                             )}
@@ -461,15 +448,15 @@ export default function China() {
                                         </p>
                                         <ul>
                                             <li>
-                                                <strong>Fall Intake (Main Intake)</strong> <br/> Commences in
-                                                    September. Applications are usually open from January to
-                                                    June. This offers the widest selection of courses.
+                                                <strong>Fall Intake (Main Intake)</strong> <br /> Commences in
+                                                September. Applications are usually open from January to
+                                                June. This offers the widest selection of courses.
                                             </li>
                                             <li>
-                                                <strong>Spring Intake</strong> <br/> Commences in March.
-                                                    Applications are typically open from September to December
-                                                    of the previous year. This option is less common and best
-                                                    for those who missed the fall deadline.
+                                                <strong>Spring Intake</strong> <br /> Commences in March.
+                                                Applications are typically open from September to December
+                                                of the previous year. This option is less common and best
+                                                for those who missed the fall deadline.
                                             </li>
                                         </ul>
                                     </div>

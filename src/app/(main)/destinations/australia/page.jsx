@@ -736,50 +736,29 @@ export default function Australia() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Our Partner Institutions</h2>
+                                        <h2>All Institutions in Australia</h2>
                                         <p>
                                             We partner with many of Australia's
                                             most prestigious universities and
                                             TAFEs.
                                         </p>
-                                        <div className="partners-grid">
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Monash"
-                                                    alt="Monash"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=UNSW"
-                                                    alt="UNSW"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=UTS"
-                                                    alt="UTS"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=UQ"
-                                                    alt="UQ"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=UWA"
-                                                    alt="UWA"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Adelaide"
-                                                    alt="Adelaide"
-                                                />
-                                            </div>
-                                        </div>
+                                        <ul>
+                                            <li>University of Melbourne</li>
+                                            <li>University of New South Wales (UNSW)</li>
+                                            <li>University of Sydney</li>
+                                            <li>Australian National University (ANU)</li>
+                                            <li>Monash University</li>
+                                            <li>University of Queensland (UQ)</li>
+                                            <li>University of Western Australia (UWA)</li>
+                                            <li>University of Adelaide</li>
+                                            <li>University of Technology Sydney (UTS)</li>
+                                            <li>RMIT University</li>
+                                            <li>Macquarie University</li>
+                                            <li>University of Wollongong</li>
+                                            <li>Curtin University</li>
+                                            <li>Queensland University of Technology (QUT)</li>
+                                            <li>Deakin University</li>
+                                        </ul>
                                         <p className="partners__many">
                                             ...and many more
                                         </p>

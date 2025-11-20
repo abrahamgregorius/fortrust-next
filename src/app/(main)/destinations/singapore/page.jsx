@@ -66,13 +66,13 @@ export default function Singapore() {
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
                                             <img src="./public/destinations/banners/Singapore.png" className="content__banner" alt="" />
-                                                <h2>Why Study in Singapore?</h2>
-                                                <p>
-                                                    Singapore offers a unique combination of
-                                                    world-class education, career-defining
-                                                    opportunities, and a vibrant multicultural
-                                                    environment.
-                                                </p>
+                                            <h2>Why Study in Singapore?</h2>
+                                            <p>
+                                                Singapore offers a unique combination of
+                                                world-class education, career-defining
+                                                opportunities, and a vibrant multicultural
+                                                environment.
+                                            </p>
                                         </div>
 
                                         <div className="content-block">
@@ -434,40 +434,33 @@ export default function Singapore() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Our Partner Institutions</h2>
+                                            <h2>All Institutions in Singapore</h2>
                                             <p>
                                                 We partner with Singapore's world-renowned
                                                 public and private universities,
                                                 consistently ranked among the best in Asia
                                                 and the world.
                                             </p>
-                                            <div className="partners-grid">
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=NUS"
-                                                        alt="National University of Singapore"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=NTU"
-                                                        alt="Nanyang Technological University"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=SMU"
-                                                        alt="Singapore Management University"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=SUTD"
-                                                        alt="Singapore University of Technology and Design"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <p className="partners__many">...and many more</p>
+                                            <ul>
+                                                <li>National University of Singapore (NUS)</li>
+                                                <li>Nanyang Technological University (NTU)</li>
+                                                <li>Singapore Management University (SMU)</li>
+                                                <li>Singapore University of Technology and Design (SUTD)</li>
+                                                <li>Singapore Institute of Technology (SIT)</li>
+                                                <li>LASALLE College of the Arts</li>
+                                                <li>Nanyang Academy of Fine Arts (NAFA)</li>
+                                                <li>Duke–NUS Medical School</li>
+                                                <li>INSEAD Asia Campus</li>
+                                                <li>ESSEC Business School Asia-Pacific</li>
+                                                <li>James Cook University Singapore</li>
+                                                <li>Kaplan Singapore</li>
+                                                <li>PSB Academy</li>
+                                                <li>Management Development Institute of Singapore (MDIS)</li>
+                                                <li>SP Jain School of Global Management</li>
+                                            </ul>
+
+                                            <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
+
                                         </div>
                                     </div>
 
