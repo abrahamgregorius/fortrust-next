@@ -1,8 +1,59 @@
+"use client";
+
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Mail } from "lucide-react";
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(""); // 'success' or 'error'
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.id]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus("");
+
+        try {
+            // EmailJS configuration - Ganti dengan credentials Anda
+            const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
+            const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
+            const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY";
+
+            const templateParams = {
+                from_name: formData.name,
+                from_email: formData.email,
+                from_phone: formData.phone,
+                message: formData.message,
+                to_email: "fortrust.id@gmail.com"
+            };
+
+            await emailjs.send(serviceId, templateId, templateParams, publicKey);
+            
+            setSubmitStatus("success");
+            setFormData({ name: "", email: "", phone: "", message: "" });
+        } catch (error) {
+            console.error("Error sending email:", error);
+            setSubmitStatus("error");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <>
             <Navbar></Navbar>
@@ -10,10 +61,10 @@ export default function Contact() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Get in Touch</h1>
+                        <h1>Hubungi Kami</h1>
                         <p>
-                            We're here to help. Reach out to us via the form below,
-                            or contact one of our offices directly.
+                            Kami siap membantu. Hubungi kami melalui formulir di bawah,
+                            atau hubungi salah satu kantor kami secara langsung.
                         </p>
                     </div>
                 </section>
@@ -21,30 +72,79 @@ export default function Contact() {
                 <section className="contact-section">
                     <div className="container contact-section__container">
                         <div className="contact-form-wrapper">
-                            <h3>Send us a Message</h3>
-                            <form className="contact-form">
+                            <h3>Kirim Pesan</h3>
+                            
+                            {submitStatus === "success" && (
+                                <div style={{
+                                    padding: "var(--space-4)",
+                                    marginBottom: "var(--space-4)",
+                                    backgroundColor: "#10b981",
+                                    color: "white",
+                                    borderRadius: "var(--radius-card)"
+                                }}>
+                                    ✓ Pesan berhasil dikirim! Kami akan segera menghubungi Anda.
+                                </div>
+                            )}
+                            
+                            {submitStatus === "error" && (
+                                <div style={{
+                                    padding: "var(--space-4)",
+                                    marginBottom: "var(--space-4)",
+                                    backgroundColor: "#ef4444",
+                                    color: "white",
+                                    borderRadius: "var(--radius-card)"
+                                }}>
+                                    ✗ Gagal mengirim pesan. Silakan coba lagi atau hubungi kami langsung.
+                                </div>
+                            )}
+                            
+                            <form className="contact-form" onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="name">Full Name</label>
-                                    <input type="text" id="name" required />
+                                    <label htmlFor="name">Nama Lengkap</label>
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required 
+                                    />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="email">Email Address</label>
-                                    <input type="email" id="email" required />
+                                    <label htmlFor="email">Alamat Email</label>
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required 
+                                    />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="phone">Phone Number</label>
-                                    <input type="phone" id="phone" required />
+                                    <label htmlFor="phone">Nomor Telepon</label>
+                                    <input 
+                                        type="tel" 
+                                        id="phone" 
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required 
+                                    />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="message">Your Message</label>
+                                    <label htmlFor="message">Pesan Anda</label>
                                     <textarea
                                         id="message"
                                         rows="5"
+                                        value={formData.message}
+                                        onChange={handleChange}
                                         required
                                     ></textarea>
                                 </div>
-                                <button type="submit" className="btn btn--primary">
-                                    Submit
+                                <button 
+                                    type="submit" 
+                                    className="btn btn--primary"
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? "Mengirim..." : "Kirim"}
                                 </button>
                             </form>
                         </div>
