@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { LocaleProvider } from "@/contexts/LocaleContext";
 import "./globals.css"
 
 const geistSans = Geist({
@@ -12,20 +13,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Fortrust | Study Abroad, Simplified",
-  description: "Fortrust: Study Abroad, Simplified",
+  title: "Fortrust | Studi ke Luar Negeri, Disederhanakan",
+  description: "Fortrust: Studi ke Luar Negeri, Disederhanakan",
 };
 
-export default function RootLayout({ children }) {
+export default function IndonesianLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fortrust: Study Abroad, Simplified</title>
+        <title>Fortrust: Studi ke Luar Negeri, Disederhanakan</title>
         <meta
           name="description"
-          content="Get expert counselling, applications, visas, and pre-departure support for studying abroad in Australia, the UK, and more."
+          content="Dapatkan konsultasi ahli, aplikasi, visa, dan dukungan pra-keberangkatan untuk studi ke luar negeri di Australia, UK, dan lainnya."
         />
         <link rel="icon" href="/favicon-new.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,7 +43,9 @@ export default function RootLayout({ children }) {
         <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <LocaleProvider>
+          {children}
+        </LocaleProvider>
       </body>
     </html>
   );

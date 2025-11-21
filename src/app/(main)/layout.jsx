@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { LocaleProvider } from "@/contexts/LocaleContext";
 import "./globals.css"
 
 const geistSans = Geist({
@@ -42,7 +43,9 @@ export default function RootLayout({ children }) {
         <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <LocaleProvider>
+          {children}
+        </LocaleProvider>
       </body>
     </html>
   );

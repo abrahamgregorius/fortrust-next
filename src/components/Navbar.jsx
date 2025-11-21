@@ -1,17 +1,19 @@
 "use client";
 
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, Globe } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
     const pathname = usePathname();
+    const { locale, switchLocale, getLocalizedPath } = useLocale();
 
     // Detect if we're on Indonesian locale pages
-    const isIndonesian = pathname?.startsWith("/id");
+    const isIndonesian = locale === "id";
     const localePrefix = isIndonesian ? "/id" : "";
 
     // Toggle hamburger menu
@@ -228,15 +230,33 @@ export default function Navbar() {
 
                     <div className="header__actions">
                         <div className="lang-switcher">
-                            {isIndonesian ? (
-                                <>
-                                    <Link href={pathname.replace(/^\/id/, "") || "/"}>EN</Link> | <span>ID</span>
-                                </>
-                            ) : (
-                                <>
-                                    <span>EN</span> | <Link href={`/id${pathname}`}>ID</Link>
-                                </>
-                            )}
+                            <button
+                                onClick={() => switchLocale("en")}
+                                className={locale === "en" ? "active" : ""}
+                                style={{
+                                    background: "none",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    fontWeight: locale === "en" ? "bold" : "normal",
+                                    color: locale === "en" ? "var(--color-primary)" : "inherit"
+                                }}
+                            >
+                                EN
+                            </button>
+                            <span style={{ margin: "0 8px" }}>|</span>
+                            <button
+                                onClick={() => switchLocale("id")}
+                                className={locale === "id" ? "active" : ""}
+                                style={{
+                                    background: "none",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    fontWeight: locale === "id" ? "bold" : "normal",
+                                    color: locale === "id" ? "var(--color-primary)" : "inherit"
+                                }}
+                            >
+                                ID
+                            </button>
                         </div>
                         <Link href={`${localePrefix}/contact`} className="btn btn--primary">
                             Free Consultation
