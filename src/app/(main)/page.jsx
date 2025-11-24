@@ -305,7 +305,7 @@ export default function Home() {
                                         RSVP Now
                                     </a>
                                     <a
-                                        href="programs.html"
+                                        href="/services"
                                         className="btn btn--secondary btn--large"
                                     >
                                         Find a Program
@@ -325,13 +325,13 @@ export default function Home() {
                                 </p>
                                 <div className="hero__cta">
                                     <a
-                                        href="contact.html"
+                                        href="/contact"
                                         className="btn btn--primary btn--large"
                                     >
                                         Start Your Journey
                                     </a>
                                     <a
-                                        href="success.html"
+                                        href="/alumni"
                                         className="btn btn--secondary btn--large"
                                     >
                                         Read Stories

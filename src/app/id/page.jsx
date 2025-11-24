@@ -25,42 +25,42 @@ export default function Home() {
     const slides = [
         {
             id: 0,
-            title: "Join Our Success Stories.",
+            title: "Bergabunglah dengan Kisah Sukses Kami.",
             subtitle:
-                "Thousands of students have trusted us for over 30 years. You're next.",
+                "Ribuan siswa telah mempercayai kami selama lebih dari 30 tahun. Giliran Anda selanjutnya.",
             img: "/banner1.webp",
         },
         {
             id: 1,
-            title: "Study Abroad with Confidence.",
+            title: "Belajar di Luar Negeri dengan Percaya Diri.",
             subtitle:
-                "Our expert counselors are with you every step of the way.",
+                "Konselor ahli kami bersama Anda di setiap langkah.",
             img: "/banner2.jpg",
         },
         {
             id: 2,
-            title: "Global Education Opportunities.",
+            title: "Peluang Pendidikan Global.",
             subtitle:
-                "From Australia to USA, explore the best universities worldwide.",
+                "Dari Australia hingga AS, jelajahi universitas terbaik di dunia.",
             img: "/banner3.jpg",
         },
     ];
 
     const testimonials1 = [
         {
-            quote: "All good with Fortrust, I got advice and suggestions that I needed during application to NZ universities. Fortrust staff, mbak Sarah also have assisted me throughout my application journey to several universities until I decided AIS is the most suitable for me. I'm thankful to be given the opportunity to live my NZ dreams with my family. Thank you, Fortrust!",
+            quote: "Semuanya baik dengan Fortrust, saya mendapat nasihat dan saran yang saya butuhkan selama aplikasi ke universitas NZ. Staf Fortrust, mbak Sarah juga telah membantu saya sepanjang perjalanan aplikasi saya ke beberapa universitas hingga saya memutuskan AIS adalah yang paling cocok untuk saya. Saya berterima kasih atas kesempatan untuk mewujudkan impian NZ saya bersama keluarga. Terima kasih, Fortrust!",
             author: "Oltariani Laswinta Fitri",
             role: "Auckland Institute of Studies - Master of Business",
             img: "/people/Oltariani-Laswinta-Fitri.jpg",
         },
         {
-            quote: "Fortrust made the whole process of deciding on a career that future proof and picking the right university program super easy. Not only did they consider what I wanted to study, but they also made sure it fit our budget.",
+            quote: "Fortrust membuat seluruh proses memutuskan karir yang tahan masa depan dan memilih program universitas yang tepat menjadi sangat mudah. Mereka tidak hanya mempertimbangkan apa yang ingin saya pelajari, tetapi juga memastikan sesuai dengan anggaran kami.",
             author: "Joshua Moshe Djuandi",
             role: "Teesside University - Bachelor of Artificial Intelligence",
             img: "/people/Joshua-Moshe-Djuandi.jpg",
         },
         {
-            quote: "Fortrust provided excellent support throughout my University of Melbourne application process. Their quick responses and insightful guidance made the entire experience smooth and stress-free. They were always available to answer questions, offering personalized advice and ensuring I understood each step. Highly recommend their efficient and professional service!",
+            quote: "Fortrust memberikan dukungan yang sangat baik sepanjang proses aplikasi University of Melbourne saya. Respons cepat mereka dan panduan yang mendalam membuat seluruh pengalaman menjadi lancar dan bebas stres. Mereka selalu tersedia untuk menjawab pertanyaan, memberikan nasihat yang dipersonalisasi dan memastikan saya memahami setiap langkah. Sangat merekomendasikan layanan mereka yang efisien dan profesional!",
             author: "Listiawati",
             role: "University of Melbourne - Bachelor of Commerce",
             img: "/people/Listiawati.jpg",
@@ -232,10 +232,10 @@ export default function Home() {
                                     <p className="subhead">{slide.subtitle}</p> */}
                                     <div className="hero__cta">
                                         <a
-                                            href="/contact"
+                                            href="/id/contact"
                                             className="btn btn--primary btn--large"
                                         >
-                                            Start Your Journey
+                                            Mulai Perjalanan Anda
                                         </a>
                                     </div>
                                 </div>
@@ -250,21 +250,21 @@ export default function Home() {
                             <div className="slide-content">
                                 <h1>Fortrust International Edu Expo 2025</h1>
                                 <p className="subhead">
-                                    Get expert counselling, applications, visas,
-                                    and pre-departure support - in one place.
+                                    Dapatkan konseling ahli, aplikasi, visa,
+                                    dan dukungan pra-keberangkatan - di satu tempat.
                                 </p>
                                 <div className="hero__cta">
                                     <a
                                         href="https://docs.google.com/forms/d/e/1FAIpQLScb58C3bbmq0-j1GfWilomVgXG5bQ_MgS4bUfFFJprhKBys3w/viewform?usp=header"
                                         className="btn btn--primary btn--large"
                                     >
-                                        RSVP Now
+                                        RSVP Sekarang
                                     </a>
                                     <a
                                         href="#destinations"
                                         className="btn btn--secondary btn--large"
                                     >
-                                        Explore Destinations
+                                        Jelajahi Tujuan
                                     </a>
                                 </div>
                             </div>
@@ -275,24 +275,24 @@ export default function Home() {
                             // style="background-image: url('./public/banner-expo2.png')"
                         >
                             <div className="slide-content">
-                                <h1>Study in Singapore</h1>
+                                <h1>Belajar di Singapura</h1>
                                 <p className="subhead">
-                                    Comprehensive support for your study in
-                                    Singapore journey – from counselling to
-                                    visas, all in one hub.
+                                    Dukungan komprehensif untuk perjalanan studi Anda di
+                                    Singapura – dari konseling hingga
+                                    visa, semua di satu hub.
                                 </p>
                                 <div className="hero__cta">
                                     <a
                                         href="https://docs.google.com/forms/d/e/1FAIpQLSeDJpBg1jwi9PTzkefJ3i-M54MN2lvSZSUuTJTKJyuNBh3lng/viewform?usp=header"
                                         className="btn btn--primary btn--large"
                                     >
-                                        RSVP Now
+                                        RSVP Sekarang
                                     </a>
                                     <a
-                                        href="programs.html"
+                                        href="/id/services"
                                         className="btn btn--secondary btn--large"
                                     >
-                                        Find a Program
+                                        Cari Program
                                     </a>
                                 </div>
                             </div>
@@ -302,23 +302,23 @@ export default function Home() {
                             // style="background-image: url('./public/banner1.webp')"
                         >
                             <div className="slide-content">
-                                <h1>Join Our Success Stories.</h1>
+                                <h1>Bergabunglah dengan Kisah Sukses Kami.</h1>
                                 <p className="subhead">
-                                    Thousands of students have trusted us for
-                                    over 30 years. You're next.
+                                    Ribuan siswa telah mempercayai kami selama
+                                    lebih dari 30 tahun. Giliran Anda selanjutnya.
                                 </p>
                                 <div className="hero__cta">
                                     <a
-                                        href="contact.html"
+                                        href="/id/contact"
                                         className="btn btn--primary btn--large"
                                     >
-                                        Start Your Journey
+                                        Mulai Perjalanan Anda
                                     </a>
                                     <a
-                                        href="success.html"
+                                        href="/id/alumni"
                                         className="btn btn--secondary btn--large"
                                     >
-                                        Read Stories
+                                        Baca Kisah
                                     </a>
                                 </div>
                             </div>
@@ -367,26 +367,23 @@ export default function Home() {
                     <div className="container pillars__container">
                         <div className="pillar">
                             <Medal></Medal>
-                            <h3>30+ Years of Experience</h3>
+                            <h3>30+ Tahun Pengalaman</h3>
                             <p>
-                                Decades of trusted counselling and student
-                                placement experience.
+                                Dekade pengalaman konseling dan penempatan mahasiswa yang terpercaya.
                             </p>
                         </div>
                         <div className="pillar">
                             <PackageCheck></PackageCheck>
-                            <h3>End-to-End Service</h3>
+                            <h3>Layanan Lengkap</h3>
                             <p>
-                                From application to accommodation, we guide you
-                                every step.
+                                Dari aplikasi hingga akomodasi, kami memandu Anda di setiap langkah.
                             </p>
                         </div>
                         <div className="pillar">
                             <Users></Users>
-                            <h3>Strong Alumni Network</h3>
+                            <h3>Jaringan Alumni Kuat</h3>
                             <p>
-                                Join a community where most new students come
-                                from referrals.
+                                Bergabunglah dengan komunitas di mana sebagian besar mahasiswa baru datang dari referensi.
                             </p>
                         </div>
                     </div>
@@ -395,7 +392,7 @@ export default function Home() {
                 <section className="partners">
                     <div className="container partners__container">
                         <p>
-                            Trusted by over 700+ leading institutions worldwide
+                            Dipercaya oleh lebih dari 700+ institusi terkemuka di seluruh dunia
                         </p>
                         <div className="partners__scroller">
                             <div className="partners__logos">
@@ -460,10 +457,9 @@ export default function Home() {
                 <section id="destinations" className="destinations">
                     <div className="container">
                         <div className="section-header">
-                            <h2>Explore Top Study Destinations</h2>
+                            <h2>Jelajahi Tujuan Studi Terbaik</h2>
                             <p>
-                                Find the perfect country and university for your
-                                ambitions.
+                                Temukan negara dan universitas yang sempurna untuk ambisi Anda.
                             </p>
                         </div>
                         <div className="destinations__grid">
@@ -475,11 +471,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>Australia</h3>
                                     <p>
-                                        World-class education, vibrant cities,
-                                        and stunning natural landscapes.
+                                        Pendidikan kelas dunia, kota-kota yang hidup, dan pemandangan alam yang menakjubkan.
                                     </p>
-                                    <a href="/destinations/australia">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/australia">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -491,11 +486,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>Canada</h3>
                                     <p>
-                                        World-class education, vibrant cities,
-                                        and stunning natural landscapes.
+                                        Pendidikan kelas dunia, kota-kota yang hidup, dan pemandangan alam yang menakjubkan.
                                     </p>
-                                    <a href="/destinations/canada">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/canada">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -507,11 +501,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>China</h3>
                                     <p>
-                                        World-class education, vibrant cities,
-                                        and stunning natural landscapes.
+                                        Pendidikan kelas dunia, kota-kota yang hidup, dan pemandangan alam yang menakjubkan.
                                     </p>
-                                    <a href="/destinations/china">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/china">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -523,11 +516,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>Malaysia</h3>
                                     <p>
-                                        World-class education, vibrant cities,
-                                        and stunning natural landscapes.
+                                        Pendidikan kelas dunia, kota-kota yang hidup, dan pemandangan alam yang menakjubkan.
                                     </p>
-                                    <a href="/destinations/malaysia">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/malaysia">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -539,11 +531,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>New Zealand</h3>
                                     <p>
-                                        Innovative learning in one of the safest
-                                        and most beautiful countries.
+                                        Pembelajaran inovatif di salah satu negara teraman dan terindah.
                                     </p>
-                                    <a href="/destinations/newzealand">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/newzealand">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -555,11 +546,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>Singapore</h3>
                                     <p>
-                                        A global hub of technology, finance, and
-                                        multicultural experiences.
+                                        Pusat global teknologi, keuangan, dan pengalaman multikultural.
                                     </p>
-                                    <a href="/destinations/singapore">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/singapore">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -571,11 +561,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>Switzerland</h3>
                                     <p>
-                                        A global hub of technology, finance, and
-                                        multicultural experiences.
+                                        Pusat global teknologi, keuangan, dan pengalaman multikultural.
                                     </p>
-                                    <a href="/destinations/switzerland">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/switzerland">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -587,11 +576,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>United Kingdom</h3>
                                     <p>
-                                        Home to historic universities with a
-                                        legacy of academic excellence.
+                                        Rumah bagi universitas bersejarah dengan warisan keunggulan akademik.
                                     </p>
-                                    <a href="/destinations/uk">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/uk">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -603,11 +591,10 @@ export default function Home() {
                                 <div className="card__content">
                                     <h3>United States of America</h3>
                                     <p>
-                                        Home to historic universities with a
-                                        legacy of academic excellence.
+                                        Rumah bagi universitas bersejarah dengan warisan keunggulan akademik.
                                     </p>
-                                    <a href="/destinations/usa">
-                                        Learn More <ArrowRight></ArrowRight>
+                                    <a href="/id/destinations/usa">
+                                        Pelajari Lebih Lanjut <ArrowRight></ArrowRight>
                                     </a>
                                 </div>
                             </div>
@@ -618,10 +605,9 @@ export default function Home() {
                 <section className="events">
                     <div className="container events__container">
                         <div className="section-header">
-                            <h2>Events & Webinars</h2>
+                            <h2>Acara & Webinar</h2>
                             <p>
-                                Join our free sessions to get all your questions
-                                answered.
+                                Bergabunglah dengan sesi gratis kami untuk mendapatkan semua pertanyaan Anda terjawab.
                             </p>
                         </div>
                         <div className="events__list">
@@ -662,7 +648,7 @@ export default function Home() {
                                     href="https://docs.google.com/forms/d/e/1FAIpQLScb58C3bbmq0-j1GfWilomVgXG5bQ_MgS4bUfFFJprhKBys3w/viewform?usp=header"
                                     className="btn btn--secondary"
                                 >
-                                    RSVP Now
+                                    RSVP Sekarang
                                 </a>
                             </div>
 
@@ -688,14 +674,13 @@ export default function Home() {
                                     href="https://docs.google.com/forms/d/e/1FAIpQLScb58C3bbmq0-j1GfWilomVgXG5bQ_MgS4bUfFFJprhKBys3w/viewform?usp=header"
                                     className="btn btn--secondary"
                                 >
-                                    RSVP Now
+                                    RSVP Sekarang
                                 </a>
                             </div>
                         </div>
                         <div className="events__fallback">
                             <p>
-                                No upcoming events right now. Join our
-                                newsletter for updates!
+                                Tidak ada acara mendatang saat ini. Bergabunglah dengan newsletter kami untuk pembaruan!
                             </p>
                         </div>
                     </div>
@@ -703,13 +688,12 @@ export default function Home() {
 
                 <section className="final-cta">
                     <div className="container final-cta__container">
-                        <h2>Ready to Start Your Journey?</h2>
+                        <h2>Siap Memulai Perjalanan Anda?</h2>
                         <p>
-                            Your dream of studying abroad is closer than you
-                            think. Let's make it happen.
+                            Impian Anda untuk belajar di luar negeri lebih dekat dari yang Anda pikirkan. Mari wujudkan.
                         </p>
-                        <a href="#" className="btn btn--primary btn--large">
-                            Talk to a Counsellor for Free
+                        <a href="/id/contact" className="btn btn--primary btn--large">
+                            Bicara dengan Konselor Gratis
                         </a>
                     </div>
                 </section>

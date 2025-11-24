@@ -245,15 +245,21 @@ export default function Navbar() {
                             </button>
                             <span style={{ margin: "0 8px" }}>|</span>
                             <button
-                                onClick={() => switchLocale("id")}
+                                onClick={() => {
+                                    // Prevent switching to ID if on contact page
+                                    if (pathname.includes('/contact')) return;
+                                    switchLocale("id");
+                                }}
                                 className={locale === "id" ? "active" : ""}
                                 style={{
                                     background: "none",
                                     border: "none",
-                                    cursor: "pointer",
+                                    cursor: pathname.includes('/contact') ? "not-allowed" : "pointer",
                                     fontWeight: locale === "id" ? "bold" : "normal",
-                                    color: locale === "id" ? "var(--color-primary)" : "inherit"
+                                    color: locale === "id" ? "var(--color-primary)" : "inherit",
+                                    opacity: pathname.includes('/contact') ? 0.5 : 1
                                 }}
+                                disabled={pathname.includes('/contact')}
                             >
                                 ID
                             </button>

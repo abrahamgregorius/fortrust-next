@@ -22,7 +22,7 @@ export default function NewZealand() {
         { id: "costs", label: "Costs", icon: <Wallet /> },
         { id: "work", label: "Work Rights", icon: <Briefcase /> },
         { id: "scholarships", label: "Scholarships", icon: <GraduationCap /> },
-        { id: "partners", label: "Partners", icon: <Building2 /> },
+        { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
 
@@ -34,7 +34,7 @@ export default function NewZealand() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            New Zealand, Where Education Meets Adventure
+                            Study in New Zealand, Where Education Meets Adventure
                         </h1>
                         <p>
                             Gain a globally recognized qualification while exploring stunning natural beauty and vibrant cultures.
@@ -297,7 +297,7 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h2>Scholarships in New Zealand</h2>
                                             <p>Discover your future in New Zealand, where Indonesian students can access a variety of scholarships at top-ranked universities for an exceptional and affordable education. Both university and government scholarships are available, including the fully funded New Zealand Government Scholarship, which covers tuition, living expenses, and accommodation.</p>
-                                            <a href="contact.html" className="btn btn--primary" style={{ marginTop: "20px" }}>Yes, I need help getting a scholarship</a>
+                                            <a href="/contact" className="btn btn--primary" style={{ marginTop: "20px" }}>Yes, I need help getting a scholarship</a>
                                         </div>
                                         <div className="content-block">
                                             <h3>Key Types of Scholarships</h3>
@@ -316,7 +316,7 @@ export default function NewZealand() {
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
                                             <h2>All Institutions in New Zealand</h2>
-                                            <p>We partner with all eight of New Zealand's world-class universities, known for their research excellence and supportive learning environments.</p>
+                                            <p>Study in New Zealand's world-class universities, known for their research excellence and supportive learning environments.</p>
                                             <ul>
                                                 <li>University of Auckland</li>
                                                 <li>University of Otago</li>
@@ -352,8 +352,8 @@ export default function NewZealand() {
                                     </div>
                                 </>
                             )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <section className="final-cta">

@@ -22,7 +22,7 @@ export default function Canada() {
         { id: "costs", label: "Costs", icon: <Wallet /> },
         { id: "work", label: "Work Rights", icon: <Briefcase /> },
         { id: "scholarships", label: "Scholarships", icon: <GraduationCap /> },
-        { id: "partners", label: "Partners", icon: <Building2 /> },
+        { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
 
@@ -33,7 +33,7 @@ export default function Canada() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Study Canada, Unlock Your Potential</h1>
+                        <h1>Study in Canada, Unlock Your Potential</h1>
                         <p>
                             Discover top education, paid work experience, wellness, and a clear
                             path to immigration — all in one package.
@@ -443,8 +443,7 @@ export default function Canada() {
                                     <div className="content-block">
                                         <h2>All Institutions in Canada</h2>
                                         <p>
-                                            We partner with many of Canada's most prestigious universities
-                                            and colleges.
+                                            Study in Canada's most prestigious universities and colleges.
                                         </p>
                                         <ul>
                                             <li>University of Toronto</li>
@@ -519,8 +518,8 @@ export default function Canada() {
                                     </div>
                                 </div>
                             )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <section className="final-cta">
@@ -531,7 +530,7 @@ export default function Canada() {
                             step of the process.
                         </p>
                         <a
-                            href="contact.html"
+                            href="/contact"
                             className="btn btn--primary btn--large"
                         >
                             Talk to a Counsellor for Free

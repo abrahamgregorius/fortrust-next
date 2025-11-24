@@ -11,10 +11,9 @@ import {
 import { useState } from "react";
 
 export default function Standardized() {
-    const [activeTab, setActiveTab] = useState("overview");
+    const [activeTab, setActiveTab] = useState("sat");
 
     const tabs = [
-        { id: "overview", label: "Overview", icon: <LayoutGrid /> },
         { id: "sat", label: "SAT", icon: <BookOpen /> },
         { id: "gmat", label: "GMAT", icon: <Calculator /> },
         { id: "csca", label: "CSCA", icon: <Award /> },
@@ -54,98 +53,6 @@ export default function Standardized() {
 
                         {/* Tabs Content */}
                         <div className="tab-content">
-                            {activeTab === "overview" && (
-                                <div id="overview" className="tab-pane active">
-                                    <div className="content-block">
-                                        <h2>Standardized Test Preparation Overview</h2>
-                                        <p>
-                                            Standardized tests are crucial gatekeepers for admission to top undergraduate and graduate programs worldwide. Our comprehensive preparation programs help you maximize your scores and stand out in competitive admissions.
-                                        </p>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Why Take Standardized Tests?</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>University Admissions:</strong> Required or strongly recommended by top universities globally
-                                            </li>
-                                            <li>
-                                                <strong>Scholarship Opportunities:</strong> Higher scores increase merit-based scholarship chances
-                                            </li>
-                                            <li>
-                                                <strong>Competitive Advantage:</strong> Strong scores differentiate you from other applicants
-                                            </li>
-                                            <li>
-                                                <strong>Skills Assessment:</strong> Demonstrates readiness for rigorous academic programs
-                                            </li>
-                                            <li>
-                                                <strong>Career Benefits:</strong> Some employers value standardized test scores
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Our Test Prep Approach</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Diagnostic Assessment:</strong> Initial test to identify strengths and weaknesses
-                                            </li>
-                                            <li>
-                                                <strong>Personalized Study Plan:</strong> Customized curriculum based on your target score
-                                            </li>
-                                            <li>
-                                                <strong>Expert Instructors:</strong> Certified trainers with high scores and teaching experience
-                                            </li>
-                                            <li>
-                                                <strong>Practice Tests:</strong> Regular full-length tests under exam conditions
-                                            </li>
-                                            <li>
-                                                <strong>Test-Taking Strategies:</strong> Time management, elimination techniques, and smart guessing
-                                            </li>
-                                            <li>
-                                                <strong>Performance Analytics:</strong> Detailed score reports and improvement tracking
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Which Test Should You Take?</h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Test</th>
-                                                        <th>Purpose</th>
-                                                        <th>Who Takes It</th>
-                                                        <th>Duration</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>SAT</td>
-                                                        <td>Undergraduate admissions</td>
-                                                        <td>High school students (11th-12th grade)</td>
-                                                        <td>3 hours</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>GMAT</td>
-                                                        <td>Business school (MBA) admissions</td>
-                                                        <td>Working professionals, graduates</td>
-                                                        <td>3.5 hours</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>CSCA</td>
-                                                        <td>Cambridge assessment certification</td>
-                                                        <td>Students seeking Cambridge qualifications</td>
-                                                        <td>Varies by level</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
                             {activeTab === "sat" && (
                                 <div id="sat" className="tab-pane active">
                                     <div className="content-block">

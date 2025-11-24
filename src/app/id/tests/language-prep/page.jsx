@@ -11,10 +11,9 @@ import {
 import { useState } from "react";
 
 export default function LanguagePrepID() {
-    const [activeTab, setActiveTab] = useState("overview");
+    const [activeTab, setActiveTab] = useState("ielts");
 
     const tabs = [
-        { id: "overview", label: "Gambaran Umum", icon: <LayoutGrid /> },
         { id: "ielts", label: "IELTS", icon: <BookOpen /> },
         { id: "toefl", label: "TOEFL", icon: <FileText /> },
         { id: "hsk", label: "HSK", icon: <GraduationCap /> },
@@ -54,86 +53,15 @@ export default function LanguagePrepID() {
 
                         {/* Tabs Content */}
                         <div className="tab-content">
-                            {activeTab === "overview" && (
-                                <div id="overview" className="tab-pane active">
-                                    <div className="content-block">
-                                        <h2>Gambaran Umum Persiapan Tes Bahasa</h2>
-                                        <p>
-                                            Tes kemampuan bahasa merupakan persyaratan penting untuk pendidikan internasional dan imigrasi. Program persiapan kami yang komprehensif membantu Anda mencapai skor target dalam ujian IELTS, TOEFL, dan HSK.
-                                        </p>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Mengapa Memilih Program Persiapan Bahasa Kami?</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Instruktur Ahli:</strong> Belajar dari pelatih bersertifikat dengan pengalaman mengajar bertahun-tahun dan rekam jejak yang terbukti.
-                                            </li>
-                                            <li>
-                                                <strong>Materi Komprehensif:</strong> Akses ke materi studi terkini, tes latihan, dan sumber daya online.
-                                            </li>
-                                            <li>
-                                                <strong>Jadwal Fleksibel:</strong> Pilih dari kelas intensif, reguler, atau akhir pekan sesuai gaya hidup Anda.
-                                            </li>
-                                            <li>
-                                                <strong>Kelas Kecil:</strong> Perhatian personal dengan jumlah siswa terbatas per kelas untuk pembelajaran yang efektif.
-                                            </li>
-                                            <li>
-                                                <strong>Tes Simulasi:</strong> Tes latihan rutin dalam kondisi ujian sebenarnya untuk membangun kepercayaan diri dan melacak kemajuan.
-                                            </li>
-                                            <li>
-                                                <strong>Jaminan Skor:</strong> Program terstruktur dirancang untuk membantu Anda mencapai band/skor target.
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Tes Mana yang Harus Anda Ambil?</h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Tes</th>
-                                                        <th>Terbaik Untuk</th>
-                                                        <th>Diterima Oleh</th>
-                                                        <th>Format</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>IELTS</td>
-                                                        <td>UK, Australia, Kanada, NZ, AS</td>
-                                                        <td>11.000+ institusi di seluruh dunia</td>
-                                                        <td>Berbasis kertas atau komputer</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TOEFL</td>
-                                                        <td>AS, Kanada, Pendidikan Global</td>
-                                                        <td>Ribuan institusi (terutama AS)</td>
-                                                        <td>Berbasis internet (iBT)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>HSK</td>
-                                                        <td>Studi & kerja di China (kemampuan Mandarin)</td>
-                                                        <td>Universitas & perusahaan China</td>
-                                                        <td>Berbasis komputer atau kertas</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
                             {activeTab === "ielts" && (
                                 <div id="ielts" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>Panduan Lengkap untuk IELTS</h2>
                                         <p>
-                                            Membuktikan kemampuan bahasa Inggris Anda sering kali merupakan persyaratan wajib ketika Anda berencana untuk belajar atau bekerja di luar negeri. **IELTS** adalah salah satu tes kemampuan bahasa Inggris yang paling diakui di seluruh dunia. Diterima oleh lebih dari 11.000 institusi, termasuk universitas peringkat teratas dan organisasi profesional.
+                                            Membuktikan kemampuan bahasa Inggris Anda sering kali merupakan persyaratan wajib ketika Anda berencana untuk belajar atau bekerja di luar negeri. <strong></strong> adalah salah satu tes kemampuan bahasa Inggris yang paling diakui di seluruh dunia. Diterima oleh lebih dari 11.000 institusi, termasuk universitas peringkat teratas dan organisasi profesional.
                                         </p>
                                         <p>
-                                            **Apa itu IELTS?** IELTS mengevaluasi keterampilan bahasa Inggris Anda melalui empat bagian: Mendengarkan, Membaca, Menulis, dan Berbicara. Ditawarkan dalam versi Academic dan General Training, IELTS adalah pilihan utama untuk penerimaan universitas, imigrasi, dan registrasi profesional di **UK, Australia, Kanada, Selandia Baru, dan semakin banyak di AS**. Peserta tes dapat memilih antara format berbasis kertas dan berbasis komputer.
+                                            <strong></strong> IELTS mengevaluasi keterampilan bahasa Inggris Anda melalui empat bagian: Mendengarkan, Membaca, Menulis, dan Berbicara. Ditawarkan dalam versi Academic dan General Training, IELTS adalah pilihan utama untuk penerimaan universitas, imigrasi, dan registrasi profesional di <strong></strong>. Peserta tes dapat memilih antara format berbasis kertas dan berbasis komputer.
                                         </p>
                                     </div>
 
@@ -245,10 +173,10 @@ export default function LanguagePrepID() {
                                                     <tr><td>9</td><td>118–120</td><td>200–230</td><td>C2 Proficiency (CPE)</td><td></td></tr>
                                                     <tr><td>8.5</td><td>115–117</td><td>191–199</td><td>C2 Proficiency (CPE)</td><td></td></tr>
                                                     <tr><td>8</td><td>110–114</td><td>185–190</td><td>C2 Proficiency (CPE)</td><td></td></tr>
-                                                    <tr><td>**7.5**</td><td>**102–109**</td><td>**176–184**</td><td>**C1 Advanced (CAE)**</td><td>**Program Master**</td></tr>
-                                                    <tr><td>**7**</td><td>**94–101**</td><td>**169–175**</td><td>**C1 Advanced (CAE)**</td><td>**Program Master**</td></tr>
-                                                    <tr><td>**6.5**</td><td>**79–93**</td><td>**162–168**</td><td>**B2 First (FCE)**</td><td>**Program Sarjana / Master (tergantung jurusan)**</td></tr>
-                                                    <tr><td>**6**</td><td>**60–78**</td><td>**154–161**</td><td>**B2 First (FCE)**</td><td>**Program Sarjana**</td></tr>
+                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
+                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
+                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
+                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
                                                     <tr><td>5.5</td><td>46–59</td><td>147–153</td><td>B2 First (FCE)</td><td>Diploma</td></tr>
                                                     <tr><td>5</td><td>35–45</td><td>140–146</td><td>B1 Preliminary (PET)</td><td>Diploma</td></tr>
                                                 </tbody>
@@ -273,10 +201,10 @@ export default function LanguagePrepID() {
                                     <div className="content-block">
                                         <h2>Panduan Lengkap untuk TOEFL</h2>
                                         <p>
-                                            Bermimpi belajar di **AS** atau universitas kelas dunia di luar negeri? Keterampilan bahasa Inggris Anda bisa menjadi paspor Anda — dan TOEFL adalah tiket Anda. Tes ini tidak hanya mengukur tata bahasa atau kosakata; tes ini mengukur kesiapan Anda untuk berkembang dalam dunia akademik berbahasa Inggris. Skor TOEFL yang kuat dapat membuka jalur langsung ke universitas di luar negeri dan program akademik khusus.
+                                            Bermimpi belajar di <strong></strong> atau universitas kelas dunia di luar negeri? Keterampilan bahasa Inggris Anda bisa menjadi paspor Anda — dan TOEFL adalah tiket Anda. Tes ini tidak hanya mengukur tata bahasa atau kosakata; tes ini mengukur kesiapan Anda untuk berkembang dalam dunia akademik berbahasa Inggris. Skor TOEFL yang kuat dapat membuka jalur langsung ke universitas di luar negeri dan program akademik khusus.
                                         </p>
                                         <p>
-                                            **Apa itu TOEFL?** Test of English as a Foreign Language (TOEFL) adalah salah satu tes kemampuan bahasa Inggris yang paling dipercaya di seluruh dunia. Meskipun diperlukan oleh semua universitas di AS, tes ini juga diterima oleh ribuan institusi di negara-negara seperti **Kanada, Australia, UK, Malaysia, dan Singapura**. Versi paling populer, **TOEFL iBT**, mengevaluasi Membaca, Mendengarkan, Berbicara, dan Menulis, memberikan universitas gambaran yang jelas tentang keterampilan bahasa Inggris praktis Anda.
+                                            <strong></strong> Test of English as a Foreign Language (TOEFL) adalah salah satu tes kemampuan bahasa Inggris yang paling dipercaya di seluruh dunia. Meskipun diperlukan oleh semua universitas di AS, tes ini juga diterima oleh ribuan institusi di negara-negara seperti <strong></strong>. Versi paling populer, <strong></strong>, mengevaluasi Membaca, Mendengarkan, Berbicara, dan Menulis, memberikan universitas gambaran yang jelas tentang keterampilan bahasa Inggris praktis Anda.
                                         </p>
                                     </div>
 
@@ -390,7 +318,7 @@ export default function LanguagePrepID() {
                                     <div className="content-block">
                                         <h2>Panduan Lengkap untuk HSK</h2>
                                         <p>
-                                            Jika Anda belajar bahasa Mandarin dan mulai berpikir tentang belajar, bekerja, atau tinggal di China, Anda mungkin pernah mendengar tentang **HSK**. Singkatan dari **"Hanyu Shuiping Kaoshi,"** ini adalah tes kemampuan bahasa Mandarin resmi untuk penutur non-asli. Mendapatkan skor HSK yang baik dapat membuka pintu di universitas China, membantu Anda memenuhi syarat untuk beasiswa, atau bahkan meningkatkan resume Anda untuk pekerjaan yang membutuhkan kemampuan Mandarin.
+                                            Jika Anda belajar bahasa Mandarin dan mulai berpikir tentang belajar, bekerja, atau tinggal di China, Anda mungkin pernah mendengar tentang <strong></strong>. Singkatan dari <strong></strong> ini adalah tes kemampuan bahasa Mandarin resmi untuk penutur non-asli. Mendapatkan skor HSK yang baik dapat membuka pintu di universitas China, membantu Anda memenuhi syarat untuk beasiswa, atau bahkan meningkatkan resume Anda untuk pekerjaan yang membutuhkan kemampuan Mandarin.
                                         </p>
                                     </div>
 
@@ -437,9 +365,9 @@ export default function LanguagePrepID() {
                                             </table>
                                         </div>
                                         <ul>
-                                            <li>**Mendengarkan:** Anda akan mendengar rekaman dalam bahasa Mandarin dan menjawab pertanyaan</li>
-                                            <li>**Membaca:** Membaca passage dan memilih jawaban yang benar</li>
-                                            <li>**Menulis:** Hanya pada level 3 ke atas – menulis kata, kalimat, atau esai</li>
+                                            <li><strong></strong> Anda akan mendengar rekaman dalam bahasa Mandarin dan menjawab pertanyaan</li>
+                                            <li><strong></strong> Membaca passage dan memilih jawaban yang benar</li>
+                                            <li><strong></strong> Hanya pada level 3 ke atas – menulis kata, kalimat, atau esai</li>
                                         </ul>
                                         <p>Ada juga tes opsional HSK Speaking (HSKK) jika Anda ingin menunjukkan kemampuan berbicara bahasa Mandarin Anda.</p>
                                     </div>
@@ -447,26 +375,26 @@ export default function LanguagePrepID() {
                                     <div className="content-block">
                                         <h3>Persyaratan Skor & Biaya HSK</h3>
                                         <ul>
-                                            <li>**Persyaratan Level:**
+                                            <li><strong></strong>
                                                 <ul>
-                                                    <li>**HSK 4:** Diperlukan untuk program sarjana di China (diajarkan dalam bahasa Mandarin)</li>
-                                                    <li>**HSK 5/6:** Diperlukan untuk program pascasarjana dan beasiswa bahasa Mandarin</li>
+                                                    <li><strong></strong> Diperlukan untuk program sarjana di China (diajarkan dalam bahasa Mandarin)</li>
+                                                    <li><strong></strong> Diperlukan untuk program pascasarjana dan beasiswa bahasa Mandarin</li>
                                                 </ul>
                                             </li>
-                                            <li>**Biaya Tes:** Biaya HSK bervariasi menurut negara dan level tes tetapi biasanya berkisar dari **$20 hingga $100 USD**.</li>
+                                            <li><strong></strong> Biaya HSK bervariasi menurut negara dan level tes tetapi biasanya berkisar dari <strong></strong>.</li>
                                         </ul>
                                     </div>
 
                                     <div className="content-block">
                                         <h3>Tips Utama untuk Persiapan HSK</h3>
                                         <ul>
-                                            <li>**Kenali Format:** Latihan dengan soal tes asli sehingga Anda tahu apa yang diharapkan.</li>
-                                            <li>**Terus Berlatih:** Flashcard, kuis, dan ujian simulasi adalah teman Anda!</li>
-                                            <li>**Kuasai Kosakata:** Unduh daftar kata resmi untuk level yang Anda pilih.</li>
-                                            <li>**Dengarkan:** Tonton acara Mandarin, dengarkan podcast, atau gunakan aplikasi latihan mendengarkan HSK.</li>
-                                            <li>**Baca & Tulis Setiap Hari:** Coba baca artikel berita dan tulis paragraf pendek dalam bahasa Mandarin.</li>
-                                            <li>**Belajar dengan Orang Lain:** Bergabung dengan kelas atau menemukan teman belajar membuat pembelajaran lebih mudah dan menyenangkan.</li>
-                                            <li>**Periksa Ujian Sebelumnya:** Tinjau tes HSK sebelumnya untuk melihat tren dalam pertanyaan.</li>
+                                            <li><strong></strong> Latihan dengan soal tes asli sehingga Anda tahu apa yang diharapkan.</li>
+                                            <li><strong></strong> Flashcard, kuis, dan ujian simulasi adalah teman Anda!</li>
+                                            <li><strong></strong> Unduh daftar kata resmi untuk level yang Anda pilih.</li>
+                                            <li><strong></strong> Tonton acara Mandarin, dengarkan podcast, atau gunakan aplikasi latihan mendengarkan HSK.</li>
+                                            <li><strong></strong> Coba baca artikel berita dan tulis paragraf pendek dalam bahasa Mandarin.</li>
+                                            <li><strong></strong> Bergabung dengan kelas atau menemukan teman belajar membuat pembelajaran lebih mudah dan menyenangkan.</li>
+                                            <li><strong></strong> Tinjau tes HSK sebelumnya untuk melihat tren dalam pertanyaan.</li>
                                         </ul>
                                     </div>
 

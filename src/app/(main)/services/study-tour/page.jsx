@@ -110,7 +110,7 @@ export default function StudyTour() {
                             We have curated study tour programs to top destinations. Find the
                             one that's right for you.
                         </p>
-                        <a href="contact.html" className="btn btn--primary btn--large"
+                        <a href="/contact" className="btn btn--primary btn--large"
                         >Inquire About Study Tours</a
                         >
                     </div>

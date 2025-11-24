@@ -11,10 +11,9 @@ import {
 import { useState } from "react";
 
 export default function StandardizedID() {
-    const [activeTab, setActiveTab] = useState("overview");
+    const [activeTab, setActiveTab] = useState("sat");
 
     const tabs = [
-        { id: "overview", label: "Gambaran Umum", icon: <LayoutGrid /> },
         { id: "sat", label: "SAT", icon: <BookOpen /> },
         { id: "gmat", label: "GMAT", icon: <Calculator /> },
         { id: "csca", label: "CSCA", icon: <Award /> },
@@ -54,98 +53,6 @@ export default function StandardizedID() {
 
                         {/* Tabs Content */}
                         <div className="tab-content">
-                            {activeTab === "overview" && (
-                                <div id="overview" className="tab-pane active">
-                                    <div className="content-block">
-                                        <h2>Gambaran Umum Persiapan Tes Standar</h2>
-                                        <p>
-                                            Tes standar adalah persyaratan krusial untuk masuk ke program sarjana dan pascasarjana terbaik di seluruh dunia. Program persiapan komprehensif kami membantu Anda memaksimalkan skor dan menonjol dalam persaingan penerimaan.
-                                        </p>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Mengapa Mengambil Tes Standar?</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Penerimaan Universitas:</strong> Diwajibkan atau sangat direkomendasikan oleh universitas top secara global
-                                            </li>
-                                            <li>
-                                                <strong>Peluang Beasiswa:</strong> Skor lebih tinggi meningkatkan peluang beasiswa berbasis prestasi
-                                            </li>
-                                            <li>
-                                                <strong>Keunggulan Kompetitif:</strong> Skor kuat membedakan Anda dari pelamar lain
-                                            </li>
-                                            <li>
-                                                <strong>Penilaian Keterampilan:</strong> Menunjukkan kesiapan untuk program akademik yang ketat
-                                            </li>
-                                            <li>
-                                                <strong>Manfaat Karir:</strong> Beberapa perusahaan menghargai skor tes standar
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Pendekatan Persiapan Tes Kami</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Penilaian Diagnostik:</strong> Tes awal untuk mengidentifikasi kekuatan dan kelemahan
-                                            </li>
-                                            <li>
-                                                <strong>Rencana Belajar Personal:</strong> Kurikulum disesuaikan berdasarkan skor target Anda
-                                            </li>
-                                            <li>
-                                                <strong>Instruktur Ahli:</strong> Pelatih bersertifikat dengan skor tinggi dan pengalaman mengajar
-                                            </li>
-                                            <li>
-                                                <strong>Tes Latihan:</strong> Tes lengkap rutin dalam kondisi ujian sebenarnya
-                                            </li>
-                                            <li>
-                                                <strong>Strategi Mengerjakan Tes:</strong> Manajemen waktu, teknik eliminasi, dan menebak cerdas
-                                            </li>
-                                            <li>
-                                                <strong>Analitik Kinerja:</strong> Laporan skor detail dan pelacakan peningkatan
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Tes Mana yang Harus Anda Ambil?</h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Tes</th>
-                                                        <th>Tujuan</th>
-                                                        <th>Siapa yang Mengambilnya</th>
-                                                        <th>Durasi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>SAT</td>
-                                                        <td>Penerimaan sarjana</td>
-                                                        <td>Siswa SMA (kelas 11-12)</td>
-                                                        <td>3 jam</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>GMAT</td>
-                                                        <td>Penerimaan sekolah bisnis (MBA)</td>
-                                                        <td>Profesional bekerja, lulusan</td>
-                                                        <td>3,5 jam</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>CSCA</td>
-                                                        <td>Sertifikasi penilaian Cambridge</td>
-                                                        <td>Siswa yang mencari kualifikasi Cambridge</td>
-                                                        <td>Bervariasi per level</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
                             {activeTab === "sat" && (
                                 <div id="sat" className="tab-pane active">
                                     <div className="content-block">

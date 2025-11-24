@@ -858,7 +858,7 @@ export default function Australia() {
                             langkah prosesnya.
                         </p>
                         <a
-                            href="contact.html"
+                            href="/contact"
                             className="btn btn--primary btn--large"
                         >
                             Bicara dengan Konselor Gratis

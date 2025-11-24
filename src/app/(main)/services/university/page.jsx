@@ -138,7 +138,7 @@ export default function University() {
                             Let our expert counsellors turn your study abroad dream into a
                             reality.
                         </p>
-                        <a href="contact.html" className="btn btn--primary btn--large"
+                        <a href="/contact" className="btn btn--primary btn--large"
                         >Book Your Free Consultation</a
                         >
                     </div>

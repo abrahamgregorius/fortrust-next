@@ -110,7 +110,7 @@ export default function Internship() {
                             Limited slots are available for our exclusive internship program.
                             Secure your place today.
                         </p>
-                        <a href="contact.html" className="btn btn--primary btn--large"
+                        <a href="/contact" className="btn btn--primary btn--large"
                         >Apply for Internship</a
                         >
                     </div>

@@ -212,7 +212,7 @@ export default function Language() {
                         </p>
 
                         <div style={{textAlign: 'center', marginTop: 'var(--space-12)'}}>
-                            <a href="contact.html" className="btn btn--primary btn--large">Get Free Consultation</a>
+                            <a href="/contact" className="btn btn--primary btn--large">Get Free Consultation</a>
                         </div>
 
                     </div>

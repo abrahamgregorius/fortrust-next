@@ -22,7 +22,7 @@ export default function China() {
         { id: "costs", label: "Costs", icon: <Wallet /> },
         { id: "work", label: "Work Rights", icon: <Briefcase /> },
         { id: "scholarships", label: "Scholarships", icon: <GraduationCap /> },
-        { id: "partners", label: "Partners", icon: <Building2 /> },
+        { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
 
@@ -33,7 +33,7 @@ export default function China() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Learn Where the World's Economy Leads</h1>
+                        <h1>Study in China, Learn Where the World's Economy Leads</h1>
                         <p>
                             Experience world-class scholarships, economic
                             immersion, and cultural discovery—all in one
@@ -409,7 +409,7 @@ export default function China() {
                                     <div className="content-block">
                                         <h2>All Institutions in China</h2>
                                         <p>
-                                            We partner with China's most elite universities, including
+                                            Study in China's most elite universities, including
                                             members of the prestigious 211, 985, and Double First Class
                                             initiatives.
                                         </p>
@@ -462,8 +462,8 @@ export default function China() {
                                     </div>
                                 </div>
                             )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <section className="final-cta">
@@ -474,7 +474,7 @@ export default function China() {
                             step of the process.
                         </p>
                         <a
-                            href="contact.html"
+                            href="/contact"
                             className="btn btn--primary btn--large"
                         >
                             Talk to a Counsellor for Free

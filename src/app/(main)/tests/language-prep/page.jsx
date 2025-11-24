@@ -11,10 +11,9 @@ import {
 import { useState } from "react";
 
 export default function LanguagePrep() {
-    const [activeTab, setActiveTab] = useState("overview");
+    const [activeTab, setActiveTab] = useState("ielts");
 
     const tabs = [
-        { id: "overview", label: "Overview", icon: <LayoutGrid /> },
         { id: "ielts", label: "IELTS", icon: <BookOpen /> },
         { id: "toefl", label: "TOEFL", icon: <FileText /> },
         { id: "hsk", label: "HSK", icon: <GraduationCap /> },
@@ -54,87 +53,16 @@ export default function LanguagePrep() {
 
                         {/* Tabs Content */}
                         <div className="tab-content">
-                            {activeTab === "overview" && (
-                                <div id="overview" className="tab-pane active">
-                                    <div className="content-block">
-                                        <h2>Language Test Preparation Overview</h2>
-                                        <p>
-                                            Language proficiency tests are essential requirements for international education and immigration. Our comprehensive preparation programs help you achieve your target scores in IELTS, TOEFL, and HSK examinations.
-                                        </p>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Why Choose Our Language Prep Programs?</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Expert Instructors:</strong> Learn from certified trainers with years of teaching experience and proven track records.
-                                            </li>
-                                            <li>
-                                                <strong>Comprehensive Materials:</strong> Access to up-to-date study materials, practice tests, and online resources.
-                                            </li>
-                                            <li>
-                                                <strong>Flexible Schedules:</strong> Choose from intensive, regular, or weekend classes to fit your lifestyle.
-                                            </li>
-                                            <li>
-                                                <strong>Small Class Sizes:</strong> Personalized attention with limited students per class for effective learning.
-                                            </li>
-                                            <li>
-                                                <strong>Mock Tests:</strong> Regular practice tests under exam conditions to build confidence and track progress.
-                                            </li>
-                                            <li>
-                                                <strong>Score Guarantee:</strong> Structured programs designed to help you achieve your target band/score.
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="content-block">
-                                        <h3>Which Test Should You Take?</h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Test</th>
-                                                        <th>Best For</th>
-                                                        <th>Accepted By</th>
-                                                        <th>Format</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>IELTS</td>
-                                                        <td>UK, Australia, Canada, NZ, US</td>
-                                                        <td>11,000+ institutions worldwide</td>
-                                                        <td>Paper-based or Computer-based</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TOEFL</td>
-                                                        <td>USA, Canada, Global Education</td>
-                                                        <td>Thousands of institutions (especially US)</td>
-                                                        <td>Internet-based (iBT)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>HSK</td>
-                                                        <td>China studies & work (Chinese proficiency)</td>
-                                                        <td>Chinese universities & employers</td>
-                                                        <td>Computer-based or Paper-based</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
                             {activeTab === "ielts" && (
                                 <div id="ielts" className="tab-pane active">
                                     {/* --- Konten IELTS dari Artikel Anda --- */}
                                     <div className="content-block">
                                         <h2>Your Complete Guide to IELTS</h2>
                                         <p>
-                                            Proving your English proficiency is often a mandatory requirement when you plan to study or work overseas. **IELTS** is one of the most recognized English language proficiency tests worldwide. It is accepted by over 11,000 institutions, including top-ranked universities and professional organizations.
+                                            Proving your English proficiency is often a mandatory requirement when you plan to study or work overseas. <strong></strong> is one of the most recognized English language proficiency tests worldwide. It is accepted by over 11,000 institutions, including top-ranked universities and professional organizations.
                                         </p>
                                         <p>
-                                            **What is IELTS?** IELTS evaluates your English skills through four sections: Listening, Reading, Writing, and Speaking. Offered in both Academic and General Training versions, IELTS is a top choice for university admissions, immigration, and professional registration in the **UK, Australia, Canada, New Zealand, and increasingly in the US**. Test-takers can choose between paper-based and computer-based formats.
+                                            <strong></strong> IELTS evaluates your English skills through four sections: Listening, Reading, Writing, and Speaking. Offered in both Academic and General Training versions, IELTS is a top choice for university admissions, immigration, and professional registration in the <strong></strong>. Test-takers can choose between paper-based and computer-based formats.
                                         </p>
                                     </div>
 
@@ -246,10 +174,10 @@ export default function LanguagePrep() {
                                                     <tr><td>9</td><td>118–120</td><td>200–230</td><td>C2 Proficiency (CPE)</td><td></td></tr>
                                                     <tr><td>8.5</td><td>115–117</td><td>191–199</td><td>C2 Proficiency (CPE)</td><td></td></tr>
                                                     <tr><td>8</td><td>110–114</td><td>185–190</td><td>C2 Proficiency (CPE)</td><td></td></tr>
-                                                    <tr><td>**7.5**</td><td>**102–109**</td><td>**176–184**</td><td>**C1 Advanced (CAE)**</td><td>**Master Degree**</td></tr>
-                                                    <tr><td>**7**</td><td>**94–101**</td><td>**169–175**</td><td>**C1 Advanced (CAE)**</td><td>**Master Degree**</td></tr>
-                                                    <tr><td>**6.5**</td><td>**79–93**</td><td>**162–168**</td><td>**B2 First (FCE)**</td><td>**Bachelor / Master Degree (depend on subject)**</td></tr>
-                                                    <tr><td>**6**</td><td>**60–78**</td><td>**154–161**</td><td>**B2 First (FCE)**</td><td>**Bachelor Degree**</td></tr>
+                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
+                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
+                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
+                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
                                                     <tr><td>5.5</td><td>46–59</td><td>147–153</td><td>B2 First (FCE)</td><td>Diploma</td></tr>
                                                     <tr><td>5</td><td>35–45</td><td>140–146</td><td>B1 Preliminary (PET)</td><td>Diploma</td></tr>
                                                 </tbody>
@@ -276,10 +204,10 @@ export default function LanguagePrep() {
                                     <div className="content-block">
                                         <h2>Your Complete Guide to TOEFL</h2>
                                         <p>
-                                            Dreaming of studying in the **USA** or a world-class university overseas? Your English skills can be your passport — and the TOEFL is your ticket. This test doesn’t just measure grammar or vocabulary; it measures your readiness to thrive in an English-speaking academic world. A strong TOEFL score can open direct pathways to universities abroad and special academic programs.
+                                            Dreaming of studying in the <strong></strong> or a world-class university overseas? Your English skills can be your passport — and the TOEFL is your ticket. This test doesn’t just measure grammar or vocabulary; it measures your readiness to thrive in an English-speaking academic world. A strong TOEFL score can open direct pathways to universities abroad and special academic programs.
                                         </p>
                                         <p>
-                                            **What is TOEFL?** The Test of English as a Foreign Language (TOEFL) is among the most trusted English proficiency tests worldwide. While it’s required by all universities in the USA, it is also accepted by thousands of institutions in countries like **Canada, Australia, the UK, Malaysia, and Singapore**. The most popular version, **TOEFL iBT**, evaluates Reading, Listening, Speaking, and Writing, giving universities a clear picture of your practical English skills.
+                                            <strong></strong> The Test of English as a Foreign Language (TOEFL) is among the most trusted English proficiency tests worldwide. While it’s required by all universities in the USA, it is also accepted by thousands of institutions in countries like <strong></strong>. The most popular version, <strong></strong>, evaluates Reading, Listening, Speaking, and Writing, giving universities a clear picture of your practical English skills.
                                         </p>
                                     </div>
 
@@ -395,7 +323,7 @@ export default function LanguagePrep() {
                                     <div className="content-block">
                                         <h2>Your Complete Guide to the HSK</h2>
                                         <p>
-                                            If you’re learning Chinese and starting to think about studying, working, or living in China, you’ve probably heard of the **HSK**. Short for **“Hanyu Shuiping Kaoshi,”** it’s the official Chinese language proficiency test for non-native speakers. Getting a good HSK score can open up doors at Chinese universities, help you qualify for scholarships, or even boost your resume for jobs that require Mandarin.
+                                            If you’re learning Chinese and starting to think about studying, working, or living in China, you’ve probably heard of the <strong></strong>. Short for <strong></strong> it’s the official Chinese language proficiency test for non-native speakers. Getting a good HSK score can open up doors at Chinese universities, help you qualify for scholarships, or even boost your resume for jobs that require Mandarin.
                                         </p>
                                     </div>
 
@@ -442,9 +370,9 @@ export default function LanguagePrep() {
                                             </table>
                                         </div>
                                         <ul>
-                                            <li>**Listening:** You’ll hear recordings in Chinese and answer questions</li>
-                                            <li>**Reading:** Read passages and pick the right answers</li>
-                                            <li>**Writing:** Only on levels 3 and above – write words, sentences, or essays</li>
+                                            <li><strong></strong> You’ll hear recordings in Chinese and answer questions</li>
+                                            <li><strong></strong> Read passages and pick the right answers</li>
+                                            <li><strong></strong> Only on levels 3 and above – write words, sentences, or essays</li>
                                         </ul>
                                         <p>There’s also an optional HSK Speaking (HSKK) test if you want to show off your spoken Chinese.</p>
                                     </div>
@@ -452,26 +380,26 @@ export default function LanguagePrep() {
                                     <div className="content-block">
                                         <h3>HSK Score & Cost Requirements</h3>
                                         <ul>
-                                            <li>**Level Requirement:**
+                                            <li><strong></strong>
                                                 <ul>
-                                                    <li>**HSK 4:** Required for undergraduate programs in China (Chinese-taught)</li>
-                                                    <li>**HSK 5/6:** Required for graduate programs and Chinese language scholarships</li>
+                                                    <li><strong></strong> Required for undergraduate programs in China (Chinese-taught)</li>
+                                                    <li><strong></strong> Required for graduate programs and Chinese language scholarships</li>
                                                 </ul>
                                             </li>
-                                            <li>**Test Cost:** HSK fees vary by country and test level but typically range from **$20 to $100 USD**.</li>
+                                            <li><strong></strong> HSK fees vary by country and test level but typically range from <strong></strong>.</li>
                                         </ul>
                                     </div>
 
                                     <div className="content-block">
                                         <h3>Top Tips for HSK Prep</h3>
                                         <ul>
-                                            <li>**Get Familiar:** Practice with real test papers so you know what to expect.</li>
-                                            <li>**Keep Practicing:** Flashcards, quizzes, and mock exams are your friends!</li>
-                                            <li>**Master the Vocabulary:** Download the official word list for your chosen level.</li>
-                                            <li>**Listen Up:** Watch Chinese shows, listen to podcasts, or use HSK listening practice apps.</li>
-                                            <li>**Read & Write Every Day:** Try reading news articles and writing short paragraphs in Chinese.</li>
-                                            <li>**Study With Others:** Joining a class or finding a study buddy makes learning easier and more fun.</li>
-                                            <li>**Check Past Exams:** Review previous HSK tests to spot trends in questions.</li>
+                                            <li><strong></strong> Practice with real test papers so you know what to expect.</li>
+                                            <li><strong></strong> Flashcards, quizzes, and mock exams are your friends!</li>
+                                            <li><strong></strong> Download the official word list for your chosen level.</li>
+                                            <li><strong></strong> Watch Chinese shows, listen to podcasts, or use HSK listening practice apps.</li>
+                                            <li><strong></strong> Try reading news articles and writing short paragraphs in Chinese.</li>
+                                            <li><strong></strong> Joining a class or finding a study buddy makes learning easier and more fun.</li>
+                                            <li><strong></strong> Review previous HSK tests to spot trends in questions.</li>
                                         </ul>
                                     </div>
 

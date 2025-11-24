@@ -27,13 +27,38 @@ export default function Contact() {
                                     <label htmlFor="name">Full Name</label>
                                     <input type="text" id="name" required />
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email Address</label>
-                                    <input type="email" id="email" required />
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label htmlFor="email">Email Address</label>
+                                        <input type="email" id="email" required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="phone">Phone Number</label>
+                                        <input type="phone" id="phone" required />
+                                    </div>
+                                </div>
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label htmlFor="city">Kota Tinggal</label>
+                                        <input type="text" id="city" required />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="branch">Cabang Terdekat</label>
+                                        <select id="branch" required>
+                                            <option value="">Pilih Cabang</option>
+                                            <option value="central-jakarta">Jakarta Pusat</option>
+                                            <option value="west-jakarta">Jakarta Barat</option>
+                                            <option value="gading-serpong">Gading Serpong</option>
+                                            <option value="palembang">Palembang</option>
+                                            <option value="semarang">Semarang</option>
+                                            <option value="jogjakarta">Jogjakarta</option>
+                                            <option value="surabaya">Surabaya</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="phone">Phone Number</label>
-                                    <input type="phone" id="phone" required />
+                                    <label htmlFor="school">Asal Sekolah/Universitas</label>
+                                    <input type="text" id="school" placeholder="contoh: SMA Negeri 1 Jakarta" required />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="message">Your Message</label>

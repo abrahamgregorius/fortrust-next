@@ -22,7 +22,7 @@ export default function Australia() {
         { id: "costs", label: "Costs", icon: <Wallet /> },
         { id: "work", label: "Work Rights", icon: <Briefcase /> },
         { id: "scholarships", label: "Scholarships", icon: <GraduationCap /> },
-        { id: "partners", label: "Partners", icon: <Building2 /> },
+        { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
 
@@ -34,7 +34,7 @@ export default function Australia() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Study in Australia: Your Fast-Track to a Global
+                            Study in Australia, Your Fast-Track to a Global
                             Career
                         </h1>
                         <p>
@@ -849,7 +849,7 @@ export default function Australia() {
                             step of the process.
                         </p>
                         <a
-                            href="contact.html"
+r                            href="/contact"
                             className="btn btn--primary btn--large"
                         >
                             Talk to a Counsellor for Free

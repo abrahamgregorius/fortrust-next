@@ -22,7 +22,7 @@ export default function Malaysia() {
         { id: "costs", label: "Costs", icon: <Wallet /> },
         { id: "work", label: "Work Rights", icon: <Briefcase /> },
         { id: "scholarships", label: "Scholarships", icon: <GraduationCap /> },
-        { id: "partners", label: "Partners", icon: <Building2 /> },
+        { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
 
@@ -34,7 +34,7 @@ export default function Malaysia() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Malaysia, Affordable and Globally Recognized Education
+                            Study in Malaysia, Affordable and Globally Recognized Education
                         </h1>
                         <p>
                             Dynamic education hubs, offering a rare combination of
@@ -475,7 +475,7 @@ export default function Malaysia() {
                                     <div className="content-block">
                                         <h2>All Institutions in Malaysia</h2>
                                         <p>
-                                            We partner with Malaysia's top private
+                                            Study in Malaysia's top private
                                             universities and international branch
                                             campuses.
                                         </p>
@@ -548,8 +548,8 @@ export default function Malaysia() {
                                     </div>
                                 </div>
                             )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <section className="final-cta">
@@ -560,7 +560,7 @@ export default function Malaysia() {
                             step of the process.
                         </p>
                         <a
-                            href="contact.html"
+                            href="/contact"
                             className="btn btn--primary btn--large"
                         >
                             Talk to a Counsellor for Free
