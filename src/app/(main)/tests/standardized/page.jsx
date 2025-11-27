@@ -7,6 +7,7 @@ import {
     BookOpen,
     Calculator,
     LayoutGrid,
+    Star,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -16,7 +17,8 @@ export default function Standardized() {
     const tabs = [
         { id: "sat", label: "SAT", icon: <BookOpen /> },
         { id: "gmat", label: "GMAT", icon: <Calculator /> },
-        { id: "csca", label: "CSCA", icon: <Award /> },
+        { id: "cambridge", label: "Cambridge Curriculum Exams", icon: <Award /> },
+        { id: "csca", label: "China Scholastic Competency Assessment", icon: <Star /> },
     ];
 
     return (
@@ -27,7 +29,7 @@ export default function Standardized() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Standardized Test Preparation: SAT, GMAT, CSCA
+                            Standardized Test Preparation: SAT, GMAT, Cambridge Curriculum Exams, China Scholastic Competency Assessment
                         </h1>
                         <p>
                             Achieve competitive scores on standardized tests with our proven preparation strategies and expert guidance.
@@ -276,12 +278,12 @@ export default function Standardized() {
                                 </div>
                             )}
 
-                            {activeTab === "csca" && (
-                                <div id="csca" className="tab-pane active">
+                            {activeTab === "cambridge" && (
+                                <div id="cambridge" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>CSCA Preparation</h2>
+                                        <h2>Cambridge Curriculum Exams Preparation</h2>
                                         <p>
-                                            The Cambridge Secondary Checkpoint and Assessment (CSCA) provides a comprehensive evaluation of students' progress in the Cambridge curriculum. These assessments are crucial for students following the Cambridge International pathway.
+                                            Cambridge International Examinations offer a comprehensive curriculum and assessment pathway that is recognized by universities and employers worldwide. From Primary to Pre-University levels, Cambridge qualifications provide a solid foundation for academic success and global opportunities.
                                         </p>
                                     </div>
 
@@ -328,7 +330,7 @@ export default function Standardized() {
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Why Take Cambridge Assessments?</h3>
+                                        <h3>Why Choose Cambridge Curriculum?</h3>
                                         <ul>
                                             <li>
                                                 <strong>International Recognition:</strong> Accepted by universities worldwide
@@ -349,7 +351,7 @@ export default function Standardized() {
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Checkpoint Test Structure</h3>
+                                        <h3>Cambridge Exam Structure</h3>
                                         <p><strong>English:</strong></p>
                                         <ul>
                                             <li>Reading comprehension</li>
@@ -375,7 +377,7 @@ export default function Standardized() {
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Our Cambridge Assessment Preparation</h3>
+                                        <h3>Our Cambridge Curriculum Preparation</h3>
                                         <p><strong>Available Programs:</strong></p>
                                         <ul>
                                             <li>Primary Checkpoint Preparation (Grade 5-6)</li>
@@ -410,6 +412,23 @@ export default function Standardized() {
                                         <p>
                                             Students with strong A-Level results (A*-B grades) can gain admission to top universities including Oxford, Cambridge, Imperial, UCL, US Ivy League schools, and other prestigious institutions worldwide.
                                         </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === "csca" && (
+                                <div id="csca" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>China Scholastic Competency Assessment Preparation</h2>
+                                        <div style={{ textAlign: 'center', padding: '3rem 1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', margin: '2rem 0' }}>
+                                            <h3 style={{ color: '#6c757d', marginBottom: '1rem' }}>Content Currently Being Updated</h3>
+                                            <p style={{ color: '#6c757d', fontSize: '1.1rem', marginBottom: '1.5rem' }}>
+                                                We are currently preparing comprehensive content for China Scholastic Competency Assessment (CSCA).
+                                            </p>
+                                            <p style={{ color: '#6c757d', fontSize: '1rem' }}>
+                                                Please contact us for more information about CSCA preparation.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             )}

@@ -7,6 +7,7 @@ import {
     BookOpen,
     Calculator,
     LayoutGrid,
+    Star,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -16,7 +17,8 @@ export default function StandardizedID() {
     const tabs = [
         { id: "sat", label: "SAT", icon: <BookOpen /> },
         { id: "gmat", label: "GMAT", icon: <Calculator /> },
-        { id: "csca", label: "CSCA", icon: <Award /> },
+        { id: "cambridge", label: "Cambridge Curriculum Exams", icon: <Award /> },
+        { id: "csca", label: "China Scholastic Competency Assessment", icon: <Star /> },
     ];
 
     return (
@@ -27,7 +29,7 @@ export default function StandardizedID() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Persiapan Tes Standar: SAT, GMAT, CSCA
+                            Persiapan Tes Standar: SAT, GMAT, Cambridge Curriculum Exams, China Scholastic Competency Assessment
                         </h1>
                         <p>
                             Raih skor kompetitif pada tes standar dengan strategi persiapan terbukti dan bimbingan ahli kami.
@@ -276,12 +278,12 @@ export default function StandardizedID() {
                                 </div>
                             )}
 
-                            {activeTab === "csca" && (
-                                <div id="csca" className="tab-pane active">
+                            {activeTab === "cambridge" && (
+                                <div id="cambridge" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Persiapan CSCA</h2>
+                                        <h2>Persiapan Cambridge Curriculum Exams</h2>
                                         <p>
-                                            Cambridge Secondary Checkpoint and Assessment (CSCA) memberikan evaluasi komprehensif kemajuan siswa dalam kurikulum Cambridge. Penilaian ini sangat penting bagi siswa yang mengikuti jalur Cambridge International.
+                                            Cambridge International Examinations menawarkan kurikulum dan jalur penilaian yang komprehensif yang diakui oleh universitas dan majikan di seluruh dunia. Dari tingkat Primary hingga Pre-University, kualifikasi Cambridge memberikan dasar yang kuat untuk kesuksesan akademik dan peluang global.
                                         </p>
                                     </div>
 
@@ -328,7 +330,7 @@ export default function StandardizedID() {
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Mengapa Mengambil Penilaian Cambridge?</h3>
+                                        <h3>Mengapa Memilih Kurikulum Cambridge?</h3>
                                         <ul>
                                             <li>
                                                 <strong>Pengakuan Internasional:</strong> Diterima oleh universitas di seluruh dunia
@@ -337,7 +339,7 @@ export default function StandardizedID() {
                                                 <strong>Standar Ketat:</strong> Benchmark akademik yang konsisten secara global
                                             </li>
                                             <li>
-                                                <strong>Jalur ke A-Level:</strong> Rute langsung ke persiapan universitas
+                                                <strong>Jalur ke A-Levels:</strong> Rute langsung ke persiapan universitas
                                             </li>
                                             <li>
                                                 <strong>Pengembangan Keterampilan:</strong> Fokus pada pemikiran kritis dan pemecahan masalah
@@ -349,7 +351,7 @@ export default function StandardizedID() {
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Struktur Tes Checkpoint</h3>
+                                        <h3>Struktur Ujian Cambridge</h3>
                                         <p><strong>Bahasa Inggris:</strong></p>
                                         <ul>
                                             <li>Pemahaman membaca</li>
@@ -375,7 +377,7 @@ export default function StandardizedID() {
                                     </div>
 
                                     <div className="content-block">
-                                        <h3>Persiapan Penilaian Cambridge Kami</h3>
+                                        <h3>Persiapan Kurikulum Cambridge Kami</h3>
                                         <p><strong>Program yang Tersedia:</strong></p>
                                         <ul>
                                             <li>Persiapan Primary Checkpoint (Kelas 5-6)</li>
@@ -410,6 +412,23 @@ export default function StandardizedID() {
                                         <p>
                                             Siswa dengan hasil A-Level yang kuat (nilai A*-B) dapat diterima di universitas top termasuk Oxford, Cambridge, Imperial, UCL, sekolah Ivy League AS, dan institusi bergengsi lainnya di seluruh dunia.
                                         </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === "csca" && (
+                                <div id="csca" className="tab-pane active">
+                                    <div className="content-block">
+                                        <h2>Persiapan China Scholastic Competency Assessment</h2>
+                                        <div style={{ textAlign: 'center', padding: '3rem 1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', margin: '2rem 0' }}>
+                                            <h3 style={{ color: '#6c757d', marginBottom: '1rem' }}>Konten Sedang Dalam Proses Pembaruan</h3>
+                                            <p style={{ color: '#6c757d', fontSize: '1.1rem', marginBottom: '1.5rem' }}>
+                                                Kami sedang menyiapkan konten lengkap untuk China Scholastic Competency Assessment (CSCA).
+                                            </p>
+                                            <p style={{ color: '#6c757d', fontSize: '1rem' }}>
+                                                Silakan hubungi kami untuk informasi lebih lanjut tentang persiapan CSCA.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             )}
