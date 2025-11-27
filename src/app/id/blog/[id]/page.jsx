@@ -7,9 +7,6 @@ import Link from "next/link"
 export default async function BlogPost({ params }) {
     const { id } = params;
     const { data, error } = await supabase.from("blogs").select("*").eq("id", id).single()
-    if (error) {
-        alert(error)
-    }
 
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleDateString('en-US', {
