@@ -3,6 +3,9 @@ import Navbar from "@/components/Navbar";
 import { supabase } from "@/lib/supabaseClient";
 import { Clock, MapPin, Newspaper } from "lucide-react";
 
+// Force dynamic rendering to prevent static generation issues
+export const dynamic = 'force-dynamic';
+
 export default async function Events() {
     const { data: events, error } = await supabase
         .from("events")
@@ -71,7 +74,7 @@ export default async function Events() {
                         </div>
                         <div className="events__list">
                             {
-                                events?.map((event, i) => {
+                                events?.length > 0 ? events.map((event, i) => {
                                     const { month, day } = getMonthDayJakarta(event.start_at);
                                     const timeStr = formatTimeJakarta(event.start_at);
                                     return (
@@ -92,7 +95,11 @@ export default async function Events() {
 
                                     // id, name, description, start_at, end_at, is_public, metadata, created_at, updated_at, deleted_at, registration_link, status
                                     );
-                                })
+                                }) : (
+                                    <div className="no-events-message">
+                                        <p>No upcoming events at the moment.</p>
+                                    </div>
+                                )
                             }
 
                         </div>
@@ -108,15 +115,8 @@ export default async function Events() {
                             <h2>Events Articles</h2>
                         </div>
                         <div className="events__list">
-                            <div className="card event-card">
-                                <div className="event-card__date">
-                                    <span className="month">AUG</span><span className="day">20</span>
-                                </div>
-                                <div className="event-card__info">
-                                    <h4>Australia Scholarship Workshop</h4>
-                                    <p><Newspaper></Newspaper> Kompas.com</p>
-                                </div>
-                                <a href="#" className="btn btn--secondary-outline">View Article</a>
+                            <div className="card event-card" style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
+                                <a href="/blog" className="btn btn--secondary-outline">View Latest Events</a>
                             </div>
                         </div>
                     </div>

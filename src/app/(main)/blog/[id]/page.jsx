@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar"
 import { supabase } from "@/lib/supabaseClient"
 import Link from "next/link"
 
+// Force dynamic rendering to prevent static generation issues
+export const dynamic = 'force-dynamic';
 
 export default async function BlogPost({ params }) {
     const { id } = params;

@@ -2,6 +2,9 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { supabase } from "@/lib/supabaseClient";
 
+// Force dynamic rendering to prevent static generation issues
+export const dynamic = 'force-dynamic';
+
 export default async function SuccessStories() {
     const { data: testimonials, error } = await supabase
         .from("testimonials")

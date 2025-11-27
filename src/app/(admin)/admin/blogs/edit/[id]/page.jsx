@@ -16,36 +16,82 @@ const MenuBar = ({ editor }) => {
     if (!editor) return null;
     return (
         <div className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-t-lg bg-gray-50 px-2 py-1">
-            {["bold", "italic", "strike", "paragraph"].map((type) => (
-                <button
-                    key={type}
-                    onClick={() => editor.chain().focus()[`toggle${type.charAt(0).toUpperCase() + type.slice(1)}`]?.().run?.()}
-                    className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive(type) ? "bg-indigo-100 text-indigo-700" : "text-gray-700 hover:bg-gray-200"
-                        }`}
-                    type="button"
-                >
-                    {type.charAt(0).toUpperCase() + type.slice(1)}
-                </button>
-            ))}
+            <button
+                onClick={() => editor.chain().focus().toggleBold().run()}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('bold') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
+                type="button"
+            >
+                Bold
+            </button>
+
+            <button
+                onClick={() => editor.chain().focus().toggleItalic().run()}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('italic') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
+                type="button"
+            >
+                Italic
+            </button>
+
+            <button
+                onClick={() => editor.chain().focus().toggleStrike().run()}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('strike') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
+                type="button"
+            >
+                Strike
+            </button>
+
+            <button
+                onClick={() => editor.chain().focus().setParagraph().run()}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('paragraph') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
+                type="button"
+            >
+                Paragraph
+            </button>
+
+            <button
+                onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 1 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
+                type="button"
+            >
+                H1
+            </button>
+
+            <button
+                onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 2 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
+                type="button"
+            >
+                H2
+            </button>
+
+            <button
+                onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 3 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
+                type="button"
+            >
+                H3
+            </button>
+
             <button
                 onClick={() => editor.chain().focus().toggleBulletList().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive("bulletList") ? "bg-indigo-100 text-indigo-700" : "text-gray-700 hover:bg-gray-200"
-                    }`}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('bulletList') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
                 type="button"
             >
                 • List
             </button>
+
             <button
                 onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive("orderedList") ? "bg-indigo-100 text-indigo-700" : "text-gray-700 hover:bg-gray-200"
-                    }`}
+                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('orderedList') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
                 type="button"
             >
                 1. List
             </button>
+
             <button onClick={() => editor.chain().focus().undo().run()} className="px-2 py-1 text-sm text-gray-700 hover:bg-gray-200">
                 Undo
             </button>
+
             <button onClick={() => editor.chain().focus().redo().run()} className="px-2 py-1 text-sm text-gray-700 hover:bg-gray-200">
                 Redo
             </button>
@@ -80,6 +126,7 @@ export default function EditBlogPage({ params }) {
         youtube_url: "",
     });
     const [images, setImages] = useState([]);
+    const [existingImages, setExistingImages] = useState([]);
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
     const editor = useEditor({
@@ -88,6 +135,11 @@ export default function EditBlogPage({ params }) {
         content: formData.content,
         onUpdate: ({ editor }) => {
             setFormData((prev) => ({ ...prev, content: editor.getHTML() }));
+        },
+        editorProps: {
+            attributes: {
+                class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
+            },
         },
     });
 
@@ -105,6 +157,8 @@ export default function EditBlogPage({ params }) {
                     content: data.content,
                     youtube_url: data.youtube_url || "",
                 });
+                // Load existing images
+                setExistingImages(data.image_urls || []);
                 editor?.commands.setContent(data.content);
             }
         };
@@ -128,24 +182,35 @@ export default function EditBlogPage({ params }) {
         setImages((prev) => prev.filter((_, index) => index !== indexToRemove));
     };
 
+    const handleRemoveExistingImage = (indexToRemove) => {
+        setExistingImages((prev) => prev.filter((_, index) => index !== indexToRemove));
+    };
+
     // HANDLE SUBMIT (UPDATE EXISTING POST)
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmissionStatus({ message: "Updating post...", type: "info" });
 
         try {
+            // Only upload new images, preserve existing ones
             const uploadedImageUrls = await Promise.all(
                 images.map(async (file) => {
+                    console.log("a")
                     const filePath = `blogs/${Date.now()}-${file.name}`;
                     await uploadFile(file, filePath);
+                    console.log("b")
                     const { data: publicUrlData } = supabase.storage.from("public-assets").getPublicUrl(filePath);
+                    console.log("c")
                     return publicUrlData.publicUrl;
                 })
             );
 
+            // Combine existing images with newly uploaded ones
+            const allImageUrls = [...existingImages, ...uploadedImageUrls];
+
             const updatedBlog = {
                 ...formData,
-                image_urls: uploadedImageUrls,
+                image_urls: allImageUrls,
                 updated_at: new Date().toISOString(),
             };
 
@@ -159,6 +224,9 @@ export default function EditBlogPage({ params }) {
 
             console.log("✅ Blog post updated:", data);
             setSubmissionStatus({ message: "Blog post updated successfully!", type: "success" });
+            
+            // Clear only the newly added images after successful update
+            setImages([]);
         } catch (err) {
             console.error("❌ Error updating post:", err);
             setSubmissionStatus({ message: `Error: ${err.message}`, type: "error" });
@@ -238,7 +306,10 @@ export default function EditBlogPage({ params }) {
                         <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
                         <div className="border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 min-h-[200px]">
                             <MenuBar editor={editor} />
-                            <EditorContent editor={editor} className="prose max-w-none p-3 min-h-[200px]" />
+                            <EditorContent 
+                                editor={editor} 
+                                className="max-w-none p-3 min-h-[200px] [&_.ProseMirror]:outline-none [&_.ProseMirror]:border-none [&_.ProseMirror]:shadow-none [&_.ProseMirror]:ring-0 [&_.ProseMirror]:focus:outline-none [&_.ProseMirror]:focus:ring-0 [&_.ProseMirror]:focus:border-none [&_.ProseMirror_p]:margin-0 [&_.ProseMirror_h1]:margin-top-0 [&_.ProseMirror_h2]:margin-top-0 [&_.ProseMirror_h3]:margin-top-0" 
+                            />
                         </div>
                     </div>
 
@@ -259,20 +330,45 @@ export default function EditBlogPage({ params }) {
                             </div>
                         </div>
 
+                        {/* EXISTING IMAGES */}
+                        {existingImages.length > 0 && (
+                            <div className="mt-4">
+                                <h4 className="text-sm font-medium text-gray-700 mb-2">Existing Images</h4>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                    {existingImages.map((imageUrl, index) => (
+                                        <div key={`existing-${index}`} className="relative group">
+                                            <img src={imageUrl} alt={`existing ${index}`} className="h-24 w-full object-cover rounded-md" />
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemoveExistingImage(index)}
+                                                className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                                            >
+                                                <Icon path={ICONS.close} className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* NEW IMAGES */}
                         {images.length > 0 && (
-                            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                {images.map((file, index) => (
-                                    <div key={index} className="relative group">
-                                        <img src={URL.createObjectURL(file)} alt={`preview ${index}`} className="h-24 w-full object-cover rounded-md" />
-                                        <button
-                                            type="button"
-                                            onClick={() => handleRemoveImage(index)}
-                                            className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                                        >
-                                            <Icon path={ICONS.close} className="w-4 h-4" />
-                                        </button>
-                                    </div>
-                                ))}
+                            <div className="mt-4">
+                                <h4 className="text-sm font-medium text-gray-700 mb-2">New Images</h4>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                    {images.map((file, index) => (
+                                        <div key={`new-${index}`} className="relative group">
+                                            <img src={URL.createObjectURL(file)} alt={`preview ${index}`} className="h-24 w-full object-cover rounded-md" />
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRemoveImage(index)}
+                                                className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                                            >
+                                                <Icon path={ICONS.close} className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         )}
                     </div>

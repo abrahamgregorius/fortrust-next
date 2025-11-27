@@ -1166,6 +1166,20 @@ ul {
     color: var(--neutral-900);
 }
 
+.no-events-message {
+    text-align: center;
+    padding: var(--space-8);
+    background: var(--bg);
+    border-radius: var(--radius-card);
+    color: var(--neutral-400);
+    font-style: italic;
+}
+
+.no-events-message p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
 /* 13. ABOUT PAGE */
 /* ------------------------- */
 .about-story__container {
