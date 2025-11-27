@@ -174,10 +174,10 @@ export default function LanguagePrep() {
                                                     <tr><td>9</td><td>118–120</td><td>200–230</td><td>C2 Proficiency (CPE)</td><td></td></tr>
                                                     <tr><td>8.5</td><td>115–117</td><td>191–199</td><td>C2 Proficiency (CPE)</td><td></td></tr>
                                                     <tr><td>8</td><td>110–114</td><td>185–190</td><td>C2 Proficiency (CPE)</td><td></td></tr>
-                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
-                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
-                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
-                                                    <tr><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td><td><strong></strong></td></tr>
+                                                    <tr><td><strong>7.5</strong></td><td><strong>102–109</strong></td><td><strong>176–184</strong></td><td><strong>C1 Advanced (CAE)</strong></td><td><strong>Master Degree</strong></td></tr>
+                                                    <tr><td><strong>7</strong></td><td><strong>94–101</strong></td><td><strong>169–175</strong></td><td><strong>C1 Advanced (CAE)</strong></td><td><strong>Master Degree</strong></td></tr>
+                                                    <tr><td><strong>6.5</strong></td><td><strong>79–93</strong></td><td><strong>162–168</strong></td><td><strong>B2 First (FCE)</strong></td><td><strong>Bachelor / Master Degree, depend on the subject you choose</strong></td></tr>
+                                                    <tr><td><strong>6</strong></td><td><strong>60–78</strong></td><td><strong>154–161</strong></td><td><strong>B2 First (FCE)</strong></td><td><strong>Bachelor Degree</strong></td></tr>
                                                     <tr><td>5.5</td><td>46–59</td><td>147–153</td><td>B2 First (FCE)</td><td>Diploma</td></tr>
                                                     <tr><td>5</td><td>35–45</td><td>140–146</td><td>B1 Preliminary (PET)</td><td>Diploma</td></tr>
                                                 </tbody>

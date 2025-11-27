@@ -22,7 +22,7 @@ export default function UK() {
         { id: "costs", label: "Costs", icon: <Wallet /> },
         { id: "work", label: "Work Rights", icon: <Briefcase /> },
         { id: "scholarships", label: "Scholarships", icon: <GraduationCap /> },
-        { id: "partners", label: "Partners", icon: <Building2 /> },
+        { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
 
@@ -34,7 +34,7 @@ export default function UK() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            A Tradition of Excellence, A Future of Opportunity
+                            Study in UK, A Tradition of Excellence, A Future of Opportunity
                         </h1>
                         <p>
                             Join a legacy of world-class education where historic
@@ -474,8 +474,7 @@ export default function UK() {
                                         <div className="content-block">
                                             <h2>All Institutions in UK</h2>
                                             <p>
-                                                We have strong partnerships with many of the
-                                                UK's most respected universities.
+                                                Study in UK's most respected universities.
                                             </p>
                                             <ul>
                                                 <li>University of Oxford</li>
@@ -581,8 +580,8 @@ export default function UK() {
                                     </div>
                                 </>
                             )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <section className="final-cta">

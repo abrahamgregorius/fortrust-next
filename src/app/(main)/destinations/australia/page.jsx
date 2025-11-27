@@ -738,7 +738,7 @@ export default function Australia() {
                                     <div className="content-block">
                                         <h2>All Institutions in Australia</h2>
                                         <p>
-                                            We partner with many of Australia's
+                                            Study in Australia's
                                             most prestigious universities and
                                             TAFEs.
                                         </p>

@@ -1241,7 +1241,46 @@ ul {
 .contact-form .form-group {
     margin-bottom: var(--space-6);
 }
+.contact-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
 .contact-form label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: var(--space-2);
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+    width: 100%;
+    padding: var(--space-3);
+    border-radius: 8px;
+    border: 1px solid var(--neutral-400);
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    background-color: var(--bg);
+    color: var(--text);
+}
+.contact-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 20px;
+    padding-right: calc(var(--space-3) + 28px);
+}
+.contact-form select option {
+    background-color: var(--bg);
+    color: var(--text);
+}
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form s.contact-form label {
     display: block;
     font-weight: 500;
     margin-bottom: var(--space-2);
@@ -1804,106 +1843,7 @@ ul {
 .policy-container ul {
     list-style: disc;
     padding-left: var(--space-6);
-}
-
-.community-section {
-    padding: var(--space-16) 0;
-}
-
-.community-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-8);
-    align-items: center;
-}
-
-.community-card {
-    text-align: center;
-}
-
-.community-card .icon-wrapper {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto var(--space-6);
-    background-color: var(--brand-100);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--brand-700);
-}
-
-.community-card h3 {
-    margin-bottom: var(--space-4);
-}
-
-.community-cta {
-    background-color: var(--neutral-100);
-}
-
-.community-cta__container {
-    text-align: center;
-    max-width: 700px;
-}
-
-.internship-spotlight {
-    background-color: var(--brand-100);
-}
-
-.internship-spotlight__container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
-    align-items: center;
-}
-
-.internship-spotlight__image img {
-    width: 100%;
-    border-radius: var(--radius-card);
-}
-
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* for smooth scrolling on iOS */
-}
-
-.pricing-table {
-    width: 100%;
-    min-width: 600px; /* ensure table is scrollable on small screens */
-    border-collapse: collapse;
-    margin-top: var(--space-8);
-}
-
-.pricing-table th,
-.pricing-table td {
-    padding: var(--space-4);
-    border: 1px solid var(--neutral-100);
-    text-align: left;
-}
-
-.pricing-table thead {
-    background-color: var(--brand-700);
-    color: var(--bg);
-}
-
-@media (max-width: 768px) {
-    .testimonial-card {
-        padding: 1.5rem; /* Kurangi padding di mobile */
-    }
-    .testimonial-card__content {
-        font-size: 1rem; /* Kecilkan font di mobile */
-    }
-}
-
-/* ==== BASE ==== */
-.admin-container {
-    display: flex;
-    height: 100vh;
-    background-color: #0b132b;
-    color: #ffffff;
-    font-family: "Inter", sans-serif;
-    overflow: hidden;
+;
 }
 
 /* ==== SIDEBAR ==== */

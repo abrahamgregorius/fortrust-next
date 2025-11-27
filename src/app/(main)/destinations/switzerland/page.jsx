@@ -22,7 +22,7 @@ export default function Switzerland() {
         { id: "costs", label: "Costs", icon: <Wallet /> },
         { id: "work", label: "Work Rights", icon: <Briefcase /> },
         { id: "scholarships", label: "Scholarships", icon: <GraduationCap /> },
-        { id: "partners", label: "Partners", icon: <Building2 /> },
+        { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
 
@@ -34,7 +34,7 @@ export default function Switzerland() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Switzerland, where multilingualism, Global Connections
+                            Study in Switzerland, where multilingualism, Global Connections
                             and Innovation Converge.
                         </h1>
                         <p>
@@ -509,7 +509,7 @@ export default function Switzerland() {
                                         <div className="content-block">
                                             <h2>All Institutions in Switzerland</h2>
                                             <p>
-                                                We partner with Switzerland's world-leading
+                                                Study in Switzerland's world-leading
                                                 institutions in technology, hospitality, and
                                                 research.
                                             </p>
@@ -615,8 +615,8 @@ export default function Switzerland() {
                                     </div>
                                 </>
                             )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <section className="final-cta">

@@ -22,7 +22,7 @@ export default function Singapore() {
         { id: "costs", label: "Costs", icon: <Wallet /> },
         { id: "work", label: "Work Rights", icon: <Briefcase /> },
         { id: "scholarships", label: "Scholarships", icon: <GraduationCap /> },
-        { id: "partners", label: "Partners", icon: <Building2 /> },
+        { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
 
@@ -34,7 +34,7 @@ export default function Singapore() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Singapore, The Smartest Move for Your Future
+                            Study in Singapore, The Smartest Move for Your Future
                         </h1>
                         <p>
                             Where world-class education meets career-defining
@@ -436,7 +436,7 @@ export default function Singapore() {
                                         <div className="content-block">
                                             <h2>All Institutions in Singapore</h2>
                                             <p>
-                                                We partner with Singapore's world-renowned
+                                                Study in Singapore's world-renowned
                                                 public and private universities,
                                                 consistently ranked among the best in Asia
                                                 and the world.
@@ -507,8 +507,8 @@ export default function Singapore() {
                                     </div>
                                 </>
                             )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <section className="final-cta">
