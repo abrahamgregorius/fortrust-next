@@ -20,6 +20,6 @@ const eslintConfig = [
             "next-env.d.ts",
         ],
     },
-    // ✅ Hapus rules TypeScript yang tidak berlaku
+// ✅ Hapus rules TypeScript yang tidak berlaku
 ];
 export default eslintConfig;
