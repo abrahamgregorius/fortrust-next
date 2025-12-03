@@ -17,12 +17,11 @@ export default function Canada() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
-        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
         { id: "scholarships", label: "Beasiswa", icon: <GraduationCap /> },
-        { id: "partners", label: "Mitra", icon: <Building2 /> },
+        { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
     ];
 
@@ -104,36 +103,27 @@ export default function Canada() {
                                                     <tr>
                                                         <td>Toronto</td>
                                                         <td>University of Toronto, York University</td>
-                                                        <td>Multicultural hub, diverse jobs, networking</td>
+                                                        <td>Pusat multikultural, pekerjaan beragam, jaringan</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Vancouver</td>
                                                         <td>UBC, Simon Fraser University</td>
-                                                        <td>
-                                                            Green economy, major tech and film industry, high
-                                                            quality of life
-                                                        </td>
+                                                        <td>Ekonomi hijau, industri teknologi dan film utama, kualitas hidup tinggi</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Montreal</td>
                                                         <td>McGill, Université de Montréal</td>
-                                                        <td>
-                                                            Affordable tuition, bilingual advantage, vibrant
-                                                            culture
-                                                        </td>
+                                                        <td>Biaya kuliah terjangkau, keuntungan bilingual, budaya dinamis</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Ottawa</td>
                                                         <td>University of Ottawa, Carleton University</td>
-                                                        <td>Safe, government internships, bilingual city</td>
+                                                        <td>Aman, magang pemerintah, kota bilingual</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Calgary</td>
                                                         <td>University of Calgary, SAIT</td>
-                                                        <td>
-                                                            High starting salaries, affordable rent, no provincial
-                                                            sales tax
-                                                        </td>
+                                                        <td>Gaji awal tinggi, sewa terjangkau, tanpa pajak penjualan provinsi</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -384,49 +374,75 @@ export default function Canada() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Institusi Mitra Kami</h2>
-                                        <p>
-                                            Kami bermitra dengan banyak universitas dan college terkemuka di Kanada.
-                                        </p>
-                                        <div className="partners-grid">
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=U+of+Toronto"
-                                                    alt="University of Toronto"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=UBC"
-                                                    alt="University of British Columbia"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=McGill"
-                                                    alt="McGill University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=Waterloo"
-                                                    alt="University of Waterloo"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=SFU"
-                                                    alt="Simon Fraser University"
-                                                />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img
-                                                    src="https://placehold.co/150x50/cccccc/000000?text=York+U"
-                                                    alt="York University"
-                                                />
-                                            </div>
+                                        <h2>Semua Institusi di Kanada</h2>
+                                        <p>Belajar di universitas dan college paling bergengsi di Kanada.</p>
+                                        <div className="universities-grid">
+                                            <div className="university-item">Brock University</div>
+                                            <div className="university-item">Cape Breton University</div>
+                                            <div className="university-item">Concordia University</div>
+                                            <div className="university-item">Dalhousie University</div>
+                                            <div className="university-item">Emily Carr University of Art and Design</div>
+                                            <div className="university-item">Lakehead University</div>
+                                            <div className="university-item">MacEwan University</div>
+                                            <div className="university-item">McGill University</div>
+                                            <div className="university-item">Memorial University of Newfoundland</div>
+                                            <div className="university-item">Mount Saint Vincent University</div>
+                                            <div className="university-item">Simon Fraser University</div>
+                                            <div className="university-item">Thompson Rivers University</div>
+                                            <div className="university-item">Toronto Metropolitan University</div>
+                                            <div className="university-item">Trent University</div>
+                                            <div className="university-item">University of Alberta</div>
+                                            <div className="university-item">University of Canada West</div>
+                                            <div className="university-item">University of Lethbridge</div>
+                                            <div className="university-item">University of Manitoba</div>
+                                            <div className="university-item">University of New Brunswick</div>
+                                            <div className="university-item">University of Regina</div>
+                                            <div className="university-item">University of Saskatchewan</div>
+                                            <div className="university-item">University of the Fraser Valley</div>
+                                            <div className="university-item">University of Victoria</div>
+                                            <div className="university-item">University of Waterloo</div>
+                                            <div className="university-item">University of Windsor</div>
+                                            <div className="university-item">Wilfrid Laurier University</div>
+                                            <div className="university-item">York University</div>
+                                            <div className="university-item">Algonquin college</div>
+                                            <div className="university-item">Bronte College</div>
+                                            <div className="university-item">Bow Valley College</div>
+                                            <div className="university-item">Cambrian College of Applied Arts and Technology</div>
+                                            <div className="university-item">Career College, Vancouver</div>
+                                            <div className="university-item">Canadore College</div>
+                                            <div className="university-item">Centenial College</div>
+                                            <div className="university-item">Columbia College</div>
+                                            <div className="university-item">Coquitlam College</div>
+                                            <div className="university-item">Fanshawe College</div>
+                                            <div className="university-item">Fleming College</div>
+                                            <div className="university-item">Fraser International College</div>
+                                            <div className="university-item">George Brown College</div>
+                                            <div className="university-item">Georgian College</div>
+                                            <div className="university-item">Humber College</div>
+                                            <div className="university-item">ICM</div>
+                                            <div className="university-item">Langgara College</div>
+                                            <div className="university-item">Lambton College</div>
+                                            <div className="university-item">Mohawk College</div>
+                                            <div className="university-item">Oxford International College - Halifax</div>
+                                            <div className="university-item">Oxford International College - Toronto</div>
+                                            <div className="university-item">SAE Institute Canada</div>
+                                            <div className="university-item">Sasketchewan Polytechic</div>
+                                            <div className="university-item">Seneca College</div>
+                                            <div className="university-item">Sault College</div>
+                                            <div className="university-item">Sheridan College</div>
+                                            <div className="university-item">Southern Alberta Institute of Technology</div>
+                                            <div className="university-item">The Confederation College of Applied Arts and Technology</div>
+                                            <div className="university-item">Toronto Film School</div>
+                                            <div className="university-item">Toronto Metropolitan International College</div>
+                                            <div className="university-item">Ulethbridge International College</div>
+                                            <div className="university-item">Upper Madison College</div>
+                                            <div className="university-item">Vancouver Community College</div>
+                                            <div className="university-item">Western International College</div>
+                                            <div className="university-item">Wilfrid Laurier International Colelge</div>
+                                            <div className="university-item">UMC High Schools</div>
+                                            <div className="university-item">Delta School District</div>
                                         </div>
-                                        <p className="partners__many">...dan banyak lagi</p>
+                                        <p className="partners__many">*Daftar ini hanya menyoroti sebagian kecil dari mitra universitas penuh kami.</p>
                                     </div>
                                 </div>
                             )}
@@ -449,22 +465,22 @@ export default function Canada() {
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><strong>18–24 months before</strong></td>
+                                                        <td><strong>18–24 bulan sebelumnya</strong></td>
                                                         <td>Riset program & universitas.</td>
                                                         <td>Mulai riset (program lebih sedikit).</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>12–16 months before</strong></td>
+                                                        <td><strong>12–16 bulan sebelumnya</strong></td>
                                                         <td>Persiapan tes bahasa & kumpulkan dokumen.</td>
                                                         <td>-</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>8–12 months before</strong></td>
+                                                        <td><strong>8–12 bulan sebelumnya</strong></td>
                                                         <td>Kirim aplikasi (Okt–Feb).</td>
                                                         <td>Daftar (Mar–Sep S1, Jun–Okt S2/S3).</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>4–6 months before</strong></td>
+                                                        <td><strong>4–6 bulan sebelumnya</strong></td>
                                                         <td>Terima offer & ajukan study permit.</td>
                                                         <td>Finalisasi visa & persiapan.</td>
                                                     </tr>

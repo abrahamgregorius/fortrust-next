@@ -479,23 +479,23 @@ export default function Malaysia() {
                                             universities and international branch
                                             campuses.
                                         </p>
-                                        <ul>
-                                            <li>University of Malaya (UM)</li>
-                                            <li>Universiti Putra Malaysia (UPM)</li>
-                                            <li>Universiti Kebangsaan Malaysia (UKM)</li>
-                                            <li>Universiti Sains Malaysia (USM)</li>
-                                            <li>Universiti Teknologi Malaysia (UTM)</li>
-                                            <li>Taylor's University</li>
-                                            <li>UCSI University</li>
-                                            <li>Sunway University</li>
-                                            <li>Multimedia University (MMU)</li>
-                                            <li>Universiti Teknologi MARA (UiTM)</li>
-                                            <li>Universiti Utara Malaysia (UUM)</li>
-                                            <li>INTI International University</li>
-                                            <li>HELP University</li>
-                                            <li>SEGi University</li>
-                                            <li>Asia Pacific University of Technology & Innovation (APU)</li>
-                                        </ul>
+                                        <div className="universities-grid">
+                                            <div className="university-item">University of Malaya (UM)</div>
+                                            <div className="university-item">Universiti Putra Malaysia (UPM)</div>
+                                            <div className="university-item">Universiti Kebangsaan Malaysia (UKM)</div>
+                                            <div className="university-item">Universiti Sains Malaysia (USM)</div>
+                                            <div className="university-item">Universiti Teknologi Malaysia (UTM)</div>
+                                            <div className="university-item">Taylor's University</div>
+                                            <div className="university-item">UCSI University</div>
+                                            <div className="university-item">Sunway University</div>
+                                            <div className="university-item">Multimedia University (MMU)</div>
+                                            <div className="university-item">Universiti Teknologi MARA (UiTM)</div>
+                                            <div className="university-item">Universiti Utara Malaysia (UUM)</div>
+                                            <div className="university-item">INTI International University</div>
+                                            <div className="university-item">HELP University</div>
+                                            <div className="university-item">SEGi University</div>
+                                            <div className="university-item">Asia Pacific University of Technology & Innovation (APU)</div>
+                                        </div>
 
                                         <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
 

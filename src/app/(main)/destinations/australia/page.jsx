@@ -742,23 +742,63 @@ export default function Australia() {
                                             most prestigious universities and
                                             TAFEs.
                                         </p>
-                                        <ul>
-                                            <li>University of Melbourne</li>
-                                            <li>University of New South Wales (UNSW)</li>
-                                            <li>University of Sydney</li>
-                                            <li>Australian National University (ANU)</li>
-                                            <li>Monash University</li>
-                                            <li>University of Queensland (UQ)</li>
-                                            <li>University of Western Australia (UWA)</li>
-                                            <li>University of Adelaide</li>
-                                            <li>University of Technology Sydney (UTS)</li>
-                                            <li>RMIT University</li>
-                                            <li>Macquarie University</li>
-                                            <li>University of Wollongong</li>
-                                            <li>Curtin University</li>
-                                            <li>Queensland University of Technology (QUT)</li>
-                                            <li>Deakin University</li>
-                                        </ul>
+                                        <div className="universities-grid">
+                                            <div className="university-item">Australian Catholic University</div>
+                                            <div className="university-item">Australian University of Theology</div>
+                                            <div className="university-item">Australian National University</div>
+                                            <div className="university-item">Avondale University</div>
+                                            <div className="university-item">Bond University</div>
+                                            <div className="university-item">Charles Darwin University</div>
+                                            <div className="university-item">Charles Sturt University</div>
+                                            <div className="university-item">CQ University</div>
+                                            <div className="university-item">Curtin University</div>
+                                            <div className="university-item">Deakin University</div>
+                                            <div className="university-item">Edith Cowan University</div>
+                                            <div className="university-item">Federation University of Australia</div>
+                                            <div className="university-item">Flinders University</div>
+                                            <div className="university-item">Griffith University</div>
+                                            <div className="university-item">James Cook University</div>
+                                            <div className="university-item">La Trobe University</div>
+                                            <div className="university-item">Macquarie University</div>
+                                            <div className="university-item">Monash University</div>
+                                            <div className="university-item">Murdoch University</div>
+                                            <div className="university-item">Queensland University of Technology</div>
+                                            <div className="university-item">RMIT University</div>
+                                            <div className="university-item">Southern Cross University</div>
+                                            <div className="university-item">Swinburne University of Technology</div>
+                                            <div className="university-item">Torrens University Australia</div>
+                                            <div className="university-item">University of Adelaide</div>
+                                            <div className="university-item">University of Canberra</div>
+                                            <div className="university-item">University of Divinity</div>
+                                            <div className="university-item">University of Melbourne</div>
+                                            <div className="university-item">University of New England</div>
+                                            <div className="university-item">University of New South Wales</div>
+                                            <div className="university-item">University of Newcastle</div>
+                                            <div className="university-item">University of Notre Dame Australia</div>
+                                            <div className="university-item">University of Queensland</div>
+                                            <div className="university-item">University of South Australia</div>
+                                            <div className="university-item">University of Southern Queensland</div>
+                                            <div className="university-item">University of Sydney</div>
+                                            <div className="university-item">University of Tasmania</div>
+                                            <div className="university-item">University of Technology Sydney</div>
+                                            <div className="university-item">University of the Sunshine Coast</div>
+                                            <div className="university-item">University of Western Australia</div>
+                                            <div className="university-item">University of Wollongong</div>
+                                            <div className="university-item">Victoria University</div>
+                                            <div className="university-item">Western Sydney University</div>
+                                            <div className="university-item">Blue Mountains International Hotel Management School</div>
+                                            <div className="university-item">Box Hill Institute</div>
+                                            <div className="university-item">Gordon Institute of TAFE</div>
+                                            <div className="university-item">Le Cordon Bleu (Adelaide)</div>
+                                            <div className="university-item">Study Group International</div>
+                                            <div className="university-item">Melbourne Polytechnic</div>
+                                            <div className="university-item">Navitas Limited</div>
+                                            <div className="university-item">Sunraysia Institute of TAFE</div>
+                                            <div className="university-item">TAFE Queensland</div>
+                                            <div className="university-item">TAFE Queensland SkillsTech</div>
+                                            <div className="university-item">Think Education</div>
+                                            <div className="university-item">William Blue College of Hospitality Management</div>
+                                        </div>
                                         <p className="partners__many">
                                             ...and many more
                                         </p>
@@ -849,7 +889,7 @@ export default function Australia() {
                             step of the process.
                         </p>
                         <a
-r                            href="/contact"
+                            href="/contact"
                             className="btn btn--primary btn--large"
                         >
                             Talk to a Counsellor for Free

@@ -17,12 +17,11 @@ export default function USA() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
-        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
         { id: "scholarships", label: "Beasiswa", icon: <GraduationCap /> },
-        { id: "partners", label: "Mitra", icon: <Building2 /> },
+        { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
     ];
 
@@ -430,37 +429,81 @@ export default function USA() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Institusi Mitra Kami</h2>
+                                            <h2>Mitra Universitas di Amerika Serikat</h2>
                                             <p>
-                                                Kami bermitra dengan berbagai universitas dan college ternama di seluruh Amerika Serikat.
+                                                Belajar di universitas dan college ternama di seluruh Amerika Serikat.
                                             </p>
-                                            <div className="partners-grid">
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=Harvard"
-                                                        alt="Harvard University"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=MIT"
-                                                        alt="MIT"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=Stanford"
-                                                        alt="Stanford University"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=NYU"
-                                                        alt="New York University"
-                                                    />
-                                                </div>
+                                            <div className="universities-grid">
+                                                <div className="university-item">Arizona State University</div>
+                                                <div className="university-item">Bay Atlantic University</div>
+                                                <div className="university-item">California State University , Fresno</div>
+                                                <div className="university-item">California State University , San Marcos</div>
+                                                <div className="university-item">California State University , Monterey Bay</div>
+                                                <div className="university-item">California State University , North County San Diego</div>
+                                                <div className="university-item">Colorado State University</div>
+                                                <div className="university-item">De Paul University</div>
+                                                <div className="university-item">Drew University</div>
+                                                <div className="university-item">Fisher College</div>
+                                                <div className="university-item">Florida Atlantic University</div>
+                                                <div className="university-item">George mason University</div>
+                                                <div className="university-item">Georgia Institute of Technology</div>
+                                                <div className="university-item">Hofstra University</div>
+                                                <div className="university-item">Illinois State University</div>
+                                                <div className="university-item">Iowa State University</div>
+                                                <div className="university-item">james Madison University</div>
+                                                <div className="university-item">Kent State University</div>
+                                                <div className="university-item">Long Island University</div>
+                                                <div className="university-item">Long Island University Brooklyn</div>
+                                                <div className="university-item">Lousiana State University</div>
+                                                <div className="university-item">Mercer University</div>
+                                                <div className="university-item">Mercy University</div>
+                                                <div className="university-item">Montclair State University</div>
+                                                <div className="university-item">Oregon State University</div>
+                                                <div className="university-item">San Fransisco State University</div>
+                                                <div className="university-item">Southern Illinois University</div>
+                                                <div className="university-item">St Louis University</div>
+                                                <div className="university-item">Suffolk University Boston</div>
+                                                <div className="university-item">Syracuse University</div>
+                                                <div className="university-item">Texas A&M University</div>
+                                                <div className="university-item">Texas State University</div>
+                                                <div className="university-item">The Ohio State University</div>
+                                                <div className="university-item">The University of Arizona</div>
+                                                <div className="university-item">Thomas Jefferson University</div>
+                                                <div className="university-item">Towson University</div>
+                                                <div className="university-item">Trine University</div>
+                                                <div className="university-item">UC BERKELEY</div>
+                                                <div className="university-item">UC DAVIS</div>
+                                                <div className="university-item">UC IRVINE</div>
+                                                <div className="university-item">UC SANTA BARBARA</div>
+                                                <div className="university-item">UCD</div>
+                                                <div className="university-item">UCLA</div>
+                                                <div className="university-item">University of Alabama at Birmingham</div>
+                                                <div className="university-item">University of Hartford</div>
+                                                <div className="university-item">University of Iowa</div>
+                                                <div className="university-item">University of Kansas</div>
+                                                <div className="university-item">University of Louisville</div>
+                                                <div className="university-item">University of Massachusett Boston</div>
+                                                <div className="university-item">University of Massachusetts Amherst</div>
+                                                <div className="university-item">University of Michigan - Ann Arbour</div>
+                                                <div className="university-item">University of Nebraska - Lincoln</div>
+                                                <div className="university-item">University Of Nebraska Omaha</div>
+                                                <div className="university-item">University of Oklahoma</div>
+                                                <div className="university-item">University of Rochester</div>
+                                                <div className="university-item">University of San Francisco</div>
+                                                <div className="university-item">UNIVERSITY OF SOUTHERN CALIFORNIA</div>
+                                                <div className="university-item">UNIVERSITY OF VIRGINIA</div>
+                                                <div className="university-item">UNIVERSITY OF WASHINGTON , Seattle</div>
+                                                <div className="university-item">University of Wisconsin - Madison</div>
+                                                <div className="university-item">Virginia Tech</div>
+                                                <div className="university-item">West Virginia University</div>
+                                                <div className="university-item">Western Michigan University</div>
+                                                <div className="university-item">Western Washington University</div>
+                                                <div className="university-item">Kings Education College</div>
+                                                <div className="university-item">New England College</div>
+                                                <div className="university-item">Santa Monica College</div>
+                                                <div className="university-item">Shoreline Community College</div>
+                                                <div className="university-item">UBridge</div>
                                             </div>
-                                            <p className="partners__many">...dan banyak lagi</p>
                                         </div>
                                     </div>
                                 </>

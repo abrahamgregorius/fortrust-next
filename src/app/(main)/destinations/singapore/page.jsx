@@ -441,23 +441,23 @@ export default function Singapore() {
                                                 consistently ranked among the best in Asia
                                                 and the world.
                                             </p>
-                                            <ul>
-                                                <li>National University of Singapore (NUS)</li>
-                                                <li>Nanyang Technological University (NTU)</li>
-                                                <li>Singapore Management University (SMU)</li>
-                                                <li>Singapore University of Technology and Design (SUTD)</li>
-                                                <li>Singapore Institute of Technology (SIT)</li>
-                                                <li>LASALLE College of the Arts</li>
-                                                <li>Nanyang Academy of Fine Arts (NAFA)</li>
-                                                <li>Duke–NUS Medical School</li>
-                                                <li>INSEAD Asia Campus</li>
-                                                <li>ESSEC Business School Asia-Pacific</li>
-                                                <li>James Cook University Singapore</li>
-                                                <li>Kaplan Singapore</li>
-                                                <li>PSB Academy</li>
-                                                <li>Management Development Institute of Singapore (MDIS)</li>
-                                                <li>SP Jain School of Global Management</li>
-                                            </ul>
+                                            <div className="universities-grid">
+                                                <div className="university-item">National University of Singapore (NUS)</div>
+                                                <div className="university-item">Nanyang Technological University (NTU)</div>
+                                                <div className="university-item">Singapore Management University (SMU)</div>
+                                                <div className="university-item">Singapore University of Technology and Design (SUTD)</div>
+                                                <div className="university-item">Singapore Institute of Technology (SIT)</div>
+                                                <div className="university-item">LASALLE College of the Arts</div>
+                                                <div className="university-item">Nanyang Academy of Fine Arts (NAFA)</div>
+                                                <div className="university-item">Duke–NUS Medical School</div>
+                                                <div className="university-item">INSEAD Asia Campus</div>
+                                                <div className="university-item">ESSEC Business School Asia-Pacific</div>
+                                                <div className="university-item">James Cook University Singapore</div>
+                                                <div className="university-item">Kaplan Singapore</div>
+                                                <div className="university-item">PSB Academy</div>
+                                                <div className="university-item">Management Development Institute of Singapore (MDIS)</div>
+                                                <div className="university-item">SP Jain School of Global Management</div>
+                                            </div>
 
                                             <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
 

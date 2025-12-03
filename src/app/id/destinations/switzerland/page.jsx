@@ -17,12 +17,11 @@ export default function Switzerland() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
-        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
         { id: "scholarships", label: "Beasiswa", icon: <GraduationCap /> },
-        { id: "partners", label: "Mitra", icon: <Building2 /> },
+        { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
     ];
 
@@ -57,17 +56,37 @@ export default function Switzerland() {
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>Mengapa Kuliah di Swiss?</h2>
-                                        <p>Belajar dengan latar Pegunungan Alpen, berjejaring dengan komunitas global, dan memanfaatkan reputasi pendidikan presisi Swiss.</p>
+                                        <p>
+                                            Selamat datang di Swiss—surga akademik di mana impian Anda bersinggungan dengan peluang global dan keunggulan yang tak tertandingi. Bayangkan belajar di negara di mana Anda bangun dengan pemandangan Pegunungan Alpen yang menakjubkan, berinteraksi sehari-hari dengan budaya dari seluruh penjuru dunia, dan membangun masa depan di beberapa universitas paling bergengsi di dunia.
+                                        </p>
                                     </div>
                                     <div className="content-block">
                                         <h3>Keunggulan Kuliah di Swiss</h3>
                                         <ul>
-                                            <li><strong>Pendidikan Kelas Dunia:</strong> ETH Zurich & EPFL berada di puncak ranking global.</li>
-                                            <li><strong>Imersi Multibahasa:</strong> Empat bahasa nasional membuka pasar kerja internasional.</li>
-                                            <li><strong>Riset & Inovasi:</strong> Output riset per kapita sangat tinggi; pusat inovasi finansial.</li>
-                                            <li><strong>Jaringan Diplomatik:</strong> Jenewa menaungi PBB, WTO, WHO—kelas Anda meluas ke forum global.</li>
-                                            <li><strong>Kualitas Hidup Tinggi:</strong> Aman, bersih, stabil secara ekonomi.</li>
-                                            <li><strong>Beasiswa Kompetitif:</strong> Tersedia dari pemerintah & universitas.</li>
+                                            <li>
+                                                <strong>Pendidikan Kelas Dunia yang Unggul:</strong>
+                                                Rumah bagi universitas yang secara konsisten berada di peringkat terbaik dunia—seperti ETH Zurich dan EPFL Lausanne—pendidikan Swiss identik dengan ketelitian dan inovasi.
+                                            </li>
+                                            <li>
+                                                <strong>Imersi Multibahasa Sejati:</strong>
+                                                Tidak ada negara lain yang menawarkan kesempatan untuk hidup dan belajar di masyarakat dengan empat bahasa nasional, membuka pintu pasar kerja internasional.
+                                            </li>
+                                            <li>
+                                                <strong>Riset & Inovasi Tak Tertandingi di Finansial:</strong>
+                                                Swiss memimpin dunia dalam output riset per kapita dan menjadi tuan rumah inovasi groundbreaking, terutama di bidang finansial.
+                                            </li>
+                                            <li>
+                                                <strong>Jaringan Global di Pusat Diplomasi Internasional:</strong>
+                                                Dengan kota seperti Geneva yang menjadi tuan rumah organisasi seperti PBB, WTO, dan WHO, ruang kelas Anda meluas ke papan direksi paling berpengaruh di dunia.
+                                            </li>
+                                            <li>
+                                                <strong>Kualitas Hidup & Keamanan Luar Biasa:</strong>
+                                                Secara konsisten diperingkat di antara negara paling aman, bersih, dan layak huni di dunia.
+                                            </li>
+                                            <li>
+                                                <strong>Beasiswa Generous untuk Anda:</strong>
+                                                Pemerintah Swiss dan universitas menawarkan beasiswa khusus untuk mahasiswa internasional, membuat pendidikan kelas dunia dapat diakses.
+                                            </li>
                                         </ul>
                                     </div>
                                     <div className="content-block">
@@ -278,23 +297,27 @@ export default function Switzerland() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Institusi Mitra Kami</h2>
-                                        <p>Kerja sama dengan institusi unggul Swiss di teknologi, perhotelan, dan riset.</p>
-                                        <div className="partners-grid">
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=ETH+Zurich" alt="ETH Zurich" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=EPFL" alt="EPFL" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=EHL" alt="EHL" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=U+Geneva" alt="University of Geneva" />
-                                            </div>
+                                        <h2>Mitra Universitas di Swiss</h2>
+                                        <p>
+                                            Belajar di institusi terkemuka Swiss di bidang teknologi, perhotelan, dan riset.
+                                        </p>
+                                        <div className="universities-grid">
+                                            <div className="university-item">ETH Zurich</div>
+                                            <div className="university-item">École Polytechnique Fédérale de Lausanne (EPFL)</div>
+                                            <div className="university-item">University of Zurich</div>
+                                            <div className="university-item">University of Geneva</div>
+                                            <div className="university-item">University of Bern</div>
+                                            <div className="university-item">University of Basel</div>
+                                            <div className="university-item">University of Lausanne</div>
+                                            <div className="university-item">University of Fribourg</div>
+                                            <div className="university-item">University of St. Gallen</div>
+                                            <div className="university-item">University of Neuchâtel</div>
+                                            <div className="university-item">Zurich University of Applied Sciences</div>
+                                            <div className="university-item">Lucerne University of Applied Sciences & Arts</div>
+                                            <div className="university-item">University of Applied Sciences and Arts Western Switzerland</div>
+                                            <div className="university-item">University of Applied Sciences of Eastern Switzerland</div>
+                                            <div className="university-item">FernUni Schweiz (Swiss Distance University)</div>
                                         </div>
-                                        <p className="partners__many">...dan banyak lagi</p>
                                     </div>
                                 </div>
                             )}

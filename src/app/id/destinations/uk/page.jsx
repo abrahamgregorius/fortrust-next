@@ -17,12 +17,11 @@ export default function UK() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
-        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
         { id: "scholarships", label: "Beasiswa", icon: <GraduationCap /> },
-        { id: "partners", label: "Mitra", icon: <Building2 /> },
+        { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
     ];
 
@@ -247,21 +246,86 @@ export default function UK() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Institusi Mitra Kami</h2>
-                                        <p>Kami bermitra dengan banyak universitas ternama di Inggris.</p>
-                                        <div className="partners-grid">
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=UCL" alt="UCL" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=Imperial" alt="Imperial College London" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=KCL" alt="King's College London" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=Manchester" alt="University of Manchester" />
-                                            </div>
+                                        <h2>Semua Institusi di Inggris</h2>
+                                        <p>Belajar di universitas ternama di Inggris.</p>
+                                        <div className="universities-grid">
+                                            <p className="university-item">Aberystwyth University</p>
+                                            <p className="university-item">Anglia Ruskin University</p>
+                                            <p className="university-item">Aston University</p>
+                                            <p className="university-item">Bath Spa University</p>
+                                            <p className="university-item">Birkbeck, University of London</p>
+                                            <p className="university-item">Birmingham City University</p>
+                                            <p className="university-item">Brunel University of London</p>
+                                            <p className="university-item">Buckinghamshire New University</p>
+                                            <p className="university-item">Cardiff University</p>
+                                            <p className="university-item">City St George's, University of London</p>
+                                            <p className="university-item">City, University of London</p>
+                                            <p className="university-item">Coventry University</p>
+                                            <p className="university-item">Cranfield University</p>
+                                            <p className="university-item">De Montfort University</p>
+                                            <p className="university-item">Durham University</p>
+                                            <p className="university-item">Falmouth University</p>
+                                            <p className="university-item">Goldsmiths, University of London</p>
+                                            <p className="university-item">Heriot-Watt University</p>
+                                            <p className="university-item">Imperial College London</p>
+                                            <p className="university-item">King's College London</p>
+                                            <p className="university-item">Kingston University</p>
+                                            <p className="university-item">Lancaster University</p>
+                                            <p className="university-item">Leeds Becket University</p>
+                                            <p className="university-item">Leicester University</p>
+                                            <p className="university-item">Lincoln Bishop University</p>
+                                            <p className="university-item">Liverpool John Moores University</p>
+                                            <p className="university-item">London Metropolitan University</p>
+                                            <p className="university-item">London South Bank University</p>
+                                            <p className="university-item">Loughborough University</p>
+                                            <p className="university-item">Manchester Metropolitan University</p>
+                                            <p className="university-item">Middlesex University</p>
+                                            <p className="university-item">Newcastle University</p>
+                                            <p className="university-item">Northumbria University</p>
+                                            <p className="university-item">Oxford Brookes University</p>
+                                            <p className="university-item">Queen Mary University of London</p>
+                                            <p className="university-item">Queen's University Belfast</p>
+                                            <p className="university-item">Royal Holloway, University of London[16]</p>
+                                            <p className="university-item">Royal Veterinary College</p>
+                                            <p className="university-item">Sheffield Hallam University</p>
+                                            <p className="university-item">Southampton Solent University</p>
+                                            <p className="university-item">Swansea University</p>
+                                            <p className="university-item">Teesside University</p>
+                                            <p className="university-item">Ulster University</p>
+                                            <p className="university-item">University of Aberdeen</p>
+                                            <p className="university-item">University of Bath</p>
+                                            <p className="university-item">University of Bradford</p>
+                                            <p className="university-item">University of Brighton</p>
+                                            <p className="university-item">University of Central Lancashier</p>
+                                            <p className="university-item">University of Chester</p>
+                                            <p className="university-item">University of East Anglia - Norwich</p>
+                                            <p className="university-item">University of East London (UEL)</p>
+                                            <p className="university-item">University of Exeter</p>
+                                            <p className="university-item">University of Hertfordshire</p>
+                                            <p className="university-item">University of Huddersfield</p>
+                                            <p className="university-item">University of Hull</p>
+                                            <p className="university-item">University of Kent</p>
+                                            <p className="university-item">University of Lancashire</p>
+                                            <p className="university-item">University of Law</p>
+                                            <p className="university-item">University of Leeds</p>
+                                            <p className="university-item">University of Lincoln</p>
+                                            <p className="university-item">University of Manchester</p>
+                                            <p className="university-item">University of Northampton</p>
+                                            <p className="university-item">University of Plymouth</p>
+                                            <p className="university-item">University of Portsmouth</p>
+                                            <p className="university-item">University of Reading</p>
+                                            <p className="university-item">University of Roehampton London</p>
+                                            <p className="university-item">University of Sheffield</p>
+                                            <p className="university-item">University of South Wales</p>
+                                            <p className="university-item">University of Southampton</p>
+                                            <p className="university-item">University of Stirling</p>
+                                            <p className="university-item">University of Strathclyde</p>
+                                            <p className="university-item">University of Sunderland</p>
+                                            <p className="university-item">University of Surrey</p>
+                                            <p className="university-item">University of Sussex</p>
+                                            <p className="university-item">University of the West of England - Bristol</p>
+                                            <p className="university-item">University of Warwick</p>
+                                            <p className="university-item">York St John University</p>
                                         </div>
                                         <p className="partners__many">...dan banyak lagi</p>
                                     </div>

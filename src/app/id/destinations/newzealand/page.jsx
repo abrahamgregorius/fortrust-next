@@ -17,12 +17,11 @@ export default function NewZealand() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
-        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
         { id: "scholarships", label: "Beasiswa", icon: <GraduationCap /> },
-        { id: "partners", label: "Mitra", icon: <Building2 /> },
+        { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
     ];
 
@@ -297,7 +296,7 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h2>Beasiswa di Selandia Baru</h2>
                                             <p>Raih masa depan Anda di Selandia Baru, di mana pelajar Indonesia dapat mengakses berbagai beasiswa dari universitas papan atas untuk pendidikan yang unggul dan terjangkau. Tersedia beasiswa dari universitas maupun pemerintah, termasuk New Zealand Government Scholarship yang sepenuhnya mendanai biaya kuliah, biaya hidup, dan akomodasi.</p>
-                                            <a href="/contact" className="btn btn--primary" style={{ marginTop: "20px" }}>Ya, saya butuh bantuan mendapatkan beasiswa</a>
+                                            <a href="/contact" className="btn btn--primary" style={{ marginTop: "20px" }}>Ya, Saya Butuh Bantuan Mendapatkan Beasiswa</a>
                                         </div>
                                         <div className="content-block">
                                             <h3>Jenis Beasiswa Utama</h3>
@@ -315,15 +314,36 @@ export default function NewZealand() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Institusi Mitra Kami</h2>
-                                            <p>Kami bermitra dengan kedelapan universitas kelas dunia di Selandia Baru, yang dikenal atas keunggulan riset dan lingkungan belajar yang suportif.</p>
-                                            <div className="partners-grid">
-                                                <div className="partner-logo"><img src="https://placehold.co/150x50/cccccc/000000?text=U+of+Auckland" alt="University of Auckland" /></div>
-                                                <div className="partner-logo"><img src="https://placehold.co/150x50/cccccc/000000?text=U+of+Otago" alt="University of Otago" /></div>
-                                                <div className="partner-logo"><img src="https://placehold.co/150x50/cccccc/000000?text=Victoria+U" alt="Victoria University of Wellington" /></div>
-                                                <div className="partner-logo"><img src="https://placehold.co/150x50/cccccc/000000?text=U+of+Canterbury" alt="University of Canterbury" /></div>
+                                            <h2>Semua Institusi di Selandia Baru</h2>
+                                            <p>Belajar di universitas kelas dunia Selandia Baru, dikenal karena keunggulan riset dan lingkungan belajar yang mendukung.</p>
+                                            <div className="universities-grid">
+                                                <div className="university-item">Auckland University of Technology (AUT)</div>
+                                                <div className="university-item">Lincoln University</div>
+                                                <div className="university-item">Massey University</div>
+                                                <div className="university-item">The University of Auckland</div>
+                                                <div className="university-item">University of Canterbury</div>
+                                                <div className="university-item">University of Otago</div>
+                                                <div className="university-item">University of Waikato</div>
+                                                <div className="university-item">Victoria University of Wellington</div>
+                                                <div className="university-item">Ara Institute of Canterbury</div>
+                                                <div className="university-item">Eastern Institute of Technology (EIT)</div>
+                                                <div className="university-item">Manukau Institute of Technology (MIT)</div>
+                                                <div className="university-item">Nelson Marlborough Institute of Technology (NMIT)</div>
+                                                <div className="university-item">NorthTec (also known as Tai Tokerau Wānanga)</div>
+                                                <div className="university-item">Otago Polytechnic</div>
+                                                <div className="university-item">Southern Institute of Technology (SIT)</div>
+                                                <div className="university-item">Tai Poutini Polytechnic</div>
+                                                <div className="university-item">The Open Polytechnic of New Zealand</div>
+                                                <div className="university-item">Toi Ohomai Institute of Technology</div>
+                                                <div className="university-item">Unitec Institute of Technology</div>
+                                                <div className="university-item">Universal College of Learning (UCOL)</div>
+                                                <div className="university-item">Waikato Institute of Technology (Wintec)</div>
+                                                <div className="university-item">Wellington Institute of Technology (WelTec)</div>
+                                                <div className="university-item">Western Institute of Technology at Taranaki (WITT)</div>
                                             </div>
-                                            <p className="partners__many">...dan banyak lagi</p>
+
+                                            <p className="partners__many">*Daftar ini menyoroti hanya sebagian kecil dari mitra universitas lengkap kami.</p>
+
                                         </div>
                                     </div>
                                 </>
@@ -333,8 +353,8 @@ export default function NewZealand() {
                                 <>
                                     <div id="intakes" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Jadwal Pendaftaran</h2>
-                                            <p>Di Selandia Baru, Anda dapat mendaftar untuk intake Februari atau Juli. Untuk mulai Februari, pendaftaran biasanya jatuh antara Agustus–Oktober. Jika menargetkan intake Juli, kirimkan aplikasi antara Februari–Mei.</p>
+                                            <h2>Timeline Aplikasi</h2>
+                                            <p>Di Selandia Baru, mahasiswa dapat mendaftar untuk intake Februari atau Juli. Untuk mulai Februari, aplikasi biasanya jatuh antara Agustus dan Oktober. Jika menargetkan intake Juli, kirimkan aplikasi antara Februari dan Mei.</p>
                                         </div>
                                     </div>
                                 </>

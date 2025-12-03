@@ -317,23 +317,31 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h2>All Institutions in New Zealand</h2>
                                             <p>Study in New Zealand's world-class universities, known for their research excellence and supportive learning environments.</p>
-                                            <ul>
-                                                <li>University of Auckland</li>
-                                                <li>University of Otago</li>
-                                                <li>Victoria University of Wellington</li>
-                                                <li>University of Canterbury</li>
-                                                <li>Massey University</li>
-                                                <li>University of Waikato</li>
-                                                <li>Lincoln University</li>
-                                                <li>Auckland University of Technology (AUT)</li>
-                                                <li>Eastern Institute of Technology</li>
-                                                <li>Unitec Institute of Technology</li>
-                                                <li>Waikato Institute of Technology</li>
-                                                <li>Southern Institute of Technology</li>
-                                                <li>Manukau Institute of Technology</li>
-                                                <li>Otago Polytechnic</li>
-                                                <li>Toi Ohomai Institute of Technology</li>
-                                            </ul>
+                                            <div className="universities-grid">
+                                                <div className="university-item">Auckland University of Technology (AUT)</div>
+                                                <div className="university-item">Lincoln University</div>
+                                                <div className="university-item">Massey University</div>
+                                                <div className="university-item">The University of Auckland</div>
+                                                <div className="university-item">University of Canterbury</div>
+                                                <div className="university-item">University of Otago</div>
+                                                <div className="university-item">University of Waikato</div>
+                                                <div className="university-item">Victoria University of Wellington</div>
+                                                <div className="university-item">Ara Institute of Canterbury</div>
+                                                <div className="university-item">Eastern Institute of Technology (EIT)</div>
+                                                <div className="university-item">Manukau Institute of Technology (MIT)</div>
+                                                <div className="university-item">Nelson Marlborough Institute of Technology (NMIT)</div>
+                                                <div className="university-item">NorthTec (also known as Tai Tokerau Wānanga)</div>
+                                                <div className="university-item">Otago Polytechnic</div>
+                                                <div className="university-item">Southern Institute of Technology (SIT)</div>
+                                                <div className="university-item">Tai Poutini Polytechnic</div>
+                                                <div className="university-item">The Open Polytechnic of New Zealand</div>
+                                                <div className="university-item">Toi Ohomai Institute of Technology</div>
+                                                <div className="university-item">Unitec Institute of Technology</div>
+                                                <div className="university-item">Universal College of Learning (UCOL)</div>
+                                                <div className="university-item">Waikato Institute of Technology (Wintec)</div>
+                                                <div className="university-item">Wellington Institute of Technology (WelTec)</div>
+                                                <div className="university-item">Western Institute of Technology at Taranaki (WITT)</div>
+                                            </div>
 
                                             <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
 
@@ -352,8 +360,8 @@ export default function NewZealand() {
                                     </div>
                                 </>
                             )}
-                            </div>
                         </div>
+                    </div>
                 </section>
 
                 <section className="final-cta">

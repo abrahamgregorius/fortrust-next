@@ -11,40 +11,45 @@ import {
     LayoutGrid,
     Wallet,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Malaysia() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
-        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
         { id: "scholarships", label: "Beasiswa", icon: <GraduationCap /> },
-        { id: "partners", label: "Mitra", icon: <Building2 /> },
+        { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
     ];
 
     return (
         <>
-            <Navbar />
+            <Navbar></Navbar>
 
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Malaysia: Terjangkau & Diakui Secara Global</h1>
-                        <p>Pusat pendidikan dinamis yang menggabungkan gelar berkualitas tinggi dan gaya hidup hemat.</p>
+                        <h1>
+                            Belajar di Malaysia, Pendidikan Terjangkau dan Diakui Secara Global
+                        </h1>
+                        <p>
+                            Pusat pendidikan dinamis, menawarkan kombinasi langka gelar berkualitas tinggi, dan gaya hidup terjangkau.
+                        </p>
                     </div>
                 </section>
 
                 <section className="destination-details">
                     <div className="container destination-details__container">
+                        {/* Tabs Nav */}
                         <div className="tabs-nav">
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.id}
-                                    className={`tab-link ${activeTab === tab.id ? "active" : ""}`}
+                                    className={`tab-link ${activeTab === tab.id ? "active" : ""
+                                        }`}
                                     onClick={() => setActiveTab(tab.id)}
                                 >
                                     {tab.icon} {tab.label}
@@ -52,72 +57,120 @@ export default function Malaysia() {
                             ))}
                         </div>
 
+                        {/* Tabs Content */}
                         <div className="tab-content">
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Mengapa Kuliah di Malaysia?</h2>
-                                        <p>Malaysia menawarkan keunggulan yang jarang ditemukan di negara lain—ideal bagi mahasiswa yang menghargai kualitas dan efisiensi biaya.</p>
+                                        <h2>Mengapa Belajar di Malaysia?</h2>
+                                        <p>
+                                            Malaysia menawarkan keunggulan yang lebih sulit ditemukan di tempat lain—terutama bagi mahasiswa yang menghargai kualitas dan praktikalitas.
+                                        </p>
                                     </div>
+
                                     <div className="content-block">
-                                        <h3>Keunggulan Utama Kuliah di Malaysia</h3>
+                                        <h3>Manfaat Utama Belajar di Malaysia</h3>
                                         <ul>
                                             <li>
-                                                <strong>Gelar Ganda dari Universitas Kelas Dunia:</strong> Dapatkan gelar universitas Inggris atau Australia (misal Monash, Nottingham) dengan biaya lebih rendah tanpa harus ke luar negeri.
+                                                <strong
+                                                >Gelar Ganda dari Universitas Kelas Dunia:</strong
+                                                >
+                                                Dapatkan gelar dari universitas top UK atau Australia seperti Monash atau Nottingham dengan biaya fraksi, tanpa meninggalkan Malaysia.
                                             </li>
                                             <li>
-                                                <strong>Pendidikan Berkualitas Terjangkau:</strong> Biaya kuliah sekitar USD 4.000–7.000/tahun + biaya hidup rendah membuat Anda bisa lulus tanpa menumpuk utang.
+                                                <strong
+                                                >Pendidikan Kelas Dunia Terjangkau:</strong
+                                                >
+                                                Dengan biaya kuliah sekitar $4,000–$7,000/tahun dan biaya hidup rendah, Anda dapat lulus dengan gelar terhormat tanpa utang.
                                             </li>
                                             <li>
-                                                <strong>Bahasa Inggris sebagai Bahasa Pengantar:</strong> Meminimalkan hambatan bahasa sambil tetap memungkinkan belajar Melayu & Mandarin untuk nilai strategis.
+                                                <strong
+                                                >Bahasa Inggris sebagai Bahasa Instruksi Utama:</strong
+                                                >
+                                                Bahasa Inggris banyak digunakan di universitas, menghilangkan hambatan bahasa sambil memungkinkan Anda belajar bahasa Asia strategis seperti Melayu dan Mandarin.
                                             </li>
                                             <li>
-                                                <strong>Lingkungan Multikultural:</strong> Perpaduan budaya Melayu, Tionghoa, India meningkatkan kemampuan komunikasi lintas budaya.
+                                                <strong
+                                                >Lingkungan Multikultural:</strong
+                                                >
+                                                Campuran unik budaya Melayu, Cina, dan India di Malaysia memberikan keunggulan dalam keterampilan komunikasi lintas budaya.
                                             </li>
                                             <li>
-                                                <strong>Lokasi Strategis di Asia Tenggara:</strong> Hub maskapai murah—mudah untuk eksplorasi, konferensi, dan networking regional.
+                                                <strong
+                                                >Lokasi Strategis untuk Menjelajahi Asia:</strong
+                                                >
+                                                Terletak di jantung Asia Tenggara, Malaysia adalah hub maskapai penerbangan budget, sempurna untuk networking dan eksplorasi budaya.
                                             </li>
                                             <li>
-                                                <strong>Peluang di Sektor Berkembang Pesat:</strong> Internship dan kerja di bidang teknologi, kesehatan, energi terbarukan makin banyak.
+                                                <strong
+                                                >Peluang Berkembang di Sektor Berkembang Cepat:</strong
+                                                >
+                                                Temukan peluang magang dan pekerjaan di bidang teknologi, kesehatan, dan industri berkelanjutan.
                                             </li>
                                         </ul>
                                     </div>
+
                                     <div className="content-block">
-                                        <h3>5 Kota Terbaik untuk Kuliah</h3>
+                                        <h3>5 Kota Terbaik untuk Belajar di Malaysia</h3>
                                         <div className="table-responsive">
                                             <table className="data-table">
                                                 <thead>
                                                     <tr>
                                                         <th>Kota</th>
                                                         <th>Institusi Utama</th>
-                                                        <th>Keunggulan Kota</th>
+                                                        <th>Sorotan Kota</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <td>Kuala Lumpur</td>
-                                                        <td>University of Nottingham Malaysia, Sunway University</td>
-                                                        <td>Ibu kota modern, keberagaman budaya, peluang karier luas.</td>
+                                                        <td>
+                                                            University of Nottingham
+                                                            Malaysia, Sunway University
+                                                        </td>
+                                                        <td>
+                                                            Ibu kota yang ramai dengan gedung pencakar langit modern, keragaman budaya yang kaya, dan peluang networking karier tak terbatas.
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Putrajaya</td>
-                                                        <td>Heriot-Watt University Malaysia</td>
-                                                        <td>Rapi, aman, arsitektur modern, ruang hijau terawat.</td>
+                                                        <td>
+                                                            Heriot-Watt University
+                                                            Malaysia
+                                                        </td>
+                                                        <td>
+                                                            Lingkungan aman dan terjangkau dengan arsitektur modern unik dan ruang hijau.
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Johor Bahru</td>
-                                                        <td>NUMed (Newcastle Medicine Malaysia)</td>
-                                                        <td>Biaya hidup hemat, akses cepat ke Singapura untuk magang lintas negara.</td>
+                                                        <td>
+                                                            Newcastle University
+                                                            Medicine Malaysia (NUMed)
+                                                        </td>
+                                                        <td>
+                                                            Biaya hidup terjangkau dengan akses cepat ke Singapura untuk magang lintas batas.
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Sarawak</td>
-                                                        <td>Curtin University, Swinburne University</td>
-                                                        <td>Budaya kaya & alam menakjubkan—ideal untuk pembelajaran praktis.</td>
+                                                        <td>
+                                                            Curtin University, Swinburne
+                                                            University
+                                                        </td>
+                                                        <td>
+                                                            Budaya kaya dan beragam serta lingkungan alam yang luar biasa untuk pembelajaran langsung.
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Selangor</td>
-                                                        <td>Monash University Malaysia, Xiamen University</td>
-                                                        <td>Ramah mahasiswa, dinamis, dekat pusat bisnis Kuala Lumpur.</td>
+                                                        <td>
+                                                            Monash University Malaysia,
+                                                            Xiamen University
+                                                        </td>
+                                                        <td>
+                                                            Negara bagian ramah mahasiswa dengan lingkungan dinamis dan gerbang ke ibu kota.
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -135,25 +188,47 @@ export default function Malaysia() {
                                                 <thead>
                                                     <tr>
                                                         <th>Program</th>
-                                                        <th>Akademik</th>
-                                                        <th>Bahasa</th>
+                                                        <th>Persyaratan Akademik</th>
+                                                        <th>Persyaratan Bahasa</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><strong>Sarjana (S1)</strong></td>
-                                                        <td>Lulus SMA dengan rata-rata 70–80%.</td>
-                                                        <td>IELTS 5.5–6.0 / TOEFL iBT 60–78.</td>
+                                                        <td>
+                                                            <strong
+                                                            >Gelar Sarjana</strong
+                                                            >
+                                                        </td>
+                                                        <td>
+                                                            Menyelesaikan sekolah menengah dengan rata-rata minimal 70–80%.
+                                                        </td>
+                                                        <td>
+                                                            IELTS 5.5–6.0 atau TOEFL iBT 60–78.
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>Magister (S2)</strong></td>
-                                                        <td>Gelar S1 terkait; IPK min 3,0/4,0.</td>
-                                                        <td>IELTS 6.0–6.5 / TOEFL iBT 79–90.</td>
+                                                        <td>
+                                                            <strong
+                                                            >Gelar Magister</strong
+                                                            >
+                                                        </td>
+                                                        <td>
+                                                            Gelar Sarjana di bidang terkait dengan IPK minimal 3.0/4.0.
+                                                        </td>
+                                                        <td>
+                                                            IELTS 6.0–6.5 atau TOEFL iBT 79–90.
+                                                        </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><strong>Doktor (S3)</strong></td>
-                                                        <td>Gelar S2 dengan latar riset kuat.</td>
-                                                        <td>IELTS ≥6.5 / TOEFL iBT ≥90.</td>
+                                                        <td>
+                                                            <strong>Gelar PhD</strong>
+                                                        </td>
+                                                        <td>
+                                                            Gelar Magister di disiplin relevan dengan latar belakang penelitian kuat.
+                                                        </td>
+                                                        <td>
+                                                            IELTS 6.5+ atau TOEFL iBT 90+.
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -165,8 +240,10 @@ export default function Malaysia() {
                             {activeTab === "costs" && (
                                 <div id="costs" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Biaya Kuliah & Hidup</h2>
-                                        <p>Malaysia termasuk negara dengan biaya kuliah dan hidup paling terjangkau di Asia.</p>
+                                        <h2>Biaya Kuliah & Hidup di Malaysia</h2>
+                                        <p>
+                                            Malaysia dikenal menawarkan biaya kuliah dan hidup paling terjangkau di Asia. Berikut rincian untuk membantu Anda merencanakan anggaran.
+                                        </p>
                                     </div>
                                     <div className="content-block">
                                         <h3>Biaya Kuliah (per tahun)</h3>
@@ -175,9 +252,9 @@ export default function Malaysia() {
                                                 <thead>
                                                     <tr>
                                                         <th>Kota</th>
-                                                        <th>Sarjana (S1)</th>
-                                                        <th>Magister (S2)</th>
-                                                        <th>Diploma/Kolej</th>
+                                                        <th>Sarjana</th>
+                                                        <th>Pascasarjana</th>
+                                                        <th>Kuliah/Diploma</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -210,28 +287,30 @@ export default function Malaysia() {
                                                 <thead>
                                                     <tr>
                                                         <th>Kota</th>
-                                                        <th>Hunian (Berbagi)</th>
-                                                        <th>Makan, Transport & Utilitas</th>
-                                                        <th>Total Bulanan</th>
+                                                        <th>Akomodasi (Bersama)</th>
+                                                        <th>
+                                                            Makanan, Transportasi & Utilitas
+                                                        </th>
+                                                        <th>Total Biaya Bulanan</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
                                                         <td>Kuala Lumpur</td>
                                                         <td>USD 150 – 250</td>
-                                                        <td>USD 215 – 340</td>
+                                                        <td>USD 215 - 340</td>
                                                         <td>USD 365 – 590</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Penang</td>
                                                         <td>USD 130 – 200</td>
-                                                        <td>USD 195 – 300</td>
+                                                        <td>USD 195 - 300</td>
                                                         <td>USD 325 – 500</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Johor Bahru</td>
                                                         <td>USD 120 – 180</td>
-                                                        <td>USD 185 – 285</td>
+                                                        <td>USD 185 - 285</td>
                                                         <td>USD 305 – 465</td>
                                                     </tr>
                                                 </tbody>
@@ -244,16 +323,25 @@ export default function Malaysia() {
                             {activeTab === "work" && (
                                 <div id="work" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Hak Bekerja Mahasiswa</h2>
+                                        <h2>Hak Bekerja untuk Mahasiswa</h2>
                                         <ul>
                                             <li>
-                                                <strong>Kerja Paruh Waktu:</strong> Hingga 20 jam/minggu saat libur semester (minimal 7 hari) sesuai regulasi Imigrasi.
+                                                <strong
+                                                >Kerja Paruh Waktu Selama Studi:</strong
+                                                >
+                                                Mahasiswa internasional diizinkan bekerja paruh waktu hingga 20 jam per minggu selama liburan semester atau liburan lebih dari 7 hari.
                                             </li>
                                             <li>
-                                                <strong>Izin Kerja:</strong> Persetujuan Imigrasi Malaysia melalui universitas sebelum mulai bekerja.
+                                                <strong
+                                                >Persyaratan Izin Kerja:</strong
+                                                >
+                                                Anda harus mengajukan persetujuan melalui Departemen Imigrasi Malaysia dengan bantuan universitas sebelum memulai kerja.
                                             </li>
                                             <li>
-                                                <strong>Pascastudi:</strong> Tidak ada visa kerja terbuka; perlu Employment Pass jika mendapat tawaran kerja penuh waktu.
+                                                <strong
+                                                >Peluang Kerja Pasca-Studi:</strong
+                                                >
+                                                Meskipun Malaysia tidak memiliki visa kerja pasca-studi terbuka, Anda dapat mengamankan Employment Pass jika menerima tawaran pekerjaan penuh waktu dari perusahaan Malaysia.
                                             </li>
                                         </ul>
                                     </div>
@@ -264,20 +352,36 @@ export default function Malaysia() {
                                 <div id="scholarships" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>Beasiswa di Malaysia</h2>
-                                        <p>Banyak beasiswa dari pemerintah & universitas membuka akses pendidikan bagi mahasiswa berbakat.</p>
-                                        <a href="/contact" className="btn btn--primary" style={{ marginTop: 20 }}>Tanyakan Tentang Beasiswa</a>
+                                        <p>
+                                            Malaysia menawarkan banyak beasiswa yang dapat membuat pendidikan Anda lebih mudah diakses. Dari penghargaan pemerintah hingga pendanaan spesifik universitas, Malaysia membuka pintu bagi mahasiswa berbakat dari seluruh dunia.
+                                        </p>
+                                        <a
+                                            href="/contact"
+                                            className="btn btn--primary"
+                                            style={{ marginTop: "20px" }}
+                                        >Tanyakan Tentang Beasiswa</a
+                                        >
                                     </div>
                                     <div className="content-block">
                                         <h3>Jenis Beasiswa Utama</h3>
                                         <ul>
                                             <li>
-                                                <strong>Malaysia International Scholarship (MIS):</strong> Mendukung mahasiswa S2 berkinerja unggul (kuliah + tunjangan hidup).
+                                                <strong
+                                                >Malaysia International Scholarship (MIS):</strong
+                                                >
+                                                Ditawarkan oleh Kementerian Pendidikan Malaysia, beasiswa ini mendukung mahasiswa pascasarjana luar biasa dan sering mencakup biaya kuliah dan tunjangan hidup.
                                             </li>
                                             <li>
-                                                <strong>Beasiswa Universitas:</strong> Termasuk University of Malaya Excellence Award, Monash Malaysia Scholarships.
+                                                <strong
+                                                >Beasiswa Spesifik Universitas:</strong
+                                                >
+                                                Kebanyakan universitas Malaysia memiliki beasiswa berbasis prestasi sendiri, seperti University of Malaya Excellence Award dan Monash University Malaysia Scholarships.
                                             </li>
                                             <li>
-                                                <strong>Belt and Road Scholarship:</strong> Untuk mahasiswa negara inisiatif Belt & Road meliputi biaya kuliah dan biaya hidup.
+                                                <strong
+                                                >Beasiswa Belt and Road:</strong
+                                                >
+                                                Untuk mahasiswa dari negara-negara Belt and Road Initiative, Malaysia berpartisipasi dalam program kolaboratif yang mencakup biaya kuliah dan biaya hidup.
                                             </li>
                                         </ul>
                                     </div>
@@ -287,23 +391,30 @@ export default function Malaysia() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Institusi Mitra Kami</h2>
-                                        <p>Kami bermitra dengan universitas swasta papan atas dan kampus cabang internasional di Malaysia.</p>
-                                        <div className="partners-grid">
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=Monash+MY" alt="Monash University Malaysia" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=Nottingham+MY" alt="University of Nottingham Malaysia" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=Sunway" alt="Sunway University" />
-                                            </div>
-                                            <div className="partner-logo">
-                                                <img src="https://placehold.co/150x50/cccccc/000000?text=Taylor's" alt="Taylor's University" />
-                                            </div>
+                                        <h2>Semua Institusi di Malaysia</h2>
+                                        <p>
+                                            Belajar di universitas swasta top Malaysia dan kampus cabang internasional.
+                                        </p>
+                                        <div className="universities-grid">
+                                            <div className="university-item">University of Malaya (UM)</div>
+                                            <div className="university-item">Universiti Putra Malaysia (UPM)</div>
+                                            <div className="university-item">Universiti Kebangsaan Malaysia (UKM)</div>
+                                            <div className="university-item">Universiti Sains Malaysia (USM)</div>
+                                            <div className="university-item">Universiti Teknologi Malaysia (UTM)</div>
+                                            <div className="university-item">Taylor's University</div>
+                                            <div className="university-item">UCSI University</div>
+                                            <div className="university-item">Sunway University</div>
+                                            <div className="university-item">Multimedia University (MMU)</div>
+                                            <div className="university-item">Universiti Teknologi MARA (UiTM)</div>
+                                            <div className="university-item">Universiti Utara Malaysia (UUM)</div>
+                                            <div className="university-item">INTI International University</div>
+                                            <div className="university-item">HELP University</div>
+                                            <div className="university-item">SEGi University</div>
+                                            <div className="university-item">Asia Pacific University of Technology & Innovation (APU)</div>
                                         </div>
-                                        <p className="partners__many">...dan banyak lagi</p>
+
+                                        <p className="partners__many">*Daftar ini menyoroti hanya sebagian kecil dari mitra universitas lengkap kami.</p>
+
                                     </div>
                                 </div>
                             )}
@@ -311,49 +422,63 @@ export default function Malaysia() {
                             {activeTab === "intakes" && (
                                 <div id="intakes" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Jadwal Pendaftaran</h2>
-                                        <p>Dua intake utama tersedia; persiapkan lebih awal untuk visa & akomodasi.</p>
+                                        <h2>Timeline Aplikasi</h2>
+                                        <p>
+                                            Perencanaan ke depan sangat penting. Malaysia menawarkan dua intake utama untuk sebagian besar universitas, tetapi ini dapat bervariasi.
+                                        </p>
                                         <div className="table-responsive">
                                             <table className="data-table">
                                                 <thead>
                                                     <tr>
                                                         <th>Intake</th>
                                                         <th>Periode Aplikasi</th>
-                                                        <th>Mulai Kelas</th>
+                                                        <th>Kelas Dimulai</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td>Fall</td>
+                                                        <td>Fall Intake</td>
                                                         <td>Januari – Juni</td>
                                                         <td>September</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Spring</td>
-                                                        <td>September – Desember (tahun sebelumnya)</td>
+                                                        <td>Spring Intake</td>
+                                                        <td>
+                                                            September – Desember
+                                                            (tahun sebelumnya)
+                                                        </td>
                                                         <td>Maret</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p style={{ marginTop: 20 }}><strong>Tips:</strong> Ajukan 3–4 bulan sebelum deadline untuk menghindari tekanan akhir.</p>
+                                        <p style={{ marginTop: "20px" }}>
+                                            <strong>Tips Pro:</strong> Selalu ajukan setidaknya 3–4 bulan sebelum tenggat untuk menghindari stres mendadak. Buffer ini membantu Anda mengamankan akomodasi, penerbangan, dan visa mahasiswa tepat waktu.
+                                        </p>
                                     </div>
                                 </div>
                             )}
+                            </div>
                         </div>
-                    </div>
                 </section>
 
                 <section className="final-cta">
                     <div className="container final-cta__container">
-                        <h2>Siap Kuliah di Malaysia?</h2>
-                        <p>Konselor ahli kami siap membantu setiap langkah.</p>
-                        <a href="/contact" className="btn btn--primary btn--large">Bicara dengan Konselor Gratis</a>
+                        <h2>Siap Belajar di Malaysia?</h2>
+                        <p>
+                            Biarkan konselor ahli kami memandu Anda melalui setiap langkah prosesnya.
+                        </p>
+                        <a
+                            href="/contact"
+                            className="btn btn--primary btn--large"
+                        >
+                            Bicara dengan Konselor Gratis
+                        </a>
                     </div>
                 </section>
             </main>
 
-            <Footer />
+            <Footer></Footer>
         </>
     );
 }

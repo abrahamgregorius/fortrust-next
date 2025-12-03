@@ -413,6 +413,45 @@ export default function China() {
                                             members of the prestigious 211, 985, and Double First Class
                                             initiatives.
                                         </p>
+                                        <div className="universities-grid">
+                                            <div className="university-item">Beihang University</div>
+                                            <div className="university-item">Beijing Institute of Technology</div>
+                                            <div className="university-item">Beijing University of Posts and Telecomunication (BUPT)</div>
+                                            <div className="university-item">Beijing Normal University</div>
+                                            <div className="university-item">Fudan University</div>
+                                            <div className="university-item">Harbin Institute of Technology</div>
+                                            <div className="university-item">Harbin Institute of Technology, Shenzhen</div>
+                                            <div className="university-item">Hefei University of Technology</div>
+                                            <div className="university-item">Huazhong University of Science and Technology (HUST)</div>
+                                            <div className="university-item">Nanjing University</div>
+                                            <div className="university-item">Nanjing University of Science and Technology</div>
+                                            <div className="university-item">Nankai University</div>
+                                            <div className="university-item">Ningbo University</div>
+                                            <div className="university-item">Northwestern Polytechnical University, Xi'an, Shaanxi, China</div>
+                                            <div className="university-item">Peking Union Medical College</div>
+                                            <div className="university-item">Peking University</div>
+                                            <div className="university-item">Renmin University of China</div>
+                                            <div className="university-item">Shandong University</div>
+                                            <div className="university-item">Shang Hai International Studies University (SISU)</div>
+                                            <div className="university-item">Shanghai Jiao Tong University</div>
+                                            <div className="university-item">Shanghai Polytechnic University, Xi'an, Shaanxi</div>
+                                            <div className="university-item">Shanghai University</div>
+                                            <div className="university-item">Sichuan Agricultural University</div>
+                                            <div className="university-item">Sichuan University</div>
+                                            <div className="university-item">South China Normal University</div>
+                                            <div className="university-item">South China University of Technology</div>
+                                            <div className="university-item">Southern University of Science and Technology (SUStech)</div>
+                                            <div className="university-item">Sun Yat Sen University (SYSU)</div>
+                                            <div className="university-item">TianJin University</div>
+                                            <div className="university-item">TongJi University (Shanghai)</div>
+                                            <div className="university-item">University of Science and Technology of China</div>
+                                            <div className="university-item">Wuhan University</div>
+                                            <div className="university-item">Xi-An JiaoTong - Liverpool University</div>
+                                            <div className="university-item">Zhejiang University</div>
+                                            <div className="university-item">Zhejiang University of Finance and Economics (ZUFE)</div>
+                                            <div className="university-item">Zhejiang University of Science and Technology</div>
+                                            <div className="university-item">Zhejiang University of Technology</div>
+                                        </div>
                                         <ul>
                                             <li>Tsinghua University</li>
                                             <li>Peking University</li>
@@ -462,8 +501,8 @@ export default function China() {
                                     </div>
                                 </div>
                             )}
-                            </div>
                         </div>
+                    </div>
                 </section>
 
                 <section className="final-cta">

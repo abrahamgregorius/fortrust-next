@@ -445,23 +445,72 @@ export default function Canada() {
                                         <p>
                                             Study in Canada's most prestigious universities and colleges.
                                         </p>
-                                        <ul>
-                                            <li>University of Toronto</li>
-                                            <li>University of British Columbia</li>
-                                            <li>McGill University</li>
-                                            <li>University of Alberta</li>
-                                            <li>University of Waterloo</li>
-                                            <li>Western University</li>
-                                            <li>Queen's University</li>
-                                            <li>McMaster University</li>
-                                            <li>University of Calgary</li>
-                                            <li>Simon Fraser University</li>
-                                            <li>Dalhousie University</li>
-                                            <li>University of Ottawa</li>
-                                            <li>York University</li>
-                                            <li>University of Manitoba</li>
-                                            <li>University of Victoria</li>
-                                        </ul>
+                                        <div className="universities-grid">
+                                            <div className="university-item">Brock University</div>
+                                            <div className="university-item">Cape Breton University</div>
+                                            <div className="university-item">Concordia University</div>
+                                            <div className="university-item">Dalhousie University</div>
+                                            <div className="university-item">Emily Carr University of Art and Design</div>
+                                            <div className="university-item">Lakehead University</div>
+                                            <div className="university-item">MacEwan University</div>
+                                            <div className="university-item">McGill University</div>
+                                            <div className="university-item">Memorial University of Newfoundland</div>
+                                            <div className="university-item">Mount Saint Vincent University</div>
+                                            <div className="university-item">Simon Fraser University</div>
+                                            <div className="university-item">Thompson Rivers University</div>
+                                            <div className="university-item">Toronto Metropolitan University</div>
+                                            <div className="university-item">Trent University</div>
+                                            <div className="university-item">University of Alberta</div>
+                                            <div className="university-item">University of Canada West</div>
+                                            <div className="university-item">University of Lethbridge</div>
+                                            <div className="university-item">University of Manitoba</div>
+                                            <div className="university-item">University of New Brunswick</div>
+                                            <div className="university-item">University of Regina</div>
+                                            <div className="university-item">University of Saskatchewan</div>
+                                            <div className="university-item">University of the Fraser Valley</div>
+                                            <div className="university-item">University of Victoria</div>
+                                            <div className="university-item">University of Waterloo</div>
+                                            <div className="university-item">University of Windsor</div>
+                                            <div className="university-item">Wilfrid Laurier University</div>
+                                            <div className="university-item">York University</div>
+                                            <div className="university-item">Algonquin college</div>
+                                            <div className="university-item">Bronte College</div>
+                                            <div className="university-item">Bow Valley College</div>
+                                            <div className="university-item">Cambrian College of Applied Arts and Technology</div>
+                                            <div className="university-item">Career College, Vancouver</div>
+                                            <div className="university-item">Canadore College</div>
+                                            <div className="university-item">Centenial College</div>
+                                            <div className="university-item">Columbia College</div>
+                                            <div className="university-item">Coquitlam College</div>
+                                            <div className="university-item">Fanshawe College</div>
+                                            <div className="university-item">Fleming College</div>
+                                            <div className="university-item">Fraser International College</div>
+                                            <div className="university-item">George Brown College</div>
+                                            <div className="university-item">Georgian College</div>
+                                            <div className="university-item">Humber College</div>
+                                            <div className="university-item">ICM</div>
+                                            <div className="university-item">Langgara College</div>
+                                            <div className="university-item">Lambton College</div>
+                                            <div className="university-item">Mohawk College</div>
+                                            <div className="university-item">Oxford International College - Halifax</div>
+                                            <div className="university-item">Oxford International College - Toronto</div>
+                                            <div className="university-item">SAE Institute Canada</div>
+                                            <div className="university-item">Sasketchewan Polytechic</div>
+                                            <div className="university-item">Seneca College</div>
+                                            <div className="university-item">Sault College</div>
+                                            <div className="university-item">Sheridan College</div>
+                                            <div className="university-item">Southern Alberta Institute of Technology</div>
+                                            <div className="university-item">The Confederation College of Applied Arts and Technology</div>
+                                            <div className="university-item">Toronto Film School</div>
+                                            <div className="university-item">Toronto Metropolitan International College</div>
+                                            <div className="university-item">Ulethbridge International College</div>
+                                            <div className="university-item">Upper Madison College</div>
+                                            <div className="university-item">Vancouver Community College</div>
+                                            <div className="university-item">Western International College</div>
+                                            <div className="university-item">Wilfrid Laurier International Colelge</div>
+                                            <div className="university-item">UMC High Schools</div>
+                                            <div className="university-item">Delta School District</div>
+                                        </div>
 
                                         <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
 
@@ -518,8 +567,8 @@ export default function Canada() {
                                     </div>
                                 </div>
                             )}
-                            </div>
                         </div>
+                    </div>
                 </section>
 
                 <section className="final-cta">

@@ -513,23 +513,23 @@ export default function Switzerland() {
                                                 institutions in technology, hospitality, and
                                                 research.
                                             </p>
-                                            <ul>
-                                                <li>ETH Zurich</li>
-                                                <li>École Polytechnique Fédérale de Lausanne (EPFL)</li>
-                                                <li>University of Zurich</li>
-                                                <li>University of Geneva</li>
-                                                <li>University of Bern</li>
-                                                <li>University of Basel</li>
-                                                <li>University of Lausanne</li>
-                                                <li>University of Fribourg</li>
-                                                <li>University of St. Gallen</li>
-                                                <li>University of Neuchâtel</li>
-                                                <li>Zurich University of Applied Sciences</li>
-                                                <li>Lucerne University of Applied Sciences & Arts</li>
-                                                <li>University of Applied Sciences and Arts Western Switzerland</li>
-                                                <li>University of Applied Sciences of Eastern Switzerland</li>
-                                                <li>FernUni Schweiz (Swiss Distance University)</li>
-                                            </ul>
+                                            <div className="universities-grid">
+                                                <div className="university-item">ETH Zurich</div>
+                                                <div className="university-item">École Polytechnique Fédérale de Lausanne (EPFL)</div>
+                                                <div className="university-item">University of Zurich</div>
+                                                <div className="university-item">University of Geneva</div>
+                                                <div className="university-item">University of Bern</div>
+                                                <div className="university-item">University of Basel</div>
+                                                <div className="university-item">University of Lausanne</div>
+                                                <div className="university-item">University of Fribourg</div>
+                                                <div className="university-item">University of St. Gallen</div>
+                                                <div className="university-item">University of Neuchâtel</div>
+                                                <div className="university-item">Zurich University of Applied Sciences</div>
+                                                <div className="university-item">Lucerne University of Applied Sciences & Arts</div>
+                                                <div className="university-item">University of Applied Sciences and Arts Western Switzerland</div>
+                                                <div className="university-item">University of Applied Sciences of Eastern Switzerland</div>
+                                                <div className="university-item">FernUni Schweiz (Swiss Distance University)</div>
+                                            </div>
 
                                             <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
 

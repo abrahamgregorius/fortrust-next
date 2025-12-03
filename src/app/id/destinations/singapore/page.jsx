@@ -17,12 +17,11 @@ export default function Singapore() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
-        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
         { id: "scholarships", label: "Beasiswa", icon: <GraduationCap /> },
-        { id: "partners", label: "Mitra", icon: <Building2 /> },
+        { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
     ];
 
@@ -65,33 +64,14 @@ export default function Singapore() {
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
                                             <img src="/destinations/banners/Singapore.png" className="content__banner" alt="Singapura" />
-                                            <h2>Mengapa Kuliah di Singapura?</h2>
-                                            <p>
-                                                Singapura menawarkan kombinasi unik antara pendidikan kelas dunia, peluang karier yang kuat, dan lingkungan multikultural yang dinamis.
-                                            </p>
-                                        </div>
-
-                                        <div className="content-block">
-                                            <h3>
-                                                Keunggulan Kuliah di Singapura
-                                            </h3>
+                                            <h2>Keuntungan Belajar di Singapura</h2>
                                             <ul>
-                                                <li>
-                                                    <strong>Bekerja Sambil Kuliah Tanpa Visa Kerja Terpisah:</strong>
-                                                    Jika Anda kuliah di universitas negeri, Anda dapat bekerja paruh waktu (hingga 16 jam/minggu) tanpa mengajukan visa terpisah.
-                                                </li>
-                                                <li>
-                                                    <strong>Gerbang Langsung ke Pasar Kerja Asia yang Paling Cepat Berkembang:</strong>
-                                                    Dengan lebih dari 7.000 perusahaan multinasional, magang di perusahaan Fortune 500 sangat mudah diakses.
-                                                </li>
-                                                <li>
-                                                    <strong>Gelar Diakui Secara Global:</strong>
-                                                    Universitas seperti NUS dan NTU secara konsisten berada di peringkat 15 besar dunia, menawarkan gelar yang dihargai di berbagai ekonomi utama.
-                                                </li>
-                                                <li>
-                                                    <strong>Minim Hambatan Bahasa di Pusat Multibahasa:</strong>
-                                                    Bahasa Inggris menjadi bahasa pengantar utama, dan Anda juga bisa mempelajari Mandarin dan Melayu untuk meningkatkan keunggulan profesional di Asia.
-                                                </li>
+                                                <li>Pendidikan berkualitas dunia dengan universitas terkemuka seperti NUS, NTU, dan SMU</li>
+                                                <li>Standar kesehatan dan keselamatan yang tinggi</li>
+                                                <li>Masyarakat multikultural dengan bahasa Inggris sebagai bahasa utama</li>
+                                                <li>Lokasi strategis untuk bisnis dan inovasi di Asia</li>
+                                                <li>Ekonomi kuat dengan peluang kerja yang sangat baik</li>
+                                                <li>Infrastruktur modern dan transportasi umum yang efisien</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -102,62 +82,42 @@ export default function Singapore() {
                                 <>
                                     <div id="requirements" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Persyaratan Masuk Umum</h2>
+                                            <h2>Persyaratan Masuk</h2>
                                             <p>
-                                                Persaingan untuk masuk ke universitas top seperti NUS dan NTU sangat ketat. Memenuhi persyaratan berikut akan meningkatkan peluang Anda.
+                                                Persyaratan masuk ke universitas di Singapura tergantung pada tingkat studi dan institusi. Berikut adalah persyaratan umum.
                                             </p>
                                             <div className="table-responsive">
                                                 <table className="data-table">
                                                     <thead>
                                                         <tr>
-                                                            <th>Persyaratan</th>
-                                                            <th>Sarjana (S1)</th>
-                                                            <th>Pascasarjana (S2)</th>
-                                                            <th>Doktoral (S3)</th>
+                                                            <th>Program</th>
+                                                            <th>IELTS</th>
+                                                            <th>TOEFL iBT</th>
+                                                            <th>PTE Academic</th>
+                                                            <th>Persyaratan Lain</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>
-                                                                <strong>Persyaratan Akademik</strong>
-                                                            </td>
-                                                            <td>
-                                                                Lulusan SMA/sederajat dengan nilai rata-rata 70–80%.
-                                                            </td>
-                                                            <td>
-                                                                Gelar S1 terkait dengan IPK minimum 3,0/4,0.
-                                                            </td>
-                                                            <td>
-                                                                Gelar S2 terkait dengan rekam jejak riset yang kuat.
-                                                            </td>
+                                                            <td>Gelar Sarjana</td>
+                                                            <td>6.5</td>
+                                                            <td>85</td>
+                                                            <td>58</td>
+                                                            <td>Ijazah SMA, IPK 3.0+</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <strong>Kemampuan Bahasa</strong>
-                                                            </td>
-                                                            <td>
-                                                                IELTS 5.5–6.0 atau TOEFL iBT 60–78.
-                                                            </td>
-                                                            <td>
-                                                                IELTS 6.0–6.5 atau TOEFL iBT 79–90.
-                                                            </td>
-                                                            <td>
-                                                                IELTS 6.5+ atau TOEFL iBT 90+.
-                                                            </td>
+                                                            <td>Gelar Master</td>
+                                                            <td>6.5</td>
+                                                            <td>85</td>
+                                                            <td>58</td>
+                                                            <td>Gelar Sarjana, pengalaman kerja relevan</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                <strong>Dokumen Pendukung</strong>
-                                                            </td>
-                                                            <td>
-                                                                Paspor, transkrip, personal statement, bukti finansial.
-                                                            </td>
-                                                            <td>
-                                                                Paspor, transkrip, CV, 2–3 surat rekomendasi, statement of purpose.
-                                                            </td>
-                                                            <td>
-                                                                Transkrip, proposal riset, CV, 2–3 referensi akademik, publikasi.
-                                                            </td>
+                                                            <td>PhD</td>
+                                                            <td>6.5</td>
+                                                            <td>85</td>
+                                                            <td>58</td>
+                                                            <td>Gelar Master, proposal penelitian</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -171,73 +131,22 @@ export default function Singapore() {
                                 <>
                                     <div id="costs" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Biaya Kuliah & Hidup di Singapura</h2>
+                                            <h2>Biaya Kuliah di Singapura</h2>
                                             <p>
-                                                Memahami komponen biaya membantu Anda merencanakan dengan tepat. Berikut rincian biaya kuliah dan biaya hidup.
+                                                Singapura menawarkan nilai yang sangat baik untuk uang dalam pendidikan. Berikut adalah rincian biaya.
                                             </p>
                                         </div>
                                         <div className="content-block">
-                                            <h3>Biaya Kuliah (per tahun)</h3>
-                                            <ul>
-                                                <li>
-                                                    <strong>Program Sarjana (S1):</strong>
-                                                    Sekitar SGD 17.000 – 25.000/tahun setelah subsidi MOE.
-                                                </li>
-                                                <li>
-                                                    <strong>Program Pascasarjana (S2):</strong>
-                                                    SGD 18.000 – 35.000/tahun. Bisnis/keuangan bisa &gt; SGD 40.000.
-                                                </li>
-                                                <li>
-                                                    <strong>Program Doktoral (S3):</strong>
-                                                    SGD 18.000 – 25.000/tahun, sering disubsidi dan banyak yang menerima pendanaan penuh.
-                                                </li>
-                                            </ul>
-                                            <p>
-                                                <strong>Catatan:</strong> Penerima MOE Tuition Grant wajib bekerja di Singapura selama 3 tahun setelah lulus.
-                                            </p>
+                                            <h3>Biaya Kuliah</h3>
+                                            <p>Biaya kuliah untuk program sarjana berkisar antara SGD 8,000 hingga SGD 15,000 per tahun, tergantung pada universitas dan program studi.</p>
                                         </div>
                                         <div className="content-block">
-                                            <h3>Perkiraan Biaya Hidup Bulanan</h3>
-                                            <div className="table-responsive">
-                                                <table className="data-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Kategori Pengeluaran</th>
-                                                            <th>Perkiraan Biaya (per bulan)</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Hunian (apartemen berbagi/asrama)</td>
-                                                            <td>SGD 400 – 1,500</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Makanan</td>
-                                                            <td>SGD 300 – 600</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Transportasi (EZ-Link)</td>
-                                                            <td>SGD 100 – 150</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Utilitas & Internet</td>
-                                                            <td>SGD 50 – 150</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Pribadi & Hiburan</td>
-                                                            <td>SGD 200 – 400</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <strong>Total Anggaran Bulanan</strong>
-                                                            </td>
-                                                            <td>
-                                                                <strong>SGD 1,200 – 2,500</strong>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            <h3>Biaya Hidup</h3>
+                                            <p>Biaya hidup di Singapura sekitar SGD 1,200 hingga SGD 2,000 per bulan, termasuk akomodasi, makanan, transportasi, dan pengeluaran lainnya.</p>
+                                        </div>
+                                        <div className="content-block">
+                                            <h3>Biaya Lainnya</h3>
+                                            <p>Biaya aplikasi, visa, asuransi kesehatan, dan bahan ajar tambahan dapat menambah total biaya studi.</p>
                                         </div>
                                     </div>
                                 </>
@@ -276,31 +185,8 @@ export default function Singapore() {
                                         <div className="content-block">
                                             <h2>Beasiswa di Singapura</h2>
                                             <p>
-                                                Singapura menyediakan banyak beasiswa untuk mahasiswa internasional, didukung oleh Kementerian Pendidikan dan universitas top seperti NUS dan NTU. Dengan pendanaan yang tepat, perjalanan akademik Anda bisa menginspirasi sekaligus terjangkau.
+                                                Singapura menawarkan banyak beasiswa untuk mahasiswa internasional, didukung oleh Kementerian Pendidikan dan universitas top seperti NUS dan NTU.
                                             </p>
-                                            <a
-                                                href="/contact"
-                                                className="btn btn--primary"
-                                                style={{ marginTop: "20px" }}
-                                            >
-                                                Tanyakan Tentang Beasiswa
-                                            </a>
-                                        </div>
-                                        <div className="content-block">
-                                            <h3>Jenis Beasiswa Utama</h3>
-                                            <ul>
-                                                <li>
-                                                    <strong>Singapore International Graduate Award (SINGA):</strong>
-                                                    Untuk kandidat S3 unggul di bidang sains/rekayasa, mencakup biaya kuliah penuh dan tunjangan bulanan.
-                                                </li>
-                                                <li>
-                                                    <strong>Tuition Grant Scheme:</strong> Subsidi pemerintah yang signifikan untuk biaya kuliah S1, disertai komitmen kerja 3 tahun di Singapura setelah lulus.
-                                                </li>
-                                                <li>
-                                                    <strong>Beasiswa Universitas:</strong>
-                                                    Universitas top seperti NUS, NTU, dan SMU menawarkan beasiswa berbasis prestasi yang mencakup biaya kuliah dan tunjangan hidup untuk S1 dan S2/S3.
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </>
@@ -310,40 +196,26 @@ export default function Singapore() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Institusi Mitra Kami</h2>
-                                            <p>
-                                                Kami bermitra dengan universitas negeri dan swasta ternama di Singapura yang konsisten menempati peringkat terbaik di Asia dan dunia.
-                                            </p>
-                                            <div className="partners-grid">
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=NUS"
-                                                        alt="National University of Singapore"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=NTU"
-                                                        alt="Nanyang Technological University"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=SMU"
-                                                        alt="Singapore Management University"
-                                                    />
-                                                </div>
-                                                <div className="partner-logo">
-                                                    <img
-                                                        src="https://placehold.co/150x50/cccccc/000000?text=SUTD"
-                                                        alt="Singapore University of Technology and Design"
-                                                    />
-                                                </div>
+                                            <h2>Mitra Universitas di Singapura</h2>
+                                            <div className="universities-grid">
+                                                <div className="university-item">National University of Singapore (NUS)</div>
+                                                <div className="university-item">Nanyang Technological University (NTU)</div>
+                                                <div className="university-item">Singapore Management University (SMU)</div>
+                                                <div className="university-item">Singapore University of Technology and Design (SUTD)</div>
+                                                <div className="university-item">Singapore Institute of Technology (SIT)</div>
+                                                <div className="university-item">LASALLE College of the Arts</div>
+                                                <div className="university-item">Nanyang Academy of Fine Arts (NAFA)</div>
+                                                <div className="university-item">Duke–NUS Medical School</div>
+                                                <div className="university-item">INSEAD Asia Campus</div>
+                                                <div className="university-item">ESSEC Business School Asia-Pacific</div>
+                                                <div className="university-item">James Cook University Singapore</div>
+                                                <div className="university-item">Kaplan Singapore</div>
+                                                <div className="university-item">PSB Academy</div>
+                                                <div className="university-item">Management Development Institute of Singapore (MDIS)</div>
+                                                <div className="university-item">SP Jain School of Global Management</div>
                                             </div>
-                                            <p className="partners__many">...dan banyak lagi</p>
                                         </div>
                                     </div>
-
                                 </>
                             )}
 
