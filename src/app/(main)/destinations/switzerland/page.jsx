@@ -518,6 +518,7 @@ export default function Switzerland() {
                                                 institutions in technology, hospitality, and
                                                 research.
                                             </p>
+                                            <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                             <div className="universities-grid">
                                                 <div className="university-item">ETH Zurich</div>
                                                 <div className="university-item">École Polytechnique Fédérale de Lausanne (EPFL)</div>

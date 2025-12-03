@@ -689,6 +689,34 @@ ul {
     opacity: 0.7;
 }
 
+/* Universities Grid Styles */
+.universities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.universities-grid p {
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--neutral-100);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--neutral-200);
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.universities-grid p:hover {
+    background-color: var(--brand-100);
+    border-color: var(--brand-200);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* 7. PROGRAMS PAGE */
 /* ------------------------- */
 .programs-section__container {
@@ -999,6 +1027,11 @@ ul {
         flex: 0 0 auto;
         width: 100%;
     }
+    /* Universities Grid Tablet */
+    .universities-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: var(--space-3);
+    }
 }
 
 @media (max-width: 768px) {
@@ -1055,6 +1088,11 @@ ul {
     .program-card .btn {
         grid-row: auto;
         margin-top: var(--space-4);
+    }
+    /* Universities Grid Mobile */
+    .universities-grid {
+        grid-template-columns: repeat(1, 1fr);
+        gap: var(--space-3);
     }
 }
 
@@ -1635,6 +1673,7 @@ ul {
 /* ------------------------- */
 
 @media (max-width: 1024px) {
+
     /* Hapus aturan yang menyembunyikan dropdown di mobile */
     .nav-item--dropdown:hover .dropdown-menu {
         display: block;
@@ -1857,7 +1896,6 @@ ul {
 .policy-container ul {
     list-style: disc;
     padding-left: var(--space-6);
-;
 }
 
 /* ==== SIDEBAR ==== */
@@ -2049,9 +2087,46 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .university-item:hover {
+    background-color: var(--brand-100);
+    border-color: var(--brand-200);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Featured Universities Grid  */
+.featured-uni-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.featured-uni-item {
+    padding: var(--space-3) var(--space-4) 0;
+    background-color: var(--neutral-100);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--neutral-200);
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.featured-uni-item img {
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.featured-uni-item:hover {
     background-color: var(--brand-100);
     border-color: var(--brand-200);
     transform: translateY(-2px);

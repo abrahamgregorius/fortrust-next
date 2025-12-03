@@ -481,6 +481,35 @@ export default function UK() {
                                             <p>
                                                 Study in UK's most respected universities.
                                             </p>
+                                            <h3 style={{ marginTop: "2rem" }}>Featured Universities</h3>
+                                            <div className="featured-uni-grid">
+                                                <div className="featured-uni-item">
+                                                    <img src="../../universities/UK/SU.png" alt="" />
+                                                    <p>
+                                                        University of Strathclyde - Study Group
+                                                    </p>
+                                                </div>
+                                                <div className="featured-uni-item">
+                                                    <img src="../../universities/UK/ManU.png" alt="" />
+                                                    <p>
+                                                        University of Manchaster - INTO
+                                                    </p>
+                                                </div>
+                                                <div className="featured-uni-item">
+                                                    <img src="../../universities/UK/KCL.png" alt="" />
+                                                    <p>
+                                                        King's College London - Cambridge Education Group
+                                                    </p>
+                                                </div>
+                                                <div className="featured-uni-item">
+                                                    <img src="../../universities/UK/LU.png" alt="" />
+                                                    <p>
+                                                        Lancaster University - INTO
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                            <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                             <div className="universities-grid">
                                                 <div className="university-item">Aberystwyth University</div>
                                                 <div className="university-item">Anglia Ruskin University</div>

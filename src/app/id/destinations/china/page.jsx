@@ -338,6 +338,35 @@ export default function China() {
                                         <p>
                                             Belajar di universitas elit Cina, termasuk anggota inisiatif 211, 985, dan Double First Class yang bergengsi.
                                         </p>
+                                        <h3 style={{ marginTop: "2rem" }}>Featured Universities</h3>
+                                        <div className="featured-uni-grid">
+
+                                            <div className="featured-uni-item">
+                                                <img src="../../universities/China/BIoT.svg" alt="" />
+                                                <p>
+                                                    Beijing Institute of Technology
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../../universities/China/HIoT.gif" alt="" />
+                                                <p>
+                                                    Harbin Institute of Technology
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../../universities/China/UShanghai.svg" alt="" />
+                                                <p>
+                                                    Shanghai University
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../../universities/China/Xian.png" alt="" />
+                                                <p>
+                                                    Xi-An JiaoTong - Liverpool University
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                         <div className="universities-grid">
                                             <div className="university-item">Beihang University</div>
                                             <div className="university-item">Beijing Institute of Technology</div>
@@ -376,21 +405,6 @@ export default function China() {
                                             <div className="university-item">Zhejiang University of Finance and Economics (ZUFE)</div>
                                             <div className="university-item">Zhejiang University of Science and Technology</div>
                                             <div className="university-item">Zhejiang University of Technology</div>
-                                            <div className="university-item">Tsinghua University</div>
-                                            <div className="university-item">Peking University</div>
-                                            <div className="university-item">Fudan University</div>
-                                            <div className="university-item">Zhejiang University</div>
-                                            <div className="university-item">Shanghai Jiao Tong University</div>
-                                            <div className="university-item">University of Science and Technology of China</div>
-                                            <div className="university-item">Nanjing University</div>
-                                            <div className="university-item">Wuhan University</div>
-                                            <div className="university-item">Sun Yat-sen University</div>
-                                            <div className="university-item">Harbin Institute of Technology</div>
-                                            <div className="university-item">Beijing Normal University</div>
-                                            <div className="university-item">Xi’an Jiaotong University</div>
-                                            <div className="university-item">Tongji University</div>
-                                            <div className="university-item">Sichuan University</div>
-                                            <div className="university-item">Shandong University</div>
                                         </div>
 
                                         <p className="partners__many">*Daftar ini menyoroti hanya sebagian kecil dari mitra universitas lengkap kami.</p>

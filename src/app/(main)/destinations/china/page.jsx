@@ -413,6 +413,35 @@ export default function China() {
                                             members of the prestigious 211, 985, and Double First Class
                                             initiatives.
                                         </p>
+                                        <h3 style={{ marginTop: "2rem" }}>Featured Universities</h3>
+                                        <div className="featured-uni-grid">
+
+                                            <div className="featured-uni-item">
+                                                <img src="../universities/China/BIoT.svg" alt="" />
+                                                <p>
+                                                    Beijing Institute of Technology
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../universities/China/HIoT.gif" alt="" />
+                                                <p>
+                                                    Harbin Institute of Technology
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../universities/China/UShanghai.svg" alt="" />
+                                                <p>
+                                                    Shanghai University
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../universities/China/Xian.png" alt="" />
+                                                <p>
+                                                    Xi-An JiaoTong - Liverpool University
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                         <div className="universities-grid">
                                             <div className="university-item">Beihang University</div>
                                             <div className="university-item">Beijing Institute of Technology</div>
@@ -452,24 +481,6 @@ export default function China() {
                                             <div className="university-item">Zhejiang University of Science and Technology</div>
                                             <div className="university-item">Zhejiang University of Technology</div>
                                         </div>
-                                        <ul>
-                                            <li>Tsinghua University</li>
-                                            <li>Peking University</li>
-                                            <li>Fudan University</li>
-                                            <li>Zhejiang University</li>
-                                            <li>Shanghai Jiao Tong University</li>
-                                            <li>University of Science and Technology of China</li>
-                                            <li>Nanjing University</li>
-                                            <li>Wuhan University</li>
-                                            <li>Sun Yat-sen University</li>
-                                            <li>Harbin Institute of Technology</li>
-                                            <li>Beijing Normal University</li>
-                                            <li>Xi’an Jiaotong University</li>
-                                            <li>Tongji University</li>
-                                            <li>Sichuan University</li>
-                                            <li>Shandong University</li>
-                                        </ul>
-
                                         <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
 
                                     </div>

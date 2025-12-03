@@ -484,24 +484,114 @@ export default function Malaysia() {
                                             universities and international branch
                                             campuses.
                                         </p>
+                                        <h3 style={{ marginTop: "2rem" }}>Public Universities</h3>
                                         <div className="universities-grid">
-                                            <div className="university-item">University of Malaya (UM)</div>
+                                            <div className="university-item">International Islamic University Malaysia (IIUM)</div>
+                                            <div className="university-item">Islamic Science University of Malaysia (USIM)</div>
+                                            <div className="university-item">Universiti Kebangsaan Malaysia (UKM) / The National University of Malaysia</div>
+                                            <div className="university-item">Universiti Malaysia Kelantan (UMK)</div>
+                                            <div className="university-item">Universiti Malaysia Pahang (UMP)</div>
+                                            <div className="university-item">Universiti Malaysia Perlis (UniMAP)</div>
+                                            <div className="university-item">Universiti Malaysia Sabah (UMS)</div>
+                                            <div className="university-item">Universiti Malaysia Sarawak (UNIMAS)</div>
+                                            <div className="university-item">Universiti Malaysia Terengganu (UMT)</div>
+                                            <div className="university-item">Universiti Pendidikan Sultan Idris (UPSI)</div>
+                                            <div className="university-item">Universiti Pertahanan Nasional Malaysia</div>
                                             <div className="university-item">Universiti Putra Malaysia (UPM)</div>
-                                            <div className="university-item">Universiti Kebangsaan Malaysia (UKM)</div>
                                             <div className="university-item">Universiti Sains Malaysia (USM)</div>
+                                            <div className="university-item">Universiti Sultan Zainal Abidin (UNiSZA)</div>
+                                            <div className="university-item">Universiti Teknikal Malaysia Melaka</div>
                                             <div className="university-item">Universiti Teknologi Malaysia (UTM)</div>
-                                            <div className="university-item">Taylor's University</div>
-                                            <div className="university-item">UCSI University</div>
-                                            <div className="university-item">Sunway University</div>
-                                            <div className="university-item">Multimedia University (MMU)</div>
+                                            <div className="university-item">University of Malaya (UM)</div>
                                             <div className="university-item">Universiti Teknologi MARA (UiTM)</div>
+                                            <div className="university-item">Universiti Tun Hussein Onn Malaysia (UTHM)</div>
                                             <div className="university-item">Universiti Utara Malaysia (UUM)</div>
-                                            <div className="university-item">INTI International University</div>
-                                            <div className="university-item">HELP University</div>
-                                            <div className="university-item">SEGi University</div>
-                                            <div className="university-item">Asia Pacific University of Technology & Innovation (APU)</div>
                                         </div>
-
+                                        <h3 style={{ marginTop: "2rem" }}>Private Universities</h3>
+                                        <div className="universities-grid">
+                                            <div className="university-item">AIMST University</div>
+                                            <div className="university-item">Al-Madinah International University (MEDIU)</div>
+                                            <div className="university-item">Asia e University (AeU)</div>
+                                            <div className="university-item">Asia Metropolitan University (AMU)</div>
+                                            <div className="university-item">Asia Pacific University of Technology & Innovation (APU)</div>
+                                            <div className="university-item">Asia School Of Business (ASB)</div>
+                                            <div className="university-item">Binary University of Management & Entrepreneurship (BUME)</div>
+                                            <div className="university-item">City University Malaysia</div>
+                                            <div className="university-item">DRB-HICOM University Of Automotive Malaysia</div>
+                                            <div className="university-item">Enforcement, Leadership and Management University (ELMU)</div>
+                                            <div className="university-item">HELP University - Damansara Heights Campus</div>
+                                            <div className="university-item">INCEIF University</div>
+                                            <div className="university-item">Infrastructure University Kuala Lumpur (IUKL)</div>
+                                            <div className="university-item">International Medical University (IMU)</div>
+                                            <div className="university-item">INTI International University</div>
+                                            <div className="university-item">KPJ Healthcare University</div>
+                                            <div className="university-item">Limkokwing University of Creative Technology (LUCT)</div>
+                                            <div className="university-item">MAHSA University</div>
+                                            <div className="university-item">Malaysian Cooperative Entrepreneurship University</div>
+                                            <div className="university-item">Malaysian Institute For Supply Chain Innovation (MISI)</div>
+                                            <div className="university-item">Management and Science University (MSU)</div>
+                                            <div className="university-item">Mila University</div>
+                                            <div className="university-item">Multimedia University (MMU)</div>
+                                            <div className="university-item">Netherlands Maritime Institute Of Technology (NMIT)</div>
+                                            <div className="university-item">Nilai University</div>
+                                            <div className="university-item">Open University Malaysia (OUM)</div>
+                                            <div className="university-item">Perdana University</div>
+                                            <div className="university-item">Quest International University (QIU)</div>
+                                            <div className="university-item">Raffles University (RU)</div>
+                                            <div className="university-item">SEGi University</div>
+                                            <div className="university-item">Selangor Islamic University (UIS)</div>
+                                            <div className="university-item">Sunway University</div>
+                                            <div className="university-item">Taylor's University</div>
+                                            <div className="university-item">Tunku Abdul Rahman University of Management and Technology (TARUMT), Main Campus</div>
+                                            <div className="university-item">UCSI University</div>
+                                            <div className="university-item">UNITAR International University</div>
+                                            <div className="university-item">Universiti Kuala Lumpur (UniKL)</div>
+                                            <div className="university-item">Universiti Malaya - Wales (UM-Wales)</div>
+                                            <div className="university-item">Universiti Poly-Tech Malaysia-UPTM</div>
+                                            <div className="university-item">Universiti Selangor (UNISEL) Shah Alam Campus</div>
+                                            <div className="university-item">Universiti Teknologi Petronas (UTP)</div>
+                                            <div className="university-item">Universiti Tenaga Nasional (UNITEN)</div>
+                                            <div className="university-item">Universiti Tun Abdul Razak (UNIRAZAK)</div>
+                                            <div className="university-item">Universiti Tunku Abdul Rahman (UTAR)</div>
+                                            <div className="university-item">University Islam Melaka (UNIMEL)</div>
+                                            <div className="university-item">University Malaysia of Computer Science & Engineering (UNIMY)</div>
+                                            <div className="university-item">University of Cyberjaya (UoC)</div>
+                                            <div className="university-item">University of Technology Sarawak (UTS)</div>
+                                            <div className="university-item">University of Wollongong Malaysia</div>
+                                        </div>
+                                        <h3 style={{ marginTop: "2rem" }}>University Colleges</h3>
+                                        <div className="universities-grid">
+                                            <div className="university-item">Asian Women’s Leadership University College (AWLUC)</div>
+                                            <div className="university-item">BERJAYA University College</div>
+                                            <div className="university-item">First City University College</div>
+                                            <div className="university-item">Han Chiang University College of Communication</div>
+                                            <div className="university-item">i-CATS University College (i-CATS)</div>
+                                            <div className="university-item">Kings University College</div>
+                                            <div className="university-item">Kuala Lumpur Metropolitan University College (KLMU)</div>
+                                            <div className="university-item">Lincoln University College</div>
+                                            <div className="university-item">Manipal University College Malaysia (MUCM)</div>
+                                            <div className="university-item">North Borneo University College (NBUC)</div>
+                                            <div className="university-item">Saito University College</div>
+                                            <div className="university-item">Southern University College</div>
+                                            <div className="university-item">Twintech International University College of Technology (IUCTT)</div>
+                                            <div className="university-item">University College MAIWP International (UCMI)</div>
+                                            <div className="university-item">University College of Aviation Malaysia (UniCAM)</div>
+                                            <div className="university-item">University College TATI (UC TATI)</div>
+                                            <div className="university-item">Widad University College</div>
+                                        </div>
+                                        <h3 style={{ marginTop: "2rem" }}>Foreign University Branch Campuses</h3>
+                                        <div className="universities-grid">
+                                            <div className="university-item">Curtin University Malaysia</div>
+                                            <div className="university-item">Heriot-Watt University Malaysia</div>
+                                            <div className="university-item">Monash University Malaysia</div>
+                                            <div className="university-item">Newcastle University Medicine Malaysia (NUMed)</div>
+                                            <div className="university-item">RCSI & UCD Malaysia Campus (RUMC)</div>
+                                            <div className="university-item">Swinburne University of Technology Sarawak Campus</div>
+                                            <div className="university-item">University of Nottingham Malaysia</div>
+                                            <div className="university-item">University of Reading Malaysia</div>
+                                            <div className="university-item">University of Southampton Malaysia (UoSM)</div>
+                                            <div className="university-item">Xiamen University Malaysia (XMUM)</div>
+                                        </div>
                                         <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
 
                                     </div>
@@ -553,8 +643,8 @@ export default function Malaysia() {
                                     </div>
                                 </div>
                             )}
-                            </div>
                         </div>
+                    </div>
                 </section>
 
                 <section className="final-cta">

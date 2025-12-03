@@ -250,84 +250,113 @@ export default function UK() {
                                     <div className="content-block">
                                         <h2>Semua Institusi di Inggris</h2>
                                         <p>Belajar di universitas ternama di Inggris.</p>
+                                        <h3 style={{ marginTop: "2rem" }}>Featured Universities</h3>
+                                        <div className="featured-uni-grid">
+                                            <div className="featured-uni-item">
+                                                <img src="../../universities/UK/SU.png" alt="" />
+                                                <p>
+                                                    University of Strathclyde - Study Group
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../../universities/UK/ManU.png" alt="" />
+                                                <p>
+                                                    University of Manchaster - INTO
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../../universities/UK/KCL.png" alt="" />
+                                                <p>
+                                                    King's College London - Cambridge Education Group
+                                                </p>
+                                            </div>
+                                            <div className="featured-uni-item">
+                                                <img src="../../universities/UK/LU.png" alt="" />
+                                                <p>
+                                                    Lancaster University - INTO
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                        <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                         <div className="universities-grid">
-                                            <p className="university-item">Aberystwyth University</p>
-                                            <p className="university-item">Anglia Ruskin University</p>
-                                            <p className="university-item">Aston University</p>
-                                            <p className="university-item">Bath Spa University</p>
-                                            <p className="university-item">Birkbeck, University of London</p>
-                                            <p className="university-item">Birmingham City University</p>
-                                            <p className="university-item">Brunel University of London</p>
-                                            <p className="university-item">Buckinghamshire New University</p>
-                                            <p className="university-item">Cardiff University</p>
-                                            <p className="university-item">City St George's, University of London</p>
-                                            <p className="university-item">City, University of London</p>
-                                            <p className="university-item">Coventry University</p>
-                                            <p className="university-item">Cranfield University</p>
-                                            <p className="university-item">De Montfort University</p>
-                                            <p className="university-item">Durham University</p>
-                                            <p className="university-item">Falmouth University</p>
-                                            <p className="university-item">Goldsmiths, University of London</p>
-                                            <p className="university-item">Heriot-Watt University</p>
-                                            <p className="university-item">Imperial College London</p>
-                                            <p className="university-item">King's College London</p>
-                                            <p className="university-item">Kingston University</p>
-                                            <p className="university-item">Lancaster University</p>
-                                            <p className="university-item">Leeds Becket University</p>
-                                            <p className="university-item">Leicester University</p>
-                                            <p className="university-item">Lincoln Bishop University</p>
-                                            <p className="university-item">Liverpool John Moores University</p>
-                                            <p className="university-item">London Metropolitan University</p>
-                                            <p className="university-item">London South Bank University</p>
-                                            <p className="university-item">Loughborough University</p>
-                                            <p className="university-item">Manchester Metropolitan University</p>
-                                            <p className="university-item">Middlesex University</p>
-                                            <p className="university-item">Newcastle University</p>
-                                            <p className="university-item">Northumbria University</p>
-                                            <p className="university-item">Oxford Brookes University</p>
-                                            <p className="university-item">Queen Mary University of London</p>
-                                            <p className="university-item">Queen's University Belfast</p>
-                                            <p className="university-item">Royal Holloway, University of London[16]</p>
-                                            <p className="university-item">Royal Veterinary College</p>
-                                            <p className="university-item">Sheffield Hallam University</p>
-                                            <p className="university-item">Southampton Solent University</p>
-                                            <p className="university-item">Swansea University</p>
-                                            <p className="university-item">Teesside University</p>
-                                            <p className="university-item">Ulster University</p>
-                                            <p className="university-item">University of Aberdeen</p>
-                                            <p className="university-item">University of Bath</p>
-                                            <p className="university-item">University of Bradford</p>
-                                            <p className="university-item">University of Brighton</p>
-                                            <p className="university-item">University of Central Lancashier</p>
-                                            <p className="university-item">University of Chester</p>
-                                            <p className="university-item">University of East Anglia - Norwich</p>
-                                            <p className="university-item">University of East London (UEL)</p>
-                                            <p className="university-item">University of Exeter</p>
-                                            <p className="university-item">University of Hertfordshire</p>
-                                            <p className="university-item">University of Huddersfield</p>
-                                            <p className="university-item">University of Hull</p>
-                                            <p className="university-item">University of Kent</p>
-                                            <p className="university-item">University of Lancashire</p>
-                                            <p className="university-item">University of Law</p>
-                                            <p className="university-item">University of Leeds</p>
-                                            <p className="university-item">University of Lincoln</p>
-                                            <p className="university-item">University of Manchester</p>
-                                            <p className="university-item">University of Northampton</p>
-                                            <p className="university-item">University of Plymouth</p>
-                                            <p className="university-item">University of Portsmouth</p>
-                                            <p className="university-item">University of Reading</p>
-                                            <p className="university-item">University of Roehampton London</p>
-                                            <p className="university-item">University of Sheffield</p>
-                                            <p className="university-item">University of South Wales</p>
-                                            <p className="university-item">University of Southampton</p>
-                                            <p className="university-item">University of Stirling</p>
-                                            <p className="university-item">University of Strathclyde</p>
-                                            <p className="university-item">University of Sunderland</p>
-                                            <p className="university-item">University of Surrey</p>
-                                            <p className="university-item">University of Sussex</p>
-                                            <p className="university-item">University of the West of England - Bristol</p>
-                                            <p className="university-item">University of Warwick</p>
-                                            <p className="university-item">York St John University</p>
+                                            <div className="university-item">Aberystwyth University</div>
+                                            <div className="university-item">Anglia Ruskin University</div>
+                                            <div className="university-item">Aston University</div>
+                                            <div className="university-item">Bath Spa University</div>
+                                            <div className="university-item">Birkbeck, University of London</div>
+                                            <div className="university-item">Birmingham City University</div>
+                                            <div className="university-item">Brunel University of London</div>
+                                            <div className="university-item">Buckinghamshire New University</div>
+                                            <div className="university-item">Cardiff University</div>
+                                            <div className="university-item">City St George's, University of London</div>
+                                            <div className="university-item">City, University of London</div>
+                                            <div className="university-item">Coventry University</div>
+                                            <div className="university-item">Cranfield University</div>
+                                            <div className="university-item">De Montfort University</div>
+                                            <div className="university-item">Durham University</div>
+                                            <div className="university-item">Falmouth University</div>
+                                            <div className="university-item">Goldsmiths, University of London</div>
+                                            <div className="university-item">Heriot-Watt University</div>
+                                            <div className="university-item">Imperial College London</div>
+                                            <div className="university-item">King's College London</div>
+                                            <div className="university-item">Kingston University</div>
+                                            <div className="university-item">Lancaster University</div>
+                                            <div className="university-item">Leeds Becket University</div>
+                                            <div className="university-item">Leicester University</div>
+                                            <div className="university-item">Lincoln Bishop University</div>
+                                            <div className="university-item">Liverpool John Moores University</div>
+                                            <div className="university-item">London Metropolitan University</div>
+                                            <div className="university-item">London South Bank University</div>
+                                            <div className="university-item">Loughborough University</div>
+                                            <div className="university-item">Manchester Metropolitan University</div>
+                                            <div className="university-item">Middlesex University</div>
+                                            <div className="university-item">Newcastle University</div>
+                                            <div className="university-item">Northumbria University</div>
+                                            <div className="university-item">Oxford Brookes University</div>
+                                            <div className="university-item">Queen Mary University of London</div>
+                                            <div className="university-item">Queen's University Belfast</div>
+                                            <div className="university-item">Royal Holloway, University of London[16]</div>
+                                            <div className="university-item">Royal Veterinary College</div>
+                                            <div className="university-item">Sheffield Hallam University</div>
+                                            <div className="university-item">Southampton Solent University</div>
+                                            <div className="university-item">Swansea University</div>
+                                            <div className="university-item">Teesside University</div>
+                                            <div className="university-item">Ulster University</div>
+                                            <div className="university-item">University of Aberdeen</div>
+                                            <div className="university-item">University of Bath</div>
+                                            <div className="university-item">University of Bradford</div>
+                                            <div className="university-item">University of Brighton</div>
+                                            <div className="university-item">University of Central Lancashier</div>
+                                            <div className="university-item">University of Chester</div>
+                                            <div className="university-item">University of East Anglia - Norwich</div>
+                                            <div className="university-item">University of East London (UEL)</div>
+                                            <div className="university-item">University of Exeter</div>
+                                            <div className="university-item">University of Hertfordshire</div>
+                                            <div className="university-item">University of Huddersfield</div>
+                                            <div className="university-item">University of Hull</div>
+                                            <div className="university-item">University of Kent</div>
+                                            <div className="university-item">University of Lancashire</div>
+                                            <div className="university-item">University of Law</div>
+                                            <div className="university-item">University of Leeds</div>
+                                            <div className="university-item">University of Lincoln</div>
+                                            <div className="university-item">University of Manchester</div>
+                                            <div className="university-item">University of Northampton</div>
+                                            <div className="university-item">University of Plymouth</div>
+                                            <div className="university-item">University of Portsmouth</div>
+                                            <div className="university-item">University of Reading</div>
+                                            <div className="university-item">University of Roehampton London</div>
+                                            <div className="university-item">University of Sheffield</div>
+                                            <div className="university-item">University of South Wales</div>
+                                            <div className="university-item">University of Southampton</div>
+                                            <div className="university-item">University of Stirling</div>
+                                            <div className="university-item">University of Strathclyde</div>
+                                            <div className="university-item">University of Sunderland</div>
+                                            <div className="university-item">University of Surrey</div>
+                                            <div className="university-item">University of Sussex</div>
+                                            <div className="university-item">University of the West of England - Bristol</div>
+                                            <div className="university-item">University of Warwick</div>
+                                            <div className="university-item">York St John University</div>
                                         </div>
                                         <p className="partners__many">...dan banyak lagi</p>
                                     </div>

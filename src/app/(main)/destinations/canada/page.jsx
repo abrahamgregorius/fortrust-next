@@ -445,6 +445,7 @@ export default function Canada() {
                                         <p>
                                             Study in Canada's most prestigious universities and colleges.
                                         </p>
+                                        <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                         <div className="universities-grid">
                                             <div className="university-item">Brock University</div>
                                             <div className="university-item">Cape Breton University</div>
@@ -473,6 +474,9 @@ export default function Canada() {
                                             <div className="university-item">University of Windsor</div>
                                             <div className="university-item">Wilfrid Laurier University</div>
                                             <div className="university-item">York University</div>
+                                        </div>
+                                        <h3 style={{ marginTop: "2rem" }}>College/Foundation</h3>
+                                        <div className="universities-grid">
                                             <div className="university-item">Algonquin college</div>
                                             <div className="university-item">Bronte College</div>
                                             <div className="university-item">Bow Valley College</div>

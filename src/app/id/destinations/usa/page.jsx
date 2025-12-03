@@ -435,6 +435,35 @@ export default function USA() {
                                             <p>
                                                 Belajar di universitas dan college ternama di seluruh Amerika Serikat.
                                             </p>
+                                            <h3 style={{ marginTop: "2rem" }}>Featured Universities</h3>
+                                            <div className="featured-uni-grid">
+                                                <div className="featured-uni-item">
+                                                    <img src="../../universities/USA/UCB.png" alt="" />
+                                                    <p>
+                                                        UCBerkeley - UBridge
+                                                    </p>
+                                                </div>
+                                                <div className="featured-uni-item">
+                                                    <img src="../../universities/USA/CSU.png" alt="" />
+                                                    <p>
+                                                        California State University , Monterey Bay - Study Group
+                                                    </p>
+                                                </div>
+                                                <div className="featured-uni-item">
+                                                    <img src="../../universities/USA/WWU.png" alt="" />
+                                                    <p>
+                                                        Western Washington University - Study Group
+                                                    </p>
+                                                </div>
+                                                <div className="featured-uni-item">
+                                                    <img src="../../universities/USA/GIT.png" alt="" />
+                                                    <p>
+                                                        Georgia Institute of Technology - UIC
+                                                    </p>
+                                                </div>
+
+                                            </div>
+                                            <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                             <div className="universities-grid">
                                                 <div className="university-item">Arizona State University</div>
                                                 <div className="university-item">Bay Atlantic University</div>
@@ -500,6 +529,9 @@ export default function USA() {
                                                 <div className="university-item">West Virginia University</div>
                                                 <div className="university-item">Western Michigan University</div>
                                                 <div className="university-item">Western Washington University</div>
+                                            </div>
+                                            <h3 style={{ marginTop: "2rem" }}>College/Foundation</h3>
+                                            <div className="universities-grid">
                                                 <div className="university-item">Kings Education College</div>
                                                 <div className="university-item">New England College</div>
                                                 <div className="university-item">Santa Monica College</div>

@@ -196,23 +196,40 @@ export default function Singapore() {
                                 <>
                                     <div id="partners" className="tab-pane active">
                                         <div className="content-block">
-                                            <h2>Mitra Universitas di Singapura</h2>
+                                            <h2>Institusi di Singapura</h2>
+                                            <p>
+                                                Belajar di institusi terkemuka Singapura di bidang teknologi, manajemen, dan riset.
+                                            </p>
+                                            <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                             <div className="universities-grid">
-                                                <div className="university-item">National University of Singapore (NUS)</div>
-                                                <div className="university-item">Nanyang Technological University (NTU)</div>
-                                                <div className="university-item">Singapore Management University (SMU)</div>
-                                                <div className="university-item">Singapore University of Technology and Design (SUTD)</div>
-                                                <div className="university-item">Singapore Institute of Technology (SIT)</div>
-                                                <div className="university-item">LASALLE College of the Arts</div>
-                                                <div className="university-item">Nanyang Academy of Fine Arts (NAFA)</div>
-                                                <div className="university-item">Duke–NUS Medical School</div>
-                                                <div className="university-item">INSEAD Asia Campus</div>
-                                                <div className="university-item">ESSEC Business School Asia-Pacific</div>
-                                                <div className="university-item">James Cook University Singapore</div>
-                                                <div className="university-item">Kaplan Singapore</div>
+                                                <div className="university-item">National University of Singapore</div>
+                                                <div className="university-item">Nanyang Technological University</div>
+                                                <div className="university-item">Singapore Management University</div>
+                                                <div className="university-item">Singapore University of Social Sciences</div>
+                                                <div className="university-item">Singapore Institute of Technology</div>
+                                                <div className="university-item">Singapore University of Technology and Design</div>
+                                                <div className="university-item">University of the Arts Singapore</div>
+                                                <div className="university-item">Curtin University</div>
+                                                <div className="university-item">James Cook University</div>
+                                                <div className="university-item">The University of Newcastle</div>
+                                                <div className="university-item">Paris-Panthéon-Assas University</div>
+                                                <div className="university-item">Amity Global Institute</div>
+                                                <div className="university-item">Auston Institute of Management</div>
+                                                <div className="university-item">BAC College (Singapore)</div>
+                                                <div className="university-item">Beacon International College</div>
+                                                <div className="university-item">DIMENSIONS International College</div>
+                                                <div className="university-item">East Asia Institute of Management (EAIM)</div>
+                                                <div className="university-item">ERC Institute</div>
+                                                <div className="university-item">Kaplan Higher Education Academy</div>
+                                                <div className="university-item">London School of Business & Finance</div>
+                                                <div className="university-item">Management Development Institute of Singapore</div>
+                                                <div className="university-item">Nanyang Institute of Management</div>
                                                 <div className="university-item">PSB Academy</div>
-                                                <div className="university-item">Management Development Institute of Singapore (MDIS)</div>
-                                                <div className="university-item">SP Jain School of Global Management</div>
+                                                <div className="university-item">Raffles College of Higher Education</div>
+                                                <div className="university-item">SISH Institute</div>
+                                                <div className="university-item">Singapore Institute of Management</div>
+                                                <div className="university-item">Singapore Raffles Music College</div>
+                                                <div className="university-item">TMC Academy</div>
                                             </div>
                                         </div>
                                     </div>

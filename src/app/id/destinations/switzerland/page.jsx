@@ -299,10 +299,11 @@ export default function Switzerland() {
                             {activeTab === "partners" && (
                                 <div id="partners" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Mitra Universitas di Swiss</h2>
+                                        <h2>Institusi di Swiss</h2>
                                         <p>
                                             Belajar di institusi terkemuka Swiss di bidang teknologi, perhotelan, dan riset.
                                         </p>
+                                        <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                         <div className="universities-grid">
                                             <div className="university-item">ETH Zurich</div>
                                             <div className="university-item">École Polytechnique Fédérale de Lausanne (EPFL)</div>

@@ -64,7 +64,7 @@ export default function NewZealand() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <img src="./public/destinations/banners/NewZealand.png" className="content__banner" alt="" />
+                                            <img src="../../destinations/banners/NewZealand.png" className="content__banner" alt="" />
                                             <h2>Why Study in New Zealand?</h2>
                                             <p>
                                                 New Zealand stands alone for study destination that delivers unforgettable experiences alongside global qualification.
@@ -317,6 +317,7 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h2>All Institutions in New Zealand</h2>
                                             <p>Study in New Zealand's world-class universities, known for their research excellence and supportive learning environments.</p>
+                                            <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                             <div className="universities-grid">
                                                 <div className="university-item">Auckland University of Technology (AUT)</div>
                                                 <div className="university-item">Lincoln University</div>
@@ -326,6 +327,9 @@ export default function NewZealand() {
                                                 <div className="university-item">University of Otago</div>
                                                 <div className="university-item">University of Waikato</div>
                                                 <div className="university-item">Victoria University of Wellington</div>
+                                            </div>
+                                            <h3 style={{ marginTop: "2rem" }}>Polytechnic</h3>
+                                            <div className="universities-grid">
                                                 <div className="university-item">Ara Institute of Canterbury</div>
                                                 <div className="university-item">Eastern Institute of Technology (EIT)</div>
                                                 <div className="university-item">Manukau Institute of Technology (MIT)</div>
@@ -342,7 +346,6 @@ export default function NewZealand() {
                                                 <div className="university-item">Wellington Institute of Technology (WelTec)</div>
                                                 <div className="university-item">Western Institute of Technology at Taranaki (WITT)</div>
                                             </div>
-
                                             <p className="partners__many">*This list highlights just a fraction of our full university partners.</p>
 
                                         </div>

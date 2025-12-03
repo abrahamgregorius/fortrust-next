@@ -1,4 +1,4 @@
- "use client"
+"use client"
 
 import { useState } from "react";
 import Footer from "@/components/Footer";
@@ -64,10 +64,10 @@ export default function NewZealand() {
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
                                             <img src="../../destinations/banners/NewZealand.png" className="content__banner" alt="New Zealand Banner" />
-                                                <h2>Mengapa Kuliah di Selandia Baru?</h2>
-                                                <p>
-                                                    Selandia Baru menonjol sebagai tujuan studi yang menghadirkan pengalaman tak terlupakan sekaligus kualifikasi yang diakui secara global.
-                                                </p>
+                                            <h2>Mengapa Kuliah di Selandia Baru?</h2>
+                                            <p>
+                                                Selandia Baru menonjol sebagai tujuan studi yang menghadirkan pengalaman tak terlupakan sekaligus kualifikasi yang diakui secara global.
+                                            </p>
                                         </div>
 
                                         <div className="content-block">
@@ -316,6 +316,7 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h2>Semua Institusi di Selandia Baru</h2>
                                             <p>Belajar di universitas kelas dunia Selandia Baru, dikenal karena keunggulan riset dan lingkungan belajar yang mendukung.</p>
+                                            <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                             <div className="universities-grid">
                                                 <div className="university-item">Auckland University of Technology (AUT)</div>
                                                 <div className="university-item">Lincoln University</div>
@@ -325,6 +326,9 @@ export default function NewZealand() {
                                                 <div className="university-item">University of Otago</div>
                                                 <div className="university-item">University of Waikato</div>
                                                 <div className="university-item">Victoria University of Wellington</div>
+                                            </div>
+                                            <h3 style={{ marginTop: "2rem" }}>Polytechnic</h3>
+                                            <div className="universities-grid">
                                                 <div className="university-item">Ara Institute of Canterbury</div>
                                                 <div className="university-item">Eastern Institute of Technology (EIT)</div>
                                                 <div className="university-item">Manukau Institute of Technology (MIT)</div>

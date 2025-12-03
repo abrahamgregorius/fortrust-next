@@ -334,6 +334,7 @@ export default function Australia() {
                                     <div className="content-block">
                                         <h2>Semua Institusi di Australia</h2>
                                         <p>Kami bermitra dengan universitas ternama di Australia.</p>
+                                        <h3 style={{ marginTop: "2rem" }}>Universities</h3>
                                         <div className="universities-grid">
                                             <div className="university-item">Australian Catholic University</div>
                                             <div className="university-item">Australian University of Theology</div>
@@ -378,6 +379,9 @@ export default function Australia() {
                                             <div className="university-item">University of Wollongong</div>
                                             <div className="university-item">Victoria University</div>
                                             <div className="university-item">Western Sydney University</div>
+                                        </div>
+                                        <h3 style={{ marginTop: "2rem" }}>TAFE dan VET</h3>
+                                        <div className="universities-grid">
                                             <div className="university-item">Blue Mountains International Hotel Management School</div>
                                             <div className="university-item">Box Hill Institute</div>
                                             <div className="university-item">Gordon Institute of TAFE</div>
