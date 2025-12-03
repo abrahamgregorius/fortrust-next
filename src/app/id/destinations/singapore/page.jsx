@@ -63,7 +63,7 @@ export default function Singapore() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <img src="/destinations/banners/Singapore.png" className="content__banner" alt="Singapura" />
+                                            <img src="../../destinations/banners/Singapore.png" className="content__banner" alt="Singapura" />
                                             <h2>Keuntungan Belajar di Singapura</h2>
                                             <ul>
                                                 <li>Pendidikan berkualitas dunia dengan universitas terkemuka seperti NUS, NTU, dan SMU</li>

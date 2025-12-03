@@ -60,7 +60,7 @@ export default function Canada() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <img src="/destinations/banners/Canada.png" className="content__banner" alt="" />
+                                        <img src="../../destinations/banners/Canada.png" className="content__banner" alt="" />
                                         <h2>Mengapa Kuliah di Kanada</h2>
                                         <p>
                                             Kanada menawarkan lebih dari sekadar pendidikan kelas dunia: kerja berbayar, layanan kesehatan kuat, dan jalur jelas menuju permanent residency—ideal bagi pelajar ambisius.

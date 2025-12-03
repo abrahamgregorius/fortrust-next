@@ -55,6 +55,8 @@ export default function UK() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
+                                        <img src="../../destinations/banners/UK.png" className="content__banner" alt="" />
+
                                         <h2>Mengapa Kuliah di Inggris?</h2>
                                         <p>Inggris memadukan tradisi berabad-abad dengan inovasi mutakhir—memberi pengalaman transformasional akademik & profesional.</p>
                                     </div>

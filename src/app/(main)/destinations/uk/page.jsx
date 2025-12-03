@@ -65,6 +65,11 @@ export default function UK() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
+                                            <img
+                                                src="/destinations/banners/UK.png"
+                                                className="content__banner"
+                                                alt="UK Banner"
+                                            />
                                             <h2>Why Study in the UK?</h2>
                                             <p>
                                                 Imagine pursuing your dreams in a place

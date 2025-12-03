@@ -64,7 +64,7 @@ export default function NewZealand() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <img src="./public/destinations/banners/New Zealand.png" className="content__banner" alt="" />
+                                            <img src="./public/destinations/banners/NewZealand.png" className="content__banner" alt="" />
                                             <h2>Why Study in New Zealand?</h2>
                                             <p>
                                                 New Zealand stands alone for study destination that delivers unforgettable experiences alongside global qualification.

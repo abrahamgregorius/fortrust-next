@@ -56,7 +56,7 @@ export default function Australia() {
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
                                         <img
-                                            src="/destinations/banners/Australia.png"
+                                            src="../../destinations/banners/Australia.png"
                                             className="content__banner"
                                             alt="Australia Banner"
                                         />

@@ -55,6 +55,8 @@ export default function Switzerland() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
+                                        <img src="../../destinations/banners/Switzerland.png" className="content__banner" alt="" />
+
                                         <h2>Mengapa Kuliah di Swiss?</h2>
                                         <p>
                                             Selamat datang di Swiss—surga akademik di mana impian Anda bersinggungan dengan peluang global dan keunggulan yang tak tertandingi. Bayangkan belajar di negara di mana Anda bangun dengan pemandangan Pegunungan Alpen yang menakjubkan, berinteraksi sehari-hari dengan budaya dari seluruh penjuru dunia, dan membangun masa depan di beberapa universitas paling bergengsi di dunia.

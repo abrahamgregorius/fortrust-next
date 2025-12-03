@@ -64,6 +64,11 @@ export default function Malaysia() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
+                                        <img
+                                            src="/destinations/banners/Malaysia.png"
+                                            className="content__banner"
+                                            alt="Australia Banner"
+                                        />
                                         <h2>Why Study in Malaysia?</h2>
                                         <p>
                                             Malaysia offers advantages that are harder

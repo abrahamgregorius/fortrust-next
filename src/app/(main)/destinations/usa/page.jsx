@@ -65,6 +65,11 @@ export default function USA() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
+                                            <img
+                                                src="/destinations/banners/USA.png"
+                                                className="content__banner"
+                                                alt="USA Banner"
+                                            />
                                             <h2>Why Study in the USA?</h2>
                                             <p>
                                                 Imagine challenging the limits of

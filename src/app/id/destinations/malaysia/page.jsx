@@ -62,6 +62,8 @@ export default function Malaysia() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
+                                        <img src="../../destinations/banners/Malaysia.png" className="content__banner" alt="" />
+
                                         <h2>Mengapa Belajar di Malaysia?</h2>
                                         <p>
                                             Malaysia menawarkan keunggulan yang lebih sulit ditemukan di tempat lain—terutama bagi mahasiswa yang menghargai kualitas dan praktikalitas.
@@ -458,8 +460,8 @@ export default function Malaysia() {
                                     </div>
                                 </div>
                             )}
-                            </div>
                         </div>
+                    </div>
                 </section>
 
                 <section className="final-cta">

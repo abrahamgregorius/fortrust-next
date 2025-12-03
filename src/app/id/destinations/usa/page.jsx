@@ -63,6 +63,8 @@ export default function USA() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
+                                            <img src="../../destinations/banners/USA.png" className="content__banner" alt="" />
+
                                             <h2>Mengapa Kuliah di Amerika Serikat?</h2>
                                             <p>
                                                 Bayangkan menantang batas inovasi, menjadi bagian dari masyarakat multikultural, dan membuka peluang karier yang kuat—semua di negara paling berpengaruh di dunia. AS unggul dalam keunggulan akademik, fleksibilitas, keberagaman, riset, dan prospek karier.

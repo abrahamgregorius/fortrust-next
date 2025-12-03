@@ -66,6 +66,11 @@ export default function Switzerland() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
+                                            <img
+                                                src="/destinations/banners/Switzerland.png"
+                                                className="content__banner"
+                                                alt="Switzerland Banner"
+                                            />
                                             <h2>Why Study in Switzerland?</h2>
                                             <p>
                                                 Welcome to Switzerland—an academic haven
@@ -615,8 +620,8 @@ export default function Switzerland() {
                                     </div>
                                 </>
                             )}
-                            </div>
                         </div>
+                    </div>
                 </section>
 
                 <section className="final-cta">
