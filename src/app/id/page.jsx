@@ -22,6 +22,7 @@ import { supabase } from "@/lib/supabaseClient";
 export default function Home() {
     // State untuk carousel
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [showBanner, setShowBanner] = useState(false);
     const slides = [
         {
             id: 0,
@@ -201,6 +202,15 @@ export default function Home() {
         return () => clearInterval(interval);
     }, [testimonials.length]);
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const closed = localStorage.getItem('popupBannerClosed');
+            if (closed !== 'true') {
+                setShowBanner(true);
+            }
+        }
+    }, []);
+
     const nextSlide = () => {
         setCurrent((prev) => (prev + 1) % testimonials.length);
     };
@@ -214,6 +224,25 @@ export default function Home() {
     return (
         <>
             <Navbar></Navbar>
+
+            {showBanner && (
+                <div className="popup-modal-overlay">
+                    <div className="popup-modal">
+                        <Image src="/banner1.webp" alt="Popup Banner" width={800} height={600} />
+                        <button
+                            className="popup-modal-close"
+                            onClick={() => {
+                                setShowBanner(false);
+                                if (typeof window !== 'undefined') {
+                                    localStorage.setItem('popupBannerClosed', 'true');
+                                }
+                            }}
+                        >
+                            ×
+                        </button>
+                    </div>
+                </div>
+            )}
 
             <main>
                 <section className="hero-carousel">
