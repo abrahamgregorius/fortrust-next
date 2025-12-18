@@ -60,7 +60,7 @@ export default function China() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <img src="../../destinations/banners/China.jpg" className="content__banner" alt="" />
+                                        <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/China.webp" /><img src="/destinations/banners/Browser/China.webp" alt="" className="content__banner" /></picture>
                                         <h2>Mengapa Belajar di Cina?</h2>
                                         <p>
                                             Dengan peluang beasiswa yang tak tertandingi, imersi di ekonomi terbesar dunia, keunggulan bahasa, dan pembelajaran budaya aktif, Cina menawarkan pengalaman transformatif kepada mahasiswa internasional yang jauh melampaui opsi studi luar negeri konvensional.

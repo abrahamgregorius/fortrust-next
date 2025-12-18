@@ -65,7 +65,7 @@ export default function Singapore() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <img src="../../destinations/banners/Singapore.png" className="content__banner" alt="" />
+                                            <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Singapore.png" /><img src="/destinations/banners/Browser/Singapore.png" alt="" className="content__banner" /></picture>
                                             <h2>Why Study in Singapore?</h2>
                                             <p>
                                                 Singapore offers a unique combination of

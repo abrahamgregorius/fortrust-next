@@ -63,7 +63,7 @@ export default function China() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <img src="/destinations/banners/China.jpg" className="content__banner" alt="" />
+                                        <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/China.webp" /><img src="/destinations/banners/Browser/China.webp" alt="" className="content__banner" /></picture>
                                         <h2>Why Study in China?</h2>
                                         <p>
                                             With unmatched scholarship opportunities, immersion in the

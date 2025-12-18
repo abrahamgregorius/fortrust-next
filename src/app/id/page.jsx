@@ -30,20 +30,21 @@ export default function Home() {
             subtitle:
                 "Ribuan siswa telah mempercayai kami selama lebih dari 30 tahun. Giliran Anda selanjutnya.",
             img: "/banner1.webp",
+            mobileImg: "/banner1-mobile.webp",
         },
         {
             id: 1,
             title: "Belajar di Luar Negeri dengan Percaya Diri.",
             subtitle:
                 "Konselor ahli kami bersama Anda di setiap langkah.",
-            img: "/banner2.jpg",
+            img: "/banner2.webp",
         },
         {
             id: 2,
             title: "Peluang Pendidikan Global.",
             subtitle:
                 "Dari Australia hingga AS, jelajahi universitas terbaik di dunia.",
-            img: "/banner3.jpg",
+            img: "/banner3.webp",
         },
     ];
 
@@ -252,10 +253,12 @@ export default function Home() {
                                 key={slide.id}
                                 className={`carousel-slide ${idx === currentSlide ? "active" : ""
                                     }`}
-                                style={{
-                                    backgroundImage: `url('${slide.img}')`,
-                                }}
+                                style={{ position: 'relative' }}
                             >
+                                <picture>
+                                    <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
+                                    <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                                </picture>
                                 <div className="slide-content">
                                     {/* <h1>{slide.title}</h1>
                                     <p className="subhead">{slide.subtitle}</p> */}

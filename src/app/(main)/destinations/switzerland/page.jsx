@@ -66,11 +66,10 @@ export default function Switzerland() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <img
-                                                src="/destinations/banners/Switzerland.png"
-                                                className="content__banner"
-                                                alt="Switzerland Banner"
-                                            />
+                                            <picture>
+                                                <source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Switzerland.webp" />
+                                                <img src="/destinations/banners/Browser/Switzerland.webp" alt="Switzerland Banner" className="content__banner" />
+                                            </picture>
                                             <h2>Why Study in Switzerland?</h2>
                                             <p>
                                                 Welcome to Switzerland—an academic haven

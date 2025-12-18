@@ -30,21 +30,22 @@ export default function Home() {
             subtitle:
                 "Thousands of students have trusted us for over 30 years. You're next.",
             img: "/banner1.webp",
+            mobileImg: "/banner1-mobile.webp",
         },
-        {
-            id: 1,
-            title: "Study Abroad with Confidence.",
-            subtitle:
-                "Our expert counselors are with you every step of the way.",
-            img: "/banner2.jpg",
-        },
-        {
-            id: 2,
-            title: "Global Education Opportunities.",
-            subtitle:
-                "From Australia to USA, explore the best universities worldwide.",
-            img: "/banner3.jpg",
-        },
+        // {
+        //     id: 1,
+        //     title: "Study Abroad with Confidence.",
+        //     subtitle:
+        //         "Our expert counselors are with you every step of the way.",
+        //     img: "/banner2.webp",
+        // },
+        // {
+        //     id: 2,
+        //     title: "Global Education Opportunities.",
+        //     subtitle:
+        //         "From Australia to USA, explore the best universities worldwide.",
+        //     img: "/banner3.webp",
+        // },
     ];
 
     const testimonials1 = [
@@ -255,7 +256,10 @@ export default function Home() {
                         >
                             ×
                         </button>
-                        <Image src="/banner1.webp" alt="Popup Banner" width={800} height={600} />
+                        <picture>
+                            <source media="(max-width: 768px)" srcSet="/popup/FTSBY-Mobile.png" />
+                            <img src="/popup/FTSBY-Browser.png" alt="Popup Banner" width={800} height={600} />
+                        </picture>
                     </div>
                 </div>
             )}
@@ -268,10 +272,12 @@ export default function Home() {
                                 key={slide.id}
                                 className={`carousel-slide ${idx === currentSlide ? "active" : ""
                                     }`}
-                                style={{
-                                    backgroundImage: `url('${slide.img}')`,
-                                }}
+                                style={{ position: 'relative' }}
                             >
+                                <picture>
+                                    <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
+                                    <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                                </picture>
                                 <div className="slide-content">
                                     {/* <h1>{slide.title}</h1>
                                     <p className="subhead">{slide.subtitle}</p> */}

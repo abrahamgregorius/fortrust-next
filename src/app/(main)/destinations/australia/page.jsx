@@ -66,11 +66,10 @@ export default function Australia() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <img
-                                            src="/destinations/banners/Australia.png"
-                                            className="content__banner"
-                                            alt="Australia Banner"
-                                        />
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Australia.webp" />
+                                            <img src="/destinations/banners/Browser/Australia.webp" alt="Australia Banner" className="content__banner" />
+                                        </picture>
                                         <h2>Why Study in Australia?</h2>
                                         <p>
                                             Australia stands out as a leading

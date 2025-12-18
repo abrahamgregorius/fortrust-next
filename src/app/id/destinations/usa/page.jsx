@@ -63,7 +63,10 @@ export default function USA() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <img src="../../destinations/banners/USA.png" className="content__banner" alt="" />
+                                            <picture>
+                                                <source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/USA.webp" />
+                                                <img src="/destinations/banners/Browser/USA.webp" alt="" className="content__banner" />
+                                            </picture>
 
                                             <h2>Mengapa Kuliah di Amerika Serikat?</h2>
                                             <p>

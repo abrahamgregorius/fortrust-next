@@ -55,11 +55,10 @@ export default function Australia() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <img
-                                            src="../../destinations/banners/Australia.png"
-                                            className="content__banner"
-                                            alt="Australia Banner"
-                                        />
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Australia.webp" />
+                                            <img src="/destinations/banners/Browser/Australia.webp" alt="Australia Banner" className="content__banner" />
+                                        </picture>
                                         <h2>Mengapa Kuliah di Australia?</h2>
                                         <p>Australia menonjol sebagai tujuan utama bagi mahasiswa internasional yang mencari hak kerja pasca-studi yang luar biasa, sistem kualifikasi yang diakui secara global, dan jalur tak tertandingi menuju permanent residency (PR). Artikel ini menjelaskan mengapa "Kuliah di Australia" adalah pilihan terbaik bagi calon sarjana di seluruh dunia.</p>
                                     </div>

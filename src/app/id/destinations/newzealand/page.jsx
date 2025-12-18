@@ -63,7 +63,7 @@ export default function NewZealand() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <img src="../../destinations/banners/NewZealand.png" className="content__banner" alt="New Zealand Banner" />
+                                            <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/NewZealand.png" /><img src="/destinations/banners/Browser/NewZealand.png" alt="New Zealand Banner" className="content__banner" /></picture>
                                             <h2>Mengapa Kuliah di Selandia Baru?</h2>
                                             <p>
                                                 Selandia Baru menonjol sebagai tujuan studi yang menghadirkan pengalaman tak terlupakan sekaligus kualifikasi yang diakui secara global.

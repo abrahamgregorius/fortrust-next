@@ -55,7 +55,10 @@ export default function Switzerland() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <img src="../../destinations/banners/Switzerland.png" className="content__banner" alt="" />
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Switzerland.webp" />
+                                            <img src="/destinations/banners/Browser/Switzerland.webp" alt="" className="content__banner" />
+                                        </picture>
 
                                         <h2>Mengapa Kuliah di Swiss?</h2>
                                         <p>

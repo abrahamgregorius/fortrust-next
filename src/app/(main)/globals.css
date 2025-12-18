@@ -2114,7 +2114,7 @@ ul {
     text-align: center;
     font-weight: 500;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 1rem;
     flex-direction: column;
