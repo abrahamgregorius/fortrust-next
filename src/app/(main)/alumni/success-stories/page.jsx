@@ -43,21 +43,39 @@ export default async function SuccessStories() {
                             {testimonials?.map((t) => (
                                 <div
                                     key={t.id}
-                                    className="card story-card rounded-2xl shadow-md overflow-hidden"
+                                    className="flip-card"
                                     data-tags={t.person_institution?.toLowerCase() || ""}
                                 >
-                                    <img
-                                        src={t.image_url || "/placeholder.jpg"}
-                                        alt={`Photo of ${t.person_name}`}
-                                        className="w-full h-64 object-cover"
-                                    />
-                                    <div className="card__content p-4">
-                                        <blockquote className="italic mb-3 text-gray-700">
-                                            “{t.testimonial}”
-                                        </blockquote>
-                                        <p className="author font-semibold text-sm text-gray-900">
-                                            - {t.person_name}, {t.person_institution}
-                                        </p>
+                                    <div className="flip-card-inner">
+                                        <div className="flip-card-front">
+                                            <img
+                                                src={t.image_url || "/placeholder.jpg"}
+                                                alt={`Photo of ${t.person_name}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="flip-card-back">
+                                            <div className="testimonial-content">
+                                                <blockquote>
+                                                    {t.testimonial}
+                                                </blockquote>
+                                                <div className="testimonial-meta">
+                                                    <p className="author">
+                                                        {t.person_name}
+                                                        {t.person_institution && (
+                                                            <span className="institution">, {t.person_institution}</span>
+                                                        )}
+                                                    </p>
+                                                    <p className="testimonial-date">
+                                                        Shared on {new Date(t.created_at).toLocaleDateString('en-US', {
+                                                            year: 'numeric',
+                                                            month: 'long',
+                                                            day: 'numeric'
+                                                        })}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             ))}

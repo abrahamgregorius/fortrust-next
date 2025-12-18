@@ -48,33 +48,6 @@ export default function Home() {
         },
     ];
 
-    const testimonials1 = [
-        {
-            quote: "Semuanya baik dengan Fortrust, saya mendapat nasihat dan saran yang saya butuhkan selama aplikasi ke universitas NZ. Staf Fortrust, mbak Sarah juga telah membantu saya sepanjang perjalanan aplikasi saya ke beberapa universitas hingga saya memutuskan AIS adalah yang paling cocok untuk saya. Saya berterima kasih atas kesempatan untuk mewujudkan impian NZ saya bersama keluarga. Terima kasih, Fortrust!",
-            author: "Oltariani Laswinta Fitri",
-            role: "Auckland Institute of Studies - Master of Business",
-            img: "/people/Oltariani-Laswinta-Fitri.jpg",
-        },
-        {
-            quote: "Fortrust membuat seluruh proses memutuskan karir yang tahan masa depan dan memilih program universitas yang tepat menjadi sangat mudah. Mereka tidak hanya mempertimbangkan apa yang ingin saya pelajari, tetapi juga memastikan sesuai dengan anggaran kami.",
-            author: "Joshua Moshe Djuandi",
-            role: "Teesside University - Bachelor of Artificial Intelligence",
-            img: "/people/Joshua-Moshe-Djuandi.jpg",
-        },
-        {
-            quote: "Fortrust memberikan dukungan yang sangat baik sepanjang proses aplikasi University of Melbourne saya. Respons cepat mereka dan panduan yang mendalam membuat seluruh pengalaman menjadi lancar dan bebas stres. Mereka selalu tersedia untuk menjawab pertanyaan, memberikan nasihat yang dipersonalisasi dan memastikan saya memahami setiap langkah. Sangat merekomendasikan layanan mereka yang efisien dan profesional!",
-            author: "Listiawati",
-            role: "University of Melbourne - Bachelor of Commerce",
-            img: "/people/Listiawati.jpg",
-        },
-        {
-            quote: "Sangat membantu dalam memilih jurusan dan sekolah yang cocok berdasarkan dengan jurusannya. Counsellor juga sangat membantu sepanjang proses registrasi ke sekolah tersebut juga memberikan informasi yang detail.",
-            author: "Charlotte Erika Javly",
-            role: "Amity Global Institute - Finance and Accounting",
-            img: "/people/Charlotte-Erika-Javly.jpg",
-        },
-    ];
-
     const [testimonials, setTestimonials] = useState([]);
     const fetchTestimonials = async () => {
         const { data, error } = await supabase.from("testimonials").select("*");
@@ -83,8 +56,51 @@ export default function Home() {
         } else {
             setTestimonials(data || []);
         }
+    };
 
-        console.log(data);
+    const [events, setEvents] = useState([]);
+    const fetchEvents = async () => {
+        const { data, error } = await supabase.from("events").select("*").order("created_at", { ascending: false }).limit(3);
+        if (error) {
+            console.error("Error fetching events:", error);
+        } else {
+            setEvents(data || []);
+        }
+    };
+
+    const formatTimeJakarta = (isoString) => {
+        try {
+            const d = new Date(isoString);
+            const t = new Intl.DateTimeFormat("en-US", {
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "Asia/Jakarta",
+            }).format(d);
+            // Convert 1:00 PM -> 1.00 PM
+            return t.replace(":", ".");
+        } catch (_) {
+            return isoString;
+        }
+    };
+
+    const getMonthDayJakarta = (isoString) => {
+        try {
+            const d = new Date(isoString);
+            const month = new Intl.DateTimeFormat("en-US", {
+                month: "short",
+                timeZone: "Asia/Jakarta",
+            })
+                .format(d)
+                .toUpperCase();
+            const day = new Intl.DateTimeFormat("en-US", {
+                day: "2-digit",
+                timeZone: "Asia/Jakarta",
+            }).format(d);
+            return { month, day };
+        } catch (_) {
+            return { month: "---", day: "--" };
+        }
     };
 
     const universities = [
@@ -194,6 +210,10 @@ export default function Home() {
 
     useEffect(() => {
         fetchTestimonials();
+    }, [])
+
+    useEffect(() => {
+        fetchEvents();
     }, [])
 
     useEffect(() => {
@@ -643,77 +663,32 @@ export default function Home() {
                             </p>
                         </div>
                         <div className="events__list">
-                            {/* <div className="card event-card">
-              <div className="event-card__date">
-                <span className="month">SEP</span><span className="day">20</span>
-              </div>
-              <div className="event-card__info">
-                <h4>Study in Singapore Education Fair</h4>
-                <p><i data-lucide="clock"></i> 10:00 AM (Asia/Jakarta)</p>
-                <p><i data-lucide="map-pin"></i> Sheraton Hotel, Surabaya</p>
-              </div>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSeDJpBg1jwi9PTzkefJ3i-M54MN2lvSZSUuTJTKJyuNBh3lng/viewform?usp=header"
-                className="btn btn--secondary"
-                >RSVP Now</a
-              >
-            </div> */}
-                            <div className="card event-card">
-                                <div className="event-card__date">
-                                    <span className="month">SEP</span>
-                                    <span className="day">27</span>
+                            {events.length > 0 ? events.map((event, i) => {
+                                try {
+                                    const { month, day } = getMonthDayJakarta(event.start_at);
+                                    const timeStr = formatTimeJakarta(event.start_at);
+                                    return (
+                                        <div key={i} className="card event-card">
+                                            <div className="event-card__date">
+                                                <span className="month">{month}</span><span className="day">{day}</span>
+                                            </div>
+                                            <div className="event-card__info">
+                                                <h4>{event.name}</h4>
+                                                <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
+                                                <p><MapPin size={20}></MapPin> {event.location}</p>
+                                            </div>
+                                            <a href={event.registration_link} target="_blank" className="btn btn--secondary">RSVP Sekarang</a>
+                                        </div>
+                                    );
+                                } catch (e) {
+                                    console.error('Error rendering event:', e);
+                                    return null;
+                                }
+                            }) : (
+                                <div className="events__fallback">
+                                    <p>Tidak ada acara mendatang saat ini. Bergabunglah dengan newsletter kami untuk pembaruan!</p>
                                 </div>
-                                <div className="event-card__info">
-                                    <h4>
-                                        Fortrust International Edu Expo 2025
-                                    </h4>
-                                    <p>
-                                        <Clock size={20}></Clock> 1:00 PM
-                                        (Asia/Jakarta)
-                                    </p>
-                                    <p>
-                                        <MapPin size={20}></MapPin> Mangkuluhur
-                                        Artotel Suites
-                                    </p>
-                                </div>
-                                <a
-                                    href="https://docs.google.com/forms/d/e/1FAIpQLScb58C3bbmq0-j1GfWilomVgXG5bQ_MgS4bUfFFJprhKBys3w/viewform?usp=header"
-                                    className="btn btn--secondary"
-                                >
-                                    RSVP Sekarang
-                                </a>
-                            </div>
-
-                            <div className="card event-card">
-                                <div className="event-card__date">
-                                    <span className="month">SEP</span>
-                                    <span className="day">28</span>
-                                </div>
-                                <div className="event-card__info">
-                                    <h4>
-                                        Fortrust International Edu Expo 2025
-                                    </h4>
-                                    <p>
-                                        <Clock size={20}></Clock> 1:00 PM
-                                        (Asia/Jakarta)
-                                    </p>
-                                    <p>
-                                        <MapPin size={20}></MapPin> Atria Hotel
-                                        Gading Serpong
-                                    </p>
-                                </div>
-                                <a
-                                    href="https://docs.google.com/forms/d/e/1FAIpQLScb58C3bbmq0-j1GfWilomVgXG5bQ_MgS4bUfFFJprhKBys3w/viewform?usp=header"
-                                    className="btn btn--secondary"
-                                >
-                                    RSVP Sekarang
-                                </a>
-                            </div>
-                        </div>
-                        <div className="events__fallback">
-                            <p>
-                                Tidak ada acara mendatang saat ini. Bergabunglah dengan newsletter kami untuk pembaruan!
-                            </p>
+                            )}
                         </div>
                     </div>
                 </section>

@@ -110,6 +110,7 @@ export default function Events() {
     description: "",
     start_at: "",
     end_at: "",
+    location: "",
     registration_link: "",
     status: "pending",
     is_public: true,
@@ -167,6 +168,7 @@ export default function Events() {
       end_at: event.end_at
         ? new Date(event.end_at).toISOString().slice(0, 16)
         : "",
+      location: event.location || "",
       registration_link: event.registration_link || "",
       status: event.status || "pending",
       is_public: event.is_public !== undefined ? event.is_public : true,
@@ -195,6 +197,7 @@ export default function Events() {
           end_at: editFormData.end_at
             ? new Date(editFormData.end_at).toISOString()
             : null,
+          location: editFormData.location,
           registration_link: editFormData.registration_link,
           status: editFormData.status,
           is_public: editFormData.is_public,
@@ -266,6 +269,9 @@ export default function Events() {
                           Event Name
                         </th>
                         <th scope="col" className="px-6 py-3">
+                          Location
+                        </th>
+                        <th scope="col" className="px-6 py-3">
                           Status
                         </th>
                         <th scope="col" className="px-6 py-3">
@@ -290,6 +296,9 @@ export default function Events() {
                         >
                           <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {event.name}
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.location || "-"}
                           </td>
                           <td className="px-6 py-4">
                             <span
@@ -405,6 +414,24 @@ export default function Events() {
                       rows="3"
                       className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     ></textarea>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="edit_location"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Location
+                    </label>
+                    <input
+                      type="text"
+                      id="edit_location"
+                      name="location"
+                      value={editFormData.location}
+                      onChange={handleEditFormChange}
+                      className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      placeholder="Event location"
+                    />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -602,6 +629,15 @@ export default function Events() {
                       </p>
                     </div>
                   </div>
+
+                  {selectedEvent.location && (
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-1">
+                        Location:
+                      </h4>
+                      <p className="text-gray-800">{selectedEvent.location}</p>
+                    </div>
+                  )}
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>

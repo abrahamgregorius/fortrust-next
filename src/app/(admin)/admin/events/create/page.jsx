@@ -24,6 +24,7 @@ const ICONS = {
   arrowUp: "M7 14l5-5 5 5z",
   arrowDown: "M7 10l5 5 5-5z",
   link: "M7 17q-2.075 0-3.537-1.463T2 12t1.463-3.537T7 7h3q.425 0 .713.288T11 8t-.288.713T10 9H7q-1.25 0-2.125.875T4 12t.875 2.125T7 15h3q.425 0 .713.288T11 16t-.288.713T10 17zm2-4q-.425 0-.712-.288T8 12t.288-.712T9 11h6q.425 0 .713.288T16 12t-.288.713T15 13zm5 4q-.425 0-.712-.288T13 16t.288-.712T14 15h3q1.25 0 2.125-.875T20 12t-.875-2.125T17 9h-3q-.425 0-.712-.288T13 8t.288-.712T14 7h3q2.075 0 3.538 1.463T22 12t-1.463 3.538T17 17z",
+  location: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z",
 };
 
 export default function CreateEventsPage() {
@@ -32,6 +33,7 @@ export default function CreateEventsPage() {
     description: "",
     start_at: "",
     end_at: "",
+    location: "",
     registration_link: "",
     status: "pending",
     is_public: true,
@@ -57,6 +59,7 @@ export default function CreateEventsPage() {
         end_at: formData.end_at
           ? new Date(formData.end_at).toISOString()
           : null,
+        location: formData.location,
         registration_link: formData.registration_link || null,
         status: formData.status,
         is_public: formData.is_public,
@@ -81,6 +84,7 @@ export default function CreateEventsPage() {
           description: "",
           start_at: "",
           end_at: "",
+          location: "",
           registration_link: "",
           status: "pending",
           is_public: true,
@@ -165,6 +169,29 @@ export default function CreateEventsPage() {
                   placeholder="Short description of the event"
                 />
               </div>
+            </div>
+          </div>
+
+          <div>
+            <label
+              htmlFor="location"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Location
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                <Icon path={ICONS.location} />
+              </span>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Event location"
+              />
             </div>
           </div>
 

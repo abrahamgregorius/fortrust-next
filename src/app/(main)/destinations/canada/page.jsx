@@ -62,7 +62,7 @@ export default function Canada() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Canada.png" /><img src="/destinations/banners/Browser/Canada.png" alt="" className="content__banner" /></picture>
+                                        <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Canada.webp" /><img src="/destinations/banners/Browser/Canada.webp" alt="" className="content__banner" /></picture>
                                         <h2>Why Study in Canada</h2>
                                         <p>
                                             Studying in Canada offers more than just a world-class

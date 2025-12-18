@@ -85,7 +85,7 @@ export default async function Events() {
                                         <div className="event-card__info">
                                             <h4>{event.name}</h4>
                                             <p><Clock></Clock> {timeStr} (Asia/Jakarta)</p>
-                                            <p><MapPin></MapPin> At {event?.metadata?.venue}</p>
+                                            <p><MapPin></MapPin> At {event.location}</p>
                                         </div>
                                         <a
                                             href={event.registration_link}
