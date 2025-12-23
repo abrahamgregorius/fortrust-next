@@ -313,7 +313,7 @@ export default function Home() {
             <Navbar></Navbar>
 
             {showBanner && (
-                <div className="popup-modal-overlay">
+                <div className="popup-modal-overlay" suppressHydrationWarning>
                     <div className="popup-modal">
                         <button
                             className="popup-modal-close"
@@ -334,7 +334,7 @@ export default function Home() {
                 </div>
             )}
 
-            <main>
+            <main suppressHydrationWarning>
                 <section className="hero-carousel">
                     <div className="carousel-wrapper">
                         {isLoadingBanners ? (
@@ -539,7 +539,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className="testimonials">
+                <section className="testimonials" suppressHydrationWarning>
                     <div className="container">
                         {isLoadingTestimonials ? (
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
@@ -748,7 +748,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className="events">
+                <section className="events" suppressHydrationWarning>
                     <div className="container events__container">
                         <div className="section-header">
                             <h2>Events & Webinars</h2>

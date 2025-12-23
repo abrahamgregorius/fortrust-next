@@ -7,8 +7,26 @@ import Link from "next/link"
 export const dynamic = 'force-dynamic';
 
 export default async function BlogPost({ params }) {
-    const { id } = params;
+    const { id } = await params;
     const { data, error } = await supabase.from("blogs").select("*").eq("id", id).single()
+
+    if (error || !data) {
+        return (
+            <>
+                <Navbar></Navbar>
+                <main>
+                    <section className="page-header">
+                        <div className="container">
+                            <h1>Blog Post Not Found</h1>
+                            <p>The blog post you're looking for doesn't exist.</p>
+                            <Link href="/blog">Back to Blog</Link>
+                        </div>
+                    </section>
+                </main>
+                <Footer></Footer>
+            </>
+        );
+    }
 
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleDateString('en-US', {
