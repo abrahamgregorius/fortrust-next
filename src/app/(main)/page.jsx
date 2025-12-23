@@ -24,18 +24,26 @@ export default function Home() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [showBanner, setShowBanner] = useState(false);
     const [banners, setBanners] = useState([]);
+    const [isLoadingBanners, setIsLoadingBanners] = useState(true);
 
     const fetchBanners = async () => {
-        const { data, error } = await supabase
-            .from("banners")
-            .select("*")
-            .eq("is_active", true)
-            .order("display_order", "asc");
-        if (error) {
-            console.error("Error fetching banners:", error);
-        } else {
-            console.log("Fetched banners:", data);
-            setBanners(data || []);
+        setIsLoadingBanners(true);
+        try {
+            const { data, error } = await supabase
+                .from("banners")
+                .select("*")
+                .eq("is_active", true)
+                .order("display_order", "asc");
+            if (error) {
+                console.error("Error fetching banners:", error);
+            } else {
+                console.log("Fetched banners:", data);
+                setBanners(data || []);
+            }
+        } catch (err) {
+            console.error("Fetch banners failed:", err);
+        } finally {
+            setIsLoadingBanners(false);
         }
     };
 
@@ -71,22 +79,38 @@ export default function Home() {
     console.log("All slides:", slides);
 
     const [testimonials, setTestimonials] = useState([]);
+    const [isLoadingTestimonials, setIsLoadingTestimonials] = useState(true);
     const fetchTestimonials = async () => {
-        const { data, error } = await supabase.from("testimonials").select("*");
-        if (error) {
-            console.error("Error fetching testimonials:", error);
-        } else {
-            setTestimonials(data || []);
+        setIsLoadingTestimonials(true);
+        try {
+            const { data, error } = await supabase.from("testimonials").select("*");
+            if (error) {
+                console.error("Error fetching testimonials:", error);
+            } else {
+                setTestimonials(data || []);
+            }
+        } catch (err) {
+            console.error("Fetch testimonials failed:", err);
+        } finally {
+            setIsLoadingTestimonials(false);
         }
     };
 
     const [events, setEvents] = useState([]);
+    const [isLoadingEvents, setIsLoadingEvents] = useState(true);
     const fetchEvents = async () => {
-        const { data, error } = await supabase.from("events").select("*").order("created_at", { ascending: false }).limit(3);
-        if (error) {
-            console.error("Error fetching events:", error);
-        } else {
-            setEvents(data || []);
+        setIsLoadingEvents(true);
+        try {
+            const { data, error } = await supabase.from("events").select("*").order("created_at", { ascending: false }).limit(3);
+            if (error) {
+                console.error("Error fetching events:", error);
+            } else {
+                setEvents(data || []);
+            }
+        } catch (err) {
+            console.error("Fetch events failed:", err);
+        } finally {
+            setIsLoadingEvents(false);
         }
     };
 
@@ -313,31 +337,36 @@ export default function Home() {
             <main>
                 <section className="hero-carousel">
                     <div className="carousel-wrapper">
-                        {slides.map((slide, idx) => (
-                            <div
-                                key={slide.id}
-                                className={`carousel-slide ${idx === currentSlide ? "active" : ""
-                                    }`}
-                                style={{ position: 'relative' }}
-                            >
-                                <picture>
-                                    <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
-                                    <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }} onClick={() => window.location.href = slide.link || "/contact"} />
-                                </picture>
-                                <div className="slide-content">
-                                    {/* <h1>{slide.title}</h1> */}
-                                    {/* <p className="subhead">{slide.subtitle}</p> */}
-                                    {/* <div className="hero__cta">
-                                        <a
-                                            href={slide.link || "/contact"}
-                                            className="btn btn--primary btn--large"
-                                        >
-                                            Start Your Journey
-                                        </a>
-                                    </div> */}
-                                </div>
+                        {isLoadingBanners ? (
+                            <div className="carousel-slide active" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                                <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
                             </div>
-                        ))}
+                        ) : (
+                            slides.map((slide, idx) => (
+                                <div
+                                    key={slide.id}
+                                    className={`carousel-slide ${idx === currentSlide ? "active" : ""}`}
+                                    style={{ position: 'relative' }}
+                                >
+                                    <picture>
+                                        <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
+                                        <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }} onClick={() => window.location.href = slide.link || "/contact"} />
+                                    </picture>
+                                    <div className="slide-content">
+                                        {/* <h1>{slide.title}</h1> */}
+                                        {/* <p className="subhead">{slide.subtitle}</p> */}
+                                        {/* <div className="hero__cta">
+                                            <a
+                                                href={slide.link || "/contact"}
+                                                className="btn btn--primary btn--large"
+                                            >
+                                                Start Your Journey
+                                            </a>
+                                        </div> */}
+                                    </div>
+                                </div>
+                            ))
+                        )}
                     </div>
                     {/* <div className="carousel-wrapper">
                         <div
@@ -512,45 +541,52 @@ export default function Home() {
 
                 <section className="testimonials">
                     <div className="container">
-                        <div className="testimonial-slider-wrapper">
-                            {testimonials.map((t, index) => (
-                                <div
-                                    key={t.id}
-                                    className={`card testimonial-card ${index === current ? "active" : ""
-                                        }`}
-                                >
-                                    <p className="testimonial-card__content">
-                                        "{t.testimonial}"
-                                    </p>
-                                    <div className="testimonial-card__author">
-                                        <img
-                                            src={t.image_url}
-                                            alt={`Photo of ${t.person_name}`}
-                                        />
-                                        <div className="author-info">
-                                            <strong>{t.person_name}</strong>
-                                            <p>{t.person_institution}</p>
+                        {isLoadingTestimonials ? (
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+                                <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="testimonial-slider-wrapper">
+                                    {testimonials.map((t, index) => (
+                                        <div
+                                            key={t.id}
+                                            className={`card testimonial-card ${index === current ? "active" : ""}`}
+                                        >
+                                            <p className="testimonial-card__content">
+                                                "{t.testimonial}"
+                                            </p>
+                                            <div className="testimonial-card__author">
+                                                <img
+                                                    src={t.image_url}
+                                                    alt={`Photo of ${t.person_name}`}
+                                                />
+                                                <div className="author-info">
+                                                    <strong>{t.person_name}</strong>
+                                                    <p>{t.person_institution}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
 
-                        {/* Navigation buttons */}
-                        <div className="testimonial-nav">
-                            <button
-                                className="slider__btn slider__btn--prev"
-                                onClick={prevSlide}
-                            >
-                                <ChevronLeft />
-                            </button>
-                            <button
-                                className="slider__btn slider__btn--next"
-                                onClick={nextSlide}
-                            >
-                                <ChevronRight />
-                            </button>
-                        </div>
+                                {/* Navigation buttons */}
+                                <div className="testimonial-nav">
+                                    <button
+                                        className="slider__btn slider__btn--prev"
+                                        onClick={prevSlide}
+                                    >
+                                        <ChevronLeft />
+                                    </button>
+                                    <button
+                                        className="slider__btn slider__btn--next"
+                                        onClick={nextSlide}
+                                    >
+                                        <ChevronRight />
+                                    </button>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </section>
 
@@ -721,41 +757,49 @@ export default function Home() {
                                 answered.
                             </p>
                         </div>
-                        <div className="events__fallback">
-                            <p>No upcoming events right now. Join our newsletter for updates!</p>
-                        </div>
-                        <div className="events__list">
-                            {events.length > 0 ? events.map((event, i) => {
-                                try {
-                                    const { month, day } = getMonthDayJakarta(event.start_at);
-                                    const timeStr = formatTimeJakarta(event.start_at);
-                                    return (
-                                        <div key={i} className="card event-card">
-                                            <div className="event-card__date">
-                                                <span className="month">{month}</span><span className="day">{day}</span>
-                                            </div>
-                                            <div className="event-card__info">
-                                                <h4>{event.name}</h4>
-                                                <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
-                                                <p><MapPin size={20}></MapPin> {event.location}</p>
-                                            </div>
-                                            <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
-                                        </div>
-                                    );
-                                } catch (e) {
-                                    console.error('Error rendering event:', e);
-                                    return null;
-                                }
-                            }) : (
+                        {isLoadingEvents ? (
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
+                                <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
+                            </div>
+                        ) : (
+                            <>
                                 <div className="events__fallback">
                                     <p>No upcoming events right now. Join our newsletter for updates!</p>
                                 </div>
-                            )}
+                                <div className="events__list">
+                                    {events.length > 0 ? events.map((event, i) => {
+                                        try {
+                                            const { month, day } = getMonthDayJakarta(event.start_at);
+                                            const timeStr = formatTimeJakarta(event.start_at);
+                                            return (
+                                                <div key={i} className="card event-card">
+                                                    <div className="event-card__date">
+                                                        <span className="month">{month}</span><span className="day">{day}</span>
+                                                    </div>
+                                                    <div className="event-card__info">
+                                                        <h4>{event.name}</h4>
+                                                        <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
+                                                        <p><MapPin size={20}></MapPin> {event.location}</p>
+                                                    </div>
+                                                    <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
+                                                </div>
+                                            );
+                                        } catch (e) {
+                                            console.error('Error rendering event:', e);
+                                            return null;
+                                        }
+                                    }) : (
+                                        <div className="events__fallback">
+                                            <p>No upcoming events right now. Join our newsletter for updates!</p>
+                                        </div>
+                                    )}
 
-                            <div className="events__fallback">
-                                <p>No upcoming events right now. Join our newsletter for updates!</p>
-                            </div>
-                        </div>
+                                    <div className="events__fallback">
+                                        <p>No upcoming events right now. Join our newsletter for updates!</p>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                     </div>
                 </section>
 
