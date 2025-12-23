@@ -1,7 +1,8 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminSidebar from "@/components/admin/AdminSidebar";
+import { supabase } from "@/lib/supabaseClient";
 import "../admin.css"
 
 // Helper component for SVG icons
@@ -51,13 +52,6 @@ const Header = ({ toggleSidebar }) => {
                 </div>
             </div>
             <div className="flex items-center space-x-4">
-                <button className="relative text-gray-600 hover:text-indigo-600">
-                    <Icon path={ICONS.notification} />
-                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                    </span>
-                </button>
                 <div className="flex items-center">
                     <img
                         src="https://placehold.co/40x40/6366f1/ffffff?text=A"
@@ -65,8 +59,8 @@ const Header = ({ toggleSidebar }) => {
                         className="w-10 h-10 rounded-full border-2 border-indigo-200"
                     />
                     <div className="hidden md:block ml-3">
-                        <p className="font-semibold text-sm text-gray-800">Admin User</p>
-                        <p className="text-xs text-gray-500">Super Admin</p>
+                        <p className="font-semibold text-sm text-gray-800">Fortrust</p>
+                        <p className="text-xs text-gray-500">Administrator</p>
                     </div>
                 </div>
             </div>
@@ -95,48 +89,36 @@ const StatCard = ({ icon, title, value, change, changeType, iconBgColor }) => {
     );
 };
 
-// Chart placeholder component
-const Chart = ({ title }) => (
-    <div className="admin-chart-card bg-white p-6 rounded-xl shadow-md">
-        <h3 className="font-semibold text-gray-700 mb-4">{title}</h3>
-        <div className="bg-gray-100 h-64 rounded-lg flex items-center justify-center">
-            <p className="text-gray-400 text-sm">[ Chart Data Here ]</p>
-        </div>
-    </div>
-);
-
-// Recent Orders table component
-const RecentOrdersTable = () => {
-    const orders = [
-        { id: '#1234', product: 'Laptop Pro', customer: 'John Doe', date: 'Oct 11, 2025', status: 'Delivered', statusColor: 'bg-green-100 text-green-800' },
-        { id: '#1235', product: 'Wireless Mouse', customer: 'Jane Smith', date: 'Oct 11, 2025', status: 'Pending', statusColor: 'bg-yellow-100 text-yellow-800' },
-        { id: '#1236', product: 'Keyboard', customer: 'Mike Johnson', date: 'Oct 10, 2025', status: 'Shipped', statusColor: 'bg-blue-100 text-blue-800' },
-        { id: '#1237', product: 'Monitor', customer: 'Emily White', date: 'Oct 9, 2025', status: 'Cancelled', statusColor: 'bg-red-100 text-red-800' },
-        { id: '#1238', product: 'Webcam', customer: 'Chris Brown', date: 'Oct 9, 2025', status: 'Delivered', statusColor: 'bg-green-100 text-green-800' },
-    ];
+const RecentBlogsTable = ({ recentBlogs }) => {
+    if (!recentBlogs || recentBlogs.length === 0) {
+        return (
+            <div className="admin-table-card bg-white p-6 rounded-xl shadow-md">
+                <h3 className="font-semibold text-gray-700 mb-4">Recent Blogs</h3>
+                <p>Loading or no blogs available.</p>
+            </div>
+        );
+    }
     return (
         <div className="admin-table-card bg-white p-6 rounded-xl shadow-md">
-            <h3 className="font-semibold text-gray-700 mb-4">Recent Orders</h3>
+            <h3 className="font-semibold text-gray-700 mb-4">Recent Blogs</h3>
             <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
-                            <th scope="col" className="px-6 py-3">Order ID</th>
-                            <th scope="col" className="px-6 py-3">Product</th>
-                            <th scope="col" className="px-6 py-3">Customer</th>
+                            <th scope="col" className="px-6 py-3">Title</th>
+                            <th scope="col" className="px-6 py-3">Author</th>
                             <th scope="col" className="px-6 py-3">Date</th>
                             <th scope="col" className="px-6 py-3">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map(order => (
-                            <tr key={order.id} className="bg-white border-b hover:bg-gray-50">
-                                <td className="px-6 py-4 font-medium text-gray-900">{order.id}</td>
-                                <td className="px-6 py-4">{order.product}</td>
-                                <td className="px-6 py-4">{order.customer}</td>
-                                <td className="px-6 py-4">{order.date}</td>
+                        {recentBlogs.map(blog => (
+                            <tr key={blog.id} className="bg-white border-b hover:bg-gray-50">
+                                <td className="px-6 py-4 font-medium text-gray-900">{blog.title}</td>
+                                <td className="px-6 py-4">{blog.author || 'Unknown'}</td>
+                                <td className="px-6 py-4">{new Date(blog.created_at).toLocaleDateString()}</td>
                                 <td className="px-6 py-4">
-                                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${order.statusColor}`}>{order.status}</span>
+                                    <span className="px-2 py-1 text-xs font-medium rounded-full bg-green-100 text-green-800">Published</span>
                                 </td>
                             </tr>
                         ))}
@@ -152,6 +134,47 @@ export default function App() {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
+    const [stats, setStats] = useState({ blogs: 0, events: 0, testimonials: 0, banners: 0, users: 0 });
+    const [recentBlogs, setRecentBlogs] = useState([]);
+
+    useEffect(() => {
+        fetchStats();
+        fetchRecentBlogs();
+    }, []);
+
+    async function fetchStats() {
+        try {
+            const tables = ['blogs', 'events', 'testimonials', 'banners', 'users'];
+            const counts = {};
+            for (const table of tables) {
+                const { count, error } = await supabase.from(table).select('*', { count: 'exact', head: true });
+                if (error) {
+                    console.error(`Error fetching ${table} count:`, error);
+                    counts[table] = 0;
+                } else {
+                    counts[table] = count || 0;
+                }
+            }
+            setStats(counts);
+        } catch (error) {
+            console.error('Error fetching stats:', error);
+        }
+    }
+
+    async function fetchRecentBlogs() {
+        try {
+            const { data, error } = await supabase
+                .from('blogs')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(5);
+            if (error) throw error;
+            setRecentBlogs(data || []);
+        } catch (error) {
+            console.error('Error fetching recent blogs:', error);
+        }
+    }
+
     return (
         <div className="admin-dashboard-container bg-gray-100 font-sans min-h-screen">
             <AdminSidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
@@ -163,54 +186,75 @@ export default function App() {
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Dashboard Overview</h2>
 
                     {/* Stat Cards Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
                         <StatCard
-                            icon={ICONS.revenue}
-                            title="Total Revenue"
-                            value="$54,249"
-                            change="+12.5%"
+                            icon={ICONS.products}
+                            title="Total Blogs"
+                            value={stats.blogs}
+                            change="+5%"
                             changeType="positive"
                             iconBgColor="bg-blue-500"
                         />
                         <StatCard
                             icon={ICONS.orders}
-                            title="Total Orders"
-                            value="1,294"
-                            change="+8.2%"
+                            title="Total Events"
+                            value={stats.events}
+                            change="+3%"
                             changeType="positive"
                             iconBgColor="bg-green-500"
                         />
                         <StatCard
                             icon={ICONS.users}
-                            title="New Customers"
-                            value="87"
-                            change="-2.1%"
-                            changeType="negative"
+                            title="Total Testimonials"
+                            value={stats.testimonials}
+                            change="+10%"
+                            changeType="positive"
                             iconBgColor="bg-yellow-500"
                         />
                         <StatCard
-                            icon={ICONS.products}
-                            title="Pending Products"
-                            value="12"
-                            change="+0.0%"
+                            icon={ICONS.banner}
+                            title="Total Banners"
+                            value={stats.banners}
+                            change="+2%"
+                            changeType="positive"
+                            iconBgColor="bg-purple-500"
+                        />
+                        <StatCard
+                            icon={ICONS.users}
+                            title="Total Users"
+                            value={stats.users}
+                            change="+7%"
                             changeType="positive"
                             iconBgColor="bg-red-500"
                         />
                     </div>
 
-                    {/* Charts Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-                        <div className="lg:col-span-2">
-                            <Chart title="Sales Analytics" />
-                        </div>
-                        <div>
-                            <Chart title="Traffic Sources" />
+                    {/* Quick Actions */}
+                    <div className="mt-6">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 flex items-center justify-center">
+                                <Icon path={ICONS.products} className="w-6 h-6 mr-2" />
+                                Add New Blog
+                            </button>
+                            <button className="bg-green-500 text-white p-4 rounded-lg hover:bg-green-600 flex items-center justify-center">
+                                <Icon path={ICONS.orders} className="w-6 h-6 mr-2" />
+                                Add New Event
+                            </button>
+                            <button className="bg-yellow-500 text-white p-4 rounded-lg hover:bg-yellow-600 flex items-center justify-center">
+                                <Icon path={ICONS.users} className="w-6 h-6 mr-2" />
+                                Add Testimonial
+                            </button>
+                            <button className="bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 flex items-center justify-center">
+                                <Icon path={ICONS.banner} className="w-6 h-6 mr-2" />
+                                Add Banner
+                            </button>
                         </div>
                     </div>
 
-                    {/* Recent Orders Table */}
+                    {/* Recent Blogs Table */}
                     <div className="mt-6">
-                        <RecentOrdersTable />
+                        <RecentBlogsTable recentBlogs={recentBlogs} />
                     </div>
                 </div>
             </main>

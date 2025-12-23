@@ -72,6 +72,8 @@ export default function CreateBannerPage() {
   });
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [mobileImageFile, setMobileImageFile] = useState(null);
+  const [mobileImagePreview, setMobileImagePreview] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState(null);
   const [events, setEvents] = useState([]);
 
@@ -107,9 +109,26 @@ export default function CreateBannerPage() {
     }
   };
 
+  const handleMobileFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMobileImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setMobileImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleRemoveImage = () => {
     setImageFile(null);
     setImagePreview(null);
+  };
+
+  const handleRemoveMobileImage = () => {
+    setMobileImageFile(null);
+    setMobileImagePreview(null);
   };
 
   const handleSubmit = async (e) => {
@@ -118,8 +137,9 @@ export default function CreateBannerPage() {
 
     try {
       let imageUrl = null;
+      let mobileImageUrl = null;
 
-      // Upload image if provided
+      // Upload desktop image if provided
       if (imageFile) {
         const filePath = `banners/${Date.now()}-${imageFile.name}`;
         await uploadFile(imageFile, filePath);
@@ -127,6 +147,16 @@ export default function CreateBannerPage() {
           .from("public-assets")
           .getPublicUrl(filePath);
         imageUrl = publicUrlData.publicUrl;
+      }
+
+      // Upload mobile image if provided
+      if (mobileImageFile) {
+        const filePath = `banners/mobile-${Date.now()}-${mobileImageFile.name}`;
+        await uploadFile(mobileImageFile, filePath);
+        const { data: publicUrlData } = supabase.storage
+          .from("public-assets")
+          .getPublicUrl(filePath);
+        mobileImageUrl = publicUrlData.publicUrl;
       }
 
       const bannerData = {
@@ -163,6 +193,8 @@ export default function CreateBannerPage() {
         });
         setImageFile(null);
         setImagePreview(null);
+        setMobileImageFile(null);
+        setMobileImagePreview(null);
         setSubmissionStatus(null);
       }, 3000);
     } catch (err) {
@@ -258,6 +290,59 @@ export default function CreateBannerPage() {
                           name="file-upload"
                           type="file"
                           onChange={handleFileChange}
+                          className="sr-only"
+                          accept="image/*"
+                        />
+                      </label>
+                      <p className="pl-1">or drag and drop</p>
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      PNG, JPG, GIF up to 10MB
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Mobile Banner Image
+            </label>
+            <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+              <div className="space-y-1 text-center">
+                {mobileImagePreview ? (
+                  <div className="relative">
+                    <img
+                      src={mobileImagePreview}
+                      alt="Mobile banner preview"
+                      className="mx-auto h-32 w-auto object-cover rounded-md"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleRemoveMobileImage}
+                      className="absolute top-0 right-0 bg-red-600 text-white rounded-full p-1 transform translate-x-2 -translate-y-2"
+                    >
+                      <Icon path={ICONS.close} className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <Icon
+                      path={ICONS.upload}
+                      className="mx-auto h-12 w-12 text-gray-400"
+                    />
+                    <div className="flex justify-center items-center text-sm text-gray-600">
+                      <label
+                        htmlFor="mobile-file-upload"
+                        className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500"
+                      >
+                        <span>Upload file</span>
+                        <input
+                          id="mobile-file-upload"
+                          name="mobile-file-upload"
+                          type="file"
+                          onChange={handleMobileFileChange}
                           className="sr-only"
                           accept="image/*"
                         />

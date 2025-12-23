@@ -109,6 +109,7 @@ export default function Banners() {
     title: "",
     image_url: "",
     link_url: "",
+    mobile_image_url: "",
     event_id: "",
     display_order: 0,
     is_active: true,
@@ -117,6 +118,8 @@ export default function Banners() {
   const [events, setEvents] = useState([]);
   const [editImageFile, setEditImageFile] = useState(null);
   const [editImagePreview, setEditImagePreview] = useState(null);
+  const [editMobileImageFile, setEditMobileImageFile] = useState(null);
+  const [editMobileImagePreview, setEditMobileImagePreview] = useState(null);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
@@ -198,12 +201,15 @@ export default function Banners() {
       title: banner.title,
       image_url: banner.image_url,
       link_url: banner.link_url || "",
+      mobile_image_url: banner.mobile_image_url || "",
       event_id: banner.event_id || "",
       display_order: banner.display_order || 0,
       is_active: banner.is_active !== undefined ? banner.is_active : true,
     });
     setEditImageFile(null);
     setEditImagePreview(null);
+    setEditMobileImageFile(null);
+    setEditMobileImagePreview(null);
     setIsEditModalOpen(true);
   };
 
@@ -227,9 +233,26 @@ export default function Banners() {
     }
   };
 
+  const handleEditMobileFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditMobileImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEditMobileImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleRemoveEditImage = () => {
     setEditImageFile(null);
     setEditImagePreview(null);
+  };
+
+  const handleRemoveEditMobileImage = () => {
+    setEditMobileImageFile(null);
+    setEditMobileImagePreview(null);
   };
 
   const deleteOldImage = async (imageUrl) => {
@@ -261,8 +284,9 @@ export default function Banners() {
 
     try {
       let imageUrl = editFormData.image_url;
+      let mobileImageUrl = editFormData.mobile_image_url;
 
-      // If new image is uploaded, delete old image and upload new one
+      // If new desktop image is uploaded, delete old image and upload new one
       if (editImageFile) {
         // Delete old image if exists
         if (editFormData.image_url) {
@@ -278,12 +302,29 @@ export default function Banners() {
         imageUrl = publicUrlData.publicUrl;
       }
 
+      // If new mobile image is uploaded, delete old image and upload new one
+      if (editMobileImageFile) {
+        // Delete old mobile image if exists
+        if (editFormData.mobile_image_url) {
+          await deleteOldImage(editFormData.mobile_image_url);
+        }
+
+        // Upload new mobile image
+        const filePath = `banners/mobile-${Date.now()}-${editMobileImageFile.name}`;
+        await uploadFile(editMobileImageFile, filePath);
+        const { data: publicUrlData } = supabase.storage
+          .from("public-assets")
+          .getPublicUrl(filePath);
+        mobileImageUrl = publicUrlData.publicUrl;
+      }
+
       const { data, error } = await supabase
         .from("banners")
         .update({
           title: editFormData.title,
           image_url: imageUrl,
           link_url: editFormData.link_url || null,
+          mobile_image_url: mobileImageUrl,
           event_id: editFormData.event_id || null,
           display_order: editFormData.display_order,
           is_active: editFormData.is_active,
@@ -306,6 +347,8 @@ export default function Banners() {
         setSelectedBanner(null);
         setEditImageFile(null);
         setEditImagePreview(null);
+        setEditMobileImageFile(null);
+        setEditMobileImagePreview(null);
         setEditStatus(null);
       }, 2000);
     } catch (err) {
@@ -561,7 +604,7 @@ export default function Banners() {
                       htmlFor="edit_link_url"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Link URL
+                      Link URL (Desktop)
                     </label>
                     <input
                       type="url"
@@ -572,6 +615,84 @@ export default function Banners() {
                       className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       placeholder="https://"
                     />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Mobile Banner Image
+                    </label>
+
+                    {/* Current Mobile Image Display */}
+                    {editFormData.mobile_image_url && !editMobileImagePreview && (
+                      <div className="mt-2 mb-4">
+                        <div className="relative group">
+                          <img
+                            src={editFormData.mobile_image_url}
+                            alt="Current mobile banner image"
+                            className="h-48 w-full object-contain bg-gray-100 rounded-md"
+                          />
+                          <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity rounded-md flex items-center justify-center">
+                            <p className="text-white text-sm">Current Mobile Image</p>
+                          </div>
+                        </div>
+                        <p className="mt-1 text-sm text-gray-600">
+                          Current mobile banner image
+                        </p>
+                      </div>
+                    )}
+
+                    {/* New Mobile Image Preview */}
+                    {editMobileImagePreview && (
+                      <div className="mt-2 mb-4">
+                        <div className="relative group">
+                          <img
+                            src={editMobileImagePreview}
+                            alt="New mobile banner preview"
+                            className="h-48 w-full object-contain bg-gray-100 rounded-md"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleRemoveEditMobileImage}
+                            className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <Icon path={ICONS.close} className="w-4 h-4" />
+                          </button>
+                        </div>
+                        <p className="mt-1 text-sm text-gray-600">
+                          New mobile image preview (will replace current mobile image)
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Upload New Mobile Image */}
+                    <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      <div className="space-y-1 text-center">
+                        <Icon
+                          path={ICONS.upload}
+                          className="mx-auto h-12 w-12 text-gray-400"
+                        />
+                        <div className="flex justify-center items-center text-sm text-gray-600">
+                          <label
+                            htmlFor="edit-mobile-file-upload"
+                            className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500"
+                          >
+                            <span>Upload mobile image</span>
+                            <input
+                              id="edit-mobile-file-upload"
+                              name="edit-mobile-file-upload"
+                              type="file"
+                              onChange={handleEditMobileFileChange}
+                              className="sr-only"
+                              accept="image/*"
+                            />
+                          </label>
+                          <p className="pl-1">to replace current</p>
+                        </div>
+                        <p className="text-xs text-gray-500">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -705,11 +826,24 @@ export default function Banners() {
                   {selectedBanner.image_url && (
                     <div>
                       <h4 className="text-sm font-medium text-gray-700 mb-2">
-                        Banner Image:
+                        Desktop Banner Image:
                       </h4>
                       <img
                         src={selectedBanner.image_url}
                         alt={selectedBanner.title}
+                        className="w-full h-48 object-contain bg-gray-100 rounded-lg"
+                      />
+                    </div>
+                  )}
+
+                  {selectedBanner.mobile_image_url && (
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-2">
+                        Mobile Banner Image:
+                      </h4>
+                      <img
+                        src={selectedBanner.mobile_image_url}
+                        alt={`${selectedBanner.title} mobile`}
                         className="w-full h-48 object-contain bg-gray-100 rounded-lg"
                       />
                     </div>

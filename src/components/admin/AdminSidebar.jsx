@@ -41,7 +41,6 @@ const AdminSidebar = ({ isSidebarOpen, toggleSidebar }) => {
         { href: "/admin/events", icon: ICONS.products, name: "Events" },
         { href: "/admin/banners", icon: ICONS.banner, name: "Banners" },
         { href: "/admin/testimonials", icon: ICONS.users, name: "Testimonials" },
-        { href: "/admin/settings", icon: ICONS.settings, name: "Settings" },
     ];
 
     const handleLogout = () => {

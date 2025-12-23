@@ -23,7 +23,24 @@ export default function Home() {
     // State untuk carousel
     const [currentSlide, setCurrentSlide] = useState(0);
     const [showBanner, setShowBanner] = useState(false);
-    const slides = [
+    const [banners, setBanners] = useState([]);
+
+    const fetchBanners = async () => {
+        const { data, error } = await supabase
+            .from("banners")
+            .select("*")
+            .eq("is_active", true)
+            .order("display_order", "asc");
+        if (error) {
+            console.error("Error fetching banners:", error);
+        } else {
+            console.log("Fetched banners:", data);
+            setBanners(data || []);
+        }
+    };
+
+    // Hardcoded slides
+    const hardcodedSlides = [
         {
             id: 0,
             title: "Bergabunglah dengan Kisah Sukses Kami.",
@@ -32,21 +49,26 @@ export default function Home() {
             img: "/banner1.webp",
             mobileImg: "/banner1-mobile.webp",
         },
-        {
-            id: 1,
-            title: "Belajar di Luar Negeri dengan Percaya Diri.",
-            subtitle:
-                "Konselor ahli kami bersama Anda di setiap langkah.",
-            img: "/banner2.webp",
-        },
-        {
-            id: 2,
-            title: "Peluang Pendidikan Global.",
-            subtitle:
-                "Dari Australia hingga AS, jelajahi universitas terbaik di dunia.",
-            img: "/banner3.webp",
-        },
     ];
+
+    // Convert banners to slide format
+    const bannerSlides = banners
+        .filter(banner => banner.image_url) // Only include banners with image_url
+        .map(banner => ({
+            id: `banner-${banner.id}`, // Unique id to avoid conflict
+            title: banner.title,
+            subtitle: "", // Could add subtitle field to database later
+            img: banner.image_url,
+            mobileImg: banner.mobile_image_url || banner.image_url, // Use mobile image if available
+            link: banner.link_url,
+        }));
+
+    console.log("Banner slides:", bannerSlides);
+
+    // Use database banners if available, otherwise use hardcoded
+    const slides = bannerSlides.length > 0 ? bannerSlides : hardcodedSlides;
+
+    console.log("All slides:", slides);
 
     const [testimonials, setTestimonials] = useState([]);
     const fetchTestimonials = async () => {
@@ -217,6 +239,10 @@ export default function Home() {
     }, [])
 
     useEffect(() => {
+        fetchBanners();
+    }, [])
+
+    useEffect(() => {
         const interval = setInterval(() => {
             setCurrent((prev) => (prev + 1) % testimonials.length);
         }, 5000);
@@ -277,14 +303,14 @@ export default function Home() {
                             >
                                 <picture>
                                     <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
-                                    <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }} />
+                                    <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }} onClick={() => window.location.href = slide.link || "/id/contact"} />
                                 </picture>
                                 <div className="slide-content">
-                                    {/* <h1>{slide.title}</h1>
-                                    <p className="subhead">{slide.subtitle}</p> */}
+                                    <h1>{slide.title}</h1>
+                                    <p className="subhead">{slide.subtitle}</p>
                                     <div className="hero__cta">
                                         <a
-                                            href="/id/contact"
+                                            href={slide.link || "/id/contact"}
                                             className="btn btn--primary btn--large"
                                         >
                                             Mulai Perjalanan Anda
