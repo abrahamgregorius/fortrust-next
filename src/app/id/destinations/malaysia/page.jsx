@@ -62,8 +62,10 @@ export default function Malaysia() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <img src="../../destinations/banners/Malaysia.webp" className="content__banner" alt="" />
-
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Malaysia.webp" />
+                                            <img src="/destinations/banners/Browser/Malaysia.webp" alt="Australia Banner" className="content__banner" />
+                                        </picture>
                                         <h2>Mengapa Belajar di Malaysia?</h2>
                                         <p>
                                             Malaysia menawarkan keunggulan yang lebih sulit ditemukan di tempat lain—terutama bagi mahasiswa yang menghargai kualitas dan praktikalitas.

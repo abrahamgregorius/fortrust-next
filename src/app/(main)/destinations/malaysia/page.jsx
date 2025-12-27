@@ -65,8 +65,8 @@ export default function Malaysia() {
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
                                         <picture>
-                                            <source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Malaysia.png" />
-                                            <img src="/destinations/banners/Browser/Malaysia.png" alt="Australia Banner" className="content__banner" />
+                                            <source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Malaysia.webp" />
+                                            <img src="/destinations/banners/Browser/Malaysia.webp" alt="Australia Banner" className="content__banner" />
                                         </picture>
                                         <h2>Why Study in Malaysia?</h2>
                                         <p>
