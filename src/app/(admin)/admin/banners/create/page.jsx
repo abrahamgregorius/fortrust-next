@@ -162,6 +162,7 @@ export default function CreateBannerPage() {
       const bannerData = {
         title: formData.title,
         image_url: imageUrl,
+        mobile_image_url: mobileImageUrl,
         link_url: formData.link_url || null,
         event_id: formData.event_id || null,
         display_order: formData.display_order,
