@@ -255,7 +255,7 @@ export default function CreatePopupBannerPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Popup Banner Image (Desktop: 1920x1080, 16:9 ratio, >100 DPI)
+              Popup Banner Image (Desktop: 1920x1080, 16:9 ratio, {'>'}100 DPI)
             </label>
             <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
               <div className="space-y-1 text-center">
@@ -308,7 +308,7 @@ export default function CreatePopupBannerPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Mobile Popup Banner Image (Mobile: 584x869, ~2:3 ratio, >100 DPI)
+              Mobile Popup Banner Image (Mobile: 584x869, ~2:3 ratio, {'>'}100 DPI)
             </label>
             <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
               <div className="space-y-1 text-center">
