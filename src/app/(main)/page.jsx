@@ -606,13 +606,6 @@ export default function Home() {
                                                                     <span className="institution"> {t.person_institution}</span>
                                                                 )}
                                                             </p>
-                                                            <p className="testimonial-date">
-                                                                Shared on {new Date(t.created_at).toLocaleDateString('en-US', {
-                                                                    year: 'numeric',
-                                                                    month: 'long',
-                                                                    day: 'numeric'
-                                                                })}
-                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
