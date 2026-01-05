@@ -63,7 +63,7 @@ export default async function SuccessStories() {
                                                     <p className="author">
                                                         {t.person_name}
                                                         {t.person_institution && (
-                                                            <span className="institution">, {t.person_institution}</span>
+                                                            <span className="institution">{t.person_institution}</span>
                                                         )}
                                                     </p>
                                                 </div>
