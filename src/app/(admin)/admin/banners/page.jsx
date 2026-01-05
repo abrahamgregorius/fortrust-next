@@ -523,7 +523,7 @@ export default function Banners() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Banner Image
+                      Banner Image (Desktop: 1920x1080, 16:9 ratio, >100 DPI)
                     </label>
 
                     {/* Current Image Display */}
@@ -619,7 +619,7 @@ export default function Banners() {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Mobile Banner Image
+                      Mobile Banner Image (Mobile: 414x717, ~3:5 ratio, >100 DPI)
                     </label>
 
                     {/* Current Mobile Image Display */}

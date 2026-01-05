@@ -135,7 +135,7 @@ export default function App() {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
-    const [stats, setStats] = useState({ blogs: 0, events: 0, testimonials: 0, banners: 0, users: 0 });
+    const [stats, setStats] = useState({ blogs: 0, events: 0, testimonials: 0, banners: 0, popup_banners: 0, users: 0 });
     const [recentBlogs, setRecentBlogs] = useState([]);
 
     useEffect(() => {
@@ -145,7 +145,7 @@ export default function App() {
 
     async function fetchStats() {
         try {
-            const tables = ['blogs', 'events', 'testimonials', 'banners', 'users'];
+            const tables = ['blogs', 'events', 'testimonials', 'banners', 'popup_banners', 'users'];
             const counts = {};
             for (const table of tables) {
                 const { count, error } = await supabase.from(table).select('*', { count: 'exact', head: true });
@@ -187,7 +187,7 @@ export default function App() {
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Dashboard Overview</h2>
 
                     {/* Stat Cards Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-6 gap-6">
                         <StatCard
                             icon={ICONS.products}
                             title="Total Blogs"
@@ -221,6 +221,14 @@ export default function App() {
                             iconBgColor="bg-purple-500"
                         />
                         <StatCard
+                            icon={ICONS.banner}
+                            title="Total Popup Banners"
+                            value={stats.popup_banners}
+                            change="+1%"
+                            changeType="positive"
+                            iconBgColor="bg-pink-500"
+                        />
+                        <StatCard
                             icon={ICONS.users}
                             title="Total Users"
                             value={stats.users}
@@ -233,7 +241,7 @@ export default function App() {
                     {/* Quick Actions */}
                     <div className="mt-6">
                         <h3 className="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                             <Link href="/admin/banners/create" className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 flex items-center justify-center">
                                 <Icon path={ICONS.products} className="w-6 h-6 mr-2" />
                                 Add New Blog
@@ -249,6 +257,10 @@ export default function App() {
                             <Link href="/admin/banners/create" className="bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 flex items-center justify-center">
                                 <Icon path={ICONS.banner} className="w-6 h-6 mr-2" />
                                 Add Banner
+                            </Link>
+                            <Link href="/admin/popup-banners/create" className="bg-pink-500 text-white p-4 rounded-lg hover:bg-pink-600 flex items-center justify-center">
+                                <Icon path={ICONS.banner} className="w-6 h-6 mr-2" />
+                                Add Popup Banner
                             </Link>
                         </div>
                     </div>

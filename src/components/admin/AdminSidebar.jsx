@@ -40,6 +40,7 @@ const AdminSidebar = ({ isSidebarOpen, toggleSidebar }) => {
         { href: "/admin/blogs", icon: ICONS.orders, name: "Blog" },
         { href: "/admin/events", icon: ICONS.products, name: "Events" },
         { href: "/admin/banners", icon: ICONS.banner, name: "Banners" },
+        { href: "/admin/popup-banners", icon: ICONS.banner, name: "Popup Banners" },
         { href: "/admin/testimonials", icon: ICONS.users, name: "Testimonials" },
     ];
 

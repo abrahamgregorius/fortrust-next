@@ -54,7 +54,7 @@ export default function CreateTestimonialPage() {
     }
   };
 
-      // Upload image if file selected
+  const handleRemoveImage = () => {
     setImageFile(null);
   };
 
@@ -264,13 +264,12 @@ export default function CreateTestimonialPage() {
 
           {submissionStatus && (
             <div
-              className={`p-4 rounded-md text-sm ${
-                submissionStatus.type === "success"
-                  ? "bg-green-100 text-green-800"
-                  : submissionStatus.type === "error"
+              className={`p-4 rounded-md text-sm ${submissionStatus.type === "success"
+                ? "bg-green-100 text-green-800"
+                : submissionStatus.type === "error"
                   ? "bg-red-100 text-red-800"
                   : "bg-blue-100 text-blue-800"
-              }`}
+                }`}
             >
               {submissionStatus.message}
             </div>
@@ -295,3 +294,5 @@ export default function CreateTestimonialPage() {
     </div>
   );
 }
+
+
