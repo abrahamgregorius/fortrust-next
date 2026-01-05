@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Mail, Phone, Youtube } from "lucide-react";
 import FloatingWhatsApp from "./FloatingWhatsApp";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -27,13 +28,13 @@ export default function Footer() {
                                 for over 30 years.
                             </p>
                             <div className="footer__socials">
-                                <a href="#" aria-label="Facebook">
+                                <Link href="https://www.facebook.com/FortrustId" aria-label="Facebook">
                                     <Facebook></Facebook>
-                                </a>
-                                <a href="#" aria-label="Instagram">
+                                </Link>
+                                <Link href="https://www.instagram.com/fortrustid" aria-label="Instagram">
                                     <Instagram></Instagram>
-                                </a>
-                                <a href="#" aria-label="Tiktok">
+                                </Link>
+                                <Link href="http://tiktok.com/@Fortrustid" aria-label="Tiktok">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
@@ -49,26 +50,26 @@ export default function Footer() {
                                             d="M21 7.917v4.034A9.95 9.95 0 0 1 16 10v4.5a6.5 6.5 0 1 1-8-6.326V12.5a2.5 2.5 0 1 0 4 2V3h4.083A6.005 6.005 0 0 0 21 7.917"
                                         />
                                     </svg>
-                                </a>
-                                <a href="#" aria-label="Youtube">
+                                </Link>
+                                <Link href="#" aria-label="Youtube">
                                     <Youtube></Youtube>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div className="footer__links">
                             <h4>Quick Links</h4>
                             <ul>
                                 <li>
-                                    <a href="/about">About Us</a>
+                                    <Link href="/about">About Us</Link>
                                 </li>
                                 <li>
-                                    <a href="/contact">Offices</a>
+                                    <Link href="/contact">Offices</Link>
                                 </li>
                                 <li>
-                                    <a href="/events">Events</a>
+                                    <Link href="/events">Events</Link>
                                 </li>
                                 <li>
-                                    <a href="/contact">Contact Us</a>
+                                    <Link href="/contact">Contact Us</Link>
                                 </li>
                             </ul>
                         </div>
@@ -76,43 +77,43 @@ export default function Footer() {
                             <h4>Destinations</h4>
                             <ul>
                                 <li>
-                                    <a href="/destinations/australia">
+                                    <Link href="/destinations/australia">
                                         Australia
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/destinations/canada">Canada</a>
+                                    <Link href="/destinations/canada">Canada</Link>
                                 </li>
                                 <li>
-                                    <a href="/destinations/china">China</a>
+                                    <Link href="/destinations/china">China</Link>
                                 </li>
                                 <li>
-                                    <a href="/destinations/malaysia">
+                                    <Link href="/destinations/malaysia">
                                         Malaysia
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/destinations/newzealand">
+                                    <Link href="/destinations/newzealand">
                                         New Zealand
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/destinations/uk">
+                                    <Link href="/destinations/uk">
                                         United Kingdom
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/destinations/switzerland">
+                                    <Link href="/destinations/switzerland">
                                         Switzerland
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/destinations/singapore">
+                                    <Link href="/destinations/singapore">
                                         Singapore
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/destinations/usa">USA</a>
+                                    <Link href="/destinations/usa">USA</Link>
                                 </li>
                             </ul>
                         </div>
@@ -146,9 +147,9 @@ export default function Footer() {
                             rights reserved.
                         </p>
                         <div className="footer__legal">
-                            <a href="/policy/privacy">Privacy Policy</a>
+                            <Link href="/policy/privacy">Privacy Policy</Link>
                             <span>|</span>
-                            <a href="/policy/cookie">Cookie Policy</a>
+                            <Link href="/policy/cookie">Cookie Policy</Link>
                         </div>
                     </div>
                 </div>
