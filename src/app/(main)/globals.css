@@ -371,6 +371,44 @@ ul {
 }
 .testimonials {
     background-color: var(--neutral-100);
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.alumni-nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.alumni-btn {
+    background-color: var(--bg);
+    color: var(--brand-700);
+    border: 1px solid var(--neutral-100);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alumni-btn:hover {
+    background-color: var(--brand-500);
+    color: var(--bg);
+}
+
+.testimonials .container {
+    padding-left: var(--space-6);
+    padding-right: 0;
 }
 .slider {
     position: relative;
@@ -1775,8 +1813,34 @@ ul {
     background-color: var(--brand-700);
 }
 
-.alumni-section .btn--primary:hover {
-    background-color: var(--brand-500);
+.alumni-scroll-container {
+    display: flex;
+    gap: var(--space-6);
+    overflow-x: auto;
+    padding: var(--space-4) 0 var(--space-4) var(--space-6);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+}
+
+.alumni-scroll-container.dragging {
+    cursor: grabbing;
+}
+
+.alumni-scroll-container .flip-card {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    min-width: 320px;
+    user-select: none;
+}
+
+.alumni-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.alumni-scroll-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 /* 20. MOBILE NAVIGATION FIXES */
@@ -2354,7 +2418,7 @@ ul {
     overflow: hidden;
 }
 
-.flip-card-back blockquote {
+.flip-card-back .testimonial-content p {
     font-style: italic;
     font-size: 0.85rem;
     line-height: 1.4;
@@ -2371,21 +2435,20 @@ ul {
     min-height: 0;
 }
 
-.flip-card-back blockquote::before,
-.flip-card-back blockquote::after {
-    content: '"';
+.flip-card-back .testimonial-content p::before,
+.flip-card-back .testimonial-content p::after {
     font-size: 1.2rem;
     color: #6b7280;
     font-family: Georgia, serif;
 }
 
-.flip-card-back blockquote::before {
+.flip-card-back .testimonial-content p::before {
     position: absolute;
     top: -0.3rem;
     left: 0;
 }
 
-.flip-card-back blockquote::after {
+.flip-card-back .testimonial-content p::after {
     position: absolute;
     bottom: -0.8rem;
     right: 0;

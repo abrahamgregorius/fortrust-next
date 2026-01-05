@@ -17,6 +17,7 @@ export default function Singapore() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
+        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
@@ -63,7 +64,7 @@ export default function Singapore() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Singapore.png" /><img src="/destinations/banners/Browser/Singapore.png" alt="Singapura" className="content__banner" /></picture>
+                                            <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Singapore.webp" /><img src="/destinations/banners/Browser/Singapore.webp" alt="" className="content__banner" /></picture>
                                             <h2>Keuntungan Belajar di Singapura</h2>
                                             <ul>
                                                 <li>Pendidikan berkualitas dunia dengan universitas terkemuka seperti NUS, NTU, dan SMU</li>

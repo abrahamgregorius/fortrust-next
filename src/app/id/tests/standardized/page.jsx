@@ -17,8 +17,8 @@ export default function StandardizedID() {
     const tabs = [
         { id: "sat", label: "SAT", icon: <BookOpen /> },
         { id: "gmat", label: "GMAT", icon: <Calculator /> },
-        { id: "cambridge", label: "Cambridge Curriculum Exams", icon: <Award /> },
-        { id: "csca", label: "China Scholastic Competency Assessment", icon: <Star /> },
+        { id: "cambridge", label: "IGCSE", icon: <Award /> },
+        { id: "csca", label: "CSCA", icon: <Star /> },
     ];
 
     return (
@@ -29,7 +29,7 @@ export default function StandardizedID() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Persiapan Tes Standar: SAT, GMAT, Cambridge Curriculum Exams, China Scholastic Competency Assessment
+                            Persiapan Tes Standar: SAT, GMAT, IGCSE, CSCA
                         </h1>
                         <p>
                             Raih skor kompetitif pada tes standar dengan strategi persiapan terbukti dan bimbingan ahli kami.
@@ -281,7 +281,7 @@ export default function StandardizedID() {
                             {activeTab === "cambridge" && (
                                 <div id="cambridge" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Persiapan Cambridge Curriculum Exams</h2>
+                                        <h2>Persiapan IGCSE</h2>
                                         <p>
                                             Cambridge International Examinations menawarkan kurikulum dan jalur penilaian yang komprehensif yang diakui oleh universitas dan majikan di seluruh dunia. Dari tingkat Primary hingga Pre-University, kualifikasi Cambridge memberikan dasar yang kuat untuk kesuksesan akademik dan peluang global.
                                         </p>
@@ -419,11 +419,11 @@ export default function StandardizedID() {
                             {activeTab === "csca" && (
                                 <div id="csca" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Persiapan China Scholastic Competency Assessment</h2>
+                                        <h2>Persiapan CSCA</h2>
                                         <div style={{ textAlign: 'center', padding: '3rem 1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', margin: '2rem 0' }}>
                                             <h3 style={{ color: '#6c757d', marginBottom: '1rem' }}>Konten Sedang Dalam Proses Pembaruan</h3>
                                             <p style={{ color: '#6c757d', fontSize: '1.1rem', marginBottom: '1.5rem' }}>
-                                                Kami sedang menyiapkan konten lengkap untuk China Scholastic Competency Assessment (CSCA).
+                                                Kami sedang menyiapkan konten lengkap untuk CSCA (CSCA).
                                             </p>
                                             <p style={{ color: '#6c757d', fontSize: '1rem' }}>
                                                 Silakan hubungi kami untuk informasi lebih lanjut tentang persiapan CSCA.

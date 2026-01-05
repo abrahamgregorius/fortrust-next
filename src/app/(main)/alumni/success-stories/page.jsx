@@ -56,22 +56,15 @@ export default async function SuccessStories() {
                                         </div>
                                         <div className="flip-card-back">
                                             <div className="testimonial-content">
-                                                <blockquote>
-                                                    {t.testimonial}
-                                                </blockquote>
+                                                <p>
+                                                    "{t.testimonial}"
+                                                </p>
                                                 <div className="testimonial-meta">
                                                     <p className="author">
                                                         {t.person_name}
                                                         {t.person_institution && (
                                                             <span className="institution"> {t.person_institution}</span>
                                                         )}
-                                                    </p>
-                                                    <p className="testimonial-date">
-                                                        Shared on {new Date(t.created_at).toLocaleDateString('en-US', {
-                                                            year: 'numeric',
-                                                            month: 'long',
-                                                            day: 'numeric'
-                                                        })}
                                                     </p>
                                                 </div>
                                             </div>

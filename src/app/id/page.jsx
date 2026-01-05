@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     ArrowRight,
     ChevronDown,
@@ -220,7 +220,45 @@ export default function Home() {
         },
     ];
 
-    const [current, setCurrent] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    const scrollRef = useRef(null);
+
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        setStartX(e.pageX - scrollRef.current.offsetLeft);
+        setScrollLeft(scrollRef.current.scrollLeft);
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleTouchStart = (e) => {
+        setIsDragging(true);
+        setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
+        setScrollLeft(scrollRef.current.scrollLeft);
+    };
+
+    const handleTouchMove = (e) => {
+        if (!isDragging) return;
+        const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 2;
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleTouchEnd = () => {
+        setIsDragging(false);
+    };
 
     // Auto play carousel
     useEffect(() => {
@@ -243,13 +281,6 @@ export default function Home() {
     }, [])
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrent((prev) => (prev + 1) % testimonials.length);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [testimonials.length]);
-
-    useEffect(() => {
         if (typeof window !== 'undefined') {
             const closed = localStorage.getItem('popupBannerClosed');
             if (closed !== 'true') {
@@ -257,16 +288,6 @@ export default function Home() {
             }
         }
     }, []);
-
-    const nextSlide = () => {
-        setCurrent((prev) => (prev + 1) % testimonials.length);
-    };
-
-    const prevSlide = () => {
-        setCurrent(
-            (prev) => (prev - 1 + testimonials.length) % testimonials.length
-        );
-    };
 
     return (
         <>
@@ -293,29 +314,39 @@ export default function Home() {
 
             <main>
                 <section className="hero-carousel">
-                    <div className="carousel-wrapper">
+                    <div
+                    className="carousel-wrapper"
+                    ref={scrollRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                    style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                >
                         {slides.map((slide, idx) => (
                             <div
                                 key={slide.id}
-                                className={`carousel-slide ${idx === currentSlide ? "active" : ""
-                                    }`}
+                                className={`carousel-slide ${idx === currentSlide ? "active" : ""}`}
                                 style={{ position: 'relative' }}
                             >
                                 <picture>
                                     <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
-                                    <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }} onClick={() => window.location.href = slide.link || "/id/contact"} />
+                                    <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }} onClick={() => window.location.href = slide.link || "/contact"} />
                                 </picture>
                                 <div className="slide-content">
-                                    <h1>{slide.title}</h1>
-                                    <p className="subhead">{slide.subtitle}</p>
-                                    <div className="hero__cta">
+                                    {/* <h1>{slide.title}</h1> */}
+                                    {/* <p className="subhead">{slide.subtitle}</p> */}
+                                    {/* <div className="hero__cta">
                                         <a
-                                            href={slide.link || "/id/contact"}
+                                            href={slide.link || "/contact"}
                                             className="btn btn--primary btn--large"
                                         >
-                                            Mulai Perjalanan Anda
+                                            Start Your Journey
                                         </a>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         ))}
@@ -328,21 +359,21 @@ export default function Home() {
                             <div className="slide-content">
                                 <h1>Fortrust International Edu Expo 2025</h1>
                                 <p className="subhead">
-                                    Dapatkan konseling ahli, aplikasi, visa,
-                                    dan dukungan pra-keberangkatan - di satu tempat.
+                                    Get expert counselling, applications, visas,
+                                    and pre-departure support - in one place.
                                 </p>
                                 <div className="hero__cta">
                                     <a
                                         href="https://docs.google.com/forms/d/e/1FAIpQLScb58C3bbmq0-j1GfWilomVgXG5bQ_MgS4bUfFFJprhKBys3w/viewform?usp=header"
                                         className="btn btn--primary btn--large"
                                     >
-                                        RSVP Sekarang
+                                        RSVP Now
                                     </a>
                                     <a
                                         href="#destinations"
                                         className="btn btn--secondary btn--large"
                                     >
-                                        Jelajahi Tujuan
+                                        Explore Destinations
                                     </a>
                                 </div>
                             </div>
@@ -353,24 +384,24 @@ export default function Home() {
                             // style="background-image: url('./public/banner-expo2.png')"
                         >
                             <div className="slide-content">
-                                <h1>Belajar di Singapura</h1>
+                                <h1>Study in Singapore</h1>
                                 <p className="subhead">
-                                    Dukungan komprehensif untuk perjalanan studi Anda di
-                                    Singapura – dari konseling hingga
-                                    visa, semua di satu hub.
+                                    Comprehensive support for your study in
+                                    Singapore journey – from counselling to
+                                    visas, all in one hub.
                                 </p>
                                 <div className="hero__cta">
                                     <a
                                         href="https://docs.google.com/forms/d/e/1FAIpQLSeDJpBg1jwi9PTzkefJ3i-M54MN2lvSZSUuTJTKJyuNBh3lng/viewform?usp=header"
                                         className="btn btn--primary btn--large"
                                     >
-                                        RSVP Sekarang
+                                        RSVP Now
                                     </a>
                                     <a
-                                        href="/id/services"
+                                        href="/services"
                                         className="btn btn--secondary btn--large"
                                     >
-                                        Cari Program
+                                        Find a Program
                                     </a>
                                 </div>
                             </div>
@@ -380,23 +411,23 @@ export default function Home() {
                             // style="background-image: url('./public/banner1.webp')"
                         >
                             <div className="slide-content">
-                                <h1>Bergabunglah dengan Kisah Sukses Kami.</h1>
+                                <h1>Join Our Success Stories.</h1>
                                 <p className="subhead">
-                                    Ribuan siswa telah mempercayai kami selama
-                                    lebih dari 30 tahun. Giliran Anda selanjutnya.
+                                    Thousands of students have trusted us for
+                                    over 30 years. You're next.
                                 </p>
                                 <div className="hero__cta">
                                     <a
-                                        href="/id/contact"
+                                        href="/contact"
                                         className="btn btn--primary btn--large"
                                     >
-                                        Mulai Perjalanan Anda
+                                        Start Your Journey
                                     </a>
                                     <a
-                                        href="/id/alumni"
+                                        href="/alumni"
                                         className="btn btn--secondary btn--large"
                                     >
-                                        Baca Kisah
+                                        Read Stories
                                     </a>
                                 </div>
                             </div>
@@ -490,42 +521,52 @@ export default function Home() {
 
                 <section className="testimonials">
                     <div className="container">
-                        <div className="testimonial-slider-wrapper">
+                        <div className="section-header">
+                            <h2>Kisah Sukses Alumni</h2>
+                            <p>
+                                Dengarkan kisah mahasiswa yang berhasil menempuh perjalanan studi mereka bersama kami.
+                            </p>
+                        </div>
+                        <div className="alumni-scroll-container" id="alumni-scroll">
                             {testimonials.map((t, index) => (
-                                <div
-                                    key={t.id}
-                                    className={`card testimonial-card ${index === current ? "active" : ""
-                                        }`}
-                                >
-                                    <p className="testimonial-card__content">
-                                        "{t.testimonial}"
-                                    </p>
-                                    <div className="testimonial-card__author">
-                                        <img
-                                            src={t.image_url}
-                                            alt={`Photo of ${t.person_name}`}
-                                        />
-                                        <div className="author-info">
-                                            <strong>{t.person_name}</strong>
-                                            <p>{t.person_institution}</p>
+                                <div key={t.id} className="flip-card">
+                                    <div className="flip-card-inner">
+                                        <div className="flip-card-front">
+                                            <img
+                                                src={t.image_url || "/placeholder.jpg"}
+                                                alt={`Photo of ${t.person_name}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="flip-card-back">
+                                            <div className="testimonial-content">
+                                                <p>"{t.testimonial}"</p>
+                                                <div className="testimonial-meta">
+                                                    <p className="author">
+                                                        {t.person_name}
+                                                        {t.person_institution && (
+                                                            <span className="institution">, {t.person_institution}</span>
+                                                        )}
+                                                    </p>
+                                                    <p className="testimonial-date">
+                                                        Dibagikan pada {new Date(t.created_at).toLocaleDateString('id-ID', {
+                                                            year: 'numeric',
+                                                            month: 'long',
+                                                            day: 'numeric'
+                                                        })}
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-
-                        {/* Navigation buttons */}
-                        <div className="testimonial-nav">
-                            <button
-                                className="slider__btn slider__btn--prev"
-                                onClick={prevSlide}
-                            >
+                        <div className="alumni-nav">
+                            <button className="alumni-btn alumni-btn--prev" onClick={() => document.getElementById('alumni-scroll').scrollTo({ left: document.getElementById('alumni-scroll').scrollLeft - 340, behavior: 'smooth' })}>
                                 <ChevronLeft />
                             </button>
-                            <button
-                                className="slider__btn slider__btn--next"
-                                onClick={nextSlide}
-                            >
+                            <button className="alumni-btn alumni-btn--next" onClick={() => document.getElementById('alumni-scroll').scrollTo({ left: document.getElementById('alumni-scroll').scrollLeft + 340, behavior: 'smooth' })}>
                                 <ChevronRight />
                             </button>
                         </div>

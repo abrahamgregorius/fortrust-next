@@ -17,6 +17,7 @@ export default function UK() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
+        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },

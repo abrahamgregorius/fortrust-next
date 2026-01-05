@@ -17,6 +17,7 @@ export default function NewZealand() {
     const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
+        { id: "overview", label: "Ringkasan", icon: <LayoutGrid /> },
         { id: "requirements", label: "Persyaratan", icon: <FileCheck2 /> },
         { id: "costs", label: "Biaya", icon: <Wallet /> },
         { id: "work", label: "Hak Bekerja", icon: <Briefcase /> },
@@ -63,7 +64,7 @@ export default function NewZealand() {
                                 <>
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
-                                            <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/NewZealand.webp" /><img src="/destinations/banners/Browser/NewZealand.webp" alt="" className="content__banner" /></picture>
+                                            <picture><source media="(max-width: 768px)" srcSet={`/destinations/banners/Mobile/NewZealand.webp`} /><img src="/destinations/banners/Browser/NewZealand.webp" alt="" className="content__banner" /></picture>
                                             <h2>Mengapa Kuliah di Selandia Baru?</h2>
                                             <p>
                                                 Selandia Baru menonjol sebagai tujuan studi yang menghadirkan pengalaman tak terlupakan sekaligus kualifikasi yang diakui secara global.

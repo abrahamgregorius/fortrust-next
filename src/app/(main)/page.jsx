@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
     ArrowRight,
     ChevronDown,
@@ -260,7 +260,45 @@ export default function Home() {
         },
     ];
 
-    const [current, setCurrent] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    const scrollRef = useRef(null);
+
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        setStartX(e.pageX - scrollRef.current.offsetLeft);
+        setScrollLeft(scrollRef.current.scrollLeft);
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleTouchStart = (e) => {
+        setIsDragging(true);
+        setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
+        setScrollLeft(scrollRef.current.scrollLeft);
+    };
+
+    const handleTouchMove = (e) => {
+        if (!isDragging) return;
+        const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+        const walk = (x - startX) * 2;
+        scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleTouchEnd = () => {
+        setIsDragging(false);
+    };
 
     // Auto play carousel
     useEffect(() => {
@@ -283,13 +321,6 @@ export default function Home() {
     }, [])
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrent((prev) => (prev + 1) % testimonials.length);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [testimonials.length]);
-
-    useEffect(() => {
         if (typeof window !== 'undefined') {
             const closed = localStorage.getItem('popupBannerClosed');
             if (closed !== 'true') {
@@ -297,16 +328,6 @@ export default function Home() {
             }
         }
     }, []);
-
-    const nextSlide = () => {
-        setCurrent((prev) => (prev + 1) % testimonials.length);
-    };
-
-    const prevSlide = () => {
-        setCurrent(
-            (prev) => (prev - 1 + testimonials.length) % testimonials.length
-        );
-    };
 
     return (
         <>
@@ -336,7 +357,18 @@ export default function Home() {
 
             <main suppressHydrationWarning>
                 <section className="hero-carousel">
-                    <div className="carousel-wrapper">
+                    <div
+                    className="carousel-wrapper"
+                    ref={scrollRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                    style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                >
                         {isLoadingBanners ? (
                             <div className="carousel-slide active" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                                 <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
@@ -541,47 +573,58 @@ export default function Home() {
 
                 <section className="testimonials" suppressHydrationWarning>
                     <div className="container">
+                        <div className="section-header">
+                            <h2>Alumni Success Stories</h2>
+                            <p>
+                                Hear from students who have successfully navigated their study abroad journey with us.
+                            </p>
+                        </div>
                         {isLoadingTestimonials ? (
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
                                 <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
                             </div>
                         ) : (
                             <>
-                                <div className="testimonial-slider-wrapper">
-                                    {testimonials.map((t, index) => (
-                                        <div
-                                            key={t.id}
-                                            className={`card testimonial-card ${index === current ? "active" : ""}`}
-                                        >
-                                            <p className="testimonial-card__content">
-                                                "{t.testimonial}"
-                                            </p>
-                                            <div className="testimonial-card__author">
-                                                <img
-                                                    src={t.image_url}
-                                                    alt={`Photo of ${t.person_name}`}
-                                                />
-                                                <div className="author-info">
-                                                    <strong>{t.person_name}</strong>
-                                                    <p>{t.person_institution}</p>
+                                <div className="alumni-scroll-container" id="alumni-scroll">
+                                    {testimonials.map((t) => (
+                                        <div key={t.id} className="flip-card">
+                                            <div className="flip-card-inner">
+                                                <div className="flip-card-front">
+                                                    <img
+                                                        src={t.image_url || "/placeholder.jpg"}
+                                                        alt={`Photo of ${t.person_name}`}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </div>
+                                                <div className="flip-card-back">
+                                                    <div className="testimonial-content">
+                                                        <p>"{t.testimonial}"</p>
+                                                        <div className="testimonial-meta">
+                                                            <p className="author">
+                                                                {t.person_name}
+                                                                {t.person_institution && (
+                                                                    <span className="institution"> {t.person_institution}</span>
+                                                                )}
+                                                            </p>
+                                                            <p className="testimonial-date">
+                                                                Shared on {new Date(t.created_at).toLocaleDateString('en-US', {
+                                                                    year: 'numeric',
+                                                                    month: 'long',
+                                                                    day: 'numeric'
+                                                                })}
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
-
-                                {/* Navigation buttons */}
-                                <div className="testimonial-nav">
-                                    <button
-                                        className="slider__btn slider__btn--prev"
-                                        onClick={prevSlide}
-                                    >
+                                <div className="alumni-nav">
+                                    <button className="alumni-btn alumni-btn--prev" onClick={() => document.getElementById('alumni-scroll').scrollTo({ left: document.getElementById('alumni-scroll').scrollLeft - 340, behavior: 'smooth' })}>
                                         <ChevronLeft />
                                     </button>
-                                    <button
-                                        className="slider__btn slider__btn--next"
-                                        onClick={nextSlide}
-                                    >
+                                    <button className="alumni-btn alumni-btn--next" onClick={() => document.getElementById('alumni-scroll').scrollTo({ left: document.getElementById('alumni-scroll').scrollLeft + 340, behavior: 'smooth' })}>
                                         <ChevronRight />
                                     </button>
                                 </div>

@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Info } from "lucide-react";
 
 export default function University() {
     return (
@@ -118,14 +118,15 @@ export default function University() {
                             </ul>
                         </div>
                         <div className="fees-info card">
-                            <h3><i data-lucide="info"></i> Our Fees</h3>
+                            <h3>Our Fees</h3>
                             <p>
                                 <strong
                                 >Our counselling and university placement services are
-                                    completely free.</strong
-                                >
+                                    completely free*.</strong
+                                > {" "}
                                 We are officially partnered with and funded by our partner
                                 institutions, so you get expert guidance without any cost.
+                                <p style={{ marginTop: "10px", fontSize: "13px", color: "#AAA", lineHeight: "20px" }}>*Free for universities in Australia, Canada, Malaysia, New Zealand, Singapore, Switzerland, UK, and USA. Additional fees apply for China and other select destinations.</p>
                             </p>
                         </div>
                     </div>

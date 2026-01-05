@@ -98,11 +98,15 @@ export default function University() {
                                 </li>
                             </ul>
                         </div>
+
                         <div className="fees-info card">
-                            <h3><i data-lucide="info"></i> Biaya Layanan</h3>
+                            <h3>Biaya Layanan</h3>
                             <p>
-                                <strong>Layanan konseling dan penempatan universitas kami gratis.</strong>
+                                <strong
+                                >Layanan konseling dan penempatan universitas kami gratis.*</strong
+                                > {" "}
                                 Kami bermitra resmi dan didanai institusi mitra, sehingga Anda mendapatkan pendampingan ahli tanpa biaya.
+                                <p style={{ marginTop: "10px", fontSize: "13px", color: "#AAA", lineHeight: "20px" }}>*Gratis untuk universitas di Australia, Kanada, Malaysia, Selandia Baru, Singapura, Swiss, Inggris, dan Amerika Serikat. Biaya tambahan berlaku untuk Cina dan beberapa tujuan lainnya.</p>
                             </p>
                         </div>
                     </div>
