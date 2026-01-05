@@ -233,22 +233,22 @@ export default function App() {
                     <div className="mt-6">
                         <h3 className="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <button className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 flex items-center justify-center">
+                            <Link to="/admin/banners/create" className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 flex items-center justify-center">
                                 <Icon path={ICONS.products} className="w-6 h-6 mr-2" />
                                 Add New Blog
-                            </button>
-                            <button className="bg-green-500 text-white p-4 rounded-lg hover:bg-green-600 flex items-center justify-center">
+                            </Link>
+                            <Link to="/admin/events/create" className="bg-green-500 text-white p-4 rounded-lg hover:bg-green-600 flex items-center justify-center">
                                 <Icon path={ICONS.orders} className="w-6 h-6 mr-2" />
                                 Add New Event
-                            </button>
-                            <button className="bg-yellow-500 text-white p-4 rounded-lg hover:bg-yellow-600 flex items-center justify-center">
+                            </Link>
+                            <Link to="/admin/testimonials/create" className="bg-yellow-500 text-white p-4 rounded-lg hover:bg-yellow-600 flex items-center justify-center">
                                 <Icon path={ICONS.users} className="w-6 h-6 mr-2" />
                                 Add Testimonial
-                            </button>
-                            <button className="bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 flex items-center justify-center">
+                            </Link>
+                            <Link to="/admin/banners/create" className="bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 flex items-center justify-center">
                                 <Icon path={ICONS.banner} className="w-6 h-6 mr-2" />
                                 Add Banner
-                            </button>
+                            </Link>
                         </div>
                     </div>
 

@@ -54,7 +54,7 @@ export default function CreateTestimonialPage() {
     }
   };
 
-  const handleRemoveImage = () => {
+      // Upload image if file selected
     setImageFile(null);
   };
 
@@ -196,7 +196,7 @@ export default function CreateTestimonialPage() {
               htmlFor="testimonial"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Testimonial
+              Testimonial (1-2 sentences)
             </label>
             <textarea
               id="testimonial"
@@ -235,7 +235,6 @@ export default function CreateTestimonialPage() {
                       accept="image/*"
                     />
                   </label>
-                  <p className="pl-1">or drag and drop</p>
                 </div>
                 <p className="text-xs text-gray-500">
                   PNG, JPG, GIF up to 10MB
