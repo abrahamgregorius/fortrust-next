@@ -22,7 +22,6 @@ import { supabase } from "@/lib/supabaseClient";
 export default function Home() {
     // State untuk carousel
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [showBanner, setShowBanner] = useState(false);
     const [banners, setBanners] = useState([]);
     const [isLoadingBanners, setIsLoadingBanners] = useState(true);
 
@@ -320,40 +319,9 @@ export default function Home() {
         fetchBanners();
     }, [])
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const closed = localStorage.getItem('popupBannerClosed');
-            if (closed !== 'true') {
-                setShowBanner(true);
-            }
-        }
-    }, []);
-
     return (
         <>
             <Navbar></Navbar>
-
-            {showBanner && (
-                <div className="popup-modal-overlay" suppressHydrationWarning>
-                    <div className="popup-modal">
-                        <button
-                            className="popup-modal-close"
-                            onClick={() => {
-                                setShowBanner(false);
-                                if (typeof window !== 'undefined') {
-                                    localStorage.setItem('popupBannerClosed', 'true');
-                                }
-                            }}
-                        >
-                            ×
-                        </button>
-                        <picture>
-                            <source media="(max-width: 768px)" srcSet="/popup/FTSBY-Mobile.png" />
-                            <img src="/popup/FTSBY-Browser.png" alt="Popup Banner" width={800} height={600} />
-                        </picture>
-                    </div>
-                </div>
-            )}
 
             <main suppressHydrationWarning>
                 <section className="hero-carousel">

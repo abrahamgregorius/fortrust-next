@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import CostDropdown from "@/components/CostDropdown";
 import {
     Briefcase,
     Building2,
@@ -269,59 +270,35 @@ export default function Singapore() {
                                         </div>
                                         <div className="content-block">
                                             <h3>Estimated Monthly Living Costs</h3>
-                                            <div className="table-responsive">
-                                                <table className="data-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Expense Category</th>
-                                                            <th>
-                                                                Estimated Cost (per month)
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                Housing (shared flat or
-                                                                dorm)
-                                                            </td>
-                                                            <td>SGD 400 – 1,500</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Food</td>
-                                                            <td>SGD 300 – 600</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Transport (EZ-Link pass)
-                                                            </td>
-                                                            <td>SGD 100 – 150</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Utilities & Internet</td>
-                                                            <td>SGD 50 – 150</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Personal & Leisure</td>
-                                                            <td>SGD 200 – 400</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <strong
-                                                                >Total Monthly
-                                                                    Budget</strong
-                                                                >
-                                                            </td>
-                                                            <td>
-                                                                <strong
-                                                                >SGD 1,200 –
-                                                                    2,500</strong
-                                                                >
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                            <CostDropdown
+                                                data={[
+                                                    {
+                                                        expenseCategory: "Housing (shared flat or dorm)",
+                                                        estimatedCost: "SGD 400 – 1,500"
+                                                    },
+                                                    {
+                                                        expenseCategory: "Food",
+                                                        estimatedCost: "SGD 300 – 600"
+                                                    },
+                                                    {
+                                                        expenseCategory: "Transport (EZ-Link pass)",
+                                                        estimatedCost: "SGD 100 – 150"
+                                                    },
+                                                    {
+                                                        expenseCategory: "Utilities & Internet",
+                                                        estimatedCost: "SGD 50 – 150"
+                                                    },
+                                                    {
+                                                        expenseCategory: "Personal & Leisure",
+                                                        estimatedCost: "SGD 200 – 400"
+                                                    },
+                                                    {
+                                                        expenseCategory: "Total Monthly Budget",
+                                                        estimatedCost: "SGD 1,200 – 2,500"
+                                                    }
+                                                ]}
+                                                columns={["Expense Category", "Estimated Cost (per month)"]}
+                                            />
                                         </div>
                                     </div>
                                 </>

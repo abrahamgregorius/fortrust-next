@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { LocaleProvider } from "@/contexts/LocaleContext";
+import PopupBanner from "@/components/PopupBanner";
 import "./globals.css"
 
 const geistSans = Geist({
@@ -44,6 +45,7 @@ export default function IndonesianLayout({ children }) {
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <LocaleProvider>
+          <PopupBanner />
           {children}
         </LocaleProvider>
       </body>

@@ -187,6 +187,43 @@ export default function UK() {
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {/* Mobile Cards */}
+                                        <div className="cost-cards-mobile">
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Sarjana (S1)</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Biaya Tahunan:</span>
+                                                        <span className="cost-value">£15,000 – £28,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Magister (S2)</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Biaya Tahunan:</span>
+                                                        <span className="cost-value">£16,000 – £30,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Doktor (S3)</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Biaya Tahunan:</span>
+                                                        <span className="cost-value">£18,000 – £32,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="content-block">
                                         <h3>Estimasi Biaya Hidup Bulanan</h3>
@@ -213,6 +250,43 @@ export default function UK() {
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                        </div>
+
+                                        {/* Mobile Cards */}
+                                        <div className="cost-cards-mobile">
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>London</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Total Bulanan:</span>
+                                                        <span className="cost-value">£1,300 – £1,700</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Manchester / Edinburgh</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Total Bulanan:</span>
+                                                        <span className="cost-value">£900 – £1,300</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Kota Lain</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Total Bulanan:</span>
+                                                        <span className="cost-value">£800 – £1,200</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

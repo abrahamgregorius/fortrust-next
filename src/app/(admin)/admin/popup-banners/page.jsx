@@ -830,6 +830,25 @@ export default function PopupBanners() {
                                         </div>
                                     </div>
 
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <h4 className="text-sm font-medium text-gray-700 mb-1">
+                                                Start Date:
+                                            </h4>
+                                            <p className="text-gray-800">
+                                                {selectedPopupBanner.start_date ? formatDate(selectedPopupBanner.start_date) : "Not set"}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-sm font-medium text-gray-700 mb-1">
+                                                End Date:
+                                            </h4>
+                                            <p className="text-gray-800">
+                                                {selectedPopupBanner.end_date ? formatDate(selectedPopupBanner.end_date) : "Not set"}
+                                            </p>
+                                        </div>
+                                    </div>
+
                                     <div className="text-sm text-gray-500">
                                         <p>Created: {formatDate(selectedPopupBanner.created_at)}</p>
                                         <p>Updated: {formatDate(selectedPopupBanner.updated_at)}</p>

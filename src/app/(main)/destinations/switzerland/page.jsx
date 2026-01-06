@@ -333,41 +333,84 @@ export default function Switzerland() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
-                                                            <td>
-                                                                Undergraduate
-                                                                (Arts/Business)
-                                                            </td>
+                                                            <td>Undergraduate (Arts/Business)</td>
                                                             <td>CHF 1,000 – 2,500</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                Undergraduate
-                                                                (Science/Engineering)
-                                                            </td>
+                                                            <td>Undergraduate (Science/Engineering)</td>
                                                             <td>CHF 1,500 – 3,000</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                Graduate (Arts/Business)
-                                                            </td>
+                                                            <td>Graduate (Arts/Business)</td>
                                                             <td>CHF 1,500 – 3,200</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                Graduate
-                                                                (Science/Engineering)
-                                                            </td>
+                                                            <td>Graduate (Science/Engineering)</td>
                                                             <td>CHF 1,800 – 4,000</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>
-                                                                College Diploma/Advanced
-                                                                Studies
-                                                            </td>
+                                                            <td>College Diploma/Advanced Studies</td>
                                                             <td>CHF 3,000 – 8,000</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                            </div>
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Undergraduate (Arts/Business)</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Annual Tuition:</span>
+                                                            <span>CHF 1,000 – 2,500</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Undergraduate (Science/Engineering)</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Annual Tuition:</span>
+                                                            <span>CHF 1,500 – 3,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Graduate (Arts/Business)</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Annual Tuition:</span>
+                                                            <span>CHF 1,500 – 3,200</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Graduate (Science/Engineering)</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Annual Tuition:</span>
+                                                            <span>CHF 1,800 – 4,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>College Diploma/Advanced Studies</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Annual Tuition:</span>
+                                                            <span>CHF 3,000 – 8,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="content-block">
@@ -379,9 +422,7 @@ export default function Switzerland() {
                                                             <th>City</th>
                                                             <th>Housing</th>
                                                             <th>Food & Transport</th>
-                                                            <th>
-                                                                Total Monthly Cost (CHF)
-                                                            </th>
+                                                            <th>Total Monthly Cost (CHF)</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -417,6 +458,103 @@ export default function Switzerland() {
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                            </div>
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Zurich</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Housing:</span>
+                                                            <span>CHF 800–1,500</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Food & Transport:</span>
+                                                            <span>CHF 470–710</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Monthly Cost:</span>
+                                                            <span>CHF 1,500–2,500</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Geneva</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Housing:</span>
+                                                            <span>CHF 700–1,400</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Food & Transport:</span>
+                                                            <span>CHF 410–600</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Monthly Cost:</span>
+                                                            <span>CHF 1,400–2,300</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Bern</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Housing:</span>
+                                                            <span>CHF 650–1,250</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Food & Transport:</span>
+                                                            <span>CHF 405–540</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Monthly Cost:</span>
+                                                            <span>CHF 1,300–2,200</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Lausanne</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Housing:</span>
+                                                            <span>CHF 600–1,200</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Food & Transport:</span>
+                                                            <span>CHF 370–530</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Monthly Cost:</span>
+                                                            <span>CHF 1,200–2,100</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Basel</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Housing:</span>
+                                                            <span>CHF 600–1,100</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Food & Transport:</span>
+                                                            <span>CHF 350–470</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Monthly Cost:</span>
+                                                            <span>CHF 1,200–2,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

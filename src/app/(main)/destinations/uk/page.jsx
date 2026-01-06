@@ -329,9 +329,7 @@ export default function UK() {
                                                     <thead>
                                                         <tr>
                                                             <th>Program Level</th>
-                                                            <th>
-                                                                Average Annual Tuition (GBP)
-                                                            </th>
+                                                            <th>Average Annual Tuition (GBP)</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -350,6 +348,41 @@ export default function UK() {
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Undergraduate</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Average Annual Tuition:</span>
+                                                            <span>£15,000 – £28,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Postgraduate (Master's)</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Average Annual Tuition:</span>
+                                                            <span>£16,000 – £30,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>PhD</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Average Annual Tuition:</span>
+                                                            <span>£18,000 – £32,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="content-block">
                                             <h3>Estimated Monthly Living Costs</h3>
@@ -358,9 +391,7 @@ export default function UK() {
                                                     <thead>
                                                         <tr>
                                                             <th>City</th>
-                                                            <th>
-                                                                Total Monthly Estimate (GBP)
-                                                            </th>
+                                                            <th>Total Monthly Estimate (GBP)</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -378,6 +409,41 @@ export default function UK() {
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                            </div>
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>London</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Total Monthly Estimate:</span>
+                                                            <span>£1,300 – £1,700</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Manchester / Edinburgh</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Total Monthly Estimate:</span>
+                                                            <span>£900 – £1,300</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Other Cities</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Total Monthly Estimate:</span>
+                                                            <span>£800 – £1,200</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

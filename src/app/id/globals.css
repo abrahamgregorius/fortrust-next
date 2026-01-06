@@ -2374,8 +2374,76 @@ ul {
     background-color: #dc2626;
 }
 
-/* 24. FLIP CARD STYLES */
-/* ------------------------- */
+/* Cost Cards Mobile Layout */
+.cost-cards-mobile {
+    display: none;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+.cost-card {
+    background: var(--bg);
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-card);
+    padding: var(--space-4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.cost-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.cost-card-header h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin: 0;
+    flex: 1;
+}
+
+.cost-amount {
+    font-weight: 700;
+    color: var(--brand-700);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.cost-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--neutral-600);
+}
+
+.cost-details span {
+    font-weight: 500;
+}
+
+.cost-card-total {
+    background: var(--brand-50);
+    border-color: var(--brand-200);
+}
+
+.cost-amount-total {
+    color: var(--brand-800);
+    font-size: 1rem;
+}
+
+/* Show cards on mobile, hide table */
+@media (max-width: 768px) {
+    .cost-cards-mobile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* .table-responsive {
+        display: none;
+    } */
+}
 .flip-card {
     background-color: transparent;
     perspective: 1000px;

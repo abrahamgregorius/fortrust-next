@@ -287,6 +287,67 @@ export default function USA() {
                                                     </tbody>
                                                 </table>
                                             </div>
+
+                                            {/* Mobile Cards */}
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>New York</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Sarjana (S1):</span>
+                                                            <span className="cost-value">$22,000 – $54,000</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Pascasarjana (S2):</span>
+                                                            <span className="cost-value">$28,000 – $60,000</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Diploma:</span>
+                                                            <span className="cost-value">$15,000 – $24,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Los Angeles</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Sarjana (S1):</span>
+                                                            <span className="cost-value">$22,000 – $54,000</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Pascasarjana (S2):</span>
+                                                            <span className="cost-value">$28,000 – $60,000</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Diploma:</span>
+                                                            <span className="cost-value">$15,000 – $24,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Boston</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Sarjana (S1):</span>
+                                                            <span className="cost-value">$22,000 – $54,000</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Pascasarjana (S2):</span>
+                                                            <span className="cost-value">$28,000 – $60,000</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Diploma:</span>
+                                                            <span className="cost-value">$15,000 – $24,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="content-block">
                                             <h3>Rata-rata Biaya Hidup Bulanan</h3>
@@ -321,6 +382,67 @@ export default function USA() {
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                            </div>
+
+                                            {/* Mobile Cards */}
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>New York</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Hunian:</span>
+                                                            <span className="cost-value">$1,200 – $2,600</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Makanan & Transport:</span>
+                                                            <span className="cost-value">$520 – $850</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Bulanan:</span>
+                                                            <span className="cost-value">$1,720 – $3,450</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Los Angeles</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Hunian:</span>
+                                                            <span className="cost-value">$1,000 – $2,200</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Makanan & Transport:</span>
+                                                            <span className="cost-value">$425 – $710</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Bulanan:</span>
+                                                            <span className="cost-value">$1,425 – $2,910</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>San Francisco</h4>
+                                                    </div>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Hunian:</span>
+                                                            <span className="cost-value">$1,300 – $2,700</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Makanan & Transport:</span>
+                                                            <span className="cost-value">$540 – $930</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Bulanan:</span>
+                                                            <span className="cost-value">$1,840 – $3,630</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

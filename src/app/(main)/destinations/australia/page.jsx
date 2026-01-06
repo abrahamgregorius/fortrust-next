@@ -462,6 +462,105 @@ export default function Australia() {
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {/* Mobile Cards */}
+                                        <div className="cost-cards-mobile">
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Melbourne</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Undergraduate):</span>
+                                                        <span className="cost-value">AUD $25,000 – $55,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Graduate):</span>
+                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">College Diploma / Certificate:</span>
+                                                        <span className="cost-value">AUD $6,000 – $18,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Sydney</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Undergraduate):</span>
+                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Graduate):</span>
+                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">College Diploma / Certificate:</span>
+                                                        <span className="cost-value">AUD $8,000 – $20,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Brisbane</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Undergraduate):</span>
+                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Graduate):</span>
+                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">College Diploma / Certificate:</span>
+                                                        <span className="cost-value">AUD $6,000 – $17,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Perth</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Undergraduate):</span>
+                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Graduate):</span>
+                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">College Diploma / Certificate:</span>
+                                                        <span className="cost-value">AUD $5,000 – $15,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Adelaide</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Undergraduate):</span>
+                                                        <span className="cost-value">AUD $20,000 – $27,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">University (Graduate):</span>
+                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">College Diploma / Certificate:</span>
+                                                        <span className="cost-value">AUD $5,000 – $15,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="content-block">
                                         <h3>Average Monthly Living Costs</h3>
@@ -534,6 +633,105 @@ export default function Australia() {
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                        </div>
+
+                                        {/* Mobile Cards */}
+                                        <div className="cost-cards-mobile">
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Melbourne</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Housing (Shared):</span>
+                                                        <span className="cost-value">AUD $900 – $1,500</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Food, Transport, Utilities:</span>
+                                                        <span className="cost-value">AUD $600 – $800</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Monthly Estimate:</span>
+                                                        <span className="cost-value">AUD $1,500 – $2,200</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Sydney</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Housing (Shared):</span>
+                                                        <span className="cost-value">AUD $1,000 – $1,800</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Food, Transport, Utilities:</span>
+                                                        <span className="cost-value">AUD $600 – $700</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Monthly Estimate:</span>
+                                                        <span className="cost-value">AUD $1,600 – $2,500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Brisbane</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Housing (Shared):</span>
+                                                        <span className="cost-value">AUD $800 – $1,200</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Food, Transport, Utilities:</span>
+                                                        <span className="cost-value">AUD $400 – $600</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Monthly Estimate:</span>
+                                                        <span className="cost-value">AUD $1,200 – $1,800</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Perth</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Housing (Shared):</span>
+                                                        <span className="cost-value">AUD $600 – $1,000</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Food, Transport, Utilities:</span>
+                                                        <span className="cost-value">AUD $400 – $600</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Monthly Estimate:</span>
+                                                        <span className="cost-value">AUD $1,100 – $1,600</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Adelaide</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Housing (Shared):</span>
+                                                        <span className="cost-value">AUD $500 – $900</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Food, Transport, Utilities:</span>
+                                                        <span className="cost-value">AUD $400 – $600</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Monthly Estimate:</span>
+                                                        <span className="cost-value">AUD $1,000 – $1,500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

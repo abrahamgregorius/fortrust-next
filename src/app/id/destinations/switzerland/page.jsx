@@ -219,6 +219,65 @@ export default function Switzerland() {
                                                 </tbody>
                                             </table>
                                         </div>
+
+                                        {/* Mobile Cards */}
+                                        <div className="cost-cards-mobile">
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Sarjana (Seni/Bisnis)</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Biaya:</span>
+                                                        <span className="cost-value">CHF 1,000 – 2,500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Sarjana (Sains/Teknik)</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Biaya:</span>
+                                                        <span className="cost-value">CHF 1,500 – 3,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Pascasarjana (Seni/Bisnis)</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Biaya:</span>
+                                                        <span className="cost-value">CHF 1,500 – 3,200</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Pascasarjana (Sains/Teknik)</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Biaya:</span>
+                                                        <span className="cost-value">CHF 1,800 – 4,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Diploma/Advanced Studies</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Biaya:</span>
+                                                        <span className="cost-value">CHF 3,000 – 8,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="content-block">
                                         <h3>Rata-rata Biaya Hidup Bulanan</h3>
@@ -265,6 +324,105 @@ export default function Switzerland() {
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                        </div>
+
+                                        {/* Mobile Cards */}
+                                        <div className="cost-cards-mobile">
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Zurich</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Hunian:</span>
+                                                        <span className="cost-value">CHF 800–1,500</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Makan & Transport:</span>
+                                                        <span className="cost-value">CHF 470–710</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Bulanan:</span>
+                                                        <span className="cost-value">CHF 1,500–2,500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Geneva</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Hunian:</span>
+                                                        <span className="cost-value">CHF 700–1,400</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Makan & Transport:</span>
+                                                        <span className="cost-value">CHF 410–600</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Bulanan:</span>
+                                                        <span className="cost-value">CHF 1,400–2,300</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Bern</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Hunian:</span>
+                                                        <span className="cost-value">CHF 650–1,250</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Makan & Transport:</span>
+                                                        <span className="cost-value">CHF 405–540</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Bulanan:</span>
+                                                        <span className="cost-value">CHF 1,300–2,200</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Lausanne</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Hunian:</span>
+                                                        <span className="cost-value">CHF 600–1,200</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Makan & Transport:</span>
+                                                        <span className="cost-value">CHF 370–530</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Bulanan:</span>
+                                                        <span className="cost-value">CHF 1,200–2,100</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="cost-card">
+                                                <div className="cost-card-header">
+                                                    <h4>Basel</h4>
+                                                </div>
+                                                <div className="cost-details">
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Hunian:</span>
+                                                        <span className="cost-value">CHF 600–1,100</span>
+                                                    </div>
+                                                    <div className="cost-amount">
+                                                        <span className="cost-label">Makan & Transport:</span>
+                                                        <span className="cost-value">CHF 350–470</span>
+                                                    </div>
+                                                    <div className="cost-amount cost-amount-total">
+                                                        <span className="cost-label">Total Bulanan:</span>
+                                                        <span className="cost-value">CHF 1,200–2,000</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

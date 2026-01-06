@@ -373,6 +373,40 @@ export default function USA() {
                                                     </tbody>
                                                 </table>
                                             </div>
+
+                                            {/* Mobile Card Layout for Tuition */}
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>New York</h4>
+                                                        <div className="cost-details">
+                                                            <span>Undergraduate: $22,000 – $54,000</span>
+                                                            <span>Graduate: $28,000 – $60,000</span>
+                                                            <span>College Diploma: $15,000 – $24,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Los Angeles</h4>
+                                                        <div className="cost-details">
+                                                            <span>Undergraduate: $22,000 – $54,000</span>
+                                                            <span>Graduate: $28,000 – $60,000</span>
+                                                            <span>College Diploma: $15,000 – $24,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Boston</h4>
+                                                        <div className="cost-details">
+                                                            <span>Undergraduate: $22,000 – $54,000</span>
+                                                            <span>Graduate: $28,000 – $60,000</span>
+                                                            <span>College Diploma: $15,000 – $24,000</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="content-block">
                                             <h3>Average Monthly Living Costs</h3>
@@ -407,6 +441,40 @@ export default function USA() {
                                                         </tr>
                                                     </tbody>
                                                 </table>
+                                            </div>
+
+                                            {/* Mobile Card Layout for Living Costs */}
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>New York</h4>
+                                                        <div className="cost-details">
+                                                            <span>Housing: $1,200 – $2,600</span>
+                                                            <span>Food & Transport: $520 – $850</span>
+                                                            <span>Total: $1,720 – $3,450</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Los Angeles</h4>
+                                                        <div className="cost-details">
+                                                            <span>Housing: $1,000 – $2,200</span>
+                                                            <span>Food & Transport: $425 – $710</span>
+                                                            <span>Total: $1,425 – $2,910</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>San Francisco</h4>
+                                                        <div className="cost-details">
+                                                            <span>Housing: $1,300 – $2,700</span>
+                                                            <span>Food & Transport: $540 – $930</span>
+                                                            <span>Total: $1,840 – $3,630</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
