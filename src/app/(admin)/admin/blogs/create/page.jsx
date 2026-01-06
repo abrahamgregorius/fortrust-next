@@ -251,7 +251,7 @@ export default function CreateBlogPage() {
                     </div>
 
                     <div>
-                        <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                        <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content ({'<'}350 Words)</label>
                         <div className="border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 min-h-[200px]">
                             <MenuBar editor={editor} />
                             <EditorContent 
