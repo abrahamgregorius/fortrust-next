@@ -2631,10 +2631,12 @@ ul {
     margin: 0;
     font-size: 1.25rem;
     font-weight: 600;
+    color: var(--bg);
 }
 
 .cost-details {
     padding: var(--space-6);
+    background: var(--bg);
 }
 
 .cost-amount {
@@ -2658,7 +2660,7 @@ ul {
 
 .cost-label {
     font-weight: 500;
-    color: var(--neutral-700);
+    color: var(--neutral-800);
     flex: 1;
 }
 
