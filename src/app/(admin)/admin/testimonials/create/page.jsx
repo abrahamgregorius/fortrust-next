@@ -39,6 +39,7 @@ export default function CreateTestimonialPage() {
     person_name: "",
     person_institution: "",
     testimonial: "",
+    display_order: 0,
   });
   const [imageFile, setImageFile] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState(null);
@@ -85,6 +86,7 @@ export default function CreateTestimonialPage() {
         person_institution: formData.person_institution,
         testimonial: formData.testimonial,
         image_url: imageUrl,
+        display_order: formData.display_order,
         created_at: new Date().toISOString(),
       };
 
@@ -106,6 +108,7 @@ export default function CreateTestimonialPage() {
           person_name: "",
           person_institution: "",
           testimonial: "",
+          display_order: 0,
         });
         setImageFile(null);
         setSubmissionStatus(null);
@@ -208,6 +211,24 @@ export default function CreateTestimonialPage() {
               className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter the testimonial text..."
             ></textarea>
+          </div>
+
+          <div>
+            <label
+              htmlFor="display_order"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Display Order
+            </label>
+            <input
+              type="number"
+              id="display_order"
+              name="display_order"
+              value={formData.display_order}
+              onChange={handleChange}
+              className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="0"
+            />
           </div>
 
           <div>

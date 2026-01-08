@@ -111,6 +111,7 @@ export default function App() {
     person_institution: "",
     testimonial: "",
     image_url: "",
+    display_order: 0,
   });
   const [editStatus, setEditStatus] = useState(null);
   const [editImageFile, setEditImageFile] = useState(null);
@@ -130,7 +131,7 @@ export default function App() {
   };
 
   const fetchTestimonials = async () => {
-    const { data, error } = await supabase.from("testimonials").select("*");
+    const { data, error } = await supabase.from("testimonials").select("*").order("display_order", { ascending: true });
     if (error) {
       console.error("Error fetching testimonials:", error);
     } else {
@@ -174,6 +175,7 @@ export default function App() {
       person_institution: testimonial.person_institution || "",
       testimonial: testimonial.testimonial,
       image_url: testimonial.image_url || "",
+      display_order: testimonial.display_order || 0,
     });
     setEditImageFile(null);
     setIsImageLoading(true);
@@ -231,6 +233,7 @@ export default function App() {
           person_institution: editFormData.person_institution,
           testimonial: editFormData.testimonial,
           image_url: imageUrl,
+          display_order: editFormData.display_order,
         })
         .eq("id", selectedTestimonial.id)
         .select();
@@ -304,6 +307,9 @@ export default function App() {
                           Institution
                         </th>
                         <th scope="col" className="px-6 py-3">
+                          Order
+                        </th>
+                        <th scope="col" className="px-6 py-3">
                           Date Created
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
@@ -322,6 +328,9 @@ export default function App() {
                           </td>
                           <td className="px-6 py-4">
                             {test.person_institution}
+                          </td>
+                          <td className="px-6 py-4">
+                            {test.display_order || 0}
                           </td>
                           <td className="px-6 py-4">
                             {formatDate(test.created_at)}
@@ -430,6 +439,23 @@ export default function App() {
                       rows="4"
                       className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     ></textarea>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="edit_display_order"
+                      className="block text-sm font-medium text-gray-700 mb-1"
+                    >
+                      Display Order
+                    </label>
+                    <input
+                      type="number"
+                      id="edit_display_order"
+                      name="display_order"
+                      value={editFormData.display_order}
+                      onChange={handleEditFormChange}
+                      className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    />
                   </div>
 
                   <div>
@@ -598,7 +624,14 @@ export default function App() {
                       {selectedTestimonial.testimonial}
                     </p>
                   </div>
-
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-1">
+                      Display Order:
+                    </h4>
+                    <p className="text-gray-800">
+                      {selectedTestimonial.display_order || 0}
+                    </p>
+                  </div>
                   <div className="text-sm text-gray-500">
                     <p>Created: {formatDate(selectedTestimonial.created_at)}</p>
                   </div>

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import CostDropdown from "@/components/CostDropdown";
 import {
     Briefcase,
     Building2,
@@ -270,35 +269,82 @@ export default function Singapore() {
                                         </div>
                                         <div className="content-block">
                                             <h3>Estimated Monthly Living Costs</h3>
-                                            <CostDropdown
-                                                data={[
-                                                    {
-                                                        expenseCategory: "Housing (shared flat or dorm)",
-                                                        estimatedCost: "SGD 400 – 1,500"
-                                                    },
-                                                    {
-                                                        expenseCategory: "Food",
-                                                        estimatedCost: "SGD 300 – 600"
-                                                    },
-                                                    {
-                                                        expenseCategory: "Transport (EZ-Link pass)",
-                                                        estimatedCost: "SGD 100 – 150"
-                                                    },
-                                                    {
-                                                        expenseCategory: "Utilities & Internet",
-                                                        estimatedCost: "SGD 50 – 150"
-                                                    },
-                                                    {
-                                                        expenseCategory: "Personal & Leisure",
-                                                        estimatedCost: "SGD 200 – 400"
-                                                    },
-                                                    {
-                                                        expenseCategory: "Total Monthly Budget",
-                                                        estimatedCost: "SGD 1,200 – 2,500"
-                                                    }
-                                                ]}
-                                                columns={["Expense Category", "Estimated Cost (per month)"]}
-                                            />
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Expense Category</th>
+                                                            <th>Estimated Cost (per month)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Housing (shared flat or dorm)</td>
+                                                            <td>SGD 400 – 1,500</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Food</td>
+                                                            <td>SGD 300 – 600</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Transport (EZ-Link pass)</td>
+                                                            <td>SGD 100 – 150</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Utilities & Internet</td>
+                                                            <td>SGD 50 – 150</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Personal & Leisure</td>
+                                                            <td>SGD 200 – 400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Monthly Budget</td>
+                                                            <td>SGD 1,200 – 2,500</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            {/* Mobile Card Layout */}
+                                            <div className="cost-cards-mobile">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Housing (shared flat or dorm)</h4>
+                                                        <span className="cost-amount">SGD 400 – 1,500</span>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Food</h4>
+                                                        <span className="cost-amount">SGD 300 – 600</span>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Transport (EZ-Link pass)</h4>
+                                                        <span className="cost-amount">SGD 100 – 150</span>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Utilities & Internet</h4>
+                                                        <span className="cost-amount">SGD 50 – 150</span>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>Personal & Leisure</h4>
+                                                        <span className="cost-amount">SGD 200 – 400</span>
+                                                    </div>
+                                                </div>
+                                                <div className="cost-card cost-card-total">
+                                                    <div className="cost-card-header">
+                                                        <h4>Total Monthly Budget</h4>
+                                                        <span className="cost-amount cost-amount-total">SGD 1,200 – 2,500</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </>
