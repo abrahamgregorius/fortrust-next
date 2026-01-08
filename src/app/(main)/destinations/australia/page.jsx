@@ -3,6 +3,8 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import {
+    ArrowLeftIcon,
+    ArrowRightIcon,
     Briefcase,
     Building2,
     CalendarDays,
@@ -25,6 +27,30 @@ export default function Australia() {
         { id: "partners", label: "Institutions", icon: <Building2 /> },
         { id: "intakes", label: "Intakes", icon: <CalendarDays /> },
     ];
+
+    const tuitionData = [
+        { city: 'Melbourne', undergrad: 'AUD $25,000 – $55,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $6,000 – $18,000' },
+        { city: 'Sydney', undergrad: 'AUD $25,000 – $50,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $8,000 – $20,000' },
+        { city: 'Brisbane', undergrad: 'AUD $25,000 – $50,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $6,000 – $17,000' },
+        { city: 'Perth', undergrad: 'AUD $25,000 – $50,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $5,000 – $15,000' },
+        { city: 'Adelaide', undergrad: 'AUD $20,000 – $27,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $5,000 – $15,000' }
+    ];
+
+    const livingCostData = [
+        { city: 'Melbourne', housing: 'AUD $900 – $1,500', foodTransport: 'AUD $600 – $800', total: 'AUD $1,500 – $2,200' },
+        { city: 'Sydney', housing: 'AUD $1,000 – $1,800', foodTransport: 'AUD $600 – $700', total: 'AUD $1,600 – $2,500' },
+        { city: 'Brisbane', housing: 'AUD $800 – $1,200', foodTransport: 'AUD $400 – $600', total: 'AUD $1,200 – $1,800' },
+        { city: 'Perth', housing: 'AUD $600 – $1,000', foodTransport: 'AUD $400 – $600', total: 'AUD $1,100 – $1,600' },
+        { city: 'Adelaide', housing: 'AUD $500 – $900', foodTransport: 'AUD $400 – $600', total: 'AUD $1,000 – $1,500' }
+    ];
+
+    const [tuitionIndex, setTuitionIndex] = useState(0);
+    const [livingIndex, setLivingIndex] = useState(0);
+
+    const nextTuition = () => setTuitionIndex((prev) => (prev + 1) % tuitionData.length);
+    const prevTuition = () => setTuitionIndex((prev) => (prev - 1 + tuitionData.length) % tuitionData.length);
+    const nextLiving = () => setLivingIndex((prev) => (prev + 1) % livingCostData.length);
+    const prevLiving = () => setLivingIndex((prev) => (prev - 1 + livingCostData.length) % livingCostData.length);
 
     return (
         <>
@@ -369,367 +395,144 @@ export default function Australia() {
                                             Average Annual Tuition Fees
                                             (International Students)
                                         </h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>City</th>
-                                                        <th>
-                                                            University
-                                                            (Undergraduate)
-                                                        </th>
-                                                        <th>
-                                                            University
-                                                            (Graduate)
-                                                        </th>
-                                                        <th>
-                                                            College Diploma /
-                                                            Certificate
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Melbourne</td>
-                                                        <td>
-                                                            AUD $25,000 –
-                                                            $55,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $30,000 –
-                                                            $55,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $6,000 – $18,000
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Sydney</td>
-                                                        <td>
-                                                            AUD $25,000 –
-                                                            $50,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $30,000 –
-                                                            $55,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $8,000 – $20,000
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brisbane</td>
-                                                        <td>
-                                                            AUD $25,000 –
-                                                            $50,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $30,000 –
-                                                            $55,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $6,000 – $17,000
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Perth</td>
-                                                        <td>
-                                                            AUD $25,000 –
-                                                            $50,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $30,000 –
-                                                            $55,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $5,000 – $15,000
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Adelaide</td>
-                                                        <td>
-                                                            AUD $20,000 –
-                                                            $27,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $30,000 –
-                                                            $55,000
-                                                        </td>
-                                                        <td>
-                                                            AUD $5,000 – $15,000
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div className="cost-table-desktop">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>City</th>
+                                                            <th>
+                                                                University
+                                                                (Undergraduate)
+                                                            </th>
+                                                            <th>
+                                                                University
+                                                                (Graduate)
+                                                            </th>
+                                                            <th>
+                                                                College Diploma /
+                                                                Certificate
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {tuitionData.map((item) => (
+                                                            <tr key={item.city}>
+                                                                <td>{item.city}</td>
+                                                                <td>{item.undergrad}</td>
+                                                                <td>{item.grad}</td>
+                                                                <td>{item.diploma}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-
-                                        {/* Mobile Cards */}
-                                        <div className="cost-cards-mobile">
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Melbourne</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Undergraduate):</span>
-                                                        <span className="cost-value">AUD $25,000 – $55,000</span>
+                                        <div className="cost-carousel-mobile">
+                                            <div className="cost-carousel">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>{tuitionData[tuitionIndex].city}</h4>
                                                     </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Graduate):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">College Diploma / Certificate:</span>
-                                                        <span className="cost-value">AUD $6,000 – $18,000</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Sydney</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Undergraduate):</span>
-                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Graduate):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">College Diploma / Certificate:</span>
-                                                        <span className="cost-value">AUD $8,000 – $20,000</span>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">University (Undergraduate):</span>
+                                                            <span className="cost-value">{tuitionData[tuitionIndex].undergrad}</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">University (Graduate):</span>
+                                                            <span className="cost-value">{tuitionData[tuitionIndex].grad}</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">College Diploma / Certificate:</span>
+                                                            <span className="cost-value">{tuitionData[tuitionIndex].diploma}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Brisbane</h4>
+                                                <div className="carousel-controls">
+                                                    <button className="carousel-arrow carousel-prev" onClick={prevTuition}><ArrowLeftIcon /></button>
+                                                    <button className="carousel-arrow carousel-next" onClick={nextTuition}><ArrowRightIcon /></button>
                                                 </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Undergraduate):</span>
-                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Graduate):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">College Diploma / Certificate:</span>
-                                                        <span className="cost-value">AUD $6,000 – $17,000</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Perth</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Undergraduate):</span>
-                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Graduate):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">College Diploma / Certificate:</span>
-                                                        <span className="cost-value">AUD $5,000 – $15,000</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Adelaide</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Undergraduate):</span>
-                                                        <span className="cost-value">AUD $20,000 – $27,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">University (Graduate):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">College Diploma / Certificate:</span>
-                                                        <span className="cost-value">AUD $5,000 – $15,000</span>
-                                                    </div>
+                                                <div className="city-indicators">
+                                                    {tuitionData.map((_, idx) => (
+                                                        <div
+                                                            key={idx}
+                                                            className={`city-dot ${idx === tuitionIndex ? 'active' : ''}`}
+                                                            onClick={() => setTuitionIndex(idx)}
+                                                        />
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="content-block">
                                         <h3>Average Monthly Living Costs</h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>City</th>
-                                                        <th>
-                                                            Housing (Shared)
-                                                        </th>
-                                                        <th>
-                                                            Food, Transport,
-                                                            Utilities
-                                                        </th>
-                                                        <th>
-                                                            Total Monthly
-                                                            Estimate
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Melbourne</td>
-                                                        <td>
-                                                            AUD $900 – $1,500
-                                                        </td>
-                                                        <td>AUD $600 – $800</td>
-                                                        <td>
-                                                            AUD $1,500 – $2,200
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Sydney</td>
-                                                        <td>
-                                                            AUD $1,000 – $1,800
-                                                        </td>
-                                                        <td>AUD $600 – $700</td>
-                                                        <td>
-                                                            AUD $1,600 – $2,500
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brisbane</td>
-                                                        <td>
-                                                            AUD $800 – $1,200
-                                                        </td>
-                                                        <td>AUD $400 – $600</td>
-                                                        <td>
-                                                            AUD $1,200 – $1,800
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Perth</td>
-                                                        <td>
-                                                            AUD $600 – $1,000
-                                                        </td>
-                                                        <td>AUD $400 – $600</td>
-                                                        <td>
-                                                            AUD $1,100 – $1,600
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Adelaide</td>
-                                                        <td>AUD $500 – $900</td>
-                                                        <td>AUD $400 – $600</td>
-                                                        <td>
-                                                            AUD $1,000 – $1,500
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div className="cost-table-desktop">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>City</th>
+                                                            <th>
+                                                                Housing (Shared)
+                                                            </th>
+                                                            <th>
+                                                                Food, Transport,
+                                                                Utilities
+                                                            </th>
+                                                            <th>
+                                                                Total Monthly
+                                                                Estimate
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {livingCostData.map((item) => (
+                                                            <tr key={item.city}>
+                                                                <td>{item.city}</td>
+                                                                <td>{item.housing}</td>
+                                                                <td>{item.foodTransport}</td>
+                                                                <td>{item.total}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
 
-                                        {/* Mobile Cards */}
-                                        <div className="cost-cards-mobile">
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Melbourne</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Housing (Shared):</span>
-                                                        <span className="cost-value">AUD $900 – $1,500</span>
+                                        <div className="cost-carousel-mobile">
+                                            <div className="cost-carousel">
+                                                <div className="cost-card">
+                                                    <div className="cost-card-header">
+                                                        <h4>{livingCostData[livingIndex].city}</h4>
                                                     </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Food, Transport, Utilities:</span>
-                                                        <span className="cost-value">AUD $600 – $800</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Monthly Estimate:</span>
-                                                        <span className="cost-value">AUD $1,500 – $2,200</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Sydney</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Housing (Shared):</span>
-                                                        <span className="cost-value">AUD $1,000 – $1,800</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Food, Transport, Utilities:</span>
-                                                        <span className="cost-value">AUD $600 – $700</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Monthly Estimate:</span>
-                                                        <span className="cost-value">AUD $1,600 – $2,500</span>
+                                                    <div className="cost-details">
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Housing (Shared):</span>
+                                                            <span className="cost-value">{livingCostData[livingIndex].housing}</span>
+                                                        </div>
+                                                        <div className="cost-amount">
+                                                            <span className="cost-label">Food, Transport, Utilities:</span>
+                                                            <span className="cost-value">{livingCostData[livingIndex].foodTransport}</span>
+                                                        </div>
+                                                        <div className="cost-amount cost-amount-total">
+                                                            <span className="cost-label">Total Monthly Estimate:</span>
+                                                            <span className="cost-value">{livingCostData[livingIndex].total}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Brisbane</h4>
+                                                <div className="carousel-controls">
+                                                    <button className="carousel-arrow carousel-prev" onClick={prevLiving}><ArrowLeftIcon /></button>
+                                                    <button className="carousel-arrow carousel-next" onClick={nextLiving}><ArrowRightIcon /></button>
                                                 </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Housing (Shared):</span>
-                                                        <span className="cost-value">AUD $800 – $1,200</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Food, Transport, Utilities:</span>
-                                                        <span className="cost-value">AUD $400 – $600</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Monthly Estimate:</span>
-                                                        <span className="cost-value">AUD $1,200 – $1,800</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Perth</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Housing (Shared):</span>
-                                                        <span className="cost-value">AUD $600 – $1,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Food, Transport, Utilities:</span>
-                                                        <span className="cost-value">AUD $400 – $600</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Monthly Estimate:</span>
-                                                        <span className="cost-value">AUD $1,100 – $1,600</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Adelaide</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Housing (Shared):</span>
-                                                        <span className="cost-value">AUD $500 – $900</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Food, Transport, Utilities:</span>
-                                                        <span className="cost-value">AUD $400 – $600</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Monthly Estimate:</span>
-                                                        <span className="cost-value">AUD $1,000 – $1,500</span>
-                                                    </div>
+                                                <div className="city-indicators">
+                                                    {livingCostData.map((_, idx) => (
+                                                        <div
+                                                            key={idx}
+                                                            className={`city-dot ${idx === livingIndex ? 'active' : ''}`}
+                                                            onClick={() => setLivingIndex(idx)}
+                                                        />
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
