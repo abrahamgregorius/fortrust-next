@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import Carousel from "@/components/Carousel";
 import {
     Briefcase,
     Building2,
@@ -12,6 +12,7 @@ import {
     LayoutGrid,
     Wallet,
 } from "lucide-react";
+import { useState } from "react";
 
 export default function Australia() {
     const [activeTab, setActiveTab] = useState("overview");
@@ -24,6 +25,50 @@ export default function Australia() {
         { id: "scholarships", label: "Beasiswa", icon: <GraduationCap /> },
         { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
+    ];
+
+    const tuitionData = [
+        { city: 'Melbourne', undergrad: 'AUD $25,000 – $55,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $6,000 – $18,000' },
+        { city: 'Sydney', undergrad: 'AUD $25,000 – $50,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $8,000 – $20,000' },
+        { city: 'Brisbane', undergrad: 'AUD $25,000 – $50,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $6,000 – $17,000' },
+        { city: 'Perth', undergrad: 'AUD $25,000 – $50,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $5,000 – $15,000' },
+        { city: 'Adelaide', undergrad: 'AUD $20,000 – $27,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $5,000 – $15,000' }
+    ];
+
+    const livingCostData = [
+        { city: 'Melbourne', housing: 'AUD $900 – $1,500', foodTransport: 'AUD $600 – $800', total: 'AUD $1,500 – $2,200' },
+        { city: 'Sydney', housing: 'AUD $1,000 – $1,800', foodTransport: 'AUD $600 – $700', total: 'AUD $1,600 – $2,500' },
+        { city: 'Brisbane', housing: 'AUD $800 – $1,200', foodTransport: 'AUD $400 – $600', total: 'AUD $1,200 – $1,800' },
+        { city: 'Perth', housing: 'AUD $600 – $1,000', foodTransport: 'AUD $400 – $600', total: 'AUD $1,100 – $1,600' },
+        { city: 'Adelaide', housing: 'AUD $500 – $900', foodTransport: 'AUD $400 – $600', total: 'AUD $1,000 – $1,500' }
+    ];
+
+    const citiesData = [
+        {
+            city: 'Melbourne',
+            institutions: 'University of Melbourne, Monash University',
+            highlights: 'Terkenal dengan budaya, seni, dan keragaman. Pasar kerja yang sangat baik.'
+        },
+        {
+            city: 'Sydney',
+            institutions: 'University of Sydney (USYD), University of New South Wales (UNSW)',
+            highlights: 'Pusat bisnis global, pantai yang menakjubkan, dan akselerasi karier yang tak tertandingi.'
+        },
+        {
+            city: 'Brisbane',
+            institutions: 'University of Queensland (UQ), QUT, Griffith University',
+            highlights: 'Biaya hidup terjangkau, iklim subtropis, dan inovasi dalam riset.'
+        },
+        {
+            city: 'Perth',
+            institutions: 'University of Western Australia (UWA), Curtin University',
+            highlights: 'Gerbang menuju Asia, kuat di pertambangan/energi, dengan gaya hidup santai.'
+        },
+        {
+            city: 'Adelaide',
+            institutions: 'University of Adelaide, Flinders University',
+            highlights: 'Luas, terjangkau, dan sangat baik untuk ilmu pertahanan dan kesehatan.'
+        }
     ];
 
     return (
@@ -77,44 +122,66 @@ export default function Australia() {
                                     </div>
                                     <div className="content-block">
                                         <h3>5 Kota Terbaik untuk Kuliah di Australia</h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Kota</th>
-                                                        <th>Institusi Utama</th>
-                                                        <th>Keunggulan Kota</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Melbourne</td>
-                                                        <td>University of Melbourne, Monash University</td>
-                                                        <td>Terkenal dengan budaya, seni, dan keragaman. Pasar kerja yang sangat baik.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Sydney</td>
-                                                        <td>University of Sydney (USYD), University of New South Wales (UNSW)</td>
-                                                        <td>Pusat bisnis global, pantai yang menakjubkan, dan akselerasi karier yang tak tertandingi.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brisbane</td>
-                                                        <td>University of Queensland (UQ), QUT, Griffith University</td>
-                                                        <td>Biaya hidup terjangkau, iklim subtropis, dan inovasi dalam riset.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Perth</td>
-                                                        <td>University of Western Australia (UWA), Curtin University</td>
-                                                        <td>Gerbang menuju Asia, kuat di pertambangan/energi, dengan gaya hidup santai.</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Adelaide</td>
-                                                        <td>University of Adelaide, Flinders University</td>
-                                                        <td>Luas, terjangkau, dan sangat baik untuk ilmu pertahanan dan kesehatan.</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div className="cities-table-desktop">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Kota</th>
+                                                            <th>Institusi Utama</th>
+                                                            <th>Keunggulan Kota</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Melbourne</td>
+                                                            <td>University of Melbourne, Monash University</td>
+                                                            <td>Terkenal dengan budaya, seni, dan keragaman. Pasar kerja yang sangat baik.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sydney</td>
+                                                            <td>University of Sydney (USYD), University of New South Wales (UNSW)</td>
+                                                            <td>Pusat bisnis global, pantai yang menakjubkan, dan akselerasi karier yang tak tertandingi.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Brisbane</td>
+                                                            <td>University of Queensland (UQ), QUT, Griffith University</td>
+                                                            <td>Biaya hidup terjangkau, iklim subtropis, dan inovasi dalam riset.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Perth</td>
+                                                            <td>University of Western Australia (UWA), Curtin University</td>
+                                                            <td>Gerbang menuju Asia, kuat di pertambangan/energi, dengan gaya hidup santai.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Adelaide</td>
+                                                            <td>University of Adelaide, Flinders University</td>
+                                                            <td>Luas, terjangkau, dan sangat baik untuk ilmu pertahanan dan kesehatan.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
+                                        <Carousel
+                                            data={citiesData}
+                                            renderItem={(city, index) => (
+                                                <>
+                                                    <div className="card-header">
+                                                        <h4>{city.city}</h4>
+                                                    </div>
+                                                    <div className="details">
+                                                        <div className="detail-item">
+                                                            <span className="label">Institusi Utama:</span>
+                                                            <span className="value">{city.institutions}</span>
+                                                        </div>
+                                                        <div className="detail-item">
+                                                            <span className="label">Keunggulan Kota:</span>
+                                                            <span className="value">{city.highlights}</span>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )}
+                                        />
                                     </div>
                                 </div>
                             )}
@@ -158,295 +225,106 @@ export default function Australia() {
                                     </div>
                                     <div className="content-block">
                                         <h3>Rata-rata Biaya Kuliah Tahunan (Mahasiswa Internasional)</h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Kota</th>
-                                                        <th>Universitas (S1)</th>
-                                                        <th>Universitas (S2/S3)</th>
-                                                        <th>Diploma / Sertifikat Perguruan Tinggi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Melbourne</td>
-                                                        <td>AUD $25,000 – $55,000</td>
-                                                        <td>AUD $30,000 – $55,000</td>
-                                                        <td>AUD $6,000 – $18,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Sydney</td>
-                                                        <td>AUD $25,000 – $50,000</td>
-                                                        <td>AUD $30,000 – $55,000</td>
-                                                        <td>AUD $8,000 – $20,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brisbane</td>
-                                                        <td>AUD $25,000 – $50,000</td>
-                                                        <td>AUD $30,000 – $55,000</td>
-                                                        <td>AUD $6,000 – $17,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Perth</td>
-                                                        <td>AUD $25,000 – $50,000</td>
-                                                        <td>AUD $30,000 – $55,000</td>
-                                                        <td>AUD $5,000 – $15,000</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Adelaide</td>
-                                                        <td>AUD $20,000 – $27,000</td>
-                                                        <td>AUD $30,000 – $55,000</td>
-                                                        <td>AUD $5,000 – $15,000</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        {/* Mobile Cards */}
-                                        <div className="cost-cards-mobile">
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Melbourne</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S1):</span>
-                                                        <span className="cost-value">AUD $25,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S2/S3):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Diploma / Sertifikat:</span>
-                                                        <span className="cost-value">AUD $6,000 – $18,000</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Sydney</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S1):</span>
-                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S2/S3):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Diploma / Sertifikat:</span>
-                                                        <span className="cost-value">AUD $8,000 – $20,000</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Brisbane</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S1):</span>
-                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S2/S3):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Diploma / Sertifikat:</span>
-                                                        <span className="cost-value">AUD $6,000 – $17,000</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Perth</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S1):</span>
-                                                        <span className="cost-value">AUD $25,000 – $50,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S2/S3):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Diploma / Sertifikat:</span>
-                                                        <span className="cost-value">AUD $5,000 – $15,000</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Adelaide</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S1):</span>
-                                                        <span className="cost-value">AUD $20,000 – $27,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Universitas (S2/S3):</span>
-                                                        <span className="cost-value">AUD $30,000 – $55,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Diploma / Sertifikat:</span>
-                                                        <span className="cost-value">AUD $5,000 – $15,000</span>
-                                                    </div>
-                                                </div>
+                                        <div className="cost-table-desktop">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Kota</th>
+                                                            <th>Universitas (S1)</th>
+                                                            <th>Universitas (S2/S3)</th>
+                                                            <th>Diploma / Sertifikat Perguruan Tinggi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {tuitionData.map((item) => (
+                                                            <tr key={item.city}>
+                                                                <td>{item.city}</td>
+                                                                <td>{item.undergrad}</td>
+                                                                <td>{item.grad}</td>
+                                                                <td>{item.diploma}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
+                                        <Carousel
+                                            data={tuitionData}
+                                            renderItem={(cost, index) => (
+                                                <>
+                                                    <div className="card-header">
+                                                        <h4>{cost.city}</h4>
+                                                    </div>
+                                                    <div className="details">
+                                                        <div className="detail-item">
+                                                            <span className="label">Universitas (S1):</span>
+                                                            <span className="value">{cost.undergrad}</span>
+                                                        </div>
+                                                        <div className="detail-item">
+                                                            <span className="label">Universitas (S2/S3):</span>
+                                                            <span className="value">{cost.grad}</span>
+                                                        </div>
+                                                        <div className="detail-item">
+                                                            <span className="label">Diploma / Sertifikat Perguruan Tinggi:</span>
+                                                            <span className="value">{cost.diploma}</span>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )}
+                                        />
                                     </div>
                                     <div className="content-block">
                                         <h3>Rata-rata Biaya Hidup Bulanan</h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Kota</th>
-                                                        <th>Tempat Tinggal (Berbagi)</th>
-                                                        <th>Makanan, Transportasi, Utilitas</th>
-                                                        <th>Total Perkiraan Bulanan</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Melbourne</td>
-                                                        <td>AUD $900 – $1,500</td>
-                                                        <td>AUD $600 – $800</td>
-                                                        <td>AUD $1,500 – $2,200</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Sydney</td>
-                                                        <td>AUD $1,000 – $1,800</td>
-                                                        <td>AUD $600 – $700</td>
-                                                        <td>AUD $1,600 – $2,500</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brisbane</td>
-                                                        <td>AUD $800 – $1,200</td>
-                                                        <td>AUD $400 – $600</td>
-                                                        <td>AUD $1,200 – $1,800</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Perth</td>
-                                                        <td>AUD $600 – $1,000</td>
-                                                        <td>AUD $400 – $600</td>
-                                                        <td>AUD $1,100 – $1,600</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Adelaide</td>
-                                                        <td>AUD $500 – $900</td>
-                                                        <td>AUD $400 – $600</td>
-                                                        <td>AUD $1,000 – $1,500</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div className="cost-table-desktop">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Kota</th>
+                                                            <th>Tempat Tinggal (Berbagi)</th>
+                                                            <th>Makanan, Transportasi, Utilitas</th>
+                                                            <th>Total Perkiraan Bulanan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {livingCostData.map((item) => (
+                                                            <tr key={item.city}>
+                                                                <td>{item.city}</td>
+                                                                <td>{item.housing}</td>
+                                                                <td>{item.foodTransport}</td>
+                                                                <td>{item.total}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
 
-                                        {/* Mobile Cards */}
-                                        <div className="cost-cards-mobile">
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Melbourne</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Tempat Tinggal (Berbagi):</span>
-                                                        <span className="cost-value">AUD $900 – $1,500</span>
+                                        <Carousel
+                                            data={livingCostData}
+                                            renderItem={(cost, index) => (
+                                                <>
+                                                    <div className="card-header">
+                                                        <h4>{cost.city}</h4>
                                                     </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Makanan, Transportasi, Utilitas:</span>
-                                                        <span className="cost-value">AUD $600 – $800</span>
+                                                    <div className="details">
+                                                        <div className="detail-item">
+                                                            <span className="label">Tempat Tinggal (Berbagi):</span>
+                                                            <span className="value">{cost.housing}</span>
+                                                        </div>
+                                                        <div className="detail-item">
+                                                            <span className="label">Makanan, Transportasi, Utilitas:</span>
+                                                            <span className="value">{cost.foodTransport}</span>
+                                                        </div>
+                                                        <div className="detail-item total">
+                                                            <span className="label">Total Perkiraan Bulanan:</span>
+                                                            <span className="value">{cost.total}</span>
+                                                        </div>
                                                     </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Perkiraan Bulanan:</span>
-                                                        <span className="cost-value">AUD $1,500 – $2,200</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Sydney</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Tempat Tinggal (Berbagi):</span>
-                                                        <span className="cost-value">AUD $1,000 – $1,800</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Makanan, Transportasi, Utilitas:</span>
-                                                        <span className="cost-value">AUD $600 – $700</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Perkiraan Bulanan:</span>
-                                                        <span className="cost-value">AUD $1,600 – $2,500</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Brisbane</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Tempat Tinggal (Berbagi):</span>
-                                                        <span className="cost-value">AUD $800 – $1,200</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Makanan, Transportasi, Utilitas:</span>
-                                                        <span className="cost-value">AUD $400 – $600</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Perkiraan Bulanan:</span>
-                                                        <span className="cost-value">AUD $1,200 – $1,800</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Perth</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Tempat Tinggal (Berbagi):</span>
-                                                        <span className="cost-value">AUD $600 – $1,000</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Makanan, Transportasi, Utilitas:</span>
-                                                        <span className="cost-value">AUD $400 – $600</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Perkiraan Bulanan:</span>
-                                                        <span className="cost-value">AUD $1,100 – $1,600</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="cost-card">
-                                                <div className="cost-card-header">
-                                                    <h4>Adelaide</h4>
-                                                </div>
-                                                <div className="cost-details">
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Tempat Tinggal (Berbagi):</span>
-                                                        <span className="cost-value">AUD $500 – $900</span>
-                                                    </div>
-                                                    <div className="cost-amount">
-                                                        <span className="cost-label">Makanan, Transportasi, Utilitas:</span>
-                                                        <span className="cost-value">AUD $400 – $600</span>
-                                                    </div>
-                                                    <div className="cost-amount cost-amount-total">
-                                                        <span className="cost-label">Total Perkiraan Bulanan:</span>
-                                                        <span className="cost-value">AUD $1,000 – $1,500</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </>
+                                            )}
+                                        />
                                     </div>
                                 </div>
                             )}

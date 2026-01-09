@@ -10,7 +10,7 @@ export default function Interest() {
                 <section className="page-header">
                     <div className="container">
                         <h1>Interest & Aptitude Test</h1>
-                        <p>Shaping Your Child's Future: Clear Steps for Maximum Potential</p>
+                        <p>Clear Steps for Maximum Potential</p>
                     </div>
                 </section>
 
@@ -25,7 +25,6 @@ export default function Interest() {
                         </div>
 
                         <div className="content-block">
-                            <h2>The Importance of Profiling Tests in Children's Future Planning</h2>
                             <p>
                                 Profiling tests reveal a child's personality, learning style, and thought patterns. This key
                                 information allows parents to select the best learning environment, boosting confidence and
@@ -41,10 +40,6 @@ export default function Interest() {
                                 their chosen path? Our expert assessment guides children with clarity, minimizing confusion and
                                 preparing them for success.
                             </p>
-                        </div>
-
-                        <div className="content-block">
-                            <h2>Interest Talent Evaluations Foster a Bright Tomorrow</h2>
                             <p>
                                 Interest talent evaluations help children discover passions and talents early. Parents can then
                                 steer education and activities to leverage these strengths.
@@ -75,7 +70,7 @@ export default function Interest() {
                             className="final-cta"
                             style={{ padding: "var(--space-12) 0", marginTop: "var(--space-8)", borderRadius: "var(--radius-card)" }}
                         >
-                            <div className="container final-cta__container">
+                            <div className="container final-cta__container" style={{ textAlign: 'center' }}>
                                 <h2>Take the Guesswork Out of Your Child's Future</h2>
                                 <p>
                                     Get Expert Guidance with Fortrust's Complete Profiling Test.

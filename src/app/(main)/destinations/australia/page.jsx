@@ -2,9 +2,8 @@
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import Carousel from "@/components/Carousel";
 import {
-    ArrowLeftIcon,
-    ArrowRightIcon,
     Briefcase,
     Building2,
     CalendarDays,
@@ -16,7 +15,6 @@ import {
 import { useState } from "react";
 
 export default function Australia() {
-    const [activeTab, setActiveTab] = useState("overview");
 
     const tabs = [
         { id: "overview", label: "Overview", icon: <LayoutGrid /> },
@@ -44,13 +42,35 @@ export default function Australia() {
         { city: 'Adelaide', housing: 'AUD $500 – $900', foodTransport: 'AUD $400 – $600', total: 'AUD $1,000 – $1,500' }
     ];
 
-    const [tuitionIndex, setTuitionIndex] = useState(0);
-    const [livingIndex, setLivingIndex] = useState(0);
+    const citiesData = [
+        {
+            city: 'Melbourne',
+            institutions: 'University of Melbourne, Monash University',
+            highlights: 'Renowned for culture, arts, and diversity. Excellent job market.'
+        },
+        {
+            city: 'Sydney',
+            institutions: 'University of Sydney (USYD), University of New South Wales (UNSW)',
+            highlights: 'Global business hub, stunning beaches, and unmatched career acceleration.'
+        },
+        {
+            city: 'Brisbane',
+            institutions: 'University of Queensland (UQ), QUT, Griffith University',
+            highlights: 'Affordable living, subtropical climate, and innovation in research.'
+        },
+        {
+            city: 'Perth',
+            institutions: 'University of Western Australia (UWA), Curtin University',
+            highlights: 'Gateway to Asia, strong in mining/energy, with a relaxed lifestyle.'
+        },
+        {
+            city: 'Adelaide',
+            institutions: 'University of Adelaide, Flinders University',
+            highlights: 'Spacious, affordable, and excellent for defense and health sciences.'
+        }
+    ];
 
-    const nextTuition = () => setTuitionIndex((prev) => (prev + 1) % tuitionData.length);
-    const prevTuition = () => setTuitionIndex((prev) => (prev - 1 + tuitionData.length) % tuitionData.length);
-    const nextLiving = () => setLivingIndex((prev) => (prev + 1) % livingCostData.length);
-    const prevLiving = () => setLivingIndex((prev) => (prev - 1 + livingCostData.length) % livingCostData.length);
+    const [activeTab, setActiveTab] = useState("overview");
 
     return (
         <>
@@ -193,95 +213,117 @@ export default function Australia() {
                                         <h3>
                                             Top 5 Cities to Study in Australia
                                         </h3>
-                                        <div className="table-responsive">
-                                            <table className="data-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>City</th>
-                                                        <th>
-                                                            Key Institutions
-                                                        </th>
-                                                        <th>City Highlights</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Melbourne</td>
-                                                        <td>
-                                                            University of
-                                                            Melbourne, Monash
-                                                            University
-                                                        </td>
-                                                        <td>
-                                                            Renowned for
-                                                            culture, arts, and
-                                                            diversity. Excellent
-                                                            job market.
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Sydney</td>
-                                                        <td>
-                                                            University of Sydney
-                                                            (USYD), University
-                                                            of New South Wales
-                                                            (UNSW)
-                                                        </td>
-                                                        <td>
-                                                            Global business hub,
-                                                            stunning beaches,
-                                                            and unmatched career
-                                                            acceleration.
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brisbane</td>
-                                                        <td>
-                                                            University of
-                                                            Queensland (UQ),
-                                                            QUT, Griffith
-                                                            University
-                                                        </td>
-                                                        <td>
-                                                            Affordable living,
-                                                            subtropical climate,
-                                                            and innovation in
-                                                            research.
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Perth</td>
-                                                        <td>
-                                                            University of
-                                                            Western Australia
-                                                            (UWA), Curtin
-                                                            University
-                                                        </td>
-                                                        <td>
-                                                            Gateway to Asia,
-                                                            strong in
-                                                            mining/energy, with
-                                                            a relaxed lifestyle.
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Adelaide</td>
-                                                        <td>
-                                                            University of
-                                                            Adelaide, Flinders
-                                                            University
-                                                        </td>
-                                                        <td>
-                                                            Spacious,
-                                                            affordable, and
-                                                            excellent for
-                                                            defense and health
-                                                            sciences.
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div className="cities-table-desktop">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>City</th>
+                                                            <th>
+                                                                Key Institutions
+                                                            </th>
+                                                            <th>City Highlights</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Melbourne</td>
+                                                            <td>
+                                                                University of
+                                                                Melbourne, Monash
+                                                                University
+                                                            </td>
+                                                            <td>
+                                                                Renowned for
+                                                                culture, arts, and
+                                                                diversity. Excellent
+                                                                job market.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sydney</td>
+                                                            <td>
+                                                                University of Sydney
+                                                                (USYD), University
+                                                                of New South Wales
+                                                                (UNSW)
+                                                            </td>
+                                                            <td>
+                                                                Global business hub,
+                                                                stunning beaches,
+                                                                and unmatched career
+                                                                acceleration.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Brisbane</td>
+                                                            <td>
+                                                                University of
+                                                                Queensland (UQ),
+                                                                QUT, Griffith
+                                                                University
+                                                            </td>
+                                                            <td>
+                                                                Affordable living,
+                                                                subtropical climate,
+                                                                and innovation in
+                                                                research.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Perth</td>
+                                                            <td>
+                                                                University of
+                                                                Western Australia
+                                                                (UWA), Curtin
+                                                                University
+                                                            </td>
+                                                            <td>
+                                                                Gateway to Asia,
+                                                                strong in
+                                                                mining/energy, with
+                                                                a relaxed lifestyle.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Adelaide</td>
+                                                            <td>
+                                                                University of
+                                                                Adelaide, Flinders
+                                                                University
+                                                            </td>
+                                                            <td>
+                                                                Spacious,
+                                                                affordable, and
+                                                                excellent for
+                                                                defense and health
+                                                                sciences.
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
+                                        <Carousel
+                                            data={citiesData}
+                                            renderItem={(city, index) => (
+                                                <>
+                                                    <div className="card-header">
+                                                        <h4>{city.city}</h4>
+                                                    </div>
+                                                    <div className="details">
+                                                        <div className="detail-item">
+                                                            <span className="label">Key Institutions:</span>
+                                                            <span className="value">{city.institutions}</span>
+                                                        </div>
+                                                        <div className="detail-item">
+                                                            <span className="label">City Highlights:</span>
+                                                            <span className="value">{city.highlights}</span>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )}
+                                        />
                                     </div>
                                 </div>
                             )}
@@ -428,42 +470,30 @@ export default function Australia() {
                                                 </table>
                                             </div>
                                         </div>
-                                        <div className="cost-carousel-mobile">
-                                            <div className="cost-carousel">
-                                                <div className="cost-card">
-                                                    <div className="cost-card-header">
-                                                        <h4>{tuitionData[tuitionIndex].city}</h4>
+                                        <Carousel
+                                            data={tuitionData}
+                                            renderItem={(tuition, index) => (
+                                                <>
+                                                    <div className="card-header">
+                                                        <h4>{tuition.city}</h4>
                                                     </div>
-                                                    <div className="cost-details">
-                                                        <div className="cost-amount">
-                                                            <span className="cost-label">University (Undergraduate):</span>
-                                                            <span className="cost-value">{tuitionData[tuitionIndex].undergrad}</span>
+                                                    <div className="details">
+                                                        <div className="detail-item">
+                                                            <span className="label">University (Undergraduate):</span>
+                                                            <span className="value">{tuition.undergrad}</span>
                                                         </div>
-                                                        <div className="cost-amount">
-                                                            <span className="cost-label">University (Graduate):</span>
-                                                            <span className="cost-value">{tuitionData[tuitionIndex].grad}</span>
+                                                        <div className="detail-item">
+                                                            <span className="label">University (Graduate):</span>
+                                                            <span className="value">{tuition.grad}</span>
                                                         </div>
-                                                        <div className="cost-amount">
-                                                            <span className="cost-label">College Diploma / Certificate:</span>
-                                                            <span className="cost-value">{tuitionData[tuitionIndex].diploma}</span>
+                                                        <div className="detail-item">
+                                                            <span className="label">College Diploma / Certificate:</span>
+                                                            <span className="value">{tuition.diploma}</span>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="carousel-controls">
-                                                    <button className="carousel-arrow carousel-prev" onClick={prevTuition}><ArrowLeftIcon /></button>
-                                                    <button className="carousel-arrow carousel-next" onClick={nextTuition}><ArrowRightIcon /></button>
-                                                </div>
-                                                <div className="city-indicators">
-                                                    {tuitionData.map((_, idx) => (
-                                                        <div
-                                                            key={idx}
-                                                            className={`city-dot ${idx === tuitionIndex ? 'active' : ''}`}
-                                                            onClick={() => setTuitionIndex(idx)}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </>
+                                            )}
+                                        />
                                     </div>
                                     <div className="content-block">
                                         <h3>Average Monthly Living Costs</h3>
@@ -500,42 +530,30 @@ export default function Australia() {
                                             </div>
                                         </div>
 
-                                        <div className="cost-carousel-mobile">
-                                            <div className="cost-carousel">
-                                                <div className="cost-card">
-                                                    <div className="cost-card-header">
-                                                        <h4>{livingCostData[livingIndex].city}</h4>
+                                        <Carousel
+                                            data={livingCostData}
+                                            renderItem={(living, index) => (
+                                                <>
+                                                    <div className="card-header">
+                                                        <h4>{living.city}</h4>
                                                     </div>
-                                                    <div className="cost-details">
-                                                        <div className="cost-amount">
-                                                            <span className="cost-label">Housing (Shared):</span>
-                                                            <span className="cost-value">{livingCostData[livingIndex].housing}</span>
+                                                    <div className="details">
+                                                        <div className="detail-item">
+                                                            <span className="label">Housing (Shared):</span>
+                                                            <span className="value">{living.housing}</span>
                                                         </div>
-                                                        <div className="cost-amount">
-                                                            <span className="cost-label">Food, Transport, Utilities:</span>
-                                                            <span className="cost-value">{livingCostData[livingIndex].foodTransport}</span>
+                                                        <div className="detail-item">
+                                                            <span className="label">Food, Transport, Utilities:</span>
+                                                            <span className="value">{living.foodTransport}</span>
                                                         </div>
-                                                        <div className="cost-amount cost-amount-total">
-                                                            <span className="cost-label">Total Monthly Estimate:</span>
-                                                            <span className="cost-value">{livingCostData[livingIndex].total}</span>
+                                                        <div className="detail-item total">
+                                                            <span className="label">Total Monthly Estimate:</span>
+                                                            <span className="value">{living.total}</span>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="carousel-controls">
-                                                    <button className="carousel-arrow carousel-prev" onClick={prevLiving}><ArrowLeftIcon /></button>
-                                                    <button className="carousel-arrow carousel-next" onClick={nextLiving}><ArrowRightIcon /></button>
-                                                </div>
-                                                <div className="city-indicators">
-                                                    {livingCostData.map((_, idx) => (
-                                                        <div
-                                                            key={idx}
-                                                            className={`city-dot ${idx === livingIndex ? 'active' : ''}`}
-                                                            onClick={() => setLivingIndex(idx)}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </>
+                                            )}
+                                        />
                                     </div>
                                 </div>
                             )}
