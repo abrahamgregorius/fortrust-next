@@ -36,7 +36,8 @@ export default function CreateEventsPage() {
     location: "",
     registration_link: "",
     status: "pending",
-    is_public: true,
+    speaker: "",
+    topics: "",
   });
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
@@ -62,7 +63,8 @@ export default function CreateEventsPage() {
         location: formData.location,
         registration_link: formData.registration_link || null,
         status: formData.status,
-        is_public: formData.is_public,
+        speaker: formData.speaker,
+        topics: formData.topics,
         created_at: new Date().toISOString(),
       };
 
@@ -87,7 +89,8 @@ export default function CreateEventsPage() {
           location: "",
           registration_link: "",
           status: "pending",
-          is_public: true,
+          speaker: "",
+          topics: "",
         });
         setSubmissionStatus(null);
       }, 2000);
@@ -150,25 +153,83 @@ export default function CreateEventsPage() {
 
             <div>
               <label
-                htmlFor="description"
+                htmlFor="status"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Description
+                Status
               </label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                  <Icon path={ICONS.institution} />
-                </span>
-                <textarea
-                  id="description"
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  rows={4}
-                  className="pl-3 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  placeholder="Short description of the event"
-                />
-              </div>
+              <select
+                id="status"
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="inactive">Inactive</option>
+                <option value="active">Active</option>
+              </select>
+            </div>
+          </div>
+
+
+
+          <div>
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Description
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                <Icon path={ICONS.institution} />
+              </span>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                rows={4}
+                className="pl-3 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Short description of the event"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label
+                htmlFor="speaker"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Speaker
+              </label>
+              <input
+                type="text"
+                id="speaker"
+                name="speaker"
+                value={formData.speaker}
+                onChange={handleChange}
+                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Mr./Ms./Mrs."
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="topics"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Topics (comma separated)
+              </label>
+              <input
+                type="text"
+                id="topics"
+                name="topics"
+                value={formData.topics}
+                onChange={handleChange}
+                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="Education,..."
+              />
             </div>
           </div>
 
@@ -201,7 +262,7 @@ export default function CreateEventsPage() {
                 htmlFor="start_at"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Start date
+                Start date of event
               </label>
               <div className="relative">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
@@ -222,7 +283,7 @@ export default function CreateEventsPage() {
                 htmlFor="end_at"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                End date
+                End date of event
               </label>
               <div className="relative">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
@@ -263,61 +324,14 @@ export default function CreateEventsPage() {
             </div>
           </div>
 
-          {/* extra controls: status and visibility */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label
-                htmlFor="status"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Status
-              </label>
-              <select
-                id="status"
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                <option value="pending">Pending</option>
-                <option value="success">Success</option>
-              </select>
-            </div>
-
-            <div>
-              <label
-                htmlFor="is_public"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Visibility
-              </label>
-              <select
-                id="is_public"
-                name="is_public"
-                value={formData.is_public.toString()}
-                onChange={(e) =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    is_public: e.target.value === "true",
-                  }))
-                }
-                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                <option value="true">Public</option>
-                <option value="false">Private</option>
-              </select>
-            </div>
-          </div>
-
           {submissionStatus && (
             <div
-              className={`p-4 rounded-md text-sm ${
-                submissionStatus.type === "success"
-                  ? "bg-green-100 text-green-800"
-                  : submissionStatus.type === "error"
+              className={`p-4 rounded-md text-sm ${submissionStatus.type === "success"
+                ? "bg-green-100 text-green-800"
+                : submissionStatus.type === "error"
                   ? "bg-red-100 text-red-800"
                   : "bg-blue-100 text-blue-800"
-              }`}
+                }`}
             >
               {submissionStatus.message}
             </div>

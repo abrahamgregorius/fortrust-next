@@ -112,8 +112,9 @@ export default function Events() {
     end_at: "",
     location: "",
     registration_link: "",
-    status: "pending",
-    is_public: true,
+    status: "inactive",
+    speaker: "",
+    topics: "",
   });
   const [editStatus, setEditStatus] = useState(null);
 
@@ -170,8 +171,9 @@ export default function Events() {
         : "",
       location: event.location || "",
       registration_link: event.registration_link || "",
-      status: event.status || "pending",
-      is_public: event.is_public !== undefined ? event.is_public : true,
+      status: event.status || "inactive",
+      speaker: event.speaker || "",
+      topics: event.topics || "",
     });
     setIsEditModalOpen(true);
   };
@@ -200,7 +202,8 @@ export default function Events() {
           location: editFormData.location,
           registration_link: editFormData.registration_link,
           status: editFormData.status,
-          is_public: editFormData.is_public,
+          speaker: editFormData.speaker,
+          topics: editFormData.topics,
           updated_at: new Date().toISOString(),
         })
         .eq("id", selectedEvent.id)
@@ -272,6 +275,12 @@ export default function Events() {
                           Location
                         </th>
                         <th scope="col" className="px-6 py-3">
+                          Speaker
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Topics
+                        </th>
+                        <th scope="col" className="px-6 py-3">
                           Status
                         </th>
                         <th scope="col" className="px-6 py-3">
@@ -279,9 +288,6 @@ export default function Events() {
                         </th>
                         <th scope="col" className="px-6 py-3">
                           End Date
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Public
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
                           Actions
@@ -301,12 +307,17 @@ export default function Events() {
                             {event.location || "-"}
                           </td>
                           <td className="px-6 py-4">
+                            {event.speaker || "-"}
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.topics || "-"}
+                          </td>
+                          <td className="px-6 py-4">
                             <span
-                              className={`px-2 py-1 text-xs font-medium rounded-full ${
-                                event.status === "success"
-                                  ? "bg-green-100 text-green-800"
-                                  : "bg-yellow-100 text-yellow-800"
-                              }`}
+                              className={`px-2 py-1 text-xs font-medium rounded-full ${event.status === "active"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-yellow-100 text-yellow-800"
+                                }`}
                             >
                               {event.status}
                             </span>
@@ -316,17 +327,6 @@ export default function Events() {
                           </td>
                           <td className="px-6 py-4">
                             {event.end_at ? formatDate(event.end_at) : "-"}
-                          </td>
-                          <td className="px-6 py-4">
-                            <span
-                              className={`px-2 py-1 text-xs font-medium rounded-full ${
-                                event.is_public
-                                  ? "bg-green-100 text-green-800"
-                                  : "bg-gray-100 text-gray-800"
-                              }`}
-                            >
-                              {event.is_public ? "Public" : "Private"}
-                            </span>
                           </td>
                           <td className="px-6 py-4">
                             <div className="flex items-center justify-center space-x-3">
@@ -437,6 +437,43 @@ export default function Events() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label
+                        htmlFor="edit_speaker"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Speaker
+                      </label>
+                      <input
+                        type="text"
+                        id="edit_speaker"
+                        name="speaker"
+                        value={editFormData.speaker}
+                        onChange={handleEditFormChange}
+                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="Event speaker"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="edit_topics"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Topics
+                      </label>
+                      <input
+                        type="text"
+                        id="edit_topics"
+                        name="topics"
+                        value={editFormData.topics}
+                        onChange={handleEditFormChange}
+                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="Event topics"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
                         htmlFor="edit_start_at"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
@@ -501,40 +538,20 @@ export default function Events() {
                         onChange={handleEditFormChange}
                         className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       >
-                        <option value="pending">Pending</option>
-                        <option value="success">Success</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="active">Active</option>
                       </select>
                     </div>
                   </div>
 
-                  <div>
-                    <label
-                      htmlFor="edit_is_public"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Visibility
-                    </label>
-                    <select
-                      id="edit_is_public"
-                      name="is_public"
-                      value={editFormData.is_public.toString()}
-                      onChange={handleEditFormChange}
-                      className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    >
-                      <option value="true">Public</option>
-                      <option value="false">Private</option>
-                    </select>
-                  </div>
-
                   {editStatus && (
                     <div
-                      className={`p-4 rounded-md text-sm ${
-                        editStatus.type === "success"
-                          ? "bg-green-100 text-green-800"
-                          : editStatus.type === "error"
+                      className={`p-4 rounded-md text-sm ${editStatus.type === "active"
+                        ? "bg-green-100 text-green-800"
+                        : editStatus.type === "error"
                           ? "bg-red-100 text-red-800"
                           : "bg-blue-100 text-blue-800"
-                      }`}
+                        }`}
                     >
                       {editStatus.message}
                     </div>
@@ -585,11 +602,10 @@ export default function Events() {
                     </h3>
                     <div className="mt-2">
                       <span
-                        className={`px-2 py-1 text-xs font-medium rounded-full ${
-                          selectedEvent.status === "success"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-yellow-100 text-yellow-800"
-                        }`}
+                        className={`px-2 py-1 text-xs font-medium rounded-full ${selectedEvent.status === "active"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-yellow-100 text-yellow-800"
+                          }`}
                       >
                         {selectedEvent.status}
                       </span>
@@ -642,28 +658,29 @@ export default function Events() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="text-sm font-medium text-gray-700 mb-1">
-                        Visibility:
+                        Speaker:
                       </h4>
                       <p className="text-gray-800">
-                        <span
-                          className={`px-2 py-1 text-xs font-medium rounded-full ${
-                            selectedEvent.is_public
-                              ? "bg-green-100 text-green-800"
-                              : "bg-gray-100 text-gray-800"
-                          }`}
-                        >
-                          {selectedEvent.is_public ? "Public" : "Private"}
-                        </span>
+                        {selectedEvent.speaker || "Not set"}
                       </p>
                     </div>
                     <div>
                       <h4 className="text-sm font-medium text-gray-700 mb-1">
-                        Updated:
+                        Topics:
                       </h4>
                       <p className="text-gray-800">
-                        {formatDate(selectedEvent.updated_at)}
+                        {selectedEvent.topics || "Not set"}
                       </p>
                     </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-1">
+                      Updated:
+                    </h4>
+                    <p className="text-gray-800">
+                      {formatDate(selectedEvent.updated_at)}
+                    </p>
                   </div>
 
                   {selectedEvent.registration_link && (
