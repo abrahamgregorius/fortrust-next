@@ -9,8 +9,8 @@ export default function Interest() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Tes Minat & Bakat</h1>
-                        <p>Bentuk Masa Depan Anak: Langkah Jelas untuk Potensi Maksimal</p>
+                        <h1>TEST IQ, MINAT & BAKAT</h1>
+                        <p>Langkah Jelas untuk Potensi Maksimal</p>
                     </div>
                 </section>
 
@@ -28,49 +28,42 @@ export default function Interest() {
                         <div className="content-block">
                             <h2>Pentingnya Profiling Test dalam Perencanaan Masa Depan Anak</h2>
                             <p>
-                                Profiling test mampu mengungkap kepribadian, gaya belajar, dan pola berpikir anak. Informasi
-                                kunci ini membantu orang tua memilih metode dan lingkungan belajar yang paling sesuai,
-                                sehingga meningkatkan kepercayaan diri dan produktivitas anak. Fortrust Student Profiling juga
-                                mengoptimalkan potensi dengan tes IQ.
+                                Profiling test mampu mengungkap kepribadian, gaya belajar, dan pola berpikir anak. Informasi kunci ini membantu orang tua memilih metode dan lingkungan belajar yang paling sesuai, sehingga meningkatkan kepercayaan diri dan produktivitas anak.
                             </p>
                         </div>
 
                         <div className="content-block">
-                            <h2>Maksimalkan Potensi dengan Tes IQ</h2>
                             <p>
-                                Tes IQ secara akurat mengukur kemampuan kognitif seperti logika, pemecahan masalah, dan
-                                pemahaman. Hasil dari tes ini memudahkan orang tua dalam memberikan dukungan akademik
-                                yang tepat agar potensi anak bisa berkembang maksimal. Profiling test juga membantu
-                                memastikan kesiapan anak menghadapi tantangan baru, serta memberikan arahan yang jelas
-                                demi masa depan yang sukses.
+                                Tes IQ secara akurat mengukur kemampuan kognitif seperti logika, pemecahan masalah, dan pemahaman. Hasil dari tes ini memudahkan orang tua dalam memberikan dukungan akademik yang tepat agar potensi anak bisa berkembang maksimal.
                             </p>
                         </div>
 
                         <div className="content-block">
-                            <h2>Interest Talent Evaluation: Ciptakan Masa Depan Cerah</h2>
                             <p>
-                                Interest talent evaluation membantu anak menemukan minat dan bakat sejak dini, sehingga
-                                orang tua dapat mengarahkan pendidikan dan aktivitas sesuai kekuatan anak.
+                                Interest talent evaluation membantu anak menemukan minat dan bakat sejak dini, sehingga orang tua dapat mengarahkan pendidikan dan aktivitas sesuai kekuatan anak.
                             </p>
                         </div>
 
                         <div className="content-block">
-                            <h2>Kenapa Potential Assessment Kami Berbeda?</h2>
-                            <h3>1. Evaluasi Psikologis Komprehensif:</h3>
+                            <h2>Kenapa Profiling Assessment Kami Berbeda?</h2>
+                            <h3>Evaluasi Psikologis Komprehensif</h3>
                             <p>
                                 Sesi 45 menit bersama psikolog bersertifikat untuk meneliti gap antara hasil tes dengan
                                 kondisi nyata anak serta mengidentifikasi tantangan belajar dan kesehatan mental.
                             </p>
                             
-                            <h3>2. Konsultasi Pendidikan yang Fokus:</h3>
+                            <h3>Konsultasi yang fokus pada Pendidikan </h3>
                             <p>
-                                Panduan dari educational consultant untuk memilih bidang studi dan skill masa depan
-                                yang sesuai tren global dan minat anak.
+                                Panduan dari konsultan pendidikan untuk memilih bidang studi dan skill masa depan yang sesuai tren global dan minat anak.
+                            </p>
+
+                            <h3>Dibuat oleh Pakar Psikologi dengan ketepatan assessment yang tinggi</h3>
+                            <p>
+                                Tes profiling ini dikembangkan oleh psikolog yang berpengalaman dalam perencanaan talenta, rekrutmen, dan pengembangan kepemimpinan untuk klien dari berbagai bidang seperti pemerintah, pendidikan, media, keuangan, real estate, transportasi, dan lainnya.
                             </p>
 
                             <p style={{ marginTop: "var(--space-8)" }}>
-                                Kombinasi pemahaman psikologis dan arahan pendidikan yang tepat membuat assessment
-                                Fortrust pilihan terbaik untuk masa depan anak Anda.
+                                Kombinasi pemahuman psikologis dan arahan pendidikan yang tepat membuat assessment Fortrust pilihan terbaik untuk masa depan anak Anda.
                             </p>
                         </div>
 
