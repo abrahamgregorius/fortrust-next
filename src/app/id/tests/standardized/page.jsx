@@ -419,16 +419,62 @@ export default function StandardizedID() {
                             {activeTab === "csca" && (
                                 <div id="csca" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Persiapan CSCA</h2>
-                                        <div style={{ textAlign: 'center', padding: '3rem 1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', margin: '2rem 0' }}>
-                                            <h3 style={{ color: '#6c757d', marginBottom: '1rem' }}>Konten Sedang Dalam Proses Pembaruan</h3>
-                                            <p style={{ color: '#6c757d', fontSize: '1.1rem', marginBottom: '1.5rem' }}>
-                                                Kami sedang menyiapkan konten lengkap untuk CSCA (CSCA).
-                                            </p>
-                                            <p style={{ color: '#6c757d', fontSize: '1rem' }}>
-                                                Silakan hubungi kami untuk informasi lebih lanjut tentang persiapan CSCA.
-                                            </p>
-                                        </div>
+                                        <h2>Panduan Lengkap Tes Kompetensi Akademik CSCA untuk Mahasiswa Internasional</h2>
+                                        <p>
+                                            Mulai tanggal 25 Oktober 2025, pemerintah Tiongkok telah memperkenalkan kebijakan baru yang mewajibkan semua mahasiswa internasional mengikuti CSCA sebagai bagian wajib dari proses penerimaan. Melalui panduan ramah ini, kamu akan mengetahui segala hal penting tentang CSCA, mengapa tes ini begitu krusial, dan bagaimana cara mempersiapkannya.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Apa Itu CSCA?</h3>
+                                        <p>
+                                            CSCA adalah tes standar yang dirancang oleh China Scholarship Council (CSC) bersama para ahli universitas di Tiongkok guna menilai kemampuan akademik dasar dan kemahiran bahasa calon mahasiswa. CSCA telah diakui dan dipercaya oleh banyak universitas di Tiongkok sebagai salah satu syarat utama penerimaan mahasiswa baru dan evaluasi beasiswa. Tes ini membantu kamu menunjukkan kesiapan untuk menempuh perkuliahan di Tiongkok.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Kenapa Harus Mengikuti CSCA?</h3>
+                                        <p><strong>Diakui secara Luas.</strong><br />
+                                        Nilai CSCA diakui oleh universitas-universitas terkemuka di Tiongkok—skor yang baik berarti peluang masuk lebih besar.</p>
+                                        <p><strong>Fokus Akademik.</strong><br />
+                                        Tes ini menguji mata pelajaran kunci—Matematika, Fisika, Kimia, serta Profesional Mandarin—yang tersedia dalam bahasa Mandarin dan Inggris.</p>
+                                        <p><strong>Dukungan Aplikasi yang Tepat Sasaran.</strong><br />
+                                        Hasil CSCA memperkuat aplikasi kamu dan meningkatkan peluang meraih beasiswa.</p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Bagaimana Memilih Mata Uji CSCA yang Tepat?</h3>
+                                        <p>
+                                            Pilihan program dan universitas tujuan kamu menentukan mata pelajaran CSCA yang harus diambil.
+                                        </p>
+                                        <p><strong>Untuk Beasiswa Pemerintah Tiongkok:</strong><br />
+                                        Matematika dan Profesional Mandarin adalah mata uji wajib. Fisika dan Kimia mungkin juga dibutuhkan, jadi cek kembali jurusan pilihanmu.</p>
+                                        <p><strong>Untuk Program Non-Beasiswa:</strong><br />
+                                        Matematika dan, jika kuliah diajarkan dalam bahasa Mandarin, Profesional Mandarin adalah wajib. Kebutuhan akan mata pelajaran tambahan tergantung pada jurusan yang kamu ambil.</p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Jadwal & Format Ujian</h3>
+                                        <p>
+                                            Ujian CSCA digelar lima kali sepanjang 2026: Januari, Maret, April, Juni, dan Desember. Kamu bisa memilih ujian secara online (praktis untuk peserta internasional) atau offline di pusat-pusat ujian yang saat ini sudah tersedia di Vietnam dan Thailand, dan akan terus bertambah di negara lain.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Penilaian & Biaya</h3>
+                                        <p>
+                                            Semua mata pelajaran dinilai dengan skala maksimal 100 poin. Hasil ujian online dan berbasis komputer akan diumumkan dalam 7 hari kerja, sementara ujian berbasis kertas maksimal 14 hari kerja. Biaya ujian adalah 450 RMB untuk satu mata uji, dan 700 RMB untuk dua mata uji atau lebih.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Bingung Menentukan Mata Ujian CSCA?</h3>
+                                        <p>
+                                            Masih ragu mata pelajaran CSCA mana yang cocok untuk jurusan atau universitas pilihanmu? Fortrust siap mendampingi setiap langkahmu! Konselor ahli kami akan membantu menentukan kombinasi mata uji terbaik untuk aplikasimu serta menyediakan materi persiapan yang disesuaikan agar kamu dapat meraih hasil terbaik.
+                                        </p>
+                                        <p>
+                                            Hubungi Fortrust sekarang juga untuk konsultasi pribadi dan persiapan CSCA yang komprehensif. Tinggalkan kekhawatiranmu—biarkan kami membantu membuka jalan menuju masa depan akademik gemilang di Tiongkok!
+                                        </p>
                                     </div>
                                 </div>
                             )}

@@ -419,16 +419,62 @@ export default function Standardized() {
                             {activeTab === "csca" && (
                                 <div id="csca" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>CSCA Preparation</h2>
-                                        <div style={{ textAlign: 'center', padding: '3rem 1rem', backgroundColor: '#f8f9fa', borderRadius: '8px', margin: '2rem 0' }}>
-                                            <h3 style={{ color: '#6c757d', marginBottom: '1rem' }}>Content Currently Being Updated</h3>
-                                            <p style={{ color: '#6c757d', fontSize: '1.1rem', marginBottom: '1.5rem' }}>
-                                                We are currently preparing comprehensive content for CSCA (CSCA).
-                                            </p>
-                                            <p style={{ color: '#6c757d', fontSize: '1rem' }}>
-                                                Please contact us for more information about CSCA preparation.
-                                            </p>
-                                        </div>
+                                        <h2>The CSCA Undergraduate Academic Competency Test Explained</h2>
+                                        <p>
+                                            Effective October 25, 2025, the Chinese government has introduced a new policy requiring all international students to take the CSCA as a mandatory part of the admission process. In this friendly guide, you'll learn everything you need to know about the CSCA, why it matters, and how to prepare.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>What is CSCA?</h3>
+                                        <p>
+                                            The CSCA is a standardized test designed by the China Scholarship Council (CSC) and university experts to assess both your academic foundation and language proficiency. It's widely recognized and trusted by Chinese universities for undergraduate admissions and scholarship evaluations, helping you showcase your readiness for academic life in China.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Why Should You Take the CSCA?</h3>
+                                        <p><strong>Widely Accepted</strong><br />
+                                        The CSCA is honored by top universities across China—your score opens more doors.</p>
+                                        <p><strong>Academic Focus</strong><br />
+                                        It tests key subjects—Mathematics, Physics, Chemistry, and Professional Chinese—all offered in both Chinese and English.</p>
+                                        <p><strong>Tailored Application Support</strong><br />
+                                        Your results strengthen your application and help you secure scholarships.</p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>How to Choose Your Subjects?</h3>
+                                        <p>
+                                            Your chosen university and the type of program determine which CSCA subjects to take.
+                                        </p>
+                                        <p><strong>For Chinese Government Scholarships:</strong><br />
+                                        Mathematics and Professional Chinese are required; Physics and Chemistry may also be needed, so double-check your target major.</p>
+                                        <p><strong>For Non-Scholarship Programs:</strong><br />
+                                        Mathematics and, if your program is in Chinese, Professional Chinese are mandatory. Optional subject needs depend on your desired major.</p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Exam Dates & Format</h3>
+                                        <p>
+                                            CSCA exams are held five times in 2026: January, March, April, June, and December. You can choose between online testing, convenient for global applicants, and offline centers, now available in Vietnam and Thailand with more on the way.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Scoring & Fees</h3>
+                                        <p>
+                                            All subjects are graded out of 100 points. Results for online and computer-based exams arrive within 7 business days; paper exams within 14. The fee is 450 RMB for one subject, and 700 RMB for two or more.
+                                        </p>
+                                    </div>
+
+                                    <div className="content-block">
+                                        <h3>Need Help Choosing Your CSCA Subjects?</h3>
+                                        <p>
+                                            Not sure which CSCA subjects are right for your chosen university or faculty? Fortrust is here to guide you every step of the way! Our expert counselors can help you determine the perfect subject combination for your application and provide tailored preparation resources to ensure you excel on the test.
+                                        </p>
+                                        <p>
+                                            Reach out to Fortrust today for personalized advice and comprehensive CSCA preparation support. Take the stress out of your application—let us help you unlock your academic future in China!
+                                        </p>
                                     </div>
                                 </div>
                             )}
