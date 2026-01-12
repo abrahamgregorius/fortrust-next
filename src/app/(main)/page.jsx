@@ -326,17 +326,17 @@ export default function Home() {
             <main suppressHydrationWarning>
                 <section className="hero-carousel">
                     <div
-                    className="carousel-wrapper"
-                    ref={scrollRef}
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
-                    style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
-                >
+                        className="carousel-wrapper"
+                        ref={scrollRef}
+                        onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
+                        onMouseUp={handleMouseUp}
+                        onMouseLeave={handleMouseUp}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                        style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
+                    >
                         {isLoadingBanners ? (
                             <div className="carousel-slide active" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                                 <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
