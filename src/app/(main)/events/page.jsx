@@ -83,6 +83,14 @@ export default async function Events() {
                                             <span className="month">{month}</span><span className="day">{day}</span>
                                         </div>
                                         <div className="event-card__info">
+                                            {event.image_url && (
+                                                <img
+                                                    src={event.image_url}
+                                                    alt={event.name}
+                                                    className="event-image"
+                                                    style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
+                                                />
+                                            )}
                                             <h4>{event.name}</h4>
                                             <p><Clock></Clock> {timeStr} (Asia/Jakarta)</p>
                                             <p><MapPin></MapPin> At {event.location}</p>

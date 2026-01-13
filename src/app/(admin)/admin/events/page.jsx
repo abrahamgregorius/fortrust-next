@@ -115,6 +115,7 @@ export default function Events() {
     status: "inactive",
     speaker: "",
     topics: "",
+    image_url: "",
   });
   const [editStatus, setEditStatus] = useState(null);
 
@@ -174,6 +175,7 @@ export default function Events() {
       status: event.status || "inactive",
       speaker: event.speaker || "",
       topics: event.topics || "",
+      image_url: event.image_url || "",
     });
     setIsEditModalOpen(true);
   };
@@ -204,6 +206,7 @@ export default function Events() {
           status: editFormData.status,
           speaker: editFormData.speaker,
           topics: editFormData.topics,
+          image_url: editFormData.image_url || null,
           updated_at: new Date().toISOString(),
         })
         .eq("id", selectedEvent.id)
@@ -272,6 +275,9 @@ export default function Events() {
                           Event Name
                         </th>
                         <th scope="col" className="px-6 py-3">
+                          Image
+                        </th>
+                        <th scope="col" className="px-6 py-3">
                           Location
                         </th>
                         <th scope="col" className="px-6 py-3">
@@ -302,6 +308,17 @@ export default function Events() {
                         >
                           <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {event.name}
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.image_url ? (
+                              <img
+                                src={event.image_url}
+                                alt={event.name}
+                                className="w-16 h-16 object-cover rounded"
+                              />
+                            ) : (
+                              "No image"
+                            )}
                           </td>
                           <td className="px-6 py-4">
                             {event.location || "-"}
@@ -526,6 +543,23 @@ export default function Events() {
                     </div>
                     <div>
                       <label
+                        htmlFor="edit_image_url"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Image URL
+                      </label>
+                      <input
+                        type="url"
+                        id="edit_image_url"
+                        name="image_url"
+                        value={editFormData.image_url}
+                        onChange={handleEditFormChange}
+                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        placeholder="https://example.com/image.jpg"
+                      />
+                    </div>
+                    <div>
+                      <label
                         htmlFor="edit_status"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
@@ -620,6 +654,19 @@ export default function Events() {
                       <p className="text-gray-800 bg-gray-50 p-4 rounded-lg">
                         {selectedEvent.description}
                       </p>
+                    </div>
+                  )}
+
+                  {selectedEvent.image_url && (
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-2">
+                        Image:
+                      </h4>
+                      <img
+                        src={selectedEvent.image_url}
+                        alt={selectedEvent.name}
+                        className="w-full max-w-md h-auto rounded-lg shadow-md"
+                      />
                     </div>
                   )}
 

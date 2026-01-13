@@ -38,6 +38,7 @@ export default function CreateEventsPage() {
     status: "pending",
     speaker: "",
     topics: "",
+    image_url: "",
   });
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
@@ -65,6 +66,7 @@ export default function CreateEventsPage() {
         status: formData.status,
         speaker: formData.speaker,
         topics: formData.topics,
+        image_url: formData.image_url || null,
         created_at: new Date().toISOString(),
       };
 
@@ -91,6 +93,7 @@ export default function CreateEventsPage() {
           status: "pending",
           speaker: "",
           topics: "",
+          image_url: "",
         });
         setSubmissionStatus(null);
       }, 2000);
@@ -317,6 +320,29 @@ export default function CreateEventsPage() {
                 onChange={handleChange}
                 className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="https://"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              htmlFor="image_url"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Image URL
+            </label>
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                <Icon path={ICONS.upload} />
+              </span>
+              <input
+                type="url"
+                id="image_url"
+                name="image_url"
+                value={formData.image_url}
+                onChange={handleChange}
+                className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                placeholder="https://example.com/image.jpg"
               />
             </div>
           </div>
