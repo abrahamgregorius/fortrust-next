@@ -97,7 +97,6 @@ export default function CreateTestimonialPage() {
 
       if (insertError) throw insertError;
 
-      console.log("✅ Testimonial submitted:", data);
       setSubmissionStatus({
         message: "Testimonial submitted successfully!",
         type: "success",

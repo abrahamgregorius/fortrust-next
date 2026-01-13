@@ -21,7 +21,6 @@ export default function PopupBanner() {
                 console.error("Error fetching popup banners:", error);
             } else {
                 setPopupBanners(data || []);
-                console.log(data)
             }
         } catch (err) {
             console.error("Fetch popup banners failed:", err);

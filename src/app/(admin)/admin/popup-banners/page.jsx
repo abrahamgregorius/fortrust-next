@@ -219,8 +219,6 @@ export default function PopupBanners() {
 
             if (error) {
                 console.error("Error deleting old image:", error);
-            } else {
-                console.log("Old image deleted successfully");
             }
         } catch (error) {
             console.error("Error deleting old image:", error);
@@ -284,7 +282,6 @@ export default function PopupBanners() {
 
             if (error) throw error;
 
-            console.log("✅ Popup banner updated:", data);
             setEditStatus({
                 message: "Popup banner updated successfully!",
                 type: "success",
@@ -391,8 +388,8 @@ export default function PopupBanners() {
                                                     <td className="px-6 py-4">
                                                         <span
                                                             className={`px-2 py-1 text-xs font-medium rounded-full ${popupBanner.is_active
-                                                                    ? "bg-green-100 text-green-800"
-                                                                    : "bg-gray-100 text-gray-800"
+                                                                ? "bg-green-100 text-green-800"
+                                                                : "bg-gray-100 text-gray-800"
                                                                 }`}
                                                         >
                                                             {popupBanner.is_active ? "Active" : "Inactive"}
@@ -704,10 +701,10 @@ export default function PopupBanners() {
                                     {editStatus && (
                                         <div
                                             className={`p-4 rounded-md text-sm ${editStatus.type === "success"
-                                                    ? "bg-green-100 text-green-800"
-                                                    : editStatus.type === "error"
-                                                        ? "bg-red-100 text-red-800"
-                                                        : "bg-blue-100 text-blue-800"
+                                                ? "bg-green-100 text-green-800"
+                                                : editStatus.type === "error"
+                                                    ? "bg-red-100 text-red-800"
+                                                    : "bg-blue-100 text-blue-800"
                                                 }`}
                                         >
                                             {editStatus.message}
@@ -760,8 +757,8 @@ export default function PopupBanners() {
                                         <div className="mt-2">
                                             <span
                                                 className={`px-2 py-1 text-xs font-medium rounded-full ${selectedPopupBanner.is_active
-                                                        ? "bg-green-100 text-green-800"
-                                                        : "bg-gray-100 text-gray-800"
+                                                    ? "bg-green-100 text-green-800"
+                                                    : "bg-gray-100 text-gray-800"
                                                     }`}
                                             >
                                                 {selectedPopupBanner.is_active ? "Active" : "Inactive"}

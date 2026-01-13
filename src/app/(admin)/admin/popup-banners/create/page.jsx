@@ -59,7 +59,6 @@ const uploadFile = async (file, filePath) => {
     .from("public-assets")
     .upload(filePath, file);
   if (error) console.error(error);
-  else console.log("Uploaded:", data);
 };
 
 export default function CreatePopupBannerPage() {
@@ -178,7 +177,6 @@ export default function CreatePopupBannerPage() {
 
       if (insertError) throw insertError;
 
-      console.log("✅ Popup banner created:", data);
       setSubmissionStatus({
         message: "Popup banner created successfully!",
         type: "success",
@@ -439,13 +437,12 @@ export default function CreatePopupBannerPage() {
 
           {submissionStatus && (
             <div
-              className={`p-4 rounded-md text-sm ${
-                submissionStatus.type === "success"
+              className={`p-4 rounded-md text-sm ${submissionStatus.type === "success"
                   ? "bg-green-100 text-green-800"
                   : submissionStatus.type === "error"
-                  ? "bg-red-100 text-red-800"
-                  : "bg-blue-100 text-blue-800"
-              }`}
+                    ? "bg-red-100 text-red-800"
+                    : "bg-blue-100 text-blue-800"
+                }`}
             >
               {submissionStatus.message}
             </div>

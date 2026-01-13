@@ -261,7 +261,6 @@ export default function Events() {
 
       if (error) throw error;
 
-      console.log("✅ Event updated:", data);
       setEditStatus({
         message: "Event updated successfully!",
         type: "success",

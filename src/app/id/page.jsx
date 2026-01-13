@@ -33,7 +33,6 @@ export default function Home() {
         if (error) {
             console.error("Error fetching banners:", error);
         } else {
-            console.log("Fetched banners:", data);
             setBanners(data || []);
         }
     };
@@ -62,12 +61,8 @@ export default function Home() {
             link: banner.link_url,
         }));
 
-    console.log("Banner slides:", bannerSlides);
-
     // Use database banners if available, otherwise use hardcoded
     const slides = bannerSlides.length > 0 ? bannerSlides : hardcodedSlides;
-
-    console.log("All slides:", slides);
 
     const [testimonials, setTestimonials] = useState([]);
     const fetchTestimonials = async () => {

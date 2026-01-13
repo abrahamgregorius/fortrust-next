@@ -240,7 +240,6 @@ export default function App() {
 
       if (error) throw error;
 
-      console.log("✅ Testimonial updated:", data);
       setEditStatus({
         message: "Testimonial updated successfully!",
         type: "success",

@@ -111,7 +111,6 @@ const ICONS = {
 const uploadFile = async (file, filePath) => {
     const { data, error } = await supabase.storage.from("public-assets").upload(filePath, file);
     if (error) console.error(error);
-    else console.log("Uploaded:", data);
 };
 
 // MAIN COMPONENT
@@ -195,12 +194,9 @@ export default function EditBlogPage({ params }) {
             // Only upload new images, preserve existing ones
             const uploadedImageUrls = await Promise.all(
                 images.map(async (file) => {
-                    console.log("a")
                     const filePath = `blogs/${Date.now()}-${file.name}`;
                     await uploadFile(file, filePath);
-                    console.log("b")
                     const { data: publicUrlData } = supabase.storage.from("public-assets").getPublicUrl(filePath);
-                    console.log("c")
                     return publicUrlData.publicUrl;
                 })
             );
@@ -222,7 +218,6 @@ export default function EditBlogPage({ params }) {
 
             if (updateError) throw updateError;
 
-            console.log("✅ Blog post updated:", data);
             setSubmissionStatus({ message: "Blog post updated successfully!", type: "success" });
             
             // Clear only the newly added images after successful update

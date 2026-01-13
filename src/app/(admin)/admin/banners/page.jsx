@@ -270,8 +270,6 @@ export default function Banners() {
 
       if (error) {
         console.error("Error deleting old image:", error);
-      } else {
-        console.log("Old image deleted successfully");
       }
     } catch (error) {
       console.error("Error deleting old image:", error);
@@ -335,7 +333,6 @@ export default function Banners() {
 
       if (error) throw error;
 
-      console.log("✅ Banner updated:", data);
       setEditStatus({
         message: "Banner updated successfully!",
         type: "success",
@@ -441,11 +438,10 @@ export default function Banners() {
                           <td className="px-6 py-4">{banner.display_order}</td>
                           <td className="px-6 py-4">
                             <span
-                              className={`px-2 py-1 text-xs font-medium rounded-full ${
-                                banner.is_active
+                              className={`px-2 py-1 text-xs font-medium rounded-full ${banner.is_active
                                   ? "bg-green-100 text-green-800"
                                   : "bg-gray-100 text-gray-800"
-                              }`}
+                                }`}
                             >
                               {banner.is_active ? "Active" : "Inactive"}
                             </span>
@@ -755,13 +751,12 @@ export default function Banners() {
 
                   {editStatus && (
                     <div
-                      className={`p-4 rounded-md text-sm ${
-                        editStatus.type === "success"
+                      className={`p-4 rounded-md text-sm ${editStatus.type === "success"
                           ? "bg-green-100 text-green-800"
                           : editStatus.type === "error"
-                          ? "bg-red-100 text-red-800"
-                          : "bg-blue-100 text-blue-800"
-                      }`}
+                            ? "bg-red-100 text-red-800"
+                            : "bg-blue-100 text-blue-800"
+                        }`}
                     >
                       {editStatus.message}
                     </div>
@@ -812,11 +807,10 @@ export default function Banners() {
                     </h3>
                     <div className="mt-2">
                       <span
-                        className={`px-2 py-1 text-xs font-medium rounded-full ${
-                          selectedBanner.is_active
+                        className={`px-2 py-1 text-xs font-medium rounded-full ${selectedBanner.is_active
                             ? "bg-green-100 text-green-800"
                             : "bg-gray-100 text-gray-800"
-                        }`}
+                          }`}
                       >
                         {selectedBanner.is_active ? "Active" : "Inactive"}
                       </span>

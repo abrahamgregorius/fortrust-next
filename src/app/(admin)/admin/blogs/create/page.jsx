@@ -118,7 +118,6 @@ const ICONS = {
 const uploadFile = async (file, filePath) => {
     const { data, error } = await supabase.storage.from('public-assets').upload(filePath, file);
     if (error) console.error(error);
-    else console.log('Uploaded:', data);
 };
 
 export default function CreateBlogPage() {
@@ -192,7 +191,6 @@ export default function CreateBlogPage() {
 
             if (insertError) throw insertError;
 
-            console.log('✅ Blog post submitted:', data);
             setSubmissionStatus({ message: 'Blog post submitted successfully!', type: 'success' });
 
             setTimeout(() => {
