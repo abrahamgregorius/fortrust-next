@@ -777,28 +777,26 @@ export default function Home() {
                                             const timeStr = formatTimeJakarta(event.start_at);
                                             return (
                                                 <>
-                                                    <div className="event-card__wrap">
-                                                        <div key={i} className="card event-card">
-                                                            {event.image_url && (
-                                                                <div className="event-card__image">
-                                                                    <img
-                                                                        src={event.image_url}
-                                                                        alt={event.name}
-                                                                        className="event-image"
-                                                                    />
-                                                                </div>
-                                                            )}
-                                                            <div className="event-card__date">
-                                                                <span className="month">{month}</span><span className="day">{day}</span>
+                                                    <div key={i} className="card event-card">
+                                                        {event.image_url && (
+                                                            <div className="event-card__image">
+                                                                <img
+                                                                    src={event.image_url}
+                                                                    alt={event.name}
+                                                                    className="event-image"
+                                                                />
                                                             </div>
-                                                            <div className="event-card__info">
-                                                                <h4>{event.name}</h4>
-                                                                <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
-                                                                <p><MapPin size={20}></MapPin> {event.location}</p>
-                                                            </div>
-                                                            <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
+                                                        )}
+                                                        <div className="event-card__date">
+                                                            <span className="month">{month}</span><span className="day">{day}</span>
                                                         </div>
-                                                    </div>
+                                                        <div className="event-card__info">
+                                                            <h4>{event.name}</h4>
+                                                            <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
+                                                            <p><MapPin size={20}></MapPin> {event.location}</p>
+                                                        </div>
+                                                        <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
+                                                    </div >
                                                 </>
                                             );
                                         } catch (e) {
@@ -832,7 +830,7 @@ export default function Home() {
                         </a>
                     </div>
                 </section>
-            </main>
+            </main >
 
             <Footer></Footer>
         </>

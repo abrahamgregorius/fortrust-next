@@ -21,6 +21,7 @@ export default function PopupBanner() {
                 console.error("Error fetching popup banners:", error);
             } else {
                 setPopupBanners(data || []);
+                console.log(data)
             }
         } catch (err) {
             console.error("Fetch popup banners failed:", err);
@@ -82,7 +83,7 @@ export default function PopupBanner() {
                 >
                     ×
                 </button>
-                <Link to={activeBanner.link_url}>
+                <Link href={activeBanner.link_url}>
                     <picture>
                         <source media="(max-width: 768px)" srcSet={activeBanner.mobile_image_url || activeBanner.image_url} />
                         <img src={activeBanner.image_url} alt="Popup Banner" width={800} height={600} />
