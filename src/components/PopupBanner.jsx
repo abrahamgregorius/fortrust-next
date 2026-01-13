@@ -81,10 +81,12 @@ export default function PopupBanner() {
                 >
                     ×
                 </button>
-                <picture>
-                    <source media="(max-width: 768px)" srcSet={activeBanner.mobile_image_url || activeBanner.image_url} />
-                    <img src={activeBanner.image_url} alt="Popup Banner" width={800} height={600} />
-                </picture>
+                <Link to={activeBanner.link_url}>
+                    <picture>
+                        <source media="(max-width: 768px)" srcSet={activeBanner.mobile_image_url || activeBanner.image_url} />
+                        <img src={activeBanner.image_url} alt="Popup Banner" width={800} height={600} />
+                    </picture>
+                </Link>
             </div>
         </div>
     );
