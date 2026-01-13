@@ -776,17 +776,30 @@ export default function Home() {
                                             const { month, day } = getMonthDayJakarta(event.start_at);
                                             const timeStr = formatTimeJakarta(event.start_at);
                                             return (
-                                                <div key={i} className="card event-card">
-                                                    <div className="event-card__date">
-                                                        <span className="month">{month}</span><span className="day">{day}</span>
+                                                <>
+                                                    <div className="event-card__wrap">
+                                                        <div key={i} className="card event-card">
+                                                            {event.image_url && (
+                                                                <div className="event-card__image">
+                                                                    <img
+                                                                        src={event.image_url}
+                                                                        alt={event.name}
+                                                                        className="event-image"
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                            <div className="event-card__date">
+                                                                <span className="month">{month}</span><span className="day">{day}</span>
+                                                            </div>
+                                                            <div className="event-card__info">
+                                                                <h4>{event.name}</h4>
+                                                                <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
+                                                                <p><MapPin size={20}></MapPin> {event.location}</p>
+                                                            </div>
+                                                            <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
+                                                        </div>
                                                     </div>
-                                                    <div className="event-card__info">
-                                                        <h4>{event.name}</h4>
-                                                        <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
-                                                        <p><MapPin size={20}></MapPin> {event.location}</p>
-                                                    </div>
-                                                    <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
-                                                </div>
+                                                </>
                                             );
                                         } catch (e) {
                                             console.error('Error rendering event:', e);

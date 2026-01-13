@@ -13,18 +13,27 @@ const Icon = ({ path, className = "w-5 h-5" }) => (
   </svg>
 );
 
+// Icon paths
 const ICONS = {
   back: "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
-  upload: "M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z",
-  close:
-    "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z",
   user: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z",
-  institution:
-    "M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z",
+  location: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z",
+  link: "M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z",
   arrowUp: "M7 14l5-5 5 5z",
   arrowDown: "M7 10l5 5 5-5z",
-  link: "M7 17q-2.075 0-3.537-1.463T2 12t1.463-3.537T7 7h3q.425 0 .713.288T11 8t-.288.713T10 9H7q-1.25 0-2.125.875T4 12t.875 2.125T7 15h3q.425 0 .713.288T11 16t-.288.713T10 17zm2-4q-.425 0-.712-.288T8 12t.288-.712T9 11h6q.425 0 .713.288T16 12t-.288.713T15 13zm5 4q-.425 0-.712-.288T13 16t.288-.712T14 15h3q1.25 0 2.125-.875T20 12t-.875-2.125T17 9h-3q-.425 0-.712-.288T13 8t.288-.712T14 7h3q2.075 0 3.538 1.463T22 12t-1.463 3.538T17 17z",
-  location: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z",
+  upload: "M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z",
+  close: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z",
+};
+
+const uploadFile = async (file, filePath) => {
+  const { data, error } = await supabase.storage
+    .from("public-assets")
+    .upload(filePath, file);
+  if (error) {
+    console.error(error);
+    return null;
+  }
+  return data;
 };
 
 export default function CreateEventsPage() {
@@ -38,8 +47,9 @@ export default function CreateEventsPage() {
     status: "pending",
     speaker: "",
     topics: "",
-    image_url: "",
   });
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
   const handleChange = (e) => {
@@ -47,11 +57,45 @@ export default function CreateEventsPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setImageFile(null);
+    setImagePreview(null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmissionStatus({ message: "Submitting event...", type: "info" });
 
     try {
+      let imageUrl = null;
+
+      // Upload image if file is selected
+      if (imageFile) {
+        const filePath = `events/${Date.now()}-${imageFile.name}`;
+        const uploadResult = await uploadFile(imageFile, filePath);
+
+        if (uploadResult) {
+          const { data: publicUrlData } = supabase.storage
+            .from("public-assets")
+            .getPublicUrl(filePath);
+          imageUrl = publicUrlData.publicUrl;
+        } else {
+          throw new Error("Failed to upload image");
+        }
+      }
+
       const eventData = {
         name: formData.name,
         description: formData.description,
@@ -66,7 +110,7 @@ export default function CreateEventsPage() {
         status: formData.status,
         speaker: formData.speaker,
         topics: formData.topics,
-        image_url: formData.image_url || null,
+        image_url: imageUrl,
         created_at: new Date().toISOString(),
       };
 
@@ -93,9 +137,9 @@ export default function CreateEventsPage() {
           status: "pending",
           speaker: "",
           topics: "",
-          image_url: "",
         });
-        setSubmissionStatus(null);
+        setImageFile(null);
+        setImagePreview(null);
       }, 2000);
     } catch (err) {
       console.error("❌ Error submitting event:", err);
@@ -325,25 +369,55 @@ export default function CreateEventsPage() {
           </div>
 
           <div>
-            <label
-              htmlFor="image_url"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              Image URL
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Event Image
             </label>
-            <div className="relative">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                <Icon path={ICONS.upload} />
-              </span>
-              <input
-                type="url"
-                id="image_url"
-                name="image_url"
-                value={formData.image_url}
-                onChange={handleChange}
-                className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="https://example.com/image.jpg"
-              />
+            <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+              <div className="space-y-1 text-center">
+                {imagePreview ? (
+                  <div className="relative">
+                    <img
+                      src={imagePreview}
+                      alt="Event preview"
+                      className="mx-auto h-32 w-auto object-cover rounded-md"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleRemoveImage}
+                      className="absolute top-0 right-0 bg-red-600 text-white rounded-full p-1 transform translate-x-2 -translate-y-2"
+                    >
+                      <Icon path={ICONS.close} className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <Icon
+                      path={ICONS.upload}
+                      className="mx-auto h-12 w-12 text-gray-400"
+                    />
+                    <div className="flex justify-center items-center text-sm text-gray-600">
+                      <label
+                        htmlFor="file-upload"
+                        className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500"
+                      >
+                        <span>Upload file</span>
+                        <input
+                          id="file-upload"
+                          name="file-upload"
+                          type="file"
+                          onChange={handleFileChange}
+                          className="sr-only"
+                          accept="image/*"
+                        />
+                      </label>
+                      <p className="pl-1">or drag and drop</p>
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      PNG, JPG, GIF up to 10MB
+                    </p>
+                  </>
+                )}
+              </div>
             </div>
           </div>
 

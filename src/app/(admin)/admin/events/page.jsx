@@ -53,6 +53,18 @@ const ICONS = {
     "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z",
 };
 
+// Helper function for file upload
+const uploadFile = async (file, filePath) => {
+  const { data, error } = await supabase.storage
+    .from("public-assets")
+    .upload(filePath, file);
+  if (error) {
+    console.error(error);
+    return null;
+  }
+  return data;
+};
+
 // Header component
 const Header = ({ toggleSidebar }) => {
   return (
@@ -115,8 +127,9 @@ export default function Events() {
     status: "inactive",
     speaker: "",
     topics: "",
-    image_url: "",
   });
+  const [editImageFile, setEditImageFile] = useState(null);
+  const [editImagePreview, setEditImagePreview] = useState(null);
   const [editStatus, setEditStatus] = useState(null);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
@@ -175,8 +188,8 @@ export default function Events() {
       status: event.status || "inactive",
       speaker: event.speaker || "",
       topics: event.topics || "",
-      image_url: event.image_url || "",
     });
+    setEditImagePreview(event.image_url || null);
     setIsEditModalOpen(true);
   };
 
@@ -185,11 +198,45 @@ export default function Events() {
     setEditFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleEditFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEditImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleEditRemoveImage = () => {
+    setEditImageFile(null);
+    setEditImagePreview(selectedEvent?.image_url || null);
+  };
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     setEditStatus({ message: "Updating event...", type: "info" });
 
     try {
+      let imageUrl = selectedEvent.image_url; // Keep existing image by default
+
+      // Upload new image if file is selected
+      if (editImageFile) {
+        const filePath = `events/${Date.now()}-${editImageFile.name}`;
+        const uploadResult = await uploadFile(editImageFile, filePath);
+
+        if (uploadResult) {
+          const { data: publicUrlData } = supabase.storage
+            .from("public-assets")
+            .getPublicUrl(filePath);
+          imageUrl = publicUrlData.publicUrl;
+        } else {
+          throw new Error("Failed to upload image");
+        }
+      }
+
       const { data, error } = await supabase
         .from("events")
         .update({
@@ -206,7 +253,7 @@ export default function Events() {
           status: editFormData.status,
           speaker: editFormData.speaker,
           topics: editFormData.topics,
-          image_url: editFormData.image_url || null,
+          image_url: imageUrl,
           updated_at: new Date().toISOString(),
         })
         .eq("id", selectedEvent.id)
@@ -224,6 +271,8 @@ export default function Events() {
       setTimeout(() => {
         setIsEditModalOpen(false);
         setSelectedEvent(null);
+        setEditImageFile(null);
+        setEditImagePreview(null);
         setEditStatus(null);
       }, 2000);
     } catch (err) {
@@ -543,23 +592,6 @@ export default function Events() {
                     </div>
                     <div>
                       <label
-                        htmlFor="edit_image_url"
-                        className="block text-sm font-medium text-gray-700 mb-1"
-                      >
-                        Image URL
-                      </label>
-                      <input
-                        type="url"
-                        id="edit_image_url"
-                        name="image_url"
-                        value={editFormData.image_url}
-                        onChange={handleEditFormChange}
-                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        placeholder="https://example.com/image.jpg"
-                      />
-                    </div>
-                    <div>
-                      <label
                         htmlFor="edit_status"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
@@ -575,6 +607,40 @@ export default function Events() {
                         <option value="inactive">Inactive</option>
                         <option value="active">Active</option>
                       </select>
+                    </div>
+                  </div>
+
+                  {/* Image Upload Section */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Event Image
+                    </label>
+                    <div className="space-y-3">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleEditFileChange}
+                        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                      />
+                      {editImagePreview && (
+                        <div className="relative inline-block">
+                          <img
+                            src={editImagePreview}
+                            alt="Preview"
+                            className="w-32 h-32 object-cover rounded-lg border border-gray-300"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleEditRemoveImage}
+                            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      )}
+                      <p className="text-xs text-gray-500">
+                        Upload a new image to replace the current one. Supported formats: JPG, PNG, GIF, WebP. Max size: 5MB.
+                      </p>
                     </div>
                   </div>
 
