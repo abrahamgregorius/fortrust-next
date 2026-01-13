@@ -78,30 +78,22 @@ export default async function Events() {
                                     const { month, day } = getMonthDayJakarta(event.start_at);
                                     const timeStr = formatTimeJakarta(event.start_at);
                                     return (
-                                    <div key={i} className="card event-card">
-                                        <div className="event-card__date">
-                                            <span className="month">{month}</span><span className="day">{day}</span>
+                                        <div key={i} className="card event-card">
+                                            <div className="event-card__date">
+                                                <span className="month">{month}</span><span className="day">{day}</span>
+                                            </div>
+                                            <div className="event-card__info">
+                                                <h4>{event.name}</h4>
+                                                <p><Clock></Clock> {timeStr} (Asia/Jakarta)</p>
+                                                <p><MapPin></MapPin> At {event.location}</p>
+                                            </div>
+                                            <a
+                                                href={event.registration_link}
+                                                className="btn btn--secondary"
+                                            >RSVP Now</a>
                                         </div>
-                                        <div className="event-card__info">
-                                            {event.image_url && (
-                                                <img
-                                                    src={event.image_url}
-                                                    alt={event.name}
-                                                    className="event-image"
-                                                    style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
-                                                />
-                                            )}
-                                            <h4>{event.name}</h4>
-                                            <p><Clock></Clock> {timeStr} (Asia/Jakarta)</p>
-                                            <p><MapPin></MapPin> At {event.location}</p>
-                                        </div>
-                                        <a
-                                            href={event.registration_link}
-                                            className="btn btn--secondary"
-                                        >RSVP Now</a>
-                                    </div>
 
-                                    // id, name, description, start_at, end_at, is_public, metadata, created_at, updated_at, deleted_at, registration_link, status
+                                        // id, name, description, start_at, end_at, is_public, metadata, created_at, updated_at, deleted_at, registration_link, status
                                     );
                                 }) : (
                                     <div className="no-events-message">

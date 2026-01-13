@@ -548,6 +548,7 @@ ul {
     width: 100%;
     max-width: none !important;
 }
+
 .event-card__image {
     flex-shrink: 0;
     width: 80px;
