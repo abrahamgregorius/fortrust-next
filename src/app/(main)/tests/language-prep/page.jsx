@@ -55,9 +55,12 @@ export default function LanguagePrep() {
                         <div className="tab-content">
                             {activeTab === "ielts" && (
                                 <div id="ielts" className="tab-pane active">
-                                    {/* --- Konten IELTS dari Artikel Anda --- */}
                                     <div className="content-block">
                                         <h2>Your Complete Guide to IELTS</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/ielts/desktop.webp" />
+                                            <img src="/test-banner/ielts/desktop.webp" alt="IELTS Banner" className="content__banner" />
+                                        </picture>
                                         <p>
                                             Proving your English proficiency is often a mandatory requirement when you plan to study or work overseas. <strong></strong> is one of the most recognized English language proficiency tests worldwide. It is accepted by over 11,000 institutions, including top-ranked universities and professional organizations.
                                         </p>

@@ -117,7 +117,7 @@ export default function Standardized() {
                                             <li>Rhetoric and argumentation</li>
                                             <li>Data interpretation from tables and graphs</li>
                                         </ul>
-                                        
+
                                         <p><strong>Math:</strong></p>
                                         <ul>
                                             <li>Algebra (linear equations, systems, functions)</li>
@@ -228,7 +228,7 @@ export default function Standardized() {
                                             <li>Arithmetic, Algebra, Geometry</li>
                                             <li>No calculator allowed</li>
                                         </ul>
-                                        
+
                                         <p><strong>Verbal Reasoning:</strong></p>
                                         <ul>
                                             <li>Reading Comprehension</li>
@@ -358,7 +358,7 @@ export default function Standardized() {
                                             <li>Writing (narrative, persuasive, informative)</li>
                                             <li>Usage and grammar in context</li>
                                         </ul>
-                                        
+
                                         <p><strong>Mathematics:</strong></p>
                                         <ul>
                                             <li>Number and calculation</li>
@@ -419,7 +419,11 @@ export default function Standardized() {
                             {activeTab === "csca" && (
                                 <div id="csca" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>The CSCA Undergraduate Academic Competency Test Explained</h2>
+                                        <h2>The CSCA Undergraduate Academic Competency Test</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/csca/desktop.webp" />
+                                            <img src="/test-banner/csca/desktop.webp" alt="Australia Banner" className="content__banner" />
+                                        </picture>
                                         <p>
                                             Effective October 25, 2025, the Chinese government has introduced a new policy requiring all international students to take the CSCA as a mandatory part of the admission process. In this friendly guide, you'll learn everything you need to know about the CSCA, why it matters, and how to prepare.
                                         </p>
@@ -435,11 +439,11 @@ export default function Standardized() {
                                     <div className="content-block">
                                         <h3>Why Should You Take the CSCA?</h3>
                                         <p><strong>Widely Accepted</strong><br />
-                                        The CSCA is honored by top universities across China—your score opens more doors.</p>
+                                            The CSCA is honored by top universities across China—your score opens more doors.</p>
                                         <p><strong>Academic Focus</strong><br />
-                                        It tests key subjects—Mathematics, Physics, Chemistry, and Professional Chinese—all offered in both Chinese and English.</p>
+                                            It tests key subjects—Mathematics, Physics, Chemistry, and Professional Chinese—all offered in both Chinese and English.</p>
                                         <p><strong>Tailored Application Support</strong><br />
-                                        Your results strengthen your application and help you secure scholarships.</p>
+                                            Your results strengthen your application and help you secure scholarships.</p>
                                     </div>
 
                                     <div className="content-block">
@@ -448,9 +452,9 @@ export default function Standardized() {
                                             Your chosen university and the type of program determine which CSCA subjects to take.
                                         </p>
                                         <p><strong>For Chinese Government Scholarships:</strong><br />
-                                        Mathematics and Professional Chinese are required; Physics and Chemistry may also be needed, so double-check your target major.</p>
+                                            Mathematics and Professional Chinese are required; Physics and Chemistry may also be needed, so double-check your target major.</p>
                                         <p><strong>For Non-Scholarship Programs:</strong><br />
-                                        Mathematics and, if your program is in Chinese, Professional Chinese are mandatory. Optional subject needs depend on your desired major.</p>
+                                            Mathematics and, if your program is in Chinese, Professional Chinese are mandatory. Optional subject needs depend on your desired major.</p>
                                     </div>
 
                                     <div className="content-block">
