@@ -33,7 +33,7 @@ export default function Switzerland() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Swiss: Multibahasa, Jaringan Global, & Inovasi</h1>
+                        <h1>Kuliah di Swiss, Tempat Kolaborasi Internasional dan Inovasi</h1>
                         <p>Unggul dalam perhotelan, diplomasi internasional, riset finansial, dan teknologi.</p>
                     </div>
                 </section>

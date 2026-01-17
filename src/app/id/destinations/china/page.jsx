@@ -33,7 +33,7 @@ export default function China() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Belajar di Cina, Pelajari Tempat Ekonomi Dunia Memimpin</h1>
+                        <h1>Kuliah di China, Belajar di Pusat Ekonomi Dunia</h1>
                         <p>
                             Rasakan beasiswa kelas dunia, imersi ekonomi, dan penemuan budaya—semua dalam satu perjalanan transformatif yang hanya ditemukan di Cina.
                         </p>

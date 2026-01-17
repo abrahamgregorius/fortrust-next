@@ -33,7 +33,7 @@ export default function Canada() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Kuliah di Kanada: Buka Potensi Maksimalmu</h1>
+                        <h1>Kuliah di Kanada, Maksimalkan Potensimu.</h1>
                         <p>
                             Pendidikan berkualitas, pengalaman kerja berbayar, kesehatan terjamin, dan jalur imigrasi yang jelas dalam satu paket.
                         </p>

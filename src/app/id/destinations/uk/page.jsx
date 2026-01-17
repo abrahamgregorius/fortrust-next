@@ -33,7 +33,7 @@ export default function UK() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Tradisi Keunggulan, Masa Depan Penuh Peluang</h1>
+                        <h1>Kuliah di Inggris, Tradisi Unggul, Masa Depan Penuh Peluang</h1>
                         <p>Bergabung dengan warisan pendidikan kelas dunia di mana tradisi bersejarah bertemu inovasi modern.</p>
                     </div>
                 </section>

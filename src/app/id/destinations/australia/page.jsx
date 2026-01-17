@@ -78,7 +78,7 @@ export default function Australia() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Australia: Jalur Cepat Menuju Karier Global</h1>
+                        <h1>Kuliah di Australia, Jalur Cepat Menuju Karir Global</h1>
                         <p>Dapatkan hak kerja pasca-studi terpanjang di dunia, gelar yang diakui secara global, dan jalur langsung menuju Permanent Residence.</p>
                     </div>
                 </section>

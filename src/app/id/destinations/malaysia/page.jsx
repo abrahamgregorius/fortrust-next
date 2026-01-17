@@ -34,7 +34,7 @@ export default function Malaysia() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Belajar di Malaysia, Pendidikan Terjangkau dan Diakui Secara Global
+                            Kuliah di Malaysia, Pendidikan Global dengan biaya terjangkau
                         </h1>
                         <p>
                             Pusat pendidikan dinamis, menawarkan kombinasi langka gelar berkualitas tinggi, dan gaya hidup terjangkau.

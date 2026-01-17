@@ -34,7 +34,7 @@ export default function NewZealand() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Selandia Baru, Tempat Pendidikan Bertemu Petualangan
+                            Kuliah di Selandia Baru, belajar sambil bertualang
                         </h1>
                         <p>
                             Raih kualifikasi yang diakui secara global sambil menjelajahi keindahan alam yang menakjubkan dan budaya yang dinamis.

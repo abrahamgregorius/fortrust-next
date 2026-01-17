@@ -34,7 +34,7 @@ export default function Singapore() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Singapura: Langkah Paling Cerdas untuk Masa Depanmu
+                            Kuliah di Singapura, Langkah Paling Cerdas Untuk Masa Depan
                         </h1>
                         <p>
                             Tempat pendidikan kelas dunia bertemu peluang karier yang menentukan.
