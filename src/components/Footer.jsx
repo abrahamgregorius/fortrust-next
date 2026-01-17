@@ -31,7 +31,7 @@ export default function Footer() {
                                 <Link href="https://www.facebook.com/FortrustId" aria-label="Facebook">
                                     <Facebook></Facebook>
                                 </Link>
-                                <Link href="https://www.instagram.com/fortrustid" aria-label="Instagram">
+                                <Link href="https://www.instagram.com/fortrusteducation" aria-label="Instagram">
                                     <Instagram></Instagram>
                                 </Link>
                                 <Link href="http://tiktok.com/@Fortrustid" aria-label="Tiktok">
