@@ -57,6 +57,10 @@ export default function LanguagePrepID() {
                                 <div id="ielts" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>Panduan Lengkap untuk IELTS</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/ielts/desktop.webp" />
+                                            <img src="/test-banner/ielts/desktop.webp" alt="IELTS Banner" className="content__banner" />
+                                        </picture>
                                         <p>
                                             Membuktikan kemampuan bahasa Inggris Anda sering kali merupakan persyaratan wajib ketika Anda berencana untuk belajar atau bekerja di luar negeri. <strong></strong> adalah salah satu tes kemampuan bahasa Inggris yang paling diakui di seluruh dunia. Diterima oleh lebih dari 11.000 institusi, termasuk universitas peringkat teratas dan organisasi profesional.
                                         </p>

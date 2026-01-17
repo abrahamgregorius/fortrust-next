@@ -117,7 +117,7 @@ export default function StandardizedID() {
                                             <li>Retorika dan argumentasi</li>
                                             <li>Interpretasi data dari tabel dan grafik</li>
                                         </ul>
-                                        
+
                                         <p><strong>Math:</strong></p>
                                         <ul>
                                             <li>Aljabar (persamaan linear, sistem, fungsi)</li>
@@ -228,7 +228,7 @@ export default function StandardizedID() {
                                             <li>Aritmatika, Aljabar, Geometri</li>
                                             <li>Kalkulator tidak diizinkan</li>
                                         </ul>
-                                        
+
                                         <p><strong>Verbal Reasoning:</strong></p>
                                         <ul>
                                             <li>Reading Comprehension</li>
@@ -358,7 +358,7 @@ export default function StandardizedID() {
                                             <li>Menulis (naratif, persuasif, informatif)</li>
                                             <li>Penggunaan dan tata bahasa dalam konteks</li>
                                         </ul>
-                                        
+
                                         <p><strong>Matematika:</strong></p>
                                         <ul>
                                             <li>Bilangan dan perhitungan</li>
@@ -419,7 +419,11 @@ export default function StandardizedID() {
                             {activeTab === "csca" && (
                                 <div id="csca" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Panduan Lengkap Tes Kompetensi Akademik CSCA untuk Mahasiswa Internasional</h2>
+                                        <h2>Panduan Lengkap CSCA untuk Mahasiswa Internasional</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/csca/desktop.webp" />
+                                            <img src="/test-banner/csca/desktop.webp" alt="Australia Banner" className="content__banner" />
+                                        </picture>
                                         <p>
                                             Mulai tanggal 25 Oktober 2025, pemerintah Tiongkok telah memperkenalkan kebijakan baru yang mewajibkan semua mahasiswa internasional mengikuti CSCA sebagai bagian wajib dari proses penerimaan. Melalui panduan ramah ini, kamu akan mengetahui segala hal penting tentang CSCA, mengapa tes ini begitu krusial, dan bagaimana cara mempersiapkannya.
                                         </p>
@@ -427,6 +431,7 @@ export default function StandardizedID() {
 
                                     <div className="content-block">
                                         <h3>Apa Itu CSCA?</h3>
+
                                         <p>
                                             CSCA adalah tes standar yang dirancang oleh China Scholarship Council (CSC) bersama para ahli universitas di Tiongkok guna menilai kemampuan akademik dasar dan kemahiran bahasa calon mahasiswa. CSCA telah diakui dan dipercaya oleh banyak universitas di Tiongkok sebagai salah satu syarat utama penerimaan mahasiswa baru dan evaluasi beasiswa. Tes ini membantu kamu menunjukkan kesiapan untuk menempuh perkuliahan di Tiongkok.
                                         </p>
@@ -435,11 +440,11 @@ export default function StandardizedID() {
                                     <div className="content-block">
                                         <h3>Kenapa Harus Mengikuti CSCA?</h3>
                                         <p><strong>Diakui secara Luas.</strong><br />
-                                        Nilai CSCA diakui oleh universitas-universitas terkemuka di Tiongkok—skor yang baik berarti peluang masuk lebih besar.</p>
+                                            Nilai CSCA diakui oleh universitas-universitas terkemuka di Tiongkok—skor yang baik berarti peluang masuk lebih besar.</p>
                                         <p><strong>Fokus Akademik.</strong><br />
-                                        Tes ini menguji mata pelajaran kunci—Matematika, Fisika, Kimia, serta Profesional Mandarin—yang tersedia dalam bahasa Mandarin dan Inggris.</p>
+                                            Tes ini menguji mata pelajaran kunci—Matematika, Fisika, Kimia, serta Profesional Mandarin—yang tersedia dalam bahasa Mandarin dan Inggris.</p>
                                         <p><strong>Dukungan Aplikasi yang Tepat Sasaran.</strong><br />
-                                        Hasil CSCA memperkuat aplikasi kamu dan meningkatkan peluang meraih beasiswa.</p>
+                                            Hasil CSCA memperkuat aplikasi kamu dan meningkatkan peluang meraih beasiswa.</p>
                                     </div>
 
                                     <div className="content-block">
@@ -448,9 +453,9 @@ export default function StandardizedID() {
                                             Pilihan program dan universitas tujuan kamu menentukan mata pelajaran CSCA yang harus diambil.
                                         </p>
                                         <p><strong>Untuk Beasiswa Pemerintah Tiongkok:</strong><br />
-                                        Matematika dan Profesional Mandarin adalah mata uji wajib. Fisika dan Kimia mungkin juga dibutuhkan, jadi cek kembali jurusan pilihanmu.</p>
+                                            Matematika dan Profesional Mandarin adalah mata uji wajib. Fisika dan Kimia mungkin juga dibutuhkan, jadi cek kembali jurusan pilihanmu.</p>
                                         <p><strong>Untuk Program Non-Beasiswa:</strong><br />
-                                        Matematika dan, jika kuliah diajarkan dalam bahasa Mandarin, Profesional Mandarin adalah wajib. Kebutuhan akan mata pelajaran tambahan tergantung pada jurusan yang kamu ambil.</p>
+                                            Matematika dan, jika kuliah diajarkan dalam bahasa Mandarin, Profesional Mandarin adalah wajib. Kebutuhan akan mata pelajaran tambahan tergantung pada jurusan yang kamu ambil.</p>
                                     </div>
 
                                     <div className="content-block">
