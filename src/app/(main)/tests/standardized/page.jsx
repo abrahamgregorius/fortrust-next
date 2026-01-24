@@ -59,6 +59,10 @@ export default function Standardized() {
                                 <div id="sat" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>SAT Preparation</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/sat/desktop.webp" />
+                                            <img src="/test-banner/sat/desktop.webp" className="content__banner" />
+                                        </picture>
                                         <p>
                                             The SAT (Scholastic Assessment Test) is a standardized test widely used for college admissions in the United States and increasingly accepted by universities worldwide. A strong SAT score can open doors to top universities and significant scholarship opportunities.
                                         </p>
@@ -165,6 +169,10 @@ export default function Standardized() {
                                 <div id="gmat" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>GMAT Preparation</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/gmat/desktop.webp" />
+                                            <img src="/test-banner/gmat/desktop.webp" className="content__banner" />
+                                        </picture>
                                         <p>
                                             The Graduate Management Admission Test (GMAT) is required for admission to most MBA and business master's programs worldwide. A competitive GMAT score is essential for top business schools and can significantly increase scholarship opportunities.
                                         </p>
@@ -282,6 +290,10 @@ export default function Standardized() {
                                 <div id="cambridge" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>IGCSE Preparation</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/igcse/desktop.webp" />
+                                            <img src="/test-banner/igcse/desktop.webp" className="content__banner" />
+                                        </picture>
                                         <p>
                                             Cambridge International Examinations offer a comprehensive curriculum and assessment pathway that is recognized by universities and employers worldwide. From Primary to Pre-University levels, Cambridge qualifications provide a solid foundation for academic success and global opportunities.
                                         </p>
@@ -422,7 +434,7 @@ export default function Standardized() {
                                         <h2>The CSCA Undergraduate Academic Competency Test</h2>
                                         <picture>
                                             <source media="(max-width: 768px)" srcSet="/test-banner/csca/desktop.webp" />
-                                            <img src="/test-banner/csca/desktop.webp" alt="Australia Banner" className="content__banner" />
+                                            <img src="/test-banner/csca/desktop.webp" className="content__banner" />
                                         </picture>
                                         <p>
                                             Effective October 25, 2025, the Chinese government has introduced a new policy requiring all international students to take the CSCA as a mandatory part of the admission process. In this friendly guide, you'll learn everything you need to know about the CSCA, why it matters, and how to prepare.

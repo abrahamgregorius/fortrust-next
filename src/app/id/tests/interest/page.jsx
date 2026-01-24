@@ -74,9 +74,9 @@ export default function Interest() {
                             <div className="container final-cta__container">
                                 <h2>Hilangkan keraguan, rencanakan masa depan anak</h2>
                                 <p>
-                                    dengan Profiling Test Fortrust. Daftarkan anak Anda sekarang!
+                                    dengan Profiling Test Fortrust. Daftarkan Tes sekarang!
                                 </p>
-                                <a href="/id/contact" className="btn btn--primary btn--large">Daftarkan anak Anda sekarang!</a>
+                                <a href="/id/contact" className="btn btn--primary btn--large">Daftarkan Tes Sekarang!</a>
                             </div>
                         </div>
                     </div>
