@@ -1,4 +1,5 @@
 /* @import "tailwindcss"; */
+@import "../../styles/_keyframe-animations.scss";
 
 /* 1. SETUP & DESIGN SYSTEM */
 :root {
