@@ -70,27 +70,27 @@ export default function Switzerland() {
                                         <h3>Keunggulan Kuliah di Swiss</h3>
                                         <ul>
                                             <li>
-                                                <strong>Pendidikan Kelas Dunia yang Unggul:</strong>
+                                                <strong>Pendidikan Kelas Dunia yang Unggul</strong><br />
                                                 Rumah bagi universitas yang secara konsisten berada di peringkat terbaik dunia—seperti ETH Zurich dan EPFL Lausanne—pendidikan Swiss identik dengan ketelitian dan inovasi.
                                             </li>
                                             <li>
-                                                <strong>Imersi Multibahasa Sejati:</strong>
+                                                <strong>Imersi Multibahasa Sejati</strong><br />
                                                 Tidak ada negara lain yang menawarkan kesempatan untuk hidup dan belajar di masyarakat dengan empat bahasa nasional, membuka pintu pasar kerja internasional.
                                             </li>
                                             <li>
-                                                <strong>Riset & Inovasi Tak Tertandingi di Finansial:</strong>
+                                                <strong>Riset & Inovasi Tak Tertandingi di Finansial</strong><br />
                                                 Swiss memimpin dunia dalam output riset per kapita dan menjadi tuan rumah inovasi groundbreaking, terutama di bidang finansial.
                                             </li>
                                             <li>
-                                                <strong>Jaringan Global di Pusat Diplomasi Internasional:</strong>
+                                                <strong>Jaringan Global di Pusat Diplomasi Internasional</strong><br />
                                                 Dengan kota seperti Geneva yang menjadi tuan rumah organisasi seperti PBB, WTO, dan WHO, ruang kelas Anda meluas ke papan direksi paling berpengaruh di dunia.
                                             </li>
                                             <li>
-                                                <strong>Kualitas Hidup & Keamanan Luar Biasa:</strong>
+                                                <strong>Kualitas Hidup & Keamanan Luar Biasa</strong><br />
                                                 Secara konsisten diperingkat di antara negara paling aman, bersih, dan layak huni di dunia.
                                             </li>
                                             <li>
-                                                <strong>Beasiswa Generous untuk Anda:</strong>
+                                                <strong>Beasiswa Generous untuk Anda</strong><br />
                                                 Pemerintah Swiss dan universitas menawarkan beasiswa khusus untuk mahasiswa internasional, membuat pendidikan kelas dunia dapat diakses.
                                             </li>
                                         </ul>

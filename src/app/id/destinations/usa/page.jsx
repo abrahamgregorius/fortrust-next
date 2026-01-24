@@ -34,7 +34,7 @@ export default function USA() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            AmeKuliah di USA, Pusat inovasi dan Peluang Global
+                            Kuliah di USA, Pusat inovasi dan Peluang Global
                         </h1>
                         <p>
                             Temukan gerbang menuju inovasi tanpa batas, keberagaman, dan peluang karier kelas dunia.

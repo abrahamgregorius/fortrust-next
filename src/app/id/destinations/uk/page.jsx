@@ -67,11 +67,11 @@ export default function UK() {
                                     <div className="content-block">
                                         <h3>Keunggulan Kuliah di Inggris</h3>
                                         <ul>
-                                            <li><strong>Pendidikan Diakui Global:</strong> Oxford, Cambridge, UCL berada di puncak ranking.</li>
-                                            <li><strong>Durasi Studi Singkat:</strong> S1 biasanya 3 tahun; S2 1 tahun—hemat biaya & waktu.</li>
-                                            <li><strong>Kekayaan Budaya:</strong> Kastil, seni, musik, komunitas dari 200+ negara.</li>
-                                            <li><strong>Hak Kerja & Beasiswa:</strong> Kerja 20 jam/minggu saat semester; penuh waktu saat libur; banyak beasiswa.</li>
-                                            <li><strong>Peluang Karier:</strong> Pusat finansial, teknologi, kreatif, hukum dengan jejaring global.</li>
+                                            <li><strong>Pendidikan Diakui Global</strong><br /> Oxford, Cambridge, UCL berada di puncak ranking.</li>
+                                            <li><strong>Durasi Studi Singkat</strong><br /> S1 biasanya 3 tahun; S2 1 tahun. Hemat biaya & waktu.</li>
+                                            <li><strong>Kekayaan Budaya</strong><br /> Kastil, seni, musik, komunitas dari 200+ negara.</li>
+                                            <li><strong>Hak Kerja & Beasiswa</strong><br /> Kerja 20 jam/minggu saat semester; penuh waktu saat libur; banyak beasiswa.</li>
+                                            <li><strong>Peluang Karier</strong><br /> Pusat finansial, teknologi, kreatif, hukum dengan jejaring global.</li>
                                         </ul>
                                     </div>
                                     <div className="content-block">

@@ -65,14 +65,33 @@ export default function Singapore() {
                                     <div id="overview" className="tab-pane active">
                                         <div className="content-block">
                                             <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Singapore.webp" /><img src="/destinations/banners/Browser/Singapore.webp" alt="" className="content__banner" /></picture>
-                                            <h2>Keuntungan Belajar di Singapura</h2>
+                                            <h2>Mengapa Kuliah di Singapura?</h2>
+                                            <p>
+                                                Singapura bukan hanya destinasi wisata top, tetapi juga salah satu pusat pendidikan terbaik di Asia dan dunia. Banyak mahasiswa internasional memilih kuliah di Singapura karena keunggulan uniknya yang sulit ditemukan di negara lain.
+                                            </p>
+                                        </div>
+                                        <div className="content-block">
+                                            <h3>Keuntungan Belajar di Singapura</h3>
                                             <ul>
-                                                <li>Pendidikan berkualitas dunia dengan universitas terkemuka seperti NUS, NTU, dan SMU</li>
-                                                <li>Standar kesehatan dan keselamatan yang tinggi</li>
-                                                <li>Masyarakat multikultural dengan bahasa Inggris sebagai bahasa utama</li>
-                                                <li>Lokasi strategis untuk bisnis dan inovasi di Asia</li>
-                                                <li>Ekonomi kuat dengan peluang kerja yang sangat baik</li>
-                                                <li>Infrastruktur modern dan transportasi umum yang efisien</li>
+                                                <li>
+                                                    <strong>Bekerja Sambil Kuliah Tanpa Izin Kerja Tambahan</strong><br />
+                                                    Jika Anda menempuh pendidikan di universitas negeri Singapura, Anda dapat bekerja paruh waktu hingga 16 jam per minggu saat semester berjalan. Hebatnya, Anda tidak perlu mengurus work visa terpisah—sehingga bisa mendapatkan penghasilan tambahan sambil menambah pengalaman kerja.
+
+                                                </li>
+                                                <li>
+                                                    <strong>Akses Langsung ke Pasar Kerja Asia yang Berkembang Pesat</strong><br />
+                                                    Singapura adalah pusat bisnis Asia dan rumah bagi lebih dari 7.000 perusahaan multinasional. Kesempatan magang di Fortune 500 companies atau kantor regional Asia-Pasifik bisa dicapai hanya dengan naik MRT beberapa pemberhentian saja—keunggulan yang sangat jarang Anda dapatkan di negara lain.
+
+                                                </li>
+                                                <li>
+                                                    <strong>Gelar yang Diakui Dunia
+                                                    </strong><br />
+                                                    Universitas top seperti National University of Singapore (NUS) dan Nanyang Technological University (NTU) konsisten masuk dalam 15 besar dunia. Anda bahkan berpeluang mendapatkan gelar ganda internasional berkat kerja sama dengan universitas ternama di Eropa, Amerika, dan Australia.
+                                                </li>
+                                                <li>
+                                                    <strong>Tidak Ada Hambatan Bahasa di Lingkungan Multibahasa</strong><br />
+                                                    Bahasa Inggris digunakan sebagai bahasa utama perkuliahan. Namun, belajar di Singapura juga membuka kesempatan bagi Anda untuk mempelajari Mandarin dan Bahasa Melayu, yang sangat berguna untuk membangun jaringan dan karier di pasar terbesar Asia.
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>

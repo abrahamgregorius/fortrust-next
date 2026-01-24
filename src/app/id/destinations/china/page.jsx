@@ -73,7 +73,7 @@ export default function China() {
                                         <ul>
                                             <li>
                                                 <strong
-                                                >Akses ke Ekonomi Terbesar dan Tumbuh Tercepat di Dunia</strong>
+                                                >Akses ke Ekonomi Terbesar dan Tumbuh Tercepat di Dunia</strong><br />
                                                 Paparan langsung ke ekonomi terbesar kedua di dunia, dengan wawasan langsung ke manufaktur global, teknologi, dan jaringan bisnis internasional.
                                             </li>
                                             <li>

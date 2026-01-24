@@ -33,7 +33,7 @@ export default function Canada() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Kuliah di Kanada, Maksimalkan Potensimu.</h1>
+                        <h1>Kuliah di Kanada, Maksimalkan Potensimu</h1>
                         <p>
                             Pendidikan berkualitas, pengalaman kerja berbayar, kesehatan terjamin, dan jalur imigrasi yang jelas dalam satu paket.
                         </p>
@@ -61,7 +61,7 @@ export default function Canada() {
                             {activeTab === "overview" && (
                                 <div id="overview" className="tab-pane active">
                                     <div className="content-block">
-                                        <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Canada.png" /><img src="/destinations/banners/Browser/Canada.png" alt="" className="content__banner" /></picture>
+                                        <picture><source media="(max-width: 768px)" srcSet="/destinations/banners/Mobile/Canada.webp" /><img src="/destinations/banners/Browser/Canada.webp" alt="" className="content__banner" /></picture>
                                         <h2>Mengapa Kuliah di Kanada</h2>
                                         <p>
                                             Kanada menawarkan lebih dari sekadar pendidikan kelas dunia: kerja berbayar, layanan kesehatan kuat, dan jalur jelas menuju permanent residency—ideal bagi pelajar ambisius.
@@ -72,19 +72,19 @@ export default function Canada() {
                                         <h3>Keunggulan Kuliah di Kanada</h3>
                                         <ul>
                                             <li>
-                                                <strong>PGWP Terbuka Hingga 3 Tahun:</strong> Kerja setelah lulus tanpa batas pemberi kerja, akses jalur PR melalui Express Entry & PNP.
+                                                <strong>PGWP Terbuka Hingga 3 Tahun</strong><br /> Kerja setelah lulus tanpa batas pemberi kerja, akses jalur PR melalui Express Entry & PNP.
                                             </li>
                                             <li>
-                                                <strong>Pendidikan Menambah Poin Imigrasi:</strong> Studi di Kanada menambah poin CRS dan membuka jalur CEC tanpa sponsor.
+                                                <strong>Pendidikan Menambah Poin Imigrasi</strong><br /> Studi di Kanada menambah poin CRS dan membuka jalur CEC tanpa sponsor.
                                             </li>
                                             <li>
-                                                <strong>Program Co-op Berbayar:</strong> Kombinasi semester akademik dan kerja penuh waktu terstruktur (8–20 bulan pengalaman industri).
+                                                <strong>Program Co-op Berbayar</strong><br /> Kombinasi semester akademik dan kerja penuh waktu terstruktur (8–20 bulan pengalaman industri).
                                             </li>
                                             <li>
-                                                <strong>Kepemimpinan Riset Global:</strong> Unggul di AI, sains iklim, dan clean tech (Vector Institute, MILA).
+                                                <strong>Kepemimpinan Riset Global</strong><br /> Unggul di AI, sains iklim, dan clean tech (Vector Institute, MILA).
                                             </li>
                                             <li>
-                                                <strong>Asuransi Kesehatan Provinsi:</strong> Banyak provinsi memberi perlindungan gratis atau subsidi setelah masa tunggu.
+                                                <strong>Asuransi Kesehatan Provinsi</strong><br /> Banyak provinsi memberi perlindungan gratis atau subsidi setelah masa tunggu.
                                             </li>
                                         </ul>
                                     </div>

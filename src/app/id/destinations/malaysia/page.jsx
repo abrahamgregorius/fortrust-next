@@ -78,38 +78,38 @@ export default function Malaysia() {
                                         <ul>
                                             <li>
                                                 <strong
-                                                >Gelar Ganda dari Universitas Kelas Dunia:</strong
-                                                >
+                                                >Gelar Ganda dari Universitas Kelas Dunia</strong
+                                                ><br />
                                                 Dapatkan gelar dari universitas top UK atau Australia seperti Monash atau Nottingham dengan biaya fraksi, tanpa meninggalkan Malaysia.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Pendidikan Kelas Dunia Terjangkau:</strong
-                                                >
+                                                >Pendidikan Kelas Dunia Terjangkau</strong
+                                                ><br />
                                                 Dengan biaya kuliah sekitar $4,000–$7,000/tahun dan biaya hidup rendah, Anda dapat lulus dengan gelar terhormat tanpa utang.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Bahasa Inggris sebagai Bahasa Instruksi Utama:</strong
-                                                >
+                                                >Bahasa Inggris sebagai Bahasa Instruksi Utama</strong
+                                                ><br />
                                                 Bahasa Inggris banyak digunakan di universitas, menghilangkan hambatan bahasa sambil memungkinkan Anda belajar bahasa Asia strategis seperti Melayu dan Mandarin.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Lingkungan Multikultural:</strong
-                                                >
+                                                >Lingkungan Multikultural</strong
+                                                ><br />
                                                 Campuran unik budaya Melayu, Cina, dan India di Malaysia memberikan keunggulan dalam keterampilan komunikasi lintas budaya.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Lokasi Strategis untuk Menjelajahi Asia:</strong
-                                                >
+                                                >Lokasi Strategis untuk Menjelajahi Asia</strong
+                                                ><br />
                                                 Terletak di jantung Asia Tenggara, Malaysia adalah hub maskapai penerbangan budget, sempurna untuk networking dan eksplorasi budaya.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Peluang Berkembang di Sektor Berkembang Cepat:</strong
-                                                >
+                                                >Peluang Berkembang di Sektor Berkembang Cepat</strong
+                                                ><br />
                                                 Temukan peluang magang dan pekerjaan di bidang teknologi, kesehatan, dan industri berkelanjutan.
                                             </li>
                                         </ul>

@@ -111,13 +111,13 @@ export default function Australia() {
                                     <div className="content-block">
                                         <h3>Manfaat Utama Kuliah di Australia</h3>
                                         <ul>
-                                            <li><strong>Hak Kerja Pasca-Studi Terpanjang di Dunia:</strong> Australia menawarkan hak kerja pasca-studi paling murah hati, memungkinkan lulusan bekerja hingga enam tahun—lebih lama dari Kanada, Inggris, atau AS.</li>
-                                            <li><strong>Australian Qualifications Framework (AQF):</strong> Sistem unik ini menstandarkan tingkat pendidikan, memastikan gelar Anda langsung diakui di luar negeri dan memungkinkan transisi mulus antar bidang.</li>
-                                            <li><strong>Opsi Kerja Fleksibel untuk Mahasiswa:</strong> Tidak seperti negara lain, Australia memperbolehkan mahasiswa bekerja tanpa batas jam selama libur semester resmi.</li>
-                                            <li><strong>Insentif Studi Regional:</strong> Belajar di daerah regional memberikan poin tambahan untuk PR, biaya lebih rendah, dan visa kerja pasca-studi yang diperpanjang.</li>
-                                            <li><strong>Keselarasan Studi-Migrasi:</strong> Daftar keterampilan Australia secara langsung menghubungkan program akademik dengan kebutuhan migrasi, meningkatkan peluang PR Anda.</li>
-                                            <li><strong>Pinjaman Pemerintah (HECS-HELP) untuk Penduduk yang Memenuhi Syarat:</strong> Penduduk tetap tertentu dapat menggunakan pinjaman HECS-HELP untuk menutup biaya kuliah tanpa pembayaran di muka.</li>
-                                            <li><strong>Iklim dan Keragaman Budaya yang Tak Tertandingi:</strong> Australia menawarkan berbagai pilihan gaya hidup dan integrasi budaya yang mulus bagi mahasiswa.</li>
+                                            <li><strong>Hak Kerja Pasca-Studi Terpanjang di Dunia</strong><br /> Australia menawarkan hak kerja pasca-studi paling murah hati, memungkinkan lulusan bekerja hingga enam tahun—lebih lama dari Kanada, Inggris, atau AS.</li>
+                                            <li><strong>Australian Qualifications Framework (AQF)</strong><br /> Sistem unik ini menstandarkan tingkat pendidikan, memastikan gelar Anda langsung diakui di luar negeri dan memungkinkan transisi mulus antar bidang.</li>
+                                            <li><strong>Opsi Kerja Fleksibel untuk Mahasiswa</strong><br /> Tidak seperti negara lain, Australia memperbolehkan mahasiswa bekerja tanpa batas jam selama libur semester resmi.</li>
+                                            <li><strong>Insentif Studi Regional</strong><br /> Belajar di daerah regional memberikan poin tambahan untuk PR, biaya lebih rendah, dan visa kerja pasca-studi yang diperpanjang.</li>
+                                            <li><strong>Keselarasan Studi-Migrasi</strong><br /> Daftar keterampilan Australia secara langsung menghubungkan program akademik dengan kebutuhan migrasi, meningkatkan peluang PR Anda.</li>
+                                            <li><strong>Pinjaman Pemerintah (HECS-HELP) untuk Penduduk yang Memenuhi Syarat</strong><br /> Penduduk tetap tertentu dapat menggunakan pinjaman HECS-HELP untuk menutup biaya kuliah tanpa pembayaran di muka.</li>
+                                            <li><strong>Iklim dan Keragaman Budaya yang Tak Tertandingi</strong><br /> Australia menawarkan berbagai pilihan gaya hidup dan integrasi budaya yang mulus bagi mahasiswa.</li>
                                         </ul>
                                     </div>
                                     <div className="content-block">

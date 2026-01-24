@@ -74,12 +74,12 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h3>Manfaat Utama Kuliah di Selandia Baru</h3>
                                             <ul>
-                                                <li><strong>Belajar dalam Kelas Kecil dan Mendukung:</strong> Dengan ukuran kelas rata-rata 10–25 mahasiswa, dosen mengenal Anda secara personal dan memberikan pendampingan yang sesuai.</li>
-                                                <li><strong>Hak Bekerja yang Unggul:</strong> Bekerja hingga 20 jam per minggu selama semester dan penuh waktu saat liburan. Post-Study Work Visa memungkinkan Anda tinggal dan bekerja hingga tiga tahun di sektor apa pun.</li>
-                                                <li><strong>Hidup di Masyarakat yang Aman dan Ramah:</strong> Selandia Baru secara konsisten masuk 10 besar negara teraman. Budaya menekankan sikap saling peduli ("manaakitanga"), membuat mahasiswa internasional benar-benar merasa disambut.</li>
-                                                <li><strong>Jalur Mudah Menuju Permanent Residency:</strong> Lulusan di bidang kekurangan tenaga (teknologi, teknik, kesehatan) berpeluang mendapatkan jalur residensi langsung.</li>
-                                                <li><strong>Belajar di Jantung Alam:</strong> Banyak kampus dikelilingi pegunungan, fjord, dan pantai, memberikan pengalaman belajar yang sulit ditandingi.</li>
-                                                <li><strong>Perspektif Pribumi yang Memperkaya Setiap Mata Kuliah:</strong> Budaya Māori terjalin dalam pendidikan tinggi, mengajarkan nilai-nilai dan cara pandang inovatif yang meningkatkan daya saing global.</li>
+                                                <li><strong>Belajar dalam Kelas Kecil dan Mendukung</strong><br /> Dengan ukuran kelas rata-rata 10–25 mahasiswa, dosen mengenal Anda secara personal dan memberikan pendampingan yang sesuai.</li>
+                                                <li><strong>Hak Bekerja yang Unggul</strong><br /> Bekerja hingga 20 jam per minggu selama semester dan penuh waktu saat liburan. Post-Study Work Visa memungkinkan Anda tinggal dan bekerja hingga tiga tahun di sektor apa pun.</li>
+                                                <li><strong>Hidup di Masyarakat yang Aman dan Ramah</strong><br /> Selandia Baru secara konsisten masuk 10 besar negara teraman. Budaya menekankan sikap saling peduli ("manaakitanga"), membuat mahasiswa internasional benar-benar merasa disambut.</li>
+                                                <li><strong>Jalur Mudah Menuju Permanent Residency</strong><br /> Lulusan di bidang kekurangan tenaga (teknologi, teknik, kesehatan) berpeluang mendapatkan jalur residensi langsung.</li>
+                                                <li><strong>Belajar di Jantung Alam</strong><br /> Banyak kampus dikelilingi pegunungan, fjord, dan pantai, memberikan pengalaman belajar yang sulit ditandingi.</li>
+                                                <li><strong>Perspektif Pribumi yang Memperkaya Setiap Mata Kuliah</strong><br /> Budaya Māori terjalin dalam pendidikan tinggi, mengajarkan nilai-nilai dan cara pandang inovatif yang meningkatkan daya saing global.</li>
                                             </ul>
                                         </div>
 
