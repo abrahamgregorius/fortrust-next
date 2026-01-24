@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import styles from "./page.module.css";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -24,6 +22,7 @@ export default function Home() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [banners, setBanners] = useState([]);
     const [isLoadingBanners, setIsLoadingBanners] = useState(true);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const fetchBanners = async () => {
         setIsLoadingBanners(true);
@@ -71,6 +70,41 @@ export default function Home() {
 
     // Use database banners if available, otherwise use hardcoded
     const slides = bannerSlides.length > 0 ? bannerSlides : hardcodedSlides;
+
+    // Preload images
+    useEffect(() => {
+        if (slides.length > 0 && !isLoadingBanners) {
+            const preloadImages = async () => {
+                // Collect all unique image URLs to preload
+                const imageUrls = new Set();
+                slides.forEach(slide => {
+                    imageUrls.add(slide.img);
+                    if (slide.mobileImg && slide.mobileImg !== slide.img) {
+                        imageUrls.add(slide.mobileImg);
+                    }
+                });
+
+                const imagePromises = Array.from(imageUrls).map(url => {
+                    return new Promise((resolve, reject) => {
+                        const img = new Image();
+                        img.onload = () => resolve(url);
+                        img.onerror = () => reject(url);
+                        img.src = url;
+                    });
+                });
+
+                try {
+                    await Promise.all(imagePromises);
+                    setImagesLoaded(true);
+                } catch (error) {
+                    console.error('Error preloading images:', error);
+                    // Still show the carousel even if some images fail to load
+                    setImagesLoaded(true);
+                }
+            };
+            preloadImages();
+        }
+    }, [slides, isLoadingBanners]);
 
     const [testimonials, setTestimonials] = useState([]);
     const [isLoadingTestimonials, setIsLoadingTestimonials] = useState(true);
@@ -332,7 +366,7 @@ export default function Home() {
                         onTouchEnd={handleTouchEnd}
                         style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
                     >
-                        {isLoadingBanners ? (
+                        {isLoadingBanners || !imagesLoaded ? (
                             <div className="carousel-slide active" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                                 <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
                             </div>
@@ -341,7 +375,6 @@ export default function Home() {
                                 <div
                                     key={slide.id}
                                     className={`carousel-slide ${idx === currentSlide ? "active" : ""}`}
-                                    style={{ position: 'relative' }}
                                 >
                                     <picture>
                                         <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
