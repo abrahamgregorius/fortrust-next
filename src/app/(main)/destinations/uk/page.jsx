@@ -89,8 +89,8 @@ export default function UK() {
                                                 <li>
                                                     <strong
                                                     >Globally Recognized
-                                                        Education:</strong
-                                                    >
+                                                        Education</strong
+                                                    ><br />
                                                     UK universities like Oxford, Cambridge,
                                                     and UCL consistently rank among the
                                                     world’s best. Their degrees are
@@ -99,8 +99,8 @@ export default function UK() {
                                                 </li>
                                                 <li>
                                                     <strong
-                                                    >Shorter & Flexible Courses:</strong
-                                                    >
+                                                    >Shorter & Flexible Courses</strong
+                                                    ><br />
                                                     Undergraduate degrees usually take only
                                                     three years and Master’s just one,
                                                     saving you time and money without
@@ -108,8 +108,8 @@ export default function UK() {
                                                 </li>
                                                 <li>
                                                     <strong
-                                                    >Rich Cultural Experience:</strong
-                                                    >
+                                                    >Rich Cultural Experience</strong
+                                                    ><br />
                                                     From historic castles to vibrant music
                                                     scenes and multicultural cities, every
                                                     day in the UK is an adventure with
@@ -118,15 +118,15 @@ export default function UK() {
                                                 <li>
                                                     <strong
                                                     >Generous Work Rights &
-                                                        Scholarships:</strong
-                                                    >
+                                                        Scholarships</strong
+                                                    ><br />
                                                     International students can work up to 20
                                                     hours per week during term and full-time
                                                     on holidays. Hundreds of scholarships
                                                     are available.
                                                 </li>
                                                 <li>
-                                                    <strong>Career Opportunities:</strong>
+                                                    <strong>Career Opportunities</strong><br />
                                                     The UK is a global hub for finance,
                                                     technology, creative industries, and
                                                     law, with strong university links to

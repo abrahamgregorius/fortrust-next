@@ -80,7 +80,7 @@ export default function China() {
                                             <li>
                                                 <strong
                                                 >Access to the World’s Largest, Fastest-Growing
-                                                    Economy</strong>
+                                                    Economy</strong><br />
                                                 Direct exposure to the world’s second-largest economy, with
                                                 immediate insight into global manufacturing, technology, and
                                                 international business networks.

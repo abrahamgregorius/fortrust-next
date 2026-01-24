@@ -74,12 +74,12 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h3>Key Benefits of Studying in New Zealand</h3>
                                             <ul>
-                                                <li><strong>Study in Small, Supportive Classes:</strong> With average class sizes of 10-25 students, professors know you by name and offer tailored mentoring.</li>
-                                                <li><strong>Unique Work Rights:</strong> Work up to 20 hours per week during the semester and full-time during holidays. The Post-Study Work Visa lets you stay and work for up to three years in any sector.</li>
-                                                <li><strong>Live in a Safe and Friendly Society:</strong> New Zealand consistently ranks in the top ten for global safety. The culture emphasizes kindness ("manaakitanga"), making international students feel truly welcomed.</li>
-                                                <li><strong>Easy Pathway to Permanent Residency:</strong> Graduates in skill shortage areas (tech, engineering, healthcare) are eligible for direct residency pathways.</li>
-                                                <li><strong>Study in the Heart of Nature:</strong> Many campuses are framed by mountains, fiords, and beaches, offering a learning experience impossible to duplicate anywhere else.</li>
-                                                <li><strong>Indigenous Perspectives That Enrich Every Course:</strong> Māori culture is interwoven into higher education, teaching indigenous values and innovative worldviews that boost global employability.</li>
+                                                <li><strong>Study in Small, Supportive Classes</strong><br /> With average class sizes of 10-25 students, professors know you by name and offer tailored mentoring.</li>
+                                                <li><strong>Unique Work Rights</strong><br /> Work up to 20 hours per week during the semester and full-time during holidays. The Post-Study Work Visa lets you stay and work for up to three years in any sector.</li>
+                                                <li><strong>Live in a Safe and Friendly Society</strong><br /> New Zealand consistently ranks in the top ten for global safety. The culture emphasizes kindness ("manaakitanga"), making international students feel truly welcomed.</li>
+                                                <li><strong>Easy Pathway to Permanent Residency</strong><br /> Graduates in skill shortage areas (tech, engineering, healthcare) are eligible for direct residency pathways.</li>
+                                                <li><strong>Study in the Heart of Nature</strong><br /> Many campuses are framed by mountains, fiords, and beaches, offering a learning experience impossible to duplicate anywhere else.</li>
+                                                <li><strong>Indigenous Perspectives That Enrich Every Course</strong><br /> Māori culture is interwoven into higher education, teaching indigenous values and innovative worldviews that boost global employability.</li>
                                             </ul>
                                         </div>
 

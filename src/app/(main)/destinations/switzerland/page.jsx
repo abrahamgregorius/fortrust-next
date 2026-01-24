@@ -90,8 +90,8 @@ export default function Switzerland() {
                                                 <li>
                                                     <strong
                                                     >World-Class Education a Cut Above
-                                                        the Rest:</strong
-                                                    >
+                                                        the Rest</strong
+                                                    ><br />
                                                     Home to universities consistently ranked
                                                     among the world’s best—like ETH Zurich
                                                     and EPFL Lausanne—Swiss education is
@@ -100,8 +100,8 @@ export default function Switzerland() {
                                                 <li>
                                                     <strong
                                                     >True Multilingual
-                                                        Immersion:</strong
-                                                    >
+                                                        Immersion</strong
+                                                    ><br />
                                                     No other country offers the chance to
                                                     live and learn in a society with four
                                                     national languages, opening doors to
@@ -110,8 +110,8 @@ export default function Switzerland() {
                                                 <li>
                                                     <strong
                                                     >Unmatched Research & Innovation in
-                                                        Finance:</strong
-                                                    >
+                                                        Finance</strong
+                                                    ><br />
                                                     Switzerland leads the world in research
                                                     output per capita and hosts
                                                     groundbreaking innovation, especially in
@@ -120,8 +120,8 @@ export default function Switzerland() {
                                                 <li>
                                                     <strong
                                                     >Global Networking in the Heart of
-                                                        International Diplomacy:</strong
-                                                    >
+                                                        International Diplomacy</strong
+                                                    ><br />
                                                     With cities like Geneva hosting
                                                     organizations like the UN, WTO, and WHO,
                                                     your classroom extends to the world’s
@@ -130,8 +130,8 @@ export default function Switzerland() {
                                                 <li>
                                                     <strong
                                                     >Exceptional Quality of Life &
-                                                        Safety:</strong
-                                                    >
+                                                        Safety</strong
+                                                    ><br />
                                                     Consistently ranked among the safest,
                                                     cleanest, and most liveable countries on
                                                     earth.
@@ -139,8 +139,8 @@ export default function Switzerland() {
                                                 <li>
                                                     <strong
                                                     >Generous Scholarships for
-                                                        You:</strong
-                                                    >
+                                                        You</strong
+                                                    ><br />
                                                     The Swiss government and universities
                                                     offer dedicated scholarships for
                                                     international students, making

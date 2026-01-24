@@ -140,8 +140,8 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     Longest Post-Study Work
-                                                    Rights in the World:
-                                                </strong>{" "}
+                                                    Rights in the World
+                                                </strong>{" "} <br/>
                                                 Australia offers the most
                                                 generous post-study work rights,
                                                 allowing graduates to work for
@@ -151,8 +151,8 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     Australian Qualifications
-                                                    Framework (AQF):
-                                                </strong>{" "}
+                                                    Framework (AQF)
+                                                </strong>{" "} <br/>
                                                 This unique system standardizes
                                                 education levels, ensuring your
                                                 degree is instantly recognized
@@ -162,8 +162,8 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     Flexible Work Options for
-                                                    Students:
-                                                </strong>{" "}
+                                                    Students
+                                                </strong>{" "} <br/>
                                                 Unlike other countries,
                                                 Australia lets students work
                                                 unlimited hours during official
@@ -171,8 +171,8 @@ export default function Australia() {
                                             </li>
                                             <li>
                                                 <strong>
-                                                    Regional Study Incentives:
-                                                </strong>{" "}
+                                                    Regional Study Incentives
+                                                </strong>{" "} <br/>
                                                 Studying in regional areas
                                                 provides extra points toward PR,
                                                 lower costs, and an extended
@@ -180,8 +180,8 @@ export default function Australia() {
                                             </li>
                                             <li>
                                                 <strong>
-                                                    Study-Migration Alignment:
-                                                </strong>{" "}
+                                                    Study-Migration Alignment
+                                                </strong>{" "} <br/>
                                                 Australia's skills lists
                                                 directly link academic programs
                                                 with migration needs, boosting
@@ -190,8 +190,8 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     Government Loans (HECS-HELP)
-                                                    for Eligible Residents:
-                                                </strong>{" "}
+                                                    for Eligible Residents
+                                                </strong>{" "} <br/>
                                                 Certain permanent residents can
                                                 use HECS-HELP loans to cover
                                                 tuition with no upfront payment.
@@ -199,8 +199,8 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     Unmatched Climate and
-                                                    Cultural Diversity:
-                                                </strong>{" "}
+                                                    Cultural Diversity
+                                                </strong>{" "} <br/>
                                                 Australia offers a wide range of
                                                 lifestyle choices and seamless
                                                 cultural integration for

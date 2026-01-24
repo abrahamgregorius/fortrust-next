@@ -83,8 +83,8 @@ export default function Singapore() {
                                                 <li>
                                                     <strong
                                                     >Work While You Study Without a
-                                                        Separate Work Visa:</strong
-                                                    >
+                                                        Separate Work Visa</strong
+                                                    ><br />
                                                     If you study at a government university,
                                                     you can work part-time (up to 16
                                                     hours/week) without applying for a
@@ -93,8 +93,8 @@ export default function Singapore() {
                                                 <li>
                                                     <strong
                                                     >Direct Gateway to Asia’s
-                                                        Fastest-Growing Job Market:</strong
-                                                    >
+                                                        Fastest-Growing Job Market</strong
+                                                    ><br />
                                                     With over 7,000 multinational
                                                     corporations, internships at Fortune 500
                                                     companies are easily accessible.
@@ -102,8 +102,8 @@ export default function Singapore() {
                                                 <li>
                                                     <strong
                                                     >Degrees Recognized
-                                                        Worldwide:</strong
-                                                    >
+                                                        Worldwide</strong
+                                                    ><br />
                                                     Universities like NUS and NTU
                                                     consistently rank in the world’s top 15,
                                                     offering degrees valued in every major
@@ -112,8 +112,8 @@ export default function Singapore() {
                                                 <li>
                                                     <strong
                                                     >No Language Barriers in a
-                                                        Multilingual Hub:</strong
-                                                    >
+                                                        Multilingual Hub</strong
+                                                    ><br />
                                                     English is the main language of
                                                     instruction, but you’ll also pick up
                                                     Mandarin and Malay, boosting your

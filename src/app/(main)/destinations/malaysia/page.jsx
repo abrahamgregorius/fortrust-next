@@ -82,8 +82,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >Dual Degrees from World-Class
-                                                    Universities:</strong
-                                                >
+                                                    Universities</strong
+                                                ><br />
                                                 Earn a degree from top UK or Australian
                                                 universities like Monash or Nottingham
                                                 at a fraction of the cost, without
@@ -92,8 +92,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >Affordable World-Class
-                                                    Education:</strong
-                                                >
+                                                    Education</strong
+                                                ><br />
                                                 With tuition fees around
                                                 $4,000–$7,000/year and low living costs,
                                                 you can graduate with a respected degree
@@ -102,8 +102,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >English as a Main Language of
-                                                    Instruction:</strong
-                                                >
+                                                    Instruction</strong
+                                                ><br />
                                                 English is widely used in universities,
                                                 removing language barriers while
                                                 allowing you to learn strategic Asian
@@ -111,8 +111,8 @@ export default function Malaysia() {
                                             </li>
                                             <li>
                                                 <strong
-                                                >Multicultural Environment:</strong
-                                                >
+                                                >Multicultural Environment</strong
+                                                ><br />
                                                 Malaysia’s unique blend of Malay,
                                                 Chinese, and Indian cultures provides an
                                                 edge in cross-cultural communication
@@ -121,8 +121,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >Strategic Location for Exploring
-                                                    Asia:</strong
-                                                >
+                                                    Asia</strong
+                                                ><br />
                                                 Situated in the heart of Southeast Asia,
                                                 Malaysia is a budget airline hub,
                                                 perfect for networking and cultural
@@ -131,8 +131,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >Growing Opportunities in
-                                                    Fast-Developing Sectors:</strong
-                                                >
+                                                    Fast-Developing Sectors</strong
+                                                ><br />
                                                 Find internship and job opportunities in
                                                 tech, healthcare, and sustainable
                                                 industries.
