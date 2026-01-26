@@ -391,6 +391,7 @@ export default function LanguagePrepID() {
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <br />
                                         <ul>
                                             <li><strong></strong> Anda akan mendengar rekaman dalam bahasa Mandarin dan menjawab pertanyaan</li>
                                             <li><strong></strong> Membaca passage dan memilih jawaban yang benar</li>
@@ -402,12 +403,8 @@ export default function LanguagePrepID() {
                                     <div className="content-block">
                                         <h3>Persyaratan Skor & Biaya HSK</h3>
                                         <ul>
-                                            <li><strong></strong>
-                                                <ul>
-                                                    <li><strong></strong> Diperlukan untuk program sarjana di China (diajarkan dalam bahasa Mandarin)</li>
-                                                    <li><strong></strong> Diperlukan untuk program pascasarjana dan beasiswa bahasa Mandarin</li>
-                                                </ul>
-                                            </li>
+                                            <li><strong></strong> Diperlukan untuk program sarjana di China (diajarkan dalam bahasa Mandarin)</li>
+                                            <li><strong></strong> Diperlukan untuk program pascasarjana dan beasiswa bahasa Mandarin</li>
                                             <li><strong></strong> Biaya HSK bervariasi menurut negara dan level tes tetapi biasanya berkisar dari <strong></strong>.</li>
                                         </ul>
                                     </div>
