@@ -282,8 +282,8 @@ export default function NewZealand() {
                                             <h2>Work Rights for Students</h2>
                                             <p>From the moment you begin your academic journey in New Zealand, you are supported not just as a student, but as a future leader.</p>
                                             <ul>
-                                                <li><strong>Work While Studying:</strong> Your student visa generally allows you to work up to 20 hours per week during teaching periods and full-time during scheduled university breaks.</li>
-                                                <li><strong>Launch Your Career:</strong> Upon graduation, you can apply for a Post-Study Work Visa, which allows you to work in New Zealand for up to three years, in any field of your choice.</li>
+                                                <li><strong>Work While Studying</strong> <br /> Your student visa generally allows you to work up to 20 hours per week during teaching periods and full-time during scheduled university breaks.</li>
+                                                <li><strong>Launch Your Career</strong> <br /> Upon graduation, you can apply for a Post-Study Work Visa, which allows you to work in New Zealand for up to three years, in any field of your choice.</li>
                                             </ul>
                                             <p>Imagine earning extra pocket money, gaining real-world skills, and making valuable professional connections—all while balancing your studies.</p>
                                         </div>
@@ -302,9 +302,9 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h3>Key Types of Scholarships</h3>
                                             <ul>
-                                                <li><strong>Merit-Based Scholarships:</strong> Awarded to students with outstanding academic achievements, leadership skills, or special talents.</li>
-                                                <li><strong>Research Scholarships:</strong> Given to students with strong academic or research potential, such as the NZIDRS (New Zealand International Doctoral Research Scholarships).</li>
-                                                <li><strong>Government Scholarships:</strong> Include awards like the New Zealand ASEAN Scholarships (NZAS), opening doors to undergraduate and postgraduate studies.</li>
+                                                <li><strong>Merit-Based Scholarships</strong><br /> Awarded to students with outstanding academic achievements, leadership skills, or special talents.</li>
+                                                <li><strong>Research Scholarships</strong><br /> Given to students with strong academic or research potential, such as the NZIDRS (New Zealand International Doctoral Research Scholarships).</li>
+                                                <li><strong>Government Scholarships</strong><br /> Include awards like the New Zealand ASEAN Scholarships (NZAS), opening doors to undergraduate and postgraduate studies.</li>
                                             </ul>
                                         </div>
                                     </div>

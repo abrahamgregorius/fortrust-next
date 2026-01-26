@@ -282,8 +282,8 @@ export default function NewZealand() {
                                             <h2>Hak Bekerja untuk Mahasiswa</h2>
                                             <p>Sejak Anda memulai perjalanan akademik di Selandia Baru, Anda didukung bukan hanya sebagai mahasiswa, tetapi juga sebagai calon pemimpin.</p>
                                             <ul>
-                                                <li><strong>Bekerja Sambil Kuliah:</strong> Visa pelajar Anda umumnya memungkinkan Anda bekerja hingga 20 jam per minggu selama masa perkuliahan dan penuh waktu saat libur resmi universitas.</li>
-                                                <li><strong>Meluncurkan Karier Anda:</strong> Setelah lulus, Anda dapat mengajukan Post-Study Work Visa, yang memungkinkan Anda bekerja di Selandia Baru hingga tiga tahun, di bidang apa pun yang Anda pilih.</li>
+                                                <li><strong>Bekerja Sambil Kuliah</strong><br /> Visa pelajar Anda umumnya memungkinkan Anda bekerja hingga 20 jam per minggu selama masa perkuliahan dan penuh waktu saat libur resmi universitas.</li>
+                                                <li><strong>Meluncurkan Karier Anda</strong><br /> Setelah lulus, Anda dapat mengajukan Post-Study Work Visa, yang memungkinkan Anda bekerja di Selandia Baru hingga tiga tahun, di bidang apa pun yang Anda pilih.</li>
                                             </ul>
                                             <p>Bayangkan mendapat penghasilan tambahan, memperoleh keterampilan dunia nyata, dan membangun koneksi profesional—sembari tetap menyeimbangkan studi Anda.</p>
                                         </div>
@@ -302,9 +302,9 @@ export default function NewZealand() {
                                         <div className="content-block">
                                             <h3>Jenis Beasiswa Utama</h3>
                                             <ul>
-                                                <li><strong>Beasiswa Prestasi (Merit-Based):</strong> Diberikan kepada mahasiswa dengan prestasi akademik, kepemimpinan, atau bakat khusus yang unggul.</li>
-                                                <li><strong>Beasiswa Riset:</strong> Untuk mahasiswa dengan potensi akademik atau riset yang kuat, seperti NZIDRS (New Zealand International Doctoral Research Scholarships).</li>
-                                                <li><strong>Beasiswa Pemerintah:</strong> Termasuk New Zealand ASEAN Scholarships (NZAS) yang membuka kesempatan studi S1 dan S2/S3.</li>
+                                                <li><strong>Beasiswa Prestasi (Merit-Based)</strong><br /> Diberikan kepada mahasiswa dengan prestasi akademik, kepemimpinan, atau bakat khusus yang unggul.</li>
+                                                <li><strong>Beasiswa Riset</strong><br /> Untuk mahasiswa dengan potensi akademik atau riset yang kuat, seperti NZIDRS (New Zealand International Doctoral Research Scholarships).</li>
+                                                <li><strong>Beasiswa Pemerintah</strong><br /> Termasuk New Zealand ASEAN Scholarships (NZAS) yang membuka kesempatan studi S1 dan S2/S3.</li>
                                             </ul>
                                         </div>
                                     </div>

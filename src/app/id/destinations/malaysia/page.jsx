@@ -332,20 +332,20 @@ export default function Malaysia() {
                                         <ul>
                                             <li>
                                                 <strong
-                                                >Kerja Paruh Waktu Selama Studi:</strong
-                                                >
+                                                >Kerja Paruh Waktu Selama Studi</strong
+                                                ><br />
                                                 Mahasiswa internasional diizinkan bekerja paruh waktu hingga 20 jam per minggu selama liburan semester atau liburan lebih dari 7 hari.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Persyaratan Izin Kerja:</strong
-                                                >
+                                                >Persyaratan Izin Kerja</strong
+                                                ><br />
                                                 Anda harus mengajukan persetujuan melalui Departemen Imigrasi Malaysia dengan bantuan universitas sebelum memulai kerja.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Peluang Kerja Pasca-Studi:</strong
-                                                >
+                                                >Peluang Kerja Pasca-Studi</strong
+                                                ><br />
                                                 Meskipun Malaysia tidak memiliki visa kerja pasca-studi terbuka, Anda dapat mengamankan Employment Pass jika menerima tawaran pekerjaan penuh waktu dari perusahaan Malaysia.
                                             </li>
                                         </ul>
@@ -372,20 +372,20 @@ export default function Malaysia() {
                                         <ul>
                                             <li>
                                                 <strong
-                                                >Malaysia International Scholarship (MIS):</strong
-                                                >
+                                                >Malaysia International Scholarship (MIS)</strong
+                                                ><br />
                                                 Ditawarkan oleh Kementerian Pendidikan Malaysia, beasiswa ini mendukung mahasiswa pascasarjana luar biasa dan sering mencakup biaya kuliah dan tunjangan hidup.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Beasiswa Spesifik Universitas:</strong
-                                                >
+                                                >Beasiswa Spesifik Universitas</strong
+                                                ><br />
                                                 Kebanyakan universitas Malaysia memiliki beasiswa berbasis prestasi sendiri, seperti University of Malaya Excellence Award dan Monash University Malaysia Scholarships.
                                             </li>
                                             <li>
                                                 <strong
-                                                >Beasiswa Belt and Road:</strong
-                                                >
+                                                >Beasiswa Belt and Road</strong
+                                                ><br />
                                                 Untuk mahasiswa dari negara-negara Belt and Road Initiative, Malaysia berpartisipasi dalam program kolaboratif yang mencakup biaya kuliah dan biaya hidup.
                                             </li>
                                         </ul>

@@ -384,8 +384,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >Part-Time Work During
-                                                    Studies:</strong
-                                                >
+                                                    Studies</strong
+                                                ><br />
                                                 International students are allowed to
                                                 work part-time for up to 20 hours per
                                                 week during semester breaks or holidays
@@ -393,8 +393,8 @@ export default function Malaysia() {
                                             </li>
                                             <li>
                                                 <strong
-                                                >Work Permit Requirements:</strong
-                                                >
+                                                >Work Permit Requirements</strong
+                                                ><br />
                                                 You must apply for approval through the
                                                 Immigration Department of Malaysia with
                                                 the help of your university before
@@ -403,8 +403,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >Post-Study Work
-                                                    Opportunities:</strong
-                                                >
+                                                    Opportunities</strong
+                                                ><br />
                                                 While Malaysia doesn’t have an open
                                                 post-study work visa, you can secure an
                                                 Employment Pass if you receive a
@@ -441,8 +441,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >Malaysia International Scholarship
-                                                    (MIS):</strong
-                                                >
+                                                    (MIS)</strong
+                                                ><br />
                                                 Offered by the Malaysian Ministry of
                                                 Education, this scholarship supports
                                                 outstanding postgraduate students and
@@ -452,8 +452,8 @@ export default function Malaysia() {
                                             <li>
                                                 <strong
                                                 >University-Specific
-                                                    Scholarships:</strong
-                                                >
+                                                    Scholarships</strong
+                                                ><br />
                                                 Most Malaysian universities have their
                                                 own merit-based scholarships, such as
                                                 the University of Malaya Excellence
@@ -462,8 +462,8 @@ export default function Malaysia() {
                                             </li>
                                             <li>
                                                 <strong
-                                                >Belt and Road Scholarship:</strong
-                                                >
+                                                >Belt and Road Scholarship</strong
+                                                ><br />
                                                 For students from Belt and Road
                                                 Initiative countries, Malaysia
                                                 participates in collaborative programs

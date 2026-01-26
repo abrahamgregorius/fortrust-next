@@ -353,7 +353,7 @@ export default function Canada() {
                                         </p>
                                         <ul>
                                             <li>
-                                                International students can work up to
+                                                International students can work up to {" "}
                                                 <strong>24 hours per week</strong> during semesters
                                                 (increased from 20 hours).
                                             </li>
