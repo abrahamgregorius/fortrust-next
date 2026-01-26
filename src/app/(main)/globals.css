@@ -2843,3 +2843,29 @@ ul {
         height: 40px;
     }
 }
+
+/* Interest page right panel */
+.text-content-container--with-panel {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: var(--space-8);
+}
+
+.right-panel {
+    background-color: var(--neutral-100);
+    padding: var(--space-6);
+    border-radius: var(--radius-card);
+    text-align: center;
+    position: sticky;
+    top: var(--space-8);
+    height: fit-content;
+}
+
+@media (max-width: 1024px) {
+    .text-content-container--with-panel {
+        grid-template-columns: 1fr;
+    }
+    .right-panel {
+        display: none;
+    }
+}
