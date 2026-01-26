@@ -9,12 +9,14 @@ export default function StudyTour() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Program Study Tour & Immersi</h1>
+                        <h1>Study Tour & Immersion Programs</h1>
                         <p>
                             Rasakan masa depan Anda sebelum berkomitmen. Perjalanan eksplorasi menanti.
                         </p>
                     </div>
                 </section>
+                <img src="/study-tour/banner-a.webp" alt="Study Tour Banner" style={{ width: '100%' }} />
+
 
                 <section className="text-content-section">
                     <div className="container text-content-container">

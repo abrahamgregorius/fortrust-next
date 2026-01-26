@@ -687,7 +687,7 @@ ul {
     max-width: 800px;
     object-fit: cover;
     object-position: center;
-    margin-bottom: var(--space-4);
+    margin-bottom: 0;
 }
 
 .content-block {
@@ -966,6 +966,11 @@ ul {
 
 .dark-text {
     color: var(--bg) !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* 9. FOOTER */
