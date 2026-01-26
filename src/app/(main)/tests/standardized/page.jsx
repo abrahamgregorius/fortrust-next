@@ -432,7 +432,7 @@ export default function Standardized() {
                             {activeTab === "csca" && (
                                 <div id="csca" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>The CSCA Undergraduate Academic Competency Test</h2>
+                                        <h2>CSCA Preparation</h2>
                                         <picture>
                                             <source media="(max-width: 768px)" srcSet="/test-banner/csca/desktop.webp" />
                                             <img src="/test-banner/csca/desktop.webp" className="content__banner" />

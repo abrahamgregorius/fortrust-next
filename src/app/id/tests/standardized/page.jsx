@@ -432,7 +432,7 @@ export default function StandardizedID() {
                             {activeTab === "csca" && (
                                 <div id="csca" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Panduan Lengkap CSCA untuk Mahasiswa Internasional</h2>
+                                        <h2>Persiapan Tes CSCA</h2>
                                         <picture>
                                             <source media="(max-width: 768px)" srcSet="/test-banner/csca/desktop.webp" />
                                             <img src="/test-banner/csca/desktop.webp" className="content__banner" />
