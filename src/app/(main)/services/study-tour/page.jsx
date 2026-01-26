@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { CheckCircle } from "lucide-react";
 
 export default function StudyTour() {
     return (
@@ -21,6 +22,7 @@ export default function StudyTour() {
                 <section className="text-content-section">
                     <div className="container text-content-container">
                         <h2>Why Join a Study Tour?</h2>
+                        <br />
                         <p>
                             Choosing to study abroad is a big decision. A study tour is the
                             perfect way to experience the academic and cultural life of your
@@ -38,24 +40,24 @@ export default function StudyTour() {
                                 Our Premier UCCE Immersion Program
                             </h2>
                             <p>
-                                The
-                                <strong>University, College, Career Experience (UCCE)</strong>
+                                The {" "}
+                                <strong>University, College, Career Experience (UCCE)</strong> {" "}
                                 program is our flagship immersion experience. It's meticulously
                                 designed to give you a comprehensive preview of your potential
                                 future, combining academic insights with real-world career
                                 exposure.
                             </p>
-                            <ul>
+                            <ul className="ucce">
                                 <li>
-                                    <i data-lucide="check-circle"></i> Visit the campuses of
+                                    - Visit the campuses of
                                     world-renowned universities.
                                 </li>
                                 <li>
-                                    <i data-lucide="check-circle"></i> Attend workshops and sample
+                                    - Attend workshops and sample
                                     lectures.
                                 </li>
                                 <li>
-                                    <i data-lucide="check-circle"></i> Meet with industry
+                                    - Meet with industry
                                     professionals and explore potential career paths.
                                 </li>
                             </ul>

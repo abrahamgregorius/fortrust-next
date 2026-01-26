@@ -888,6 +888,29 @@ ul {
     transform: rotate(180deg);
 }
 
+.ucce {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: .7rem;
+}
+
+.ucce li {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.ucce li svg {
+    height: 24px;
+    width: 24px;
+}
+
+.ucce li p {
+    line-height: 1.3rem;
+}
+
 /* 8. SERVICES PAGE */
 /* ------------------------- */
 .process-section {

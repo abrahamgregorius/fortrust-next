@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { CheckCircle } from "lucide-react";
 
 export default function StudyTour() {
     return (
@@ -21,6 +22,7 @@ export default function StudyTour() {
                 <section className="text-content-section">
                     <div className="container text-content-container">
                         <h2>Mengapa Ikut Study Tour?</h2>
+                        <br />
                         <p>
                             Memilih kuliah di luar negeri adalah keputusan besar. Study tour adalah cara ideal untuk merasakan langsung kehidupan akademik dan budaya di destinasi impian. Ini lebih dari sekadar liburan; sebuah program singkat dan intensif untuk memberi kejelasan dan rasa percaya diri dalam membuat pilihan yang tepat.
                         </p>
@@ -34,19 +36,20 @@ export default function StudyTour() {
                                 Program Immersi Unggulan UCCE
                             </h2>
                             <p>
-                                The
-                                <strong>University, College, Career Experience (UCCE)</strong>
+                                The {" "}
+                                <strong>University, College, Career Experience (UCCE)</strong> {" "}
                                 adalah program immersi unggulan kami. Dirancang untuk memberi gambaran lengkap masa depan Anda dengan menggabungkan wawasan akademik dan paparan karier nyata.
                             </p>
-                            <ul>
+                            <ul className="ucce">
                                 <li>
-                                    <i data-lucide="check-circle"></i> Mengunjungi kampus universitas ternama dunia.
+                                    - Mengunjungi kampus universitas ternama dunia.
+
                                 </li>
                                 <li>
-                                    <i data-lucide="check-circle"></i> Mengikuti lokakarya dan cuplikan perkuliahan.
+                                    - Mengikuti lokakarya dan cuplikan perkuliahan.
                                 </li>
                                 <li>
-                                    <i data-lucide="check-circle"></i> Bertemu profesional industri dan eksplorasi jalur karier potensial.
+                                    - Bertemu profesional industri dan eksplorasi jalur karier potensial.
                                 </li>
                             </ul>
                         </div>

@@ -687,7 +687,7 @@ ul {
     max-width: 800px;
     object-fit: cover;
     object-position: center;
-    margin-bottom: var(--space-4);
+    margin-bottom: 0;
 }
 
 .content-block {
@@ -888,6 +888,22 @@ ul {
     transform: rotate(180deg);
 }
 
+.ucce {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: .7rem;
+}
+
+.ucce li {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: .5rem;
+    line-height: 1.3rem;
+}
+
+
 /* 8. SERVICES PAGE */
 /* ------------------------- */
 .process-section {
@@ -966,6 +982,11 @@ ul {
 
 .dark-text {
     color: var(--bg) !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* 9. FOOTER */
