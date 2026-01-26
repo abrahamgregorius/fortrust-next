@@ -215,6 +215,24 @@ export default function Singapore() {
                                                                 references, publications.
                                                             </td>
                                                         </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <strong
+                                                                >Additional Processing</strong
+                                                                >
+                                                            </td>
+                                                            <td>
+                                                                Some programs: Interview/test (for elite programs, architecture, design, etc.)
+                                                            </td>
+                                                            <td>
+                                                                May include interviews/test and
+                                                                Portfolio (for art/design)
+                                                            </td>
+                                                            <td>
+                                                                Interview with supervisor/research committee,
+                                                                Submitted research proposal
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -425,14 +443,14 @@ export default function Singapore() {
                                                 <li>
                                                     <strong
                                                     >Singapore International Graduate
-                                                        Award (SINGA):</strong
-                                                    >
+                                                        Award (SINGA)</strong
+                                                    ><br />
                                                     For outstanding PhD graduates in science
                                                     or engineering, covering full tuition
                                                     and a generous monthly stipend.
                                                 </li>
                                                 <li>
-                                                    <strong>Tuition Grant Scheme:</strong> A
+                                                    <strong>Tuition Grant Scheme</strong><br /> A
                                                     significant government subsidy on
                                                     tuition fees for undergraduate students,
                                                     with a 3-year work bond in Singapore
@@ -440,8 +458,8 @@ export default function Singapore() {
                                                 </li>
                                                 <li>
                                                     <strong
-                                                    >University Scholarships:</strong
-                                                    >
+                                                    >University Scholarships</strong
+                                                    ><br />
                                                     Top universities like NUS, NTU, and SMU
                                                     offer merit-based scholarships covering
                                                     tuition and living allowances for both
@@ -517,8 +535,8 @@ export default function Singapore() {
                                             <ul>
                                                 <li>
                                                     <strong
-                                                    >August Intake (Primary):</strong
-                                                    >
+                                                    >August Intake (Primary)</strong
+                                                    ><br />
                                                     The main intake with the broadest
                                                     selection of courses. Applications
                                                     typically run from October to March of
@@ -526,8 +544,8 @@ export default function Singapore() {
                                                 </li>
                                                 <li>
                                                     <strong
-                                                    >January Intake (Limited):</strong
-                                                    >
+                                                    >January Intake (Limited)</strong
+                                                    ><br />
                                                     A smaller intake with a limited range of
                                                     courses, typically in Business, IT, and
                                                     Hospitality. Applications run from June
@@ -535,7 +553,7 @@ export default function Singapore() {
                                                 </li>
                                             </ul>
                                             <p>
-                                                <strong>Pro Tip:</strong> Apply early!
+                                                <strong>Pro Tip</strong><br /> Apply early!
                                                 Singapore’s top universities have
                                                 competitive admissions, so early submissions
                                                 show preparedness and increase your odds.

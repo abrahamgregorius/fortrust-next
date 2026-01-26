@@ -234,6 +234,7 @@ export default function Malaysia() {
                                                         <th>Program</th>
                                                         <th>Academic Requirements</th>
                                                         <th>Language Requirements</th>
+                                                        <th>Additional Documents</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -247,11 +248,14 @@ export default function Malaysia() {
                                                         <td>
                                                             Completed secondary/high
                                                             school with at least 70–80%
-                                                            average.
+                                                            average. Equivalent to A-Levels, IB, or other recognized pre-university qualifications.
                                                         </td>
                                                         <td>
                                                             IELTS 5.5–6.0 or TOEFL iBT
                                                             60–78.
+                                                        </td>
+                                                        <td>
+                                                            Copy of passport, academic transcripts & certificates
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -263,11 +267,14 @@ export default function Malaysia() {
                                                         <td>
                                                             A Bachelor’s degree in a
                                                             related field with min. GPA
-                                                            3.0/4.0.
+                                                            3.0/4.0. Some professional experience may be preferred for certain fields (e.g., MBA).
                                                         </td>
                                                         <td>
                                                             IELTS 6.0–6.5 or TOEFL iBT
                                                             79–90.
+                                                        </td>
+                                                        <td>
+                                                            2 recommendation letters, Personal statement, Research proposal (if applicable)
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -281,6 +288,10 @@ export default function Malaysia() {
                                                         </td>
                                                         <td>
                                                             IELTS 6.5+ or TOEFL iBT 90+.
+                                                        </td>
+                                                        <td>
+                                                            Detailed research proposal, academic publications (if any) ,2–3 recommendation letters from previous lecturer, or employers
+
                                                         </td>
                                                     </tr>
                                                 </tbody>
