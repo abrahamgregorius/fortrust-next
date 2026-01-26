@@ -571,8 +571,8 @@ export default function Australia() {
                                         <ul>
                                             <li>
                                                 <strong>
-                                                    During academic semesters:
-                                                </strong>
+                                                    During academic semesters
+                                                </strong> <br />
                                                 Students are permitted to work
                                                 up to 40 hours per fortnight
                                                 (every two weeks).
@@ -580,16 +580,16 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     During official course
-                                                    breaks:
-                                                </strong>
+                                                    breaks
+                                                </strong> <br />
                                                 Students can work unlimited
                                                 hours.
                                             </li>
                                             <li>
                                                 <strong>
                                                     Special provision for aged
-                                                    care:
-                                                </strong>
+                                                    care
+                                                </strong> <br />
                                                 Those employed in the aged care
                                                 sector have no cap on work hours
                                                 until at least mid-2025.

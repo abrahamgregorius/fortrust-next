@@ -335,9 +335,9 @@ export default function Australia() {
                                         <h2>Hak Bekerja untuk Mahasiswa</h2>
                                         <p>Mahasiswa internasional di Australia menikmati hak bekerja yang murah hati, mendukung stabilitas keuangan dan pengalaman kerja yang sangat berharga:</p>
                                         <ul>
-                                            <li><strong>Selama semester akademik:</strong> Mahasiswa diizinkan bekerja hingga 40 jam per dua minggu.</li>
-                                            <li><strong>Selama libur kuliah resmi:</strong> Mahasiswa dapat bekerja tanpa batas jam.</li>
-                                            <li><strong>Ketentuan khusus untuk perawatan lansia:</strong> Mereka yang bekerja di sektor perawatan lansia tidak memiliki batasan jam kerja hingga setidaknya pertengahan 2025.</li>
+                                            <li><strong>Selama semester akademik</strong><br /> Mahasiswa diizinkan bekerja hingga 40 jam per dua minggu.</li>
+                                            <li><strong>Selama libur kuliah resmi</strong><br /> Mahasiswa dapat bekerja tanpa batas jam.</li>
+                                            <li><strong>Ketentuan khusus untuk perawatan lansia</strong><br /> Mereka yang bekerja di sektor perawatan lansia tidak memiliki batasan jam kerja hingga setidaknya pertengahan 2025.</li>
                                         </ul>
                                         <p>Setelah lulus, Anda mungkin memenuhi syarat untuk Temporary Graduate Visa (subclass 485), memberi Anda kesempatan untuk bekerja dan tinggal di Australia hingga enam tahun, tergantung pada gelar dan wilayah studi Anda. Visa ini menyediakan jalur penting untuk mendapatkan pengalaman profesional dan menjelajahi rute menuju permanent residency.</p>
                                     </div>
