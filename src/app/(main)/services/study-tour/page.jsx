@@ -57,8 +57,7 @@ export default function StudyTour() {
                                     lectures.
                                 </li>
                                 <li>
-                                    - Meet with industry
-                                    professionals and explore potential career paths.
+                                    - Meet with professionals and explore potential career paths.
                                 </li>
                             </ul>
                         </div>
