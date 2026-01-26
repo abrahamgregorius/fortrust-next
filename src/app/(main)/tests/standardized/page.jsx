@@ -29,8 +29,9 @@ export default function Standardized() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Standardized Test Preparation: SAT, GMAT, IGCSE, CSCA
+                            Standardized Test Preparation: 
                         </h1>
+                        <h2 className="dark-text">SAT, GMAT, IGCSE, CSCA</h2>
                         <p>
                             Achieve competitive scores on standardized tests with our proven preparation strategies and expert guidance.
                         </p>
