@@ -27,8 +27,9 @@ export default function LanguagePrep() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Language Test Preparation: IELTS, TOEFL, HSK
+                            Language Test Preparation: 
                         </h1>
+                        <h2 className="dark-text">IELTS, TOEFL, HSK</h2>
                         <p>
                             Master your language proficiency tests with expert guidance and comprehensive preparation programs.
                         </p>
@@ -57,10 +58,6 @@ export default function LanguagePrep() {
                                 <div id="ielts" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>Your Complete Guide to IELTS</h2>
-                                        <picture>
-                                            <source media="(max-width: 768px)" srcSet="/test-banner/ielts/desktop.webp" />
-                                            <img src="/test-banner/ielts/desktop.webp" alt="IELTS Banner" className="content__banner" />
-                                        </picture>
                                         <p>
                                             Proving your English proficiency is often a mandatory requirement when you plan to study or work overseas. <strong></strong> is one of the most recognized English language proficiency tests worldwide. It is accepted by over 11,000 institutions, including top-ranked universities and professional organizations.
                                         </p>
