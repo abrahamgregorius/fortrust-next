@@ -27,7 +27,7 @@ export default function LanguagePrep() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Language Test Preparation: 
+                            Language Test Preparation:
                         </h1>
                         <h2 className="dark-text">IELTS, TOEFL, HSK</h2>
                         <p>
@@ -184,7 +184,9 @@ export default function LanguagePrep() {
                                             </table>
                                         </div>
                                         <p>
-                                            *Good score range for IELTS, TOEFL and Cambridge English Test, is within the highlighted area.*
+                                            <strong>
+                                                Good score range for IELTS, TOEFL and Cambridge English Test, is within the highlighted area.
+                                            </strong>
                                         </p>
                                     </div>
 
