@@ -59,6 +59,10 @@ export default function StandardizedID() {
                                 <div id="sat" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>Persiapan SAT</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/sat/desktop.webp" />
+                                            <img src="/test-banner/sat/desktop.webp" className="content__banner" />
+                                        </picture>
                                         <p>
                                             SAT (Scholastic Assessment Test) adalah tes standar yang banyak digunakan untuk penerimaan perguruan tinggi di Amerika Serikat dan semakin diterima oleh universitas di seluruh dunia. Skor SAT yang kuat dapat membuka pintu ke universitas top dan peluang beasiswa yang signifikan.
                                         </p>
@@ -165,6 +169,10 @@ export default function StandardizedID() {
                                 <div id="gmat" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>Persiapan GMAT</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/gmat/desktop.webp" />
+                                            <img src="/test-banner/gmat/desktop.webp" className="content__banner" />
+                                        </picture>
                                         <p>
                                             Graduate Management Admission Test (GMAT) diperlukan untuk penerimaan ke sebagian besar program MBA dan master bisnis di seluruh dunia. Skor GMAT yang kompetitif sangat penting untuk sekolah bisnis top dan dapat secara signifikan meningkatkan peluang beasiswa.
                                         </p>
@@ -282,6 +290,10 @@ export default function StandardizedID() {
                                 <div id="cambridge" className="tab-pane active">
                                     <div className="content-block">
                                         <h2>Persiapan IGCSE</h2>
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet="/test-banner/igcse/desktop.webp" />
+                                            <img src="/test-banner/igcse/desktop.webp" className="content__banner" />
+                                        </picture>
                                         <p>
                                             Cambridge International Examinations menawarkan kurikulum dan jalur penilaian yang komprehensif yang diakui oleh universitas dan majikan di seluruh dunia. Dari tingkat Primary hingga Pre-University, kualifikasi Cambridge memberikan dasar yang kuat untuk kesuksesan akademik dan peluang global.
                                         </p>
@@ -422,7 +434,7 @@ export default function StandardizedID() {
                                         <h2>Panduan Lengkap CSCA untuk Mahasiswa Internasional</h2>
                                         <picture>
                                             <source media="(max-width: 768px)" srcSet="/test-banner/csca/desktop.webp" />
-                                            <img src="/test-banner/csca/desktop.webp" alt="Australia Banner" className="content__banner" />
+                                            <img src="/test-banner/csca/desktop.webp" className="content__banner" />
                                         </picture>
                                         <p>
                                             Mulai tanggal 25 Oktober 2025, pemerintah Tiongkok telah memperkenalkan kebijakan baru yang mewajibkan semua mahasiswa internasional mengikuti CSCA sebagai bagian wajib dari proses penerimaan. Melalui panduan ramah ini, kamu akan mengetahui segala hal penting tentang CSCA, mengapa tes ini begitu krusial, dan bagaimana cara mempersiapkannya.
