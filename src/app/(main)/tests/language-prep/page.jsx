@@ -404,13 +404,9 @@ export default function LanguagePrep() {
                                     <div className="content-block">
                                         <h3>HSK Score & Cost Requirements</h3>
                                         <ul>
-                                            <li><strong></strong>
-                                                <ul>
-                                                    <li><strong></strong> Required for undergraduate programs in China (Chinese-taught)</li>
-                                                    <li><strong></strong> Required for graduate programs and Chinese language scholarships</li>
-                                                </ul>
-                                            </li>
-                                            <li><strong></strong> HSK fees vary by country and test level but typically range from <strong></strong>.</li>
+                                            <li><strong></strong> Required for undergraduate programs in China (Chinese-taught)</li>
+                                            <li><strong></strong> Required for graduate programs and Chinese language scholarships</li>
+                                            <li><strong></strong> HSK fees vary by country and test level but typically range from</li>
                                         </ul>
                                     </div>
 
