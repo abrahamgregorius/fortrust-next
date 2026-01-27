@@ -345,8 +345,8 @@ export default function Australia() {
                                         <ul>
                                             <li>
                                                 <strong>
-                                                    Academic Requirements:
-                                                </strong>
+                                                    Academic Requirements
+                                                </strong><br />
                                                 Completion of secondary/high
                                                 school equivalent to Australian
                                                 Year 12, with a minimum average
@@ -355,8 +355,8 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     English Language
-                                                    Proficiency:
-                                                </strong>
+                                                    Proficiency
+                                                </strong><br />
                                                 IELTS Academic score of 6.5
                                                 overall (no band below 6.0) or
                                                 equivalent.
@@ -368,16 +368,16 @@ export default function Australia() {
                                         <ul>
                                             <li>
                                                 <strong>
-                                                    Academic Requirements:
-                                                </strong>
+                                                    Academic Requirements
+                                                </strong><br />
                                                 A completed Bachelor’s degree in
                                                 a relevant field with a minimum
                                                 GPA of 3.0/4.0 or equivalent.
                                             </li>
                                             <li>
                                                 <strong>
-                                                    Supporting Documents:
-                                                </strong>
+                                                    Supporting Documents
+                                                </strong><br />
                                                 Statement of Purpose (SOP), 2–3
                                                 letters of recommendation, and
                                                 certified academic transcripts.
@@ -385,8 +385,8 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     English Language
-                                                    Proficiency:
-                                                </strong>
+                                                    Proficiency
+                                                </strong><br />
                                                 IELTS Academic score of 6.5–7.0
                                                 overall or equivalent.
                                             </li>
@@ -397,8 +397,8 @@ export default function Australia() {
                                         <ul>
                                             <li>
                                                 <strong>
-                                                    Academic Requirements:
-                                                </strong>
+                                                    Academic Requirements
+                                                </strong><br />
                                                 Completion of a Master’s degree
                                                 by research or an honors-level
                                                 Bachelor’s degree with strong
@@ -406,16 +406,16 @@ export default function Australia() {
                                             </li>
                                             <li>
                                                 <strong>
-                                                    Supporting Documents:
-                                                </strong>{" "}
+                                                    Supporting Documents
+                                                </strong>{" "}<br />
                                                 A detailed research proposal, 3
                                                 strong recommendation letters,
                                                 and academic transcripts.
                                             </li>
                                             <li>
                                                 <strong>
-                                                    Other Requirements:
-                                                </strong>
+                                                    Other Requirements
+                                                </strong><br />
                                                 Identify and secure a professor
                                                 willing to supervise your
                                                 research.
