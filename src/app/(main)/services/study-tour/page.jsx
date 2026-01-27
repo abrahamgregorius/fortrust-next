@@ -17,7 +17,7 @@ export default function StudyTour() {
                         </p>
                     </div>
                 </section>
-                <img src="/study-tour/banner-a.webp" alt="Study Tour Banner" style={{ width: '100%' }} />
+                <img src="/study-tour/banner-b.webp" alt="Study Tour Banner" style={{ width: '100%' }} />
 
                 <section className="text-content-section">
                     <div className="container text-content-container">
