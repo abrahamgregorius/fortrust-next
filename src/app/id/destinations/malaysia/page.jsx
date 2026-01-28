@@ -239,6 +239,40 @@ export default function Malaysia() {
                                             </table>
                                         </div>
                                     </div>
+                                    <div className="content-block">
+                                        <h2>Jadwal Pendaftaran</h2>
+                                        <p>Mayoritas universitas di Malaysia membuka dua gelombang penerimaan utama:</p>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Gelombang</th>
+                                                        <th>Periode Pendaftaran</th>
+                                                        <th>Mulai Kuliah</th>
+                                                        <th>Waktu Ideal untuk Mulai Persiapan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Intake Musim Gugur</td>
+                                                        <td>Januari – Juni</td>
+                                                        <td>September</td>
+                                                        <td>Mulai riset universitas dan siapkan dokumen pada Oktober–Desember tahun sebelumnya.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Intake Musim Semi</td>
+                                                        <td>September – Desember (tahun sebelumnya)</td>
+                                                        <td>Maret</td>
+                                                        <td>Mulai persiapan pada Mei–Juli agar cukup waktu untuk tes bahasa, legalisasi dokumen, dan proses visa.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <br />
+                                        <p> <strong>Tips Pro:</strong>
+                                            <br />
+                                            Daftar minimal 3–4 bulan sebelum batas akhir agar tidak terburu-buru. Ini memberi waktu untuk mengurus akomodasi, tiket pesawat, dan visa pelajar.</p>
+                                    </div>
                                 </div>
                             )}
 

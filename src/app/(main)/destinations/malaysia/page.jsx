@@ -248,7 +248,9 @@ export default function Malaysia() {
                                                         <td>
                                                             Completed secondary/high
                                                             school with at least 70–80%
-                                                            average. Equivalent to A-Levels, IB, or other recognized pre-university qualifications.
+                                                            average.
+                                                            <br /><br />
+                                                            Equivalent to A-Levels, IB, or other recognized pre-university qualifications.
                                                         </td>
                                                         <td>
                                                             IELTS 5.5–6.0 or TOEFL iBT
@@ -267,7 +269,9 @@ export default function Malaysia() {
                                                         <td>
                                                             A Bachelor’s degree in a
                                                             related field with min. GPA
-                                                            3.0/4.0. Some professional experience may be preferred for certain fields (e.g., MBA).
+                                                            3.0/4.0.
+                                                            <br /><br />
+                                                            Some professional experience may be preferred for certain fields (e.g., MBA).
                                                         </td>
                                                         <td>
                                                             IELTS 6.0–6.5 or TOEFL iBT
@@ -283,20 +287,61 @@ export default function Malaysia() {
                                                         </td>
                                                         <td>
                                                             Master’s degree in a
-                                                            relevant discipline with a
-                                                            strong research background.
+                                                            relevant discipline.
+
+                                                            <br /><br />
+
+                                                            Strong academic record and research background.
                                                         </td>
                                                         <td>
                                                             IELTS 6.5+ or TOEFL iBT 90+.
                                                         </td>
                                                         <td>
-                                                            Detailed research proposal, academic publications (if any) ,2–3 recommendation letters from previous lecturer, or employers
+                                                            Detailed research proposal
+                                                            <br /><br />
+                                                            Academic publications (if any)
+                                                            <br /><br />
+                                                            2–3 recommendation letters from previous lecturer, or employers
 
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
+                                    </div>
+                                    <div className="content-block">
+                                        <h2>Application Timeline</h2>
+                                        <p>Planning ahead is essential. Malaysia offers two main intakes for most universities</p>
+                                        <div className="table-responsive">
+                                            <table className="data-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Intake</th>
+                                                        <th>Application Period</th>
+                                                        <th>Classes Begin</th>
+                                                        <th>When to Start Preparing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Fall Intake</td>
+                                                        <td>January – June</td>
+                                                        <td>September</td>
+                                                        <td>Start researching programs and preparing documents by October–December of the previous year.</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Spring Intake</td>
+                                                        <td>September – December (previous year)</td>
+                                                        <td>March</td>
+                                                        <td>Start preparations by May–July to allow time for English tests, document attestation, and visa processing.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <br />
+                                        <p> <strong>Pro Tip:</strong>
+                                            <br />
+                                            Always apply at least 3–4 months before the deadline to avoid last-minute stress. This buffer helps you secure accommodation, flight bookings, and your student visa on time.</p>
                                     </div>
                                 </div>
                             )}
@@ -660,7 +705,7 @@ export default function Malaysia() {
 
                 <section className="final-cta">
                     <div className="container final-cta__container">
-                        <h2>Ready to Study in Australia?</h2>
+                        <h2>Ready to Study in Malaysia?</h2>
                         <p>
                             Let our expert counsellors guide you through every
                             step of the process.
