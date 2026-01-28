@@ -696,7 +696,7 @@ ul {
 .content-block h2,
 .content-block h3 {
     margin-bottom: var(--space-4);
-    width: 75%;
+    width: 100%;
 }
 .content-block p,
 .content-block ul {

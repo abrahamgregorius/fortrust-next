@@ -57,7 +57,7 @@ export default function LanguagePrep() {
                             {activeTab === "ielts" && (
                                 <div id="ielts" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Your Complete Guide to IELTS</h2>
+                                        <h2 style={{ wordWrap: "no-wrap" }} >Your Complete Guide to IELTS</h2>
                                         <p>
                                             Proving your English proficiency is often a mandatory requirement when you plan to study or work overseas. <strong></strong> is one of the most recognized English language proficiency tests worldwide. It is accepted by over 11,000 institutions, including top-ranked universities and professional organizations.
                                         </p>
