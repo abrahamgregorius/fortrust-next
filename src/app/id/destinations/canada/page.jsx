@@ -136,52 +136,154 @@ export default function Canada() {
                             {activeTab === "requirements" && (
                                 <div id="requirements" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Persyaratan Masuk Umum</h2>
+                                        <h2>Syarat Masuk Kuliah di Kanada</h2>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Persyaratan Akademik</th>
+                                                            <th>Kemampuan Bahasa Inggris</th>
+                                                            <th>Dokumen Pendukung</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Bachelor (Sarjana / S1)</strong></td>
+                                                            <td>Lulus SMA/secondary school (setara Grade 12)
+                                                                <br /><br />
+                                                                Nilai rata-rata minimal 65–75% (lebih tinggi untuk jurusan populer seperti kedokteran, teknik, atau bisnis)
+                                                                <br /><br />
+                                                                Prasyarat mata pelajaran sesuai program (Matematika & Fisika untuk Teknik, Biologi & Kimia untuk Ilmu Hayati)
+                                                            </td>
+                                                            <td>English: IELTS Academic 6.5 (tidak ada band di bawah 6.0)
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 80–90+
+                                                                <br /><br />
+                                                                French: TEF, TCF atau setara, jika memilih universitas berbahasa Prancis
+                                                            </td>
+                                                            <td>Portofolio (untuk program seni/desain)
+                                                                <br /><br />
+                                                                Essay atau wawancara tambahan untuk prodi dengan persaingan tinggi
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Master (Magister / S2)</strong></td>
+                                                            <td>Telah meraih gelar Bachelor dari institusi terakreditasi
+                                                                <br /><br />
+                                                                Minimal GPA 3.0/4.0 (~B average)
+                                                                <br /><br />
+                                                                <strong>Tambahan:</strong>
+                                                                <br />
+                                                                GRE/GMAT untuk program tertentu (MBA, Bisnis, Ekonomi)
+                                                                <br /><br />
+                                                                Pengalaman kerja (khusus program terapan/MBA)
+                                                            </td>
+                                                            <td>IELTS Academic 6.5–7.0
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 90–100+
+                                                                <br /><br />
+                                                                French: TEF/TCF untuk program berbahasa Prancis
+                                                            </td>
+                                                            <td>2+ surat rekomendasi akademik/profesional
+                                                                <br /><br />
+                                                                Statement of Purpose yang mencakup tujuan akademik dan karier
+                                                                <br /><br />
+                                                                Proposal riset (untuk program berbasis thesis)
+                                                                <br /><br />
+                                                                Transkrip resmi dari seluruh studi sebelumnya
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>PhD (Doktoral / S3)</strong></td>
+                                                            <td>Master di bidang terkait
+                                                                <br /><br />
+                                                                Lulusan Bachelor yang sangat unggul bisa diterima (langsung ke PhD)
+                                                                <br /><br />
+                                                                Riwayat akademik dan riset yang kuat
+                                                                <br /><br />
+                                                                <strong>Tambahan:</strong>
+                                                                <br />
+                                                                Bukti publikasi ilmiah sangat mendukung
+                                                                <br /><br />
+                                                                Supervisor harus sudah dikonfirmasi sebelum mendaftar
+                                                            </td>
+                                                            <td>IELTS Academic 6.5–7.0+
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 90–100+
+                                                                <br /><br />
+                                                                <strong>French:</strong> TEF/TCF untuk program berbahasa Prancis
+                                                            </td>
+                                                            <td>Proposal riset detail sesuai bidang supervisor
+                                                                <br /><br />
+                                                                3 surat rekomendasi
+                                                                <br /><br />
+                                                                Statement of Purpose
+                                                                <br /><br />
+                                                                Transkrip lengkap
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="content-block">
-                                        <h3>Sarjana (S1)</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Akademik:</strong> Lulus SMA (Grade 12 atau setara) dengan nilai rata-rata 65–75%+.
-                                            </li>
-                                            <li>
-                                                <strong>Bahasa:</strong> Inggris (IELTS 6,5+, TOEFL 80–90+) atau Prancis (TEF/TCF).
-                                            </li>
-                                            <li>
-                                                <strong>Lainnya:</strong> Portofolio / esai tambahan untuk program kompetitif.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Magister (S2)</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Akademik:</strong> Gelar S1 relevan, IPK minimal 3,0/4,0.
-                                            </li>
-                                            <li>
-                                                <strong>Dokumen:</strong> ≥2 surat rekomendasi, SOP, proposal riset (program tesis).
-                                            </li>
-                                            <li>
-                                                <strong>Bahasa:</strong> IELTS 6,5–7,0; TOEFL 90–100+ atau setara Prancis.
-                                            </li>
-                                            <li>
-                                                <strong>Lainnya:</strong> GRE/GMAT untuk bisnis/ekonomi.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Doktor (S3)</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Akademik:</strong> Gelar S2 terkait dengan rekam riset kuat.
-                                            </li>
-                                            <li>
-                                                <strong>Dokumen:</strong> Proposal riset rinci, 3 rekomendasi, transkrip lengkap.
-                                            </li>
-                                            <li>
-                                                <strong>Lainnya:</strong> Publikasi riset dan persetujuan supervisor sering diperlukan.
-                                            </li>
-                                        </ul>
+                                        <h2>Timeline Pendaftaran untuk Mahasiswa Internasional</h2>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tahap</th>
+                                                            <th>Bachelor’s</th>
+                                                            <th>Master’s</th>
+                                                            <th>PhD</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>18–24 bulan sebelum masuk</td>
+                                                            <td>Riset program & kampus</td>
+                                                            <td>Cari supervisor, persiapkan dokumen</td>
+                                                            <td>Hubungi supervisor, draft proposal</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12–16 bulan sebelum masuk</td>
+                                                            <td>Tes IELTS/TOEFL, kumpulkan dokumen</td>
+                                                            <td>Persiapkan SOP & rekomendasi</td>
+                                                            <td>Ajukan beasiswa/funding</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>8–12 bulan sebelum masuk</td>
+                                                            <td>Kirim aplikasi (Okt–Feb)</td>
+                                                            <td>Kirim aplikasi (Okt–Jan)</td>
+                                                            <td>Aplikasi (Nov–Feb)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4–6 bulan sebelum masuk</td>
+                                                            <td>Terima offer, ajukan visa</td>
+                                                            <td>Terima offer, urus dana & visa</td>
+                                                            <td>Terima offer, urus funding & visa</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <p>
+                                            Ingat, periode pendaftaran utama adalah September (Fall), sementara beberapa program tersedia Januari (Winter) atau Mei (Spring). Mulailah persiapan minimal 1,5–2 tahun sebelum rencana studi untuk hasil terbaik
+                                        </p>
+                                        <p>
+                                            Kuliah di Kanada membutuhkan persiapan matang mulai dari syarat akademik, kemampuan bahasa, hingga dokumen pendukung yang detail. Dengan memahami tenggat waktu pendaftaran, Anda bisa memperbesar peluang diterima di universitas top dunia dan mengawali masa depan global yang cerah.
+                                        </p>
                                     </div>
                                 </div>
                             )}

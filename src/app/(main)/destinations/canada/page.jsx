@@ -175,68 +175,175 @@ export default function Canada() {
                             {activeTab === "requirements" && (
                                 <div id="requirements" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>General Entry Requirements</h2>
+                                        <h2>ENTRY REQUIREMENTS</h2>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Academic Requirements</th>
+                                                            <th>English Language Proficiency</th>
+                                                            <th>Other Requirements</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Bachelor’s Degree (Undergraduate)</strong></td>
+                                                            <td>Completion of secondary/high school (Grade 12 or equivalent).
+                                                                <br /><br />
+                                                                Minimum average: usually 65–75%+; more for competitive programs.
+                                                                <br /><br />
+                                                                Subject prerequisites based on program (e.g., Math & Physics for Engineering, Biology & Chemistry for Life Sciences).
+                                                            </td>
+                                                            <td>IELTS Academic 6.5 overall (no band below 6.0)
+                                                                <br /><br />
+                                                                OR
+                                                                <br /><br />
+                                                                TOEFL iBT 80–90+, or equivalent.
+                                                                <br /><br />
+                                                                French (for French-language universities): TEF, TCF, or equivalent.
+                                                            </td>
+                                                            <td>Portfolios (for arts/design programs).
+                                                                <br /><br />
+                                                                Supplementary essays or interviews for competitive admissions.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Master’s Degree (Postgraduate Coursework & Research)</strong></td>
+                                                            <td>A relevant Bachelor’s degree from a recognized institution.
+                                                                <br /><br />
+                                                                Minimum GPA: usually 3.0/4.0 (or equivalent, ~B average).
+                                                                <br /><br />
+                                                                <strong>Other Possible Requirements:</strong>
+                                                                <br />
+                                                                GRE or GMAT scores for certain programs (e.g., MBA, Business, Economics).
+                                                            </td>
+                                                            <td>English: IELTS Academic 6.5–7.0
+                                                                <br /><br />
+                                                                OR
+                                                                <br />
+                                                                TOEFL iBT 90–100+.
+                                                                <br /><br />
+                                                                French: TEF or TCF (for French-language programs).
+                                                            </td>
+                                                            <td>2+ academic / professional letters of recommendation.
+                                                                <br /><br />
+                                                                Statement of Purpose (academic and career goals).
+                                                                <br /><br />
+                                                                Research proposal (for thesis-based or research programs).
+                                                                <br /><br />
+                                                                Official transcripts from all post-secondary studies.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>PhD (Doctoral)</strong></td>
+                                                            <td>A Master’s degree in a related field (some direct-entry PhDs may accept strong Bachelor’s graduates with exceptional research potential).
+                                                                <br /><br />
+                                                                Strong academic track record and relevant research background.
+                                                                <br /><br />
+                                                                <strong>Other Possible Requirements:</strong>
+                                                                <br />
+                                                                Evidence of research publications or academic presentations is highly advantageous.
+                                                                <br /><br />
+                                                                Many universities require a confirmed faculty supervisor before you apply.
+                                                            </td>
+                                                            <td>English: IELTS Academic 6.5–7.0+
+                                                                <br /><br />
+                                                                OR
+                                                                <br />
+                                                                TOEFL iBT 90–100+.
+                                                                <br /><br />
+                                                                <strong>Other Possible Requirements:</strong>
+                                                                <br />
+                                                                French: TEF or TCF (for French-language institutions).
+                                                            </td>
+                                                            <td>Detailed research proposal matching the expertise of a potential supervisor.
+                                                                <br /><br />
+                                                                3 letters of recommendation.
+                                                                <br /><br />
+                                                                Statement of Purpose.
+                                                                <br /><br />
+                                                                Complete academic transcripts.
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="content-block">
-                                        <h3>Bachelor’s Degree (Undergraduate)</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Academic Requirements</strong> <br /> Completion of
-                                                secondary/high school (Grade 12 or equivalent) with a
-                                                minimum average of 65–75%+.
-                                            </li>
-                                            <li>
-                                                <strong>Language Proficiency</strong> <br /> English (IELTS 6.5+,
-                                                TOEFL 80-90+) or French (TEF, TCF).
-                                            </li>
-                                            <li>
-                                                <strong>Other</strong> <br /> Portfolios or supplementary essays
-                                                may be required for competitive programs.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Master’s Degree (Graduate)</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Academic Requirements</strong> <br /> A relevant
-                                                Bachelor’s degree with a minimum GPA of 3.0/4.0 (~B
-                                                average).
-                                            </li>
-                                            <li>
-                                                <strong>Supporting Documents</strong> <br /> 2+ letters of
-                                                recommendation, Statement of Purpose (SOP), and a research
-                                                proposal for thesis-based programs.
-                                            </li>
-                                            <li>
-                                                <strong>Language Proficiency</strong> <br /> English (IELTS
-                                                6.5–7.0, TOEFL 90–100+) or French equivalent.
-                                            </li>
-                                            <li>
-                                                <strong>Other</strong> <br /> GRE or GMAT scores may be required
-                                                for business or economics programs.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Doctoral (PhD) Degree</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Academic Requirements</strong> <br /> A Master’s degree in
-                                                a related field with a strong academic and research
-                                                background.
-                                            </li>
-                                            <li>
-                                                <strong>Supporting Documents</strong> <br /> Detailed research
-                                                proposal, 3 letters of recommendation, and complete academic
-                                                transcripts.
-                                            </li>
-                                            <li>
-                                                <strong>Other</strong> <br /> Evidence of research publications is
-                                                highly advantageous, and a confirmed faculty supervisor is
-                                                often required before applying.
-                                            </li>
-                                        </ul>
+                                        <h2>APPLICATION TIMELINE</h2>
+                                        <p>Canadian Education Application Timeline (International Students)</p>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Stage</th>
+                                                            <th>Fall Intake (Sep Start)</th>
+                                                            <th>Winter Intake (Jan Start)</th>
+                                                            <th>Spring Intake (May Start)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Bachelor’s</strong></td>
+                                                            <td>18–24 months before start: Research programs & universities.
+                                                                <br /><br />
+                                                                12–16 months before start: Prepare for English tests (IELTS/TOEFL), gather transcripts.
+                                                                <br /><br />
+                                                                8–12 months before start: Submit applications (Oct–Feb).
+                                                                <br /><br />
+                                                                4–6 months before start: Accept offers, apply for study permit.
+                                                            </td>
+                                                            <td>12–18 months before start: Start research.
+                                                                <br /><br />
+                                                                8–12 months before start: Apply (Mar–Sep).
+                                                                <br /><br />
+                                                                4–6 months before start: Finalize visa.
+                                                            </td>
+                                                            <td>12–18 months before start: Research carefully (fewer programs available).
+                                                                <br /><br />
+                                                                8–10 months before start: Apply (Aug–Dec).
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Master’s</strong></td>
+                                                            <td>18–24 months before: Identify supervisors (if research-based), prepare SOP and recommendation letters.
+                                                                <br /><br />
+                                                                12 months before: Submit applications (Oct–Jan).
+                                                                <br /><br />
+                                                                4–6 months before: Confirm funding, apply for visa.
+                                                            </td>
+                                                            <td>12–18 months before: Research & contact supervisors.
+                                                                <br /><br />
+                                                                8–10 months before: Apply (June–Oct).
+                                                            </td>
+                                                            <td>12–18 months before: Check limited program availability; apply (Sep–Nov).
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>PhD</strong></td>
+                                                            <td>2+ years before: Contact supervisors with detailed research proposal.
+                                                                <br /><br />
+                                                                12–18 months before: Apply for scholarships/funding.
+                                                                <br /><br />
+                                                                8–12 months before: Submit application (Nov–Feb).
+                                                            </td>
+                                                            <td>18 months before: Start discussions with supervisors.
+                                                                <br /><br />
+                                                                8–10 months before: Apply (Jun–Oct).
+                                                            </td>
+                                                            <td>18 months before: Verify if intake is available.
+                                                                <br /><br />
+                                                                8–10 months before: Apply (Sep–Nov).
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             )}
