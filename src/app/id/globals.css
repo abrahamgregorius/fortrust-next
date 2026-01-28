@@ -1957,6 +1957,10 @@ ul {
         border: 1px solid var(--neutral-100);
     }
 
+    .card {
+        background: rgba(0, 0, 139, 0.95) !important;
+    }
+
     .partners {
         background-color: #ffffff;
     }
@@ -2905,6 +2909,19 @@ ul {
         padding: var(--space-2) var(--space-4);
         border-radius: var(--radius-pill);
         transition: all 0.3s ease;
+    }
+
+    .detail-item {
+        justify-content: flex-start;
+    }
+
+    .label {
+        font-weight: 700;
+    }
+
+    .value {
+        font-weight: 500;
+        text-align: left;
     }
 }
 
