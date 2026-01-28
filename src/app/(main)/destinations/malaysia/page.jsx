@@ -644,7 +644,8 @@ export default function Malaysia() {
                                             </table>
                                         </div>
                                         <p style={{ marginTop: "20px" }}>
-                                            <strong>Pro Tip:</strong> Always apply at
+                                            <strong>Pro Tip:</strong>
+                                            <br /> Always apply at
                                             least 3–4 months before the deadline to
                                             avoid last-minute stress. This buffer helps
                                             you secure accommodation, flights, and your

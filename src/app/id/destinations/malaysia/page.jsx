@@ -548,7 +548,9 @@ export default function Malaysia() {
                                             </table>
                                         </div>
                                         <p style={{ marginTop: "20px" }}>
-                                            <strong>Tips Pro:</strong> Selalu ajukan setidaknya 3–4 bulan sebelum tenggat untuk menghindari stres mendadak. Buffer ini membantu Anda mengamankan akomodasi, penerbangan, dan visa mahasiswa tepat waktu.
+                                            <strong>Tips Pro:</strong>
+                                            <br />
+                                            Selalu ajukan setidaknya 3–4 bulan sebelum tenggat untuk menghindari stres mendadak. Buffer ini membantu Anda mengamankan akomodasi, penerbangan, dan visa mahasiswa tepat waktu.
                                         </p>
                                     </div>
                                 </div>
