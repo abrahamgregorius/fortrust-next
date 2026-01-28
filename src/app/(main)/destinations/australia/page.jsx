@@ -12,7 +12,7 @@ import {
     LayoutGrid,
     Wallet,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Australia() {
 
@@ -71,6 +71,27 @@ export default function Australia() {
     ];
 
     const [activeTab, setActiveTab] = useState("overview");
+    const [isMobile, setIsMobile] = useState(false);
+    const navRef = useRef(null);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    const scrollLeft = () => {
+        if (navRef.current) {
+            navRef.current.scrollBy({ left: -150, behavior: 'smooth' });
+        }
+    };
+
+    const scrollRight = () => {
+        if (navRef.current) {
+            navRef.current.scrollBy({ left: 150, behavior: 'smooth' });
+        }
+    };
 
     return (
         <>
@@ -94,17 +115,21 @@ export default function Australia() {
                 <section className="destination-details">
                     <div className="container destination-details__container">
                         {/* Tabs Nav */}
-                        <div className="tabs-nav">
-                            {tabs.map((tab) => (
-                                <button
-                                    key={tab.id}
-                                    className={`tab-link ${activeTab === tab.id ? "active" : ""
-                                        }`}
-                                    onClick={() => setActiveTab(tab.id)}
-                                >
-                                    {tab.icon} {tab.label}
-                                </button>
-                            ))}
+                        <div className="tabs-nav-container">
+                            {isMobile && <button className="nav-arrow left-arrow" onClick={scrollLeft}>&lt;</button>}
+                            <div className="tabs-nav" ref={navRef}>
+                                {tabs.map((tab) => (
+                                    <button
+                                        key={tab.id}
+                                        className={`tab-link ${activeTab === tab.id ? "active" : ""
+                                            }`}
+                                        onClick={() => setActiveTab(tab.id)}
+                                    >
+                                        {tab.icon} {tab.label}
+                                    </button>
+                                ))}
+                            </div>
+                            {isMobile && <button className="nav-arrow right-arrow" onClick={scrollRight}>&gt;</button>}
                         </div>
 
                         {/* Tabs Content */}

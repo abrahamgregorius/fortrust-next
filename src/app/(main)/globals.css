@@ -2842,6 +2842,70 @@ ul {
         width: 40px;
         height: 40px;
     }
+
+    /* Tabs Navigation Arrows for Mobile */
+    .tabs-nav-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .tabs-nav {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        flex: 1;
+        gap: var(--space-2);
+        padding: var(--space-2) 0;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+
+    .tabs-nav::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+    }
+
+    .nav-arrow {
+        background-color: var(--brand-100);
+        border: 2px solid var(--brand-500);
+        color: var(--brand-700);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+        z-index: 1;
+    }
+
+    .nav-arrow:hover {
+        background-color: var(--brand-500);
+        color: var(--bg);
+        transform: scale(1.1);
+    }
+
+    .left-arrow {
+        margin-right: var(--space-2);
+    }
+
+    .right-arrow {
+        margin-left: var(--space-2);
+    }
+
+    .tab-link {
+        white-space: nowrap;
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-pill);
+        transition: all 0.3s ease;
+    }
 }
 
 /* Interest page right panel */
