@@ -55,22 +55,16 @@ export default function StudyTour() {
                             </p>
                             <ul className="ucce">
                                 <li>
-                                    - Mengunjungi kampus universitas ternama dunia.
+                                    Mengunjungi kampus universitas ternama dunia.
 
                                 </li>
                                 <li>
-                                    - Mengikuti lokakarya dan cuplikan perkuliahan.
+                                    Mengikuti lokakarya dan cuplikan perkuliahan.
                                 </li>
                                 <li>
-                                    - Bertemu profesional industri dan eksplorasi jalur karier potensial.
+                                    Bertemu profesional industri dan eksplorasi jalur karier potensial.
                                 </li>
                             </ul>
-                        </div>
-                        <div className="about-story__image">
-                            <img
-                                src="https://via.placeholder.com/500x350/cccccc/000000?text=Students+on+Campus+Tour"
-                                alt="A group of students on a university campus tour"
-                            />
                         </div>
                     </div>
                 </section>

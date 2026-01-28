@@ -62,23 +62,17 @@ export default function StudyTour() {
                             </p>
                             <ul className="ucce">
                                 <li>
-                                    - Visit the campuses of
+                                    Visit the campuses of
                                     world-renowned universities.
                                 </li>
                                 <li>
-                                    - Attend workshops and sample
+                                    Attend workshops and sample
                                     lectures.
                                 </li>
                                 <li>
-                                    - Meet with professionals and explore potential career paths.
+                                    Meet with professionals and explore potential career paths.
                                 </li>
                             </ul>
-                        </div>
-                        <div className="about-story__image">
-                            <img
-                                src="https://via.placeholder.com/500x350/cccccc/000000?text=Students+on+Campus+Tour"
-                                alt="A group of students on a university campus tour"
-                            />
                         </div>
                     </div>
                 </section>
