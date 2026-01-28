@@ -1957,10 +1957,6 @@ ul {
         border: 1px solid var(--neutral-100);
     }
 
-    .card {
-        background: rgba(0, 0, 139, 0.95) !important;
-    }
-
     .partners {
         background-color: #ffffff;
     }
@@ -2912,16 +2908,16 @@ ul {
     }
 
     .detail-item {
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 
     .label {
-        font-weight: 700;
+        font-weight: 500;
     }
 
     .value {
-        font-weight: 500;
-        text-align: left;
+        font-weight: 700;
+        text-align: right;
     }
 }
 
