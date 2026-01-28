@@ -14,7 +14,7 @@ export default function StudyTour() {
                         autoPlay
                         muted
                         loop
-                        style={{ width: '100%', height: 'auto' }}
+                        style={{ width: '100%' }}
                         preload="metadata"
                     >
                         Your browser does not support the video tag.
