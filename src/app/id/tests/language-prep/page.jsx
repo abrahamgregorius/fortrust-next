@@ -27,7 +27,7 @@ export default function LanguagePrepID() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Persiapan Tes Bahasa:
+                            Persiapan Tes Bahasa
                         </h1>
                         <h2 className="dark-text">IELTS, TOEFL, HSK</h2>
                         <p>

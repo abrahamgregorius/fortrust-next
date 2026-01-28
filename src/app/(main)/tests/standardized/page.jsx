@@ -29,7 +29,7 @@ export default function Standardized() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Standardized Test Preparation: 
+                            Standardized Test Preparation
                         </h1>
                         <h2 className="dark-text">SAT, GMAT, IGCSE, CSCA</h2>
                         <p>

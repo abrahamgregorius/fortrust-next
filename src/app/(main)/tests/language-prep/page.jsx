@@ -27,7 +27,7 @@ export default function LanguagePrep() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Language Test Preparation:
+                            Language Test Preparation
                         </h1>
                         <h2 className="dark-text">IELTS, TOEFL, HSK</h2>
                         <p>

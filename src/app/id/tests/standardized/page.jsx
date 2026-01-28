@@ -29,7 +29,7 @@ export default function StandardizedID() {
                 <section className="page-header">
                     <div className="container">
                         <h1>
-                            Persiapan Tes Standar: 
+                            Persiapan Tes Standar
                         </h1>
                         <h2 className="dark-text">SAT, GMAT, IGCSE, CSCA</h2>
                         <p>
