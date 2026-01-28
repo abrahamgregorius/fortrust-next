@@ -12,7 +12,7 @@ import {
     LayoutGrid,
     Wallet,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Australia() {
     const [activeTab, setActiveTab] = useState("overview");
@@ -26,6 +26,30 @@ export default function Australia() {
         { id: "partners", label: "Institusi", icon: <Building2 /> },
         { id: "intakes", label: "Jadwal Masuk", icon: <CalendarDays /> },
     ];
+
+    const [isMobile, setIsMobile] = useState(false);
+    const navRef = useRef(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const scrollLeft = () => {
+        if (navRef.current) {
+            navRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+        }
+    };
+
+    const scrollRight = () => {
+        if (navRef.current) {
+            navRef.current.scrollBy({ left: 200, behavior: 'smooth' });
+        }
+    };
 
     const tuitionData = [
         { city: 'Melbourne', undergrad: 'AUD $25,000 – $55,000', grad: 'AUD $30,000 – $55,000', diploma: 'AUD $6,000 – $18,000' },
@@ -85,7 +109,9 @@ export default function Australia() {
 
                 <section className="destination-details">
                     <div className="container destination-details__container">
-                        <div className="tabs-nav">
+                    <div className="tabs-nav-container">
+                        {isMobile && <button className="nav-arrow left" onClick={scrollLeft}>‹</button>}
+                        <div className="tabs-nav" ref={navRef}>
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.id}
@@ -96,6 +122,8 @@ export default function Australia() {
                                 </button>
                             ))}
                         </div>
+                        {isMobile && <button className="nav-arrow right" onClick={scrollRight}>›</button>}
+                    </div>
 
                         <div className="tab-content">
                             {activeTab === "overview" && (
