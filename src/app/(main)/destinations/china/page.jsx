@@ -201,65 +201,189 @@ export default function China() {
                             {activeTab === "requirements" && (
                                 <div id="requirements" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>General Entry Requirements</h2>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Bachelor's Degree</h3>
+                                        <h2>Entry Requirement</h2>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Academic Requirements</th>
+                                                            <th>English Language Proficiency</th>
+                                                            <th>Other Requirements</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Bachelor’s Degree (Undergraduate)</strong></td>
+                                                            <td>Official transcript and graduation certificates of secondary education with good academic standing and relevant subjects for their chosen program.
+                                                                <br /><br />
+                                                                * Score Requirements are in the table below.
+                                                                <br /><br />
+                                                                CSCA Result (per October 2025)
+                                                                <br /><br />
+                                                                Supporting Documents :
+                                                                <br /><br />
+                                                                Recommendation letters from teachers
+                                                            </td>
+                                                            <td>For programs taught in English:
+                                                                <br /><br />
+                                                                IELTS Academic 6.5 overall (no band below 6.0)
+                                                                <br /><br />
+                                                                OR
+                                                                <br /><br />
+                                                                TOEFL iBT 80–90+, or equivalent.
+                                                                <br /><br />
+                                                                For Programs taught in Mandarin
+                                                                <br /><br />
+                                                                HSK (Hanyu Shuiping Kaoshi) Level 4, China’s official Chinese language proficiency test) Certificate.
+                                                            </td>
+                                                            <td>Entrance examinations, especially for competitive programs.
+                                                                <br /><br />
+                                                                Calculus and mathematics examinations. (except for arts programs)
+                                                                <br /><br />
+                                                                Interviews
+                                                                <br /><br />
+                                                                Personal statements are commonly required for assessing motivation, communication skills, and suitability.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Master’s Degree (Postgraduate Coursework & Research)</strong></td>
+                                                            <td>Official transcript and graduation certificates of a relevant Bachelor’s degree from a recognized institution with strong academic performance and specialist knowledge in your chosen field.
+                                                                <br /><br />
+                                                                Minimum GPA: usually 3.0/4.0 (or equivalent, ~B average) or higher.
+                                                                <br /><br />
+                                                                Official transcripts from all post-secondary studies.
+                                                            </td>
+                                                            <td>For programs taught in English:
+                                                                <br /><br />
+                                                                IELTS Academic 6.5 overall (no band below 6.0) - 7.0
+                                                                <br /><br />
+                                                                OR
+                                                                <br /><br />
+                                                                TOEFL iBT 90–100+, or equivalent.
+                                                                <br /><br />
+                                                                For Programs taught in Mandarin
+                                                                <br /><br />
+                                                                HSK (Hanyu Shuiping Kaoshi) Level 5, China’s official Chinese language proficiency test) Certificate.
+                                                            </td>
+                                                            <td>2+ academic / professional letters of recommendation from professors / employers.
+                                                                <br /><br />
+                                                                Statement of Purpose (academic and career goals).
+                                                                <br /><br />
+                                                                Research proposal (for thesis-based or research programs).
+                                                                <br /><br />
+                                                                Other Possible Requirements:
+                                                                <br />
+                                                                Relevant professional experience (especially MBA or applied programs).
+                                                                <br /><br />
+                                                                Interviews
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>PhD (Doctoral)</strong></td>
+                                                            <td>A Master’s degree in a related field (some direct-entry PhDs may accept strong Bachelor’s graduates with exceptional research potential).
+                                                                <br /><br />
+                                                                Strong academic track record and relevant research background.
+                                                                <br /><br />
+                                                                Other Possible Requirements:
+                                                                <br />
+                                                                Evidence of research publications or academic presentations is highly advantageous.
+                                                            </td>
+                                                            <td>For programs taught in English:
+                                                                <br /><br />
+                                                                IELTS Academic 6.5 overall (no band below 6.0) - 7.0
+                                                                <br /><br />
+                                                                OR
+                                                                <br /><br />
+                                                                TOEFL iBT 90–100+, or equivalent.
+                                                                <br /><br />
+                                                                For Programs taught in Mandarin
+                                                                <br /><br />
+                                                                HSK (Hanyu Shuiping Kaoshi) Level 5 or higher, China’s official Chinese language proficiency test) Certificate.
+                                                            </td>
+                                                            <td>Detailed research proposal matching the expertise of a potential supervisor.
+                                                                <br /><br />
+                                                                3 letters of recommendation.
+                                                                <br /><br />
+                                                                Statement of Purpose or Personal Statement outlining academic and career goals.
+                                                                <br /><br />
+                                                                Complete academic transcripts.
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br /><br />
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <h3>Score Requirement for Academic results</h3>
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Type of University</th>
+                                                            <th>Recommended Minimum Grade</th>
+                                                            <th>Remarks</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Elite/Top 10</td>
+                                                            <td>80% and above, or GPA 3.0/4.0+</td>
+                                                            <td>Higher for medicine, engineering, or competitive majors</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Reputable Public (Non-Elite)</td>
+                                                            <td>70% and above, or GPA 2.7/4.0+</td>
+                                                            <td>May be flexible depending on program</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Most Comprehensive Universities</td>
+                                                            <td>At least 60-70%, GPA 2.5-2.7/4.0</td>
+                                                            <td>Minimum passing grades required</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <h3>Final Tips for Applicants:</h3>
                                         <ul>
-                                            <li>
-                                                <strong>Academic Requirements</strong> <br /> Official transcript
-                                                of secondary education with good academic standing (minimum
-                                                60-80% depending on university tier).
-                                            </li>
-                                            <li>
-                                                <strong>Language Proficiency</strong> <br /> For English-taught
-                                                programs, IELTS 6.5+ or TOEFL 80-90+. For Mandarin-taught
-                                                programs, HSK Level 4.
-                                            </li>
-                                            <li>
-                                                <strong>Other</strong> <br /> Entrance exams or interviews may be
-                                                required for competitive programs.
-                                            </li>
+                                            <li>Research university-specific requirements: Each institution may have its own criteria, so always check the official university website.</li>
+                                            <li>Prepare documents early: Gathering official transcripts, recommendation letters, and test scores can take time.</li>
+                                            <li>Apply for scholarships: Many Chinese universities and the Chinese government offer scholarships for international students.</li>
                                         </ul>
                                     </div>
                                     <div className="content-block">
-                                        <h3>Master's Degree</h3>
+                                        <h2>Application Timeline</h2>
+                                        <br />
+                                        <h3>1. Fall Intake</h3>
+                                        <p>The Fall intake is the most popular admission cycle for international students in China, available for both undergraduate and graduate programs.</p>
+                                        <p><strong>Start of Semester: September</strong></p>
+                                        <p>Application Timeline: Applications usually open from January to June. The specific deadlines vary between universities, so it’s essential to check your chosen institution’s admissions page for accurate dates.</p>
+                                        <p>Why Fall Intake? Most full-degree programs begin in the fall, offering the widest selection of courses and entry opportunities across Chinese universities.</p>
+                                        
+                                        <br />
+                                        <h3>2. Spring Intake</h3>
+                                        <p>The Spring intake provides an additional opportunity for international students, though it’s less widely offered compared to the fall intake.</p>
+                                        <p>
+                                            <strong>
+                                                Start of Semester: March
+                                            </strong>
+                                        </p>
+                                        <p>Application Timeline: Most universities accept applications from September to December of the previous year. Not all universities and programs have a spring entry option, so reviewing each university’s offerings is key.</p>
+                                        <p>This intake is best for students who miss the fall deadline or wish to start their studies earlier in the year.</p>
+                                        
+                                        <br />
+                                        <h3>Essential Admission Tips:</h3>
                                         <ul>
-                                            <li>
-                                                <strong>Academic Requirements</strong> <br /> A relevant
-                                                Bachelor’s degree with a minimum GPA of 3.0/4.0 or
-                                                equivalent.
-                                            </li>
-                                            <li>
-                                                <strong>Language Proficiency</strong> <br /> For English-taught
-                                                programs, IELTS 6.5–7.0 or TOEFL 90–100+. For
-                                                Mandarin-taught programs, HSK Level 5.
-                                            </li>
-                                            <li>
-                                                <strong>Supporting Documents</strong> <br /> 2+ letters of
-                                                recommendation, Statement of Purpose (SOP), and a research
-                                                proposal for research-based programs.
-                                            </li>
+                                            <li>Check University Websites: Each university in China may have different deadlines and requirements. Always consult Fortrust Education Consultant for up-to-date information.</li>
+                                            <li>Prepare Documents Early: Required documents (transcripts, recommendation letters, language certificates, etc.) can take time to gather. Begin early to avoid missing deadlines.</li>
+                                            <li>Spring Intake is Limited: Fewer programs offer a spring intake, and application periods are shorter. If you prefer a spring start, research universities with this option and submit your application as soon as possible.</li>
                                         </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>PhD (Doctoral) Degree</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Academic Requirements</strong> <br /> A Master’s degree in
-                                                a related field with a strong research background.
-                                            </li>
-                                            <li>
-                                                <strong>Language Proficiency</strong> <br /> IELTS 6.5–7.0+ or
-                                                TOEFL 90–100+ for English programs. HSK Level 5 or higher
-                                                for Mandarin programs.
-                                            </li>
-                                            <li>
-                                                <strong>Supporting Documents</strong> <br /> Detailed research
-                                                proposal, 3 letters of recommendation, and evidence of
-                                                research publications.
-                                            </li>
-                                        </ul>
+                                        <p>Chinese universities provide two major admission intakes—fall and spring—for international students, shaping the academic journey for thousands around the world. By understanding timelines, preparing documents ahead of time, and checking each university’s specific requirements, you’ll maximize your chances of gaining acceptance and starting your studies smoothly in China.</p>
                                     </div>
                                 </div>
                             )}

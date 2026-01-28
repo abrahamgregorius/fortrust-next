@@ -171,49 +171,196 @@ export default function China() {
                             {activeTab === "requirements" && (
                                 <div id="requirements" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Persyaratan Masuk Umum</h2>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Gelar Sarjana</h3>
+                                        <h2>Persyaratan Pendaftaran untuk Kuliah di China</h2>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Persyaratan Akademik</th>
+                                                            <th>Kemampuan Bahasa Inggris</th>
+                                                            <th>Dokumen Pendukung</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Bachelor (Sarjana / S1)</strong></td>
+                                                            <td>Transkrip resmi dan ijazah kelulusan pendidikan menengah dengan prestasi akademik baik dan mata pelajaran relevan sesuai program yang dipilih.
+                                                                <br />
+                                                                <sub>
+                                                                    *Persyaratan nilai dapat dilihat pada tabel dibawah
+                                                                </sub>
+                                                                <br /><br />
+                                                                Hasil tes CSCA (per Oktober 2025)
+                                                                <br /><br />
+                                                                Supporting Documents: Surat rekomendasi dari guru.
+                                                            </td>
+                                                            <td>Program berbahasa Inggris:
+                                                                <br /><br />
+                                                                IELTS Academic 6.5 (tidak ada band di bawah 6.0)
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 80–90+, atau setara.
+                                                                <br /><br />
+                                                                Program berbahasa Mandarin:
+                                                                <br /><br />
+                                                                HSK Level 4 (uji kemampuan bahasa resmi Tiongkok).
+                                                            </td>
+                                                            <td>Ujian masuk (terutama untuk jurusan kompetitif)
+                                                                <br /><br />
+                                                                Ujian kalkulus & matematika (kecuali seni)
+                                                                <br /><br />
+                                                                Wawancara
+                                                                <br /><br />
+                                                                Surat Pernyataan Pribadi.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Master (Magister / S2)</strong></td>
+                                                            <td>Transkrip resmi dan ijazah sarjana dari institusi terakreditasi, dengan prestasi akademik kuat di bidang terkait.
+                                                                <br /><br />
+                                                                Minimal GPA 3.0/4.0 (~B) atau lebih tinggi.
+                                                                <br /><br />
+                                                                Transkrip resmi dari seluruh studi sebelumnya.
+                                                            </td>
+                                                            <td>Program berbahasa Inggris:
+                                                                <br /><br />
+                                                                IELTS Academic 6.5–7.0
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 90–100+.
+                                                                <br /><br />
+                                                                Program berbahasa Mandarin:
+                                                                <br /><br />
+                                                                HSK Level 5.
+                                                            </td>
+                                                            <td>2+ surat rekomendasi akademik/profesional
+                                                                <br /><br />
+                                                                Statement of Purpose
+                                                                <br /><br />
+                                                                Proposal riset (untuk program berbasis riset).
+                                                                <br /><br />
+                                                                Persyaratan Lainnya:
+                                                                <br />
+                                                                Pengalaman profesional relevan (terutama MBA)
+                                                                <br />
+                                                                dan wawancara.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>PhD (Doktoral / S3)</strong></td>
+                                                            <td>Gelar magister di bidang terkait (beberapa program menerima sarjana dengan potensi riset luar biasa).
+                                                                <br /><br />
+                                                                Prestasi akademik dan rekam jejak riset yang kuat.
+                                                                <br /><br />
+                                                                Persyaratan Lainnya:
+                                                                <br />
+                                                                Bukti publikasi atau presentasi akademik sangat menguntungkan.
+                                                                <br /><br />
+                                                                Supervisor harus sudah dikonfirmasi sebelum mendaftar.
+                                                            </td>
+                                                            <td>Program berbahasa Inggris:
+                                                                <br /><br />
+                                                                IELTS Academic 6.5–7.0
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 90–100+.
+                                                                <br /><br />
+                                                                Program berbahasa Mandarin:
+                                                                <br /><br />
+                                                                HSK Level 5 ke atas.
+                                                            </td>
+                                                            <td>Proposal riset mendetail yang sesuai bidang pembimbing
+                                                                <br /><br />
+                                                                3 surat rekomendasi
+                                                                <br /><br />
+                                                                Statement of Purpose
+                                                                <br /><br />
+                                                                Transkrip lengkap.
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <h3>Persyaratan nilai akademis</h3>
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Jenis Universitas</th>
+                                                            <th>Nilai Minimum yang Direkomendasikan</th>
+                                                            <th>Catatan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Elite/Top 10</td>
+                                                            <td>80% ke atas, atau GPA 3.0/4.0+</td>
+                                                            <td>Lebih tinggi untuk kedokteran, teknik, atau jurusan ketat</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Negeri Reputasi Baik (Non-Elite)</td>
+                                                            <td>70% ke atas, atau GPA 2.7/4.0+</td>
+                                                            <td>Mungkin fleksibel tergantung program</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Universitas Komprehensif Umum</td>
+                                                            <td>60-70%+, GPA 2.5–2.7/4.0</td>
+                                                            <td>Minimal lulus</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <h3>Tips Penting untuk Pendaftar:</h3>
                                         <ul>
-                                            <li>
-                                                <strong>Persyaratan Akademik</strong> <br /> Transkrip resmi pendidikan menengah dengan prestasi akademik baik (minimum 60-80% tergantung tingkatan universitas).
-                                            </li>
-                                            <li>
-                                                <strong>Kemahiran Bahasa</strong> <br /> Untuk program bahasa Inggris, IELTS 6.5+ atau TOEFL 80-90+. Untuk program bahasa Mandarin, HSK Level 4.
-                                            </li>
-                                            <li>
-                                                <strong>Lainnya</strong> <br /> Ujian masuk atau wawancara mungkin diperlukan untuk program kompetitif.
-                                            </li>
+                                            <li>Riset persyaratan khusus tiap universitas. Setiap universitas memiliki kriteria yang berbeda, jadi pastikan untuk selalu melihat website universitas resmi.</li>
+                                            <li>Siapkan dokumen lebih awal. Mengumpulkan transkrip nilai resmi, surat rekomendasi dan hasil tes membutuhkan waktu.</li>
+                                            <li>Daftar beasiswa yang tersedia. Banyak Universitas di Tiongkok dan Pemerintah Tiongkok yang memberikan beasiswa untuk mahasiswa international.</li>
                                         </ul>
                                     </div>
                                     <div className="content-block">
-                                        <h3>Gelar Magister</h3>
+                                        <h2>Jadwal dan Periode Pendaftaran</h2>
+                                        <p>Jika Anda berencana untuk kuliah di universitas Tiongkok sebagai mahasiswa internasional, memahami jadwal pendaftaran dan pilihan penerimaan yang tersedia sangat penting untuk proses aplikasi yang sukses.</p>
+                                        <p>Universitas di Tiongkok umumnya menawarkan dua gelombang penerimaan utama setiap tahun—musim gugur (fall) dan musim semi (spring)—dengan opsi tambahan untuk program jangka pendek. Simak penjelasan berikut mengenai siklus penerimaan, tenggat waktu penting, dan tips mempersiapkan aplikasi.</p>
+                                        
+                                        <br />
+                                        <h3>1. Fall Intake (Pendaftaran periode musim gugur)</h3>
+                                        <p>Fall intake adalah siklus penerimaan paling populer bagi mahasiswa internasional di Tiongkok, tersedia untuk program sarjana maupun pascasarjana.</p>
+                                        <p>
+                                            <strong>
+                                                Awal Semester: September
+                                            </strong>
+                                        </p>
+                                        <p>Jadwal Pendaftaran: Biasanya dibuka mulai Januari hingga Juni. Tenggat waktu spesifik berbeda per universitas, jadi sangat penting untuk memeriksa halaman penerimaan universitas pilihan Anda.</p>
+                                        <p>Mengapa Fall Intake? Sebagian besar program gelar penuh dimulai di musim gugur, menawarkan pilihan program dan peluang masuk terluas di universitas-universitas Tiongkok.</p>
+                                        
+                                        <br />
+                                        <h3>2. Spring Intake (Pendaftaran periode musim semi)</h3>
+                                        <p>Spring intake memberikan kesempatan tambahan bagi mahasiswa internasional, meskipun jumlahnya tidak sebanyak fall intake.</p>
+                                        <p>
+                                            <strong>
+                                                Awal Semester: Maret
+                                            </strong>
+                                        </p>
+                                        <p>Jadwal Pendaftaran: Sebagian besar universitas menerima pendaftaran dari September hingga Desember tahun sebelumnya. Tidak semua universitas dan program menawarkan opsi masuk musim semi, jadi penting untuk memeriksa ketersediaannya.</p>
+                                        <p>Intake ini cocok bagi mahasiswa yang melewatkan tenggat musim gugur atau ingin memulai studi lebih awal di tahun tersebut.</p>
+                                        <br />
+                                        <h3>Tips Penting Pendaftaran:</h3>
                                         <ul>
-                                            <li>
-                                                <strong>Persyaratan Akademik</strong> <br /> Gelar Sarjana relevan dengan IPK minimum 3.0/4.0 atau setara.
-                                            </li>
-                                            <li>
-                                                <strong>Kemahiran Bahasa</strong> <br /> Untuk program bahasa Inggris, IELTS 6.5–7.0 atau TOEFL 90–100+. Untuk program bahasa Mandarin, HSK Level 5.
-                                            </li>
-                                            <li>
-                                                <strong>Dokumen Pendukung</strong> <br /> 2+ surat rekomendasi, Pernyataan Tujuan (SOP), dan proposal penelitian untuk program berbasis penelitian.
-                                            </li>
+                                            <li>Periksa Situs Universitas: Masing-masing universitas di Tiongkok mungkin memiliki tenggat dan persyaratan berbeda. Selalu konsultasikan juga dengan Fortrust Education Consultant untuk informasi terbaru.</li>
+                                            <li>Siapkan Dokumen Lebih Awal: Dokumen yang diperlukan (transkrip, surat rekomendasi, sertifikat bahasa, dll.) memerlukan waktu untuk dikumpulkan. Mulailah lebih awal agar tidak melewatkan tenggat.</li>
+                                            <li>Spring Intake Terbatas: Lebih sedikit program yang tersedia dibanding fall intake, dengan periode pendaftaran yang lebih singkat. Jika ingin mulai di musim semi, cari universitas yang menawarkan opsi ini dan ajukan lebih awal.</li>
                                         </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Gelar PhD (Doktor)</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>Persyaratan Akademik</strong> <br /> Gelar Magister di bidang terkait dengan latar belakang penelitian kuat.
-                                            </li>
-                                            <li>
-                                                <strong>Kemahiran Bahasa</strong> <br /> IELTS 6.5–7.0+ atau TOEFL 90–100+ untuk program bahasa Inggris. HSK Level 5 atau lebih tinggi untuk program bahasa Mandarin.
-                                            </li>
-                                            <li>
-                                                <strong>Dokumen Pendukung</strong> <br /> Proposal penelitian detail, 3 surat rekomendasi, dan bukti publikasi penelitian.
-                                            </li>
-                                        </ul>
+                                        <p>Universitas di Tiongkok menyediakan dua gelombang penerimaan utama—fall dan spring—untuk mahasiswa internasional, yang membentuk perjalanan akademik ribuan pelajar dari seluruh dunia. Dengan memahami waktunya, menyiapkan dokumen dari jauh hari, dan memeriksa persyaratan spesifik universitas, Anda akan memaksimalkan peluang untuk diterima dan memulai studi dengan lancar di Tiongkok.</p>
                                     </div>
                                 </div>
                             )}
