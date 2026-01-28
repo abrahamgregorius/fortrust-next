@@ -8,6 +8,19 @@ export default function StudyTour() {
             <Navbar></Navbar>
 
             <main>
+                <section className="video-section">
+                    <video
+                        src="/video/study-tour.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        style={{ width: '100%', height: 'auto' }}
+                        preload="metadata"
+                    >
+                        Your browser does not support the video tag.
+                    </video>
+                </section>
+
                 <section className="page-header">
                     <div className="container">
                         <h1>Study Tour & Immersion Programs</h1>

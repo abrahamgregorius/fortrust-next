@@ -2950,3 +2950,14 @@ ul {
         display: none;
     }
 }
+
+/* Video Section Styles */
+.video-section {
+    margin: 0;
+    padding: 0;
+}
+
+.video-section video {
+    margin: 0;
+    padding: 0;
+}
