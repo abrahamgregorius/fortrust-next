@@ -141,7 +141,7 @@ export default function Australia() {
                                                 <strong>
                                                     Longest Post-Study Work
                                                     Rights in the World
-                                                </strong>{" "} <br/>
+                                                </strong>{" "} <br />
                                                 Australia offers the most
                                                 generous post-study work rights,
                                                 allowing graduates to work for
@@ -152,7 +152,7 @@ export default function Australia() {
                                                 <strong>
                                                     Australian Qualifications
                                                     Framework (AQF)
-                                                </strong>{" "} <br/>
+                                                </strong>{" "} <br />
                                                 This unique system standardizes
                                                 education levels, ensuring your
                                                 degree is instantly recognized
@@ -163,7 +163,7 @@ export default function Australia() {
                                                 <strong>
                                                     Flexible Work Options for
                                                     Students
-                                                </strong>{" "} <br/>
+                                                </strong>{" "} <br />
                                                 Unlike other countries,
                                                 Australia lets students work
                                                 unlimited hours during official
@@ -172,7 +172,7 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     Regional Study Incentives
-                                                </strong>{" "} <br/>
+                                                </strong>{" "} <br />
                                                 Studying in regional areas
                                                 provides extra points toward PR,
                                                 lower costs, and an extended
@@ -181,7 +181,7 @@ export default function Australia() {
                                             <li>
                                                 <strong>
                                                     Study-Migration Alignment
-                                                </strong>{" "} <br/>
+                                                </strong>{" "} <br />
                                                 Australia's skills lists
                                                 directly link academic programs
                                                 with migration needs, boosting
@@ -191,7 +191,7 @@ export default function Australia() {
                                                 <strong>
                                                     Government Loans (HECS-HELP)
                                                     for Eligible Residents
-                                                </strong>{" "} <br/>
+                                                </strong>{" "} <br />
                                                 Certain permanent residents can
                                                 use HECS-HELP loans to cover
                                                 tuition with no upfront payment.
@@ -200,7 +200,7 @@ export default function Australia() {
                                                 <strong>
                                                     Unmatched Climate and
                                                     Cultural Diversity
-                                                </strong>{" "} <br/>
+                                                </strong>{" "} <br />
                                                 Australia offers a wide range of
                                                 lifestyle choices and seamless
                                                 cultural integration for
@@ -330,6 +330,7 @@ export default function Australia() {
 
                             {activeTab === "requirements" && (
                                 <div id="requirements" className="tab-pane active">
+
                                     <div className="content-block">
                                         <h2>Entry Requirements & Timeline</h2>
                                         <p>
@@ -337,90 +338,181 @@ export default function Australia() {
                                             and application timeline is key to
                                             securing your future in Australia.
                                         </p>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>
+                                                                Academic Requirements
+                                                            </th>
+                                                            <th>
+                                                                English Language Proficiency
+                                                            </th>
+                                                            <th>
+                                                                Other Requirements
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Bachelor’s Degree (Undergraduate)</strong></td>
+                                                            <td>Completion of secondary/high school equivalent to Australian Year 12.
+                                                                <br /><br />
+                                                                Minimum average: 65–75%+ (higher for competitive programs like medicine, law, or engineering).
+                                                                <br /><br />
+                                                                Subject prerequisites may apply (e.g., mathematics, chemistry, physics for STEM)
+                                                            </td>
+                                                            <td>
+                                                                IELTS Academic: 6.5 overall (no band below 6.0) OR
+                                                                <br /><br />
+                                                                TOEFL iBT: 80–90 overall (with minimum section scores) OR
+                                                                <br /><br />
+                                                                Some universities accept PTE Academic or Cambridge C1 Advanced.
+                                                            </td>
+                                                            <td>
+                                                                Portfolio or audition for creative arts programs.
+                                                                <br /><br />Standardized tests (only for certain competitive fields).
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Master’s Degree (Postgraduate Coursework & Research)</strong></td>
+                                                            <td>
+                                                                A completed Bachelor’s degree (or equivalent) in a relevant field.
+                                                                <br /><br />
+                                                                Minimum GPA: Generally 3.0/4.0 or equivalent (65–70%+).
+                                                                <br /><br />
+                                                                For research-based Master’s: Evidence of academic research capability, which may include a mini research proposal.
+                                                            </td>
+                                                            <td>
+                                                                IELTS Academic: 6.5–7.0 overall (no band below 6.0) OR
+                                                                <br /><br />
+                                                                TOEFL iBT: 90–100 overall (with minimum section scores).
+                                                            </td>
+                                                            <td>
+                                                                Statement of Purpose (SOP) or personal statement
+                                                                <br /><br />
+                                                                2–3 letters of recommendation from academic or professional referees
+                                                                <br /><br />
+                                                                Certified Academic transcripts
+                                                                <br /><br />
+                                                                Some programs require GMAT or GRE (especially MBA, Finance)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>PhD (Doctoral)</strong></td>
+                                                            <td>
+                                                                Completion of a Master’s degree by research in a related field, or an honors-level Bachelor’s degree with strong academic performance.
+                                                                <br /><br />
+                                                                Exceptional Bachelor’s graduates (with research distinction) may be considered directly.
+                                                                <br /><br />
+                                                                <strong>Other Possible Requirements:</strong> {" "}
+                                                                Identify a professor willing to supervise your research
+                                                            </td>
+                                                            <td>
+                                                                IELTS Academic: 6.5–7.0+ overall (research-intensive programs may demand higher) OR
+                                                                <br /><br />
+                                                                TOEFL iBT: 90–100+ overall.
+                                                            </td>
+                                                            <td>
+                                                                Detailed research proposal aligned with faculty expertise
+                                                                <br /><br />
+                                                                3 strong recommendation letters from academic supervisors.
+                                                                <br /><br />
+                                                                Academic transcripts of all prior qualifications.
+                                                                <br /><br />
+                                                                Previous research publications or relevant academic work advantageous.
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="content-block">
-                                        <h3>
-                                            Bachelor’s Degree (Undergraduate)
-                                        </h3>
-                                        <ul>
-                                            <li>
-                                                <strong>
-                                                    Academic Requirements
-                                                </strong><br />
-                                                Completion of secondary/high
-                                                school equivalent to Australian
-                                                Year 12, with a minimum average
-                                                of 65–75%+.
-                                            </li>
-                                            <li>
-                                                <strong>
-                                                    English Language
-                                                    Proficiency
-                                                </strong><br />
-                                                IELTS Academic score of 6.5
-                                                overall (no band below 6.0) or
-                                                equivalent.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Master’s Degree (Postgraduate)</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>
-                                                    Academic Requirements
-                                                </strong><br />
-                                                A completed Bachelor’s degree in
-                                                a relevant field with a minimum
-                                                GPA of 3.0/4.0 or equivalent.
-                                            </li>
-                                            <li>
-                                                <strong>
-                                                    Supporting Documents
-                                                </strong><br />
-                                                Statement of Purpose (SOP), 2–3
-                                                letters of recommendation, and
-                                                certified academic transcripts.
-                                            </li>
-                                            <li>
-                                                <strong>
-                                                    English Language
-                                                    Proficiency
-                                                </strong><br />
-                                                IELTS Academic score of 6.5–7.0
-                                                overall or equivalent.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>PhD (Doctoral)</h3>
-                                        <ul>
-                                            <li>
-                                                <strong>
-                                                    Academic Requirements
-                                                </strong><br />
-                                                Completion of a Master’s degree
-                                                by research or an honors-level
-                                                Bachelor’s degree with strong
-                                                academic performance.
-                                            </li>
-                                            <li>
-                                                <strong>
-                                                    Supporting Documents
-                                                </strong>{" "}<br />
-                                                A detailed research proposal, 3
-                                                strong recommendation letters,
-                                                and academic transcripts.
-                                            </li>
-                                            <li>
-                                                <strong>
-                                                    Other Requirements
-                                                </strong><br />
-                                                Identify and secure a professor
-                                                willing to supervise your
-                                                research.
-                                            </li>
-                                        </ul>
+                                        <h2>Application Timeline</h2>
+                                        <p>
+                                            Plan ahead for either the major February intake or the mid-year July intake, with application windows and deadlines varying by program.
+                                        </p>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Stage</th>
+                                                            <th>
+                                                                Bachelor’s
+                                                            </th>
+                                                            <th>
+                                                                Master’
+                                                            </th>
+                                                            <th>
+                                                                PhD
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                18-24 months before
+                                                            </td>
+                                                            <td>
+                                                                Research programs & universities
+                                                            </td>
+                                                            <td>
+                                                                Shortlist programs; contact supervisors
+                                                            </td>
+                                                            <td>
+                                                                Contact supervisors; draft proposals
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                12-16 months before
+                                                            </td>
+                                                            <td>
+                                                                English tests, gather documents
+                                                            </td>
+                                                            <td>
+                                                                Prepare SOP & recommendations
+                                                            </td>
+                                                            <td>
+                                                                Apply for scholarships, finalize CV
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                8-12 months before
+                                                            </td>
+                                                            <td>
+                                                                Submit applications (Oct–Feb)
+                                                            </td>
+                                                            <td>
+                                                                Apply for programs (Oct–Jan)
+                                                            </td>
+                                                            <td>
+                                                                Submit applications (Nov–Feb)
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                4-6 months before
+                                                            </td>
+                                                            <td>
+                                                                Accept offer, apply for visa (S500)
+                                                            </td>
+                                                            <td>
+                                                                Accept offer, arrange tuition, apply visa
+                                                            </td>
+                                                            <td>
+                                                                Accept offer, arrange funding, apply visa
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             )}

@@ -189,31 +189,139 @@ export default function Australia() {
                             {activeTab === "requirements" && (
                                 <div id="requirements" className="tab-pane active">
                                     <div className="content-block">
-                                        <h2>Persyaratan Masuk & Timeline</h2>
-                                        <p>Memahami persyaratan masuk dan timeline aplikasi adalah kunci untuk mengamankan masa depan Anda di Australia.</p>
+                                        <h2>Persyaratan Umum Masuk Kuliah di Australia</h2>
+                                        <p>
+                                            Baik Anda ingin menempuh program Bachelor, Master, atau PhD, berikut adalah gambaran umum syarat yang harus dipenuhi oleh mahasiswa internasional:
+                                        </p>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Persyaratan Akademik</th>
+                                                            <th>Kemampuan Bahasa Inggris</th>
+                                                            <th>Dokumen Pendukung</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Bachelor (Sarjana / S1)</strong></td>
+                                                            <td>Telah menyelesaikan pendidikan SMA/sederajat setara Year 12 Australia.
+                                                                <br /><br />
+                                                                Rata-rata nilai minimal 65–75% atau lebih tinggi untuk jurusan seperti kedokteran, hukum, atau teknik.
+                                                                <br /><br />
+                                                                Beberapa program memerlukan latar belakang pelajaran tertentu, seperti matematika atau fisika untuk STEM.
+                                                            </td>
+                                                            <td>
+                                                                IELTS Academic minimal 6.5 (tiap band 6.0+).
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 80–90.
+                                                                <br />(Beberapa universitas menerima PTE atau Cambridge C1 Advanced).
+                                                            </td>
+                                                            <td>
+                                                                Portofolio atau audisi untuk seni/kreatif.
+                                                                <br /><br />
+                                                                Tes standar untuk bidang spesifik yang kompetitif.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Master (Magister / S2)</strong></td>
+                                                            <td>
+                                                                Lulus Bachelor di bidang relevan dengan nilai minimal IPK 3.0/4.0 (65–70%).
+                                                                <br /><br />
+                                                                Untuk Master berbasis riset, perlu bukti kemampuan penelitian, seperti proposal mini.
+                                                            </td>
+                                                            <td>
+                                                                IELTS Academic 6.5–7.0.
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 90–100.
+                                                            </td>
+                                                            <td>
+                                                                Statement of Purpose, 2–3 surat rekomendasi dari dosen atau profesional, transkrip akademik resmi.
+                                                                <br /><br />
+                                                                Program tertentu (MBA, Finance) mungkin butuh GMAT/GRE.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>PhD (Doktoral / S3)</strong></td>
+                                                            <td>
+                                                                Telah meraih Master by research di bidang terkait, atau Bachelor dengan honors dan prestasi tinggi.
+                                                                <br /><br />
+                                                                Mahasiswa S1 berprestasi luar biasa kadang bisa langsung ke PhD.
+                                                                <br /><br />
+                                                                <strong>Syarat lain:</strong> {" "}
+                                                                Harus memperoleh dukungan supervisor di universitas tujuan untuk proses seleksi PhD.
+                                                            </td>
+                                                            <td>
+                                                                IELTS Academic 6.5–7.0+ (program riset intensif mungkin lebih tinggi).
+                                                                <br /><br />
+                                                                ATAU
+                                                                <br /><br />
+                                                                TOEFL iBT 90–100+.
+                                                            </td>
+                                                            <td>
+                                                                Proposal riset mendetail sesuai keilmuan fakultas tujuan.
+                                                                <br /><br />
+                                                                3 surat rekomendasi dari pembimbing.
+                                                                <br /><br />
+                                                                Bukti publikasi/konferensi atau karya akademik sangat mendukung.
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="content-block">
-                                        <h3>Gelar Sarjana (S1)</h3>
-                                        <ul>
-                                            <li><strong>Persyaratan Akademik:</strong> Penyelesaian sekolah menengah atas setara dengan Australian Year 12, dengan rata-rata minimum 65–75%+.</li>
-                                            <li><strong>Kemahiran Bahasa Inggris:</strong> Skor IELTS Academic 6.5 secara keseluruhan (tidak ada band di bawah 6.0) atau setara.</li>
-                                        </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Gelar Magister (S2)</h3>
-                                        <ul>
-                                            <li><strong>Persyaratan Akademik:</strong> Gelar Sarjana yang telah diselesaikan di bidang terkait dengan IPK minimum 3.0/4.0 atau setara.</li>
-                                            <li><strong>Dokumen Pendukung:</strong> Pernyataan Tujuan (SOP), 2–3 surat rekomendasi, dan transkrip akademik yang disertifikasi.</li>
-                                            <li><strong>Kemahiran Bahasa Inggris:</strong> Skor IELTS Academic 6.5–7.0 secara keseluruhan atau setara.</li>
-                                        </ul>
-                                    </div>
-                                    <div className="content-block">
-                                        <h3>Doktor (S3)</h3>
-                                        <ul>
-                                            <li><strong>Persyaratan Akademik:</strong> Penyelesaian Gelar Magister melalui riset atau Gelar Sarjana tingkat honors dengan performa akademik yang kuat.</li>
-                                            <li><strong>Dokumen Pendukung:</strong> Proposal riset yang detail, 3 surat rekomendasi yang kuat, dan transkrip akademik.</li>
-                                            <li><strong>Persyaratan Lain:</strong> Identifikasi dan amankan profesor yang bersedia membimbing riset Anda.</li>
-                                        </ul>
+                                        <h2>Timeline dan Proses Aplikasi Kuliah di Australia</h2>
+                                        <p>
+                                            Australia memiliki dua masa penerimaan utama: Intake Februari (utama, paling banyak pilihan) dan Intake Juli (khusus bisnis, IT, dan sains), cocok bagi pelajar yang menyelesaikan sekolah pertengahan tahun atau ingin pindah program
+                                        </p>
+                                        <div className="">
+                                            <div className="table-responsive">
+                                                <table className="data-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Stage</th>
+                                                            <th>Sarjana / S1</th>
+                                                            <th>Magister / S2</th>
+                                                            <th>Doktoral / S3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>18–24 bulan sebelum</td>
+                                                            <td>Riset jurusan/uni, cek syarat pelajaran & nilai.</td>
+                                                            <td>Rangkum program, cari supervisor untuk riset.</td>
+                                                            <td>Hubungi supervisor, susun proposal riset.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12–16 bulan sebelum</td>
+                                                            <td>Persiapkan tes bahasa, kumpulkan dokumen.</td>
+                                                            <td>Kirim aplikasi + dokumen, daftar beasiswa (Okt–Jan).</td>
+                                                            <td>Daftar beasiswa, lengkapkan publikasi.</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>8–12 bulan sebelum</td>
+                                                            <td>Kirim aplikasi (Okt–Feb).</td>
+                                                            <td></td>
+                                                            <td>Kirim aplikasi PhD (Nov–Feb).</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4–6 bulan sebelum</td>
+                                                            <td>Terima offer, urus visa pelajar.</td>
+                                                            <td>Terima offer, bayar tuition, urus visa.</td>
+                                                            <td>Terima offer, urus funding & visa.</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             )}
