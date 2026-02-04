@@ -68,6 +68,8 @@ export default function CreateBannerPage() {
     event_id: "",
     display_order: 0,
     is_active: true,
+    start_date: "",
+    end_date: "",
   });
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -166,6 +168,8 @@ export default function CreateBannerPage() {
         event_id: formData.event_id || null,
         display_order: formData.display_order,
         is_active: formData.is_active,
+        start_date: formData.start_date || null,
+        end_date: formData.end_date || null,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       };
@@ -414,6 +418,42 @@ export default function CreateBannerPage() {
                 onChange={handleChange}
                 className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="0"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label
+                htmlFor="start_date"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Start Date
+              </label>
+              <input
+                type="datetime-local"
+                id="start_date"
+                name="start_date"
+                value={formData.start_date}
+                onChange={handleChange}
+                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="end_date"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                End Date
+              </label>
+              <input
+                type="datetime-local"
+                id="end_date"
+                name="end_date"
+                value={formData.end_date}
+                onChange={handleChange}
+                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>
           </div>

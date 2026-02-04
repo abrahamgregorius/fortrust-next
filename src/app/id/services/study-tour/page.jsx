@@ -10,13 +10,14 @@ export default function StudyTour() {
             <main>
                 <section className="video-section">
                     <video
-                        src="/video/study-tour.mp4"
                         autoPlay
                         muted
                         loop
                         style={{ width: '100%' }}
                         preload="metadata"
                     >
+                        <source media="(max-width: 768px)" src="/study-tour/study-tour-mobile.mp4" type="video/mp4" />
+                        <source src="/video/study-tour.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </section>
@@ -29,7 +30,10 @@ export default function StudyTour() {
                         </p>
                     </div>
                 </section>
-                <img src="/study-tour/banner-b.webp" alt="Study Tour Banner" style={{ width: '100%' }} />
+                <picture>
+                    <source media="(max-width: 768px)" srcSet="/study-tour/banner-a-mobile.webp" />
+                    <img src="/study-tour/banner-b.webp" alt="Study Tour Banner" style={{ width: '100%' }} />
+                </picture>
 
 
                 <section className="text-content-section">

@@ -113,6 +113,8 @@ export default function Banners() {
     event_id: "",
     display_order: 0,
     is_active: true,
+    start_date: "",
+    end_date: "",
   });
   const [editStatus, setEditStatus] = useState(null);
   const [events, setEvents] = useState([]);
@@ -205,6 +207,8 @@ export default function Banners() {
       event_id: banner.event_id || "",
       display_order: banner.display_order || 0,
       is_active: banner.is_active !== undefined ? banner.is_active : true,
+      start_date: banner.start_date ? new Date(banner.start_date).toISOString().slice(0, 16) : "",
+      end_date: banner.end_date ? new Date(banner.end_date).toISOString().slice(0, 16) : "",
     });
     setEditImageFile(null);
     setEditImagePreview(null);
@@ -326,6 +330,8 @@ export default function Banners() {
           event_id: editFormData.event_id || null,
           display_order: editFormData.display_order,
           is_active: editFormData.is_active,
+          start_date: editFormData.start_date || null,
+          end_date: editFormData.end_date || null,
           updated_at: new Date().toISOString(),
         })
         .eq("id", selectedBanner.id)
@@ -726,6 +732,41 @@ export default function Banners() {
                         id="edit_display_order"
                         name="display_order"
                         value={editFormData.display_order}
+                        onChange={handleEditFormChange}
+                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="edit_start_date"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Start Date
+                      </label>
+                      <input
+                        type="datetime-local"
+                        id="edit_start_date"
+                        name="start_date"
+                        value={editFormData.start_date}
+                        onChange={handleEditFormChange}
+                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="edit_end_date"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        End Date
+                      </label>
+                      <input
+                        type="datetime-local"
+                        id="edit_end_date"
+                        name="end_date"
+                        value={editFormData.end_date}
                         onChange={handleEditFormChange}
                         className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />

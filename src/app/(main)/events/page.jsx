@@ -7,10 +7,12 @@ import { Clock, MapPin, Newspaper } from "lucide-react";
 export const dynamic = 'force-dynamic';
 
 export default async function Events() {
+    const now = new Date().toISOString();
     const { data: events, error } = await supabase
         .from("events")
         .select("*")
-        .order("created_at", { ascending: false })
+        .gte("start_at", now)
+        .order("start_at", { ascending: true })
 
     if (error) {
         console.error(error)

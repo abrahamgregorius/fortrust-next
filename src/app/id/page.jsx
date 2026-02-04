@@ -27,10 +27,13 @@ export default function Home() {
     const fetchBanners = async () => {
         setIsLoadingBanners(true);
         try {
+            const now = new Date().toISOString();
             const { data, error } = await supabase
                 .from("banners")
                 .select("*")
                 .eq("is_active", true)
+                .lte("start_date", now)
+                .gte("end_date", now)
                 .order("display_order", "asc");
             if (error) {
                 console.error("Error fetching banners:", error);
@@ -129,7 +132,13 @@ export default function Home() {
     const fetchEvents = async () => {
         setIsLoadingEvents(true);
         try {
-            const { data, error } = await supabase.from("events").select("*").order("created_at", { ascending: false }).limit(3);
+            const now = new Date().toISOString();
+            const { data, error } = await supabase
+                .from("events")
+                .select("*")
+                .gte("start_at", now)
+                .order("start_at", { ascending: true })
+                .limit(3);
             if (error) {
                 console.error("Error fetching events:", error);
             } else {
