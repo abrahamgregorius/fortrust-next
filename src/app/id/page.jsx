@@ -114,7 +114,10 @@ export default function Home() {
     const fetchTestimonials = async () => {
         setIsLoadingTestimonials(true);
         try {
-            const { data, error } = await supabase.from("testimonials").select("*");
+            const { data, error } = await supabase
+                .from("testimonials")
+                .select("*")
+                .order("display_order", { ascending: true });
             if (error) {
                 console.error("Error fetching testimonials:", error);
             } else {

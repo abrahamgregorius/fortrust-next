@@ -9,7 +9,7 @@ export default async function SuccessStories() {
     const { data: testimonials, error } = await supabase
         .from("testimonials")
         .select("*")
-        .order("created_at", { ascending: false })
+        .order("display_order", { ascending: true })
 
     if (error) {
         console.error(error)
