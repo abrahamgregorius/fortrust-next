@@ -9,7 +9,7 @@ export default async function SuccessStories() {
     const { data: testimonials, error } = await supabase
         .from("testimonials")
         .select("*")
-        .order("display_order", { ascending: true })
+        .order("display_order", { ascending: false })
 
     if (error) {
         console.error("❌ Error loading testimonials:", error)

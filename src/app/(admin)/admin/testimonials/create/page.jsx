@@ -217,7 +217,7 @@ export default function CreateTestimonialPage() {
               htmlFor="display_order"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Display Order
+              Display Order (Default: 0)
             </label>
             <input
               type="number"

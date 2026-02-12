@@ -131,7 +131,7 @@ export default function App() {
   };
 
   const fetchTestimonials = async () => {
-    const { data, error } = await supabase.from("testimonials").select("*").order("display_order", { ascending: true });
+    const { data, error } = await supabase.from("testimonials").select("*").order("display_order", { ascending: false });
     if (error) {
       console.error("Error fetching testimonials:", error);
     } else {
@@ -160,6 +160,26 @@ export default function App() {
         .eq("id", id);
       if (error) {
         console.error("Error deleting testimonials:", error);
+      } else {
+        fetchTestimonials();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleMoveToTop = async (id) => {
+    try {
+      // Get the highest current display_order and add 1
+      const maxOrder = testimonials.length > 0 ? Math.max(...testimonials.map(t => t.display_order || 0)) : 0;
+      const newOrder = maxOrder + 1;
+
+      const { data, error } = await supabase
+        .from("testimonials")
+        .update({ display_order: newOrder })
+        .eq("id", id);
+      if (error) {
+        console.error("Error moving testimonial to top:", error);
       } else {
         fetchTestimonials();
       }
@@ -344,6 +364,15 @@ export default function App() {
                                 <Icon path={ICONS.view} />
                               </button>
                               <button
+                                onClick={() => handleMoveToTop(test.id)}
+                                className="text-gray-500 hover:text-orange-600"
+                                title="Move to Top"
+                              >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                </svg>
+                              </button>
+                              <button
                                 onClick={() => handleEdit(test)}
                                 className="text-gray-500 hover:text-green-600"
                                 title="Edit"
@@ -445,7 +474,7 @@ export default function App() {
                       htmlFor="edit_display_order"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Display Order
+                      Display Order (Default: 0)
                     </label>
                     <input
                       type="number"
@@ -625,7 +654,7 @@ export default function App() {
                   </div>
                   <div>
                     <h4 className="text-sm font-medium text-gray-700 mb-1">
-                      Display Order:
+                      Display Order (Default: 0):
                     </h4>
                     <p className="text-gray-800">
                       {selectedTestimonial.display_order || 0}

@@ -69,11 +69,17 @@ export default function PopupBanner() {
     if (!activeBanner) return null;
 
     return (
-        <div className="popup-modal-overlay" suppressHydrationWarning>
-            <div className="popup-modal">
+        <div className="popup-modal-overlay" suppressHydrationWarning onClick={() => {
+            setShowBanner(false);
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('popupBannerClosed', 'true');
+            }
+        }}>
+            <div className="popup-modal" onClick={(e) => e.stopPropagation()}>
                 <button
                     className="popup-modal-close"
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.stopPropagation();
                         setShowBanner(false);
                         if (typeof window !== 'undefined') {
                             localStorage.setItem('popupBannerClosed', 'true');

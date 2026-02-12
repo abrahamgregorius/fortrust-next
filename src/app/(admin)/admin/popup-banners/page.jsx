@@ -668,7 +668,7 @@ export default function PopupBanners() {
                                                 htmlFor="edit_display_order"
                                                 className="block text-sm font-medium text-gray-700 mb-1"
                                             >
-                                                Display Order
+                                                Display Order (Default: 0)
                                             </label>
                                             <input
                                                 type="number"
@@ -819,7 +819,7 @@ export default function PopupBanners() {
                                         </div>
                                         <div>
                                             <h4 className="text-sm font-medium text-gray-700 mb-1">
-                                                Display Order:
+                                                Display Order (Default: 0):
                                             </h4>
                                             <p className="text-gray-800">
                                                 {selectedPopupBanner.display_order}
