@@ -593,6 +593,11 @@ ul {
     color: var(--neutral-400);
     font-size: 0.9rem;
 }
+.event-card__info p svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+}
 .event-card__info i {
     width: 16px;
     height: 16px;
