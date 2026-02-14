@@ -62,6 +62,9 @@ export default function PopupBanners() {
         event_id: "",
         display_order: 0,
         is_active: true,
+        always_show: false,
+        start_date: "",
+        end_date: "",
     });
     const [editStatus, setEditStatus] = useState(null);
     const [events, setEvents] = useState([]);
@@ -154,6 +157,9 @@ export default function PopupBanners() {
             event_id: popupBanner.event_id || "",
             display_order: popupBanner.display_order || 0,
             is_active: popupBanner.is_active !== undefined ? popupBanner.is_active : true,
+            always_show: popupBanner.always_show !== undefined ? popupBanner.always_show : false,
+            start_date: popupBanner.start_date ? new Date(popupBanner.start_date).toISOString().slice(0, 16) : "",
+            end_date: popupBanner.end_date ? new Date(popupBanner.end_date).toISOString().slice(0, 16) : "",
         });
         setEditImageFile(null);
         setEditImagePreview(null);
@@ -275,6 +281,9 @@ export default function PopupBanners() {
                     event_id: editFormData.event_id || null,
                     display_order: editFormData.display_order,
                     is_active: editFormData.is_active,
+                    always_show: editFormData.always_show,
+                    start_date: editFormData.start_date || null,
+                    end_date: editFormData.end_date || null,
                     updated_at: new Date().toISOString(),
                 })
                 .eq("id", selectedPopupBanner.id)
@@ -356,6 +365,9 @@ export default function PopupBanners() {
                                                     Order
                                                 </th>
                                                 <th scope="col" className="px-6 py-3">
+                                                    Always Show
+                                                </th>
+                                                <th scope="col" className="px-6 py-3">
                                                     Status
                                                 </th>
                                                 <th scope="col" className="px-6 py-3 text-center">
@@ -385,6 +397,16 @@ export default function PopupBanners() {
                                                         {popupBanner.events?.name || "-"}
                                                     </td>
                                                     <td className="px-6 py-4">{popupBanner.display_order}</td>
+                                                    <td className="px-6 py-4">
+                                                        <span
+                                                            className={`px-2 py-1 text-xs font-medium rounded-full ${popupBanner.always_show
+                                                                ? "bg-blue-100 text-blue-800"
+                                                                : "bg-gray-100 text-gray-800"
+                                                                }`}
+                                                        >
+                                                            {popupBanner.always_show ? "Always" : "Scheduled"}
+                                                        </span>
+                                                    </td>
                                                     <td className="px-6 py-4">
                                                         <span
                                                             className={`px-2 py-1 text-xs font-medium rounded-full ${popupBanner.is_active
@@ -681,21 +703,74 @@ export default function PopupBanners() {
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            id="edit_is_active"
-                                            name="is_active"
-                                            checked={editFormData.is_active}
-                                            onChange={handleEditFormChange}
-                                            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                                        />
-                                        <label
-                                            htmlFor="edit_is_active"
-                                            className="ml-2 block text-sm text-gray-700"
-                                        >
-                                            Active
-                                        </label>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <label
+                                                htmlFor="edit_start_date"
+                                                className="block text-sm font-medium text-gray-700 mb-1"
+                                            >
+                                                Start Date (Optional)
+                                            </label>
+                                            <input
+                                                type="datetime-local"
+                                                id="edit_start_date"
+                                                name="start_date"
+                                                value={editFormData.start_date}
+                                                onChange={handleEditFormChange}
+                                                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label
+                                                htmlFor="edit_end_date"
+                                                className="block text-sm font-medium text-gray-700 mb-1"
+                                            >
+                                                End Date (Optional)
+                                            </label>
+                                            <input
+                                                type="datetime-local"
+                                                id="edit_end_date"
+                                                name="end_date"
+                                                value={editFormData.end_date}
+                                                onChange={handleEditFormChange}
+                                                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center space-x-6">
+                                        <div className="flex items-center">
+                                            <input
+                                                type="checkbox"
+                                                id="edit_is_active"
+                                                name="is_active"
+                                                checked={editFormData.is_active}
+                                                onChange={handleEditFormChange}
+                                                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                            />
+                                            <label
+                                                htmlFor="edit_is_active"
+                                                className="ml-2 block text-sm text-gray-700"
+                                            >
+                                                Active
+                                            </label>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <input
+                                                type="checkbox"
+                                                id="edit_always_show"
+                                                name="always_show"
+                                                checked={editFormData.always_show}
+                                                onChange={handleEditFormChange}
+                                                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                            />
+                                            <label
+                                                htmlFor="edit_always_show"
+                                                className="ml-2 block text-sm text-gray-700"
+                                            >
+                                                Always Show
+                                            </label>
+                                        </div>
                                     </div>
 
                                     {editStatus && (
@@ -754,7 +829,7 @@ export default function PopupBanners() {
                                         <h3 className="text-lg font-semibold text-gray-800">
                                             {selectedPopupBanner.title}
                                         </h3>
-                                        <div className="mt-2">
+                                        <div className="mt-2 flex space-x-2">
                                             <span
                                                 className={`px-2 py-1 text-xs font-medium rounded-full ${selectedPopupBanner.is_active
                                                     ? "bg-green-100 text-green-800"
@@ -762,6 +837,14 @@ export default function PopupBanners() {
                                                     }`}
                                             >
                                                 {selectedPopupBanner.is_active ? "Active" : "Inactive"}
+                                            </span>
+                                            <span
+                                                className={`px-2 py-1 text-xs font-medium rounded-full ${selectedPopupBanner.always_show
+                                                    ? "bg-blue-100 text-blue-800"
+                                                    : "bg-gray-100 text-gray-800"
+                                                    }`}
+                                            >
+                                                {selectedPopupBanner.always_show ? "Always Show" : "Scheduled"}
                                             </span>
                                         </div>
                                     </div>

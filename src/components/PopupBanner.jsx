@@ -35,12 +35,13 @@ export default function PopupBanner() {
 
     useEffect(() => {
         if (typeof window !== 'undefined' && !isLoading) {
-            const closed = localStorage.getItem('popupBannerClosed');
             const now = new Date();
 
             // Find active popup banner within schedule
             const activeBanner = popupBanners.find(banner => {
-                if (!banner.start_date || !banner.end_date) return true; // No schedule means always show
+                if (banner.always_show) return true; // Always show if flagged
+
+                if (!banner.start_date || !banner.end_date) return false; // No schedule and not always show
 
                 const startDate = new Date(banner.start_date);
                 const endDate = new Date(banner.end_date);
@@ -48,18 +49,16 @@ export default function PopupBanner() {
                 return now >= startDate && now <= endDate;
             });
 
-            if (activeBanner && closed !== 'true') {
-                setShowBanner(true);
-            } else {
-                setShowBanner(false);
-            }
+            setShowBanner(!!activeBanner);
         }
     }, [popupBanners, isLoading]);
 
     if (isLoading || !showBanner) return null;
 
+    // Get the active banner (we know it exists since showBanner is true)
     const activeBanner = popupBanners.find(banner => {
-        if (!banner.start_date || !banner.end_date) return true;
+        if (banner.always_show) return true;
+        if (!banner.start_date || !banner.end_date) return false;
         const startDate = new Date(banner.start_date);
         const endDate = new Date(banner.end_date);
         const now = new Date();
@@ -71,29 +70,17 @@ export default function PopupBanner() {
     return (
         <div className="popup-modal-overlay" suppressHydrationWarning onClick={() => {
             setShowBanner(false);
-            if (typeof window !== 'undefined') {
-                localStorage.setItem('popupBannerClosed', 'true');
-            }
         }}>
             <div className="popup-modal" onClick={(e) => e.stopPropagation()}>
-                <button
-                    className="popup-modal-close"
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        setShowBanner(false);
-                        if (typeof window !== 'undefined') {
-                            localStorage.setItem('popupBannerClosed', 'true');
-                        }
-                    }}
-                >
-                    ×
-                </button>
                 <Link href={activeBanner.link_url}>
                     <picture>
                         <source media="(max-width: 768px)" srcSet={activeBanner.mobile_image_url || activeBanner.image_url} />
                         <img src={activeBanner.image_url} alt="Popup Banner" width={800} height={600} />
                     </picture>
                 </Link>
+            </div>
+            <div className="popup-modal-hint">
+                Click dark area to close
             </div>
         </div>
     );

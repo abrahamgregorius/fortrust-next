@@ -113,6 +113,7 @@ export default function Banners() {
     event_id: "",
     display_order: 0,
     is_active: true,
+    always_show: false,
     start_date: "",
     end_date: "",
   });
@@ -148,7 +149,7 @@ export default function Banners() {
         )
       `
       )
-      .order("display_order", "asc");
+      .order("display_order", { ascending: false });
     if (error) {
       console.error("Error fetching banners:", error);
     } else {
@@ -197,6 +198,26 @@ export default function Banners() {
     }
   };
 
+  const handleMoveToTop = async (id) => {
+    try {
+      // Get the highest current display_order and add 1
+      const maxOrder = banners.length > 0 ? Math.max(...banners.map(b => b.display_order || 0)) : 0;
+      const newOrder = maxOrder + 1;
+
+      const { data, error } = await supabase
+        .from("banners")
+        .update({ display_order: newOrder })
+        .eq("id", id);
+      if (error) {
+        console.error("Error moving banner to top:", error);
+      } else {
+        fetchBanners();
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleEdit = (banner) => {
     setSelectedBanner(banner);
     setEditFormData({
@@ -207,6 +228,7 @@ export default function Banners() {
       event_id: banner.event_id || "",
       display_order: banner.display_order || 0,
       is_active: banner.is_active !== undefined ? banner.is_active : true,
+      always_show: banner.always_show !== undefined ? banner.always_show : false,
       start_date: banner.start_date ? new Date(banner.start_date).toISOString().slice(0, 16) : "",
       end_date: banner.end_date ? new Date(banner.end_date).toISOString().slice(0, 16) : "",
     });
@@ -330,6 +352,7 @@ export default function Banners() {
           event_id: editFormData.event_id || null,
           display_order: editFormData.display_order,
           is_active: editFormData.is_active,
+          always_show: editFormData.always_show,
           start_date: editFormData.start_date || null,
           end_date: editFormData.end_date || null,
           updated_at: new Date().toISOString(),
@@ -413,6 +436,9 @@ export default function Banners() {
                           Order
                         </th>
                         <th scope="col" className="px-6 py-3">
+                          Always Show
+                        </th>
+                        <th scope="col" className="px-6 py-3">
                           Status
                         </th>
                         <th scope="col" className="px-6 py-3 text-center">
@@ -444,6 +470,16 @@ export default function Banners() {
                           <td className="px-6 py-4">{banner.display_order}</td>
                           <td className="px-6 py-4">
                             <span
+                              className={`px-2 py-1 text-xs font-medium rounded-full ${banner.always_show
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-gray-100 text-gray-800"
+                                }`}
+                            >
+                              {banner.always_show ? "Always" : "Scheduled"}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4">
+                            <span
                               className={`px-2 py-1 text-xs font-medium rounded-full ${banner.is_active
                                   ? "bg-green-100 text-green-800"
                                   : "bg-gray-100 text-gray-800"
@@ -460,6 +496,15 @@ export default function Banners() {
                                 title="View"
                               >
                                 <Icon path={ICONS.view} />
+                              </button>
+                              <button
+                                onClick={() => handleMoveToTop(banner.id)}
+                                className="text-gray-500 hover:text-orange-600"
+                                title="Move to Top"
+                              >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                </svg>
                               </button>
                               <button
                                 onClick={() => handleEdit(banner)}
@@ -773,21 +818,39 @@ export default function Banners() {
                     </div>
                   </div>
 
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="edit_is_active"
-                      name="is_active"
-                      checked={editFormData.is_active}
-                      onChange={handleEditFormChange}
-                      className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                    />
-                    <label
-                      htmlFor="edit_is_active"
-                      className="ml-2 block text-sm text-gray-700"
-                    >
-                      Active
-                    </label>
+                  <div className="flex items-center space-x-6">
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="edit_is_active"
+                        name="is_active"
+                        checked={editFormData.is_active}
+                        onChange={handleEditFormChange}
+                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                      />
+                      <label
+                        htmlFor="edit_is_active"
+                        className="ml-2 block text-sm text-gray-700"
+                      >
+                        Active
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="edit_always_show"
+                        name="always_show"
+                        checked={editFormData.always_show}
+                        onChange={handleEditFormChange}
+                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                      />
+                      <label
+                        htmlFor="edit_always_show"
+                        className="ml-2 block text-sm text-gray-700"
+                      >
+                        Always Show
+                      </label>
+                    </div>
                   </div>
 
                   {editStatus && (
@@ -846,7 +909,7 @@ export default function Banners() {
                     <h3 className="text-lg font-semibold text-gray-800">
                       {selectedBanner.title}
                     </h3>
-                    <div className="mt-2">
+                    <div className="mt-2 flex space-x-2">
                       <span
                         className={`px-2 py-1 text-xs font-medium rounded-full ${selectedBanner.is_active
                             ? "bg-green-100 text-green-800"
@@ -855,7 +918,21 @@ export default function Banners() {
                       >
                         {selectedBanner.is_active ? "Active" : "Inactive"}
                       </span>
+                      <span
+                        className={`px-2 py-1 text-xs font-medium rounded-full ${selectedBanner.always_show
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-gray-100 text-gray-800"
+                          }`}
+                      >
+                        {selectedBanner.always_show ? "Always Show" : "Scheduled"}
+                      </span>
                     </div>
+                    {!selectedBanner.always_show && (
+                      <div className="mt-2 text-sm text-gray-600">
+                        <p><strong>Start Date:</strong> {new Date(selectedBanner.start_date).toLocaleDateString()}</p>
+                        <p><strong>End Date:</strong> {new Date(selectedBanner.end_date).toLocaleDateString()}</p>
+                      </div>
+                    )}
                   </div>
 
                   {selectedBanner.image_url && (

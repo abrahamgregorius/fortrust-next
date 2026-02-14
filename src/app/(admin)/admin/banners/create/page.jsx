@@ -68,6 +68,7 @@ export default function CreateBannerPage() {
     event_id: "",
     display_order: 0,
     is_active: true,
+    always_show: false,
     start_date: "",
     end_date: "",
   });
@@ -168,6 +169,7 @@ export default function CreateBannerPage() {
         event_id: formData.event_id || null,
         display_order: formData.display_order,
         is_active: formData.is_active,
+        always_show: formData.always_show,
         start_date: formData.start_date || null,
         end_date: formData.end_date || null,
         created_at: new Date().toISOString(),
@@ -193,6 +195,9 @@ export default function CreateBannerPage() {
           event_id: "",
           display_order: 0,
           is_active: true,
+          always_show: false,
+          start_date: "",
+          end_date: "",
         });
         setImageFile(null);
         setImagePreview(null);
@@ -472,6 +477,23 @@ export default function CreateBannerPage() {
               className="ml-2 block text-sm text-gray-700"
             >
               Active
+            </label>
+          </div>
+
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="always_show"
+              name="always_show"
+              checked={formData.always_show}
+              onChange={handleChange}
+              className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            />
+            <label
+              htmlFor="always_show"
+              className="ml-2 block text-sm text-gray-700"
+            >
+              Always Show
             </label>
           </div>
 

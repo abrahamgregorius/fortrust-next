@@ -27,18 +27,27 @@ export default function Home() {
     const fetchBanners = async () => {
         setIsLoadingBanners(true);
         try {
-            const now = new Date().toISOString();
             const { data, error } = await supabase
                 .from("banners")
                 .select("*")
                 .eq("is_active", true)
-                .lte("start_date", now)
-                .gte("end_date", now)
-                .order("display_order", "asc");
+                .order("display_order", { ascending: false });
             if (error) {
                 console.error("Error fetching banners:", error);
             } else {
-                setBanners(data || []);
+                // Filter banners based on schedule and always_show
+                const now = new Date();
+                const filteredBanners = (data || []).filter(banner => {
+                    if (banner.always_show) return true; // Always show if flagged
+
+                    if (!banner.start_date || !banner.end_date) return false; // No schedule and not always show
+
+                    const startDate = new Date(banner.start_date);
+                    const endDate = new Date(banner.end_date);
+
+                    return now >= startDate && now <= endDate;
+                });
+                setBanners(filteredBanners);
             }
         } catch (err) {
             console.error("Fetch banners failed:", err);
