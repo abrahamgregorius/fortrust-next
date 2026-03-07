@@ -158,9 +158,9 @@ export default function Navbar() {
                                     <Link href={`${localePrefix}/services/study-tour`} onClick={closeMenu}>
                                         Study Tour
                                     </Link>
-                                    <Link href={`${localePrefix}/services/internship`} onClick={closeMenu}>
+                                    {/* <Link href={`${localePrefix}/services/internship`} onClick={closeMenu}>
                                         Internship Program
-                                    </Link>
+                                    </Link> */}
                                 </div>
                             </li>
 
@@ -184,9 +184,9 @@ export default function Navbar() {
                                     <Link href={`${localePrefix}/alumni/success-stories`} onClick={closeMenu}>
                                         Success story
                                     </Link>
-                                    <Link href="#" onClick={closeMenu}>
+                                    {/* <Link href="#" onClick={closeMenu}>
                                         Work Placements
-                                    </Link>
+                                    </Link> */}
                                     <Link href="#" onClick={closeMenu}>
                                         Join Our Community
                                     </Link>
