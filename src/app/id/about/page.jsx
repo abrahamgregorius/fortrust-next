@@ -14,6 +14,9 @@ export default function About() {
                         <p>
                             Perjalanan kami dimulai dengan misi sederhana: memperkaya kehidupan mahasiswa dengan membantu mereka mencapai potensi penuh.
                         </p>
+                        <a href="#" className="btn btn--accent btn--large">
+                            Lihat Company Profile
+                        </a>
                     </div>
                 </section>
 
@@ -71,7 +74,7 @@ export default function About() {
                     </div>
                 </section>
 
-                <section className="awards-timeline">
+                {/* <section className="awards-timeline">
                     <div className="container">
                         <div className="section-header">
                             <h2>Tonggak Penting Kami</h2>
@@ -128,7 +131,7 @@ export default function About() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 <section
                     className="global-network"

@@ -15,6 +15,9 @@ export default function About() {
                             Our journey began with a simple mission: to enrich students' lives
                             by helping them achieve their potential.
                         </p>
+                        <a href="#" className="btn btn--accent btn--large">
+                            Inquire Company Profile
+                        </a>
                     </div>
                 </section>
 
@@ -86,7 +89,7 @@ export default function About() {
                     </div>
                 </section>
 
-                <section className="awards-timeline">
+                {/* <section className="awards-timeline">
                     <div className="container">
                         <div className="section-header">
                             <h2>Our Key Milestones</h2>
@@ -150,7 +153,7 @@ export default function About() {
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 <section
                     className="global-network"
