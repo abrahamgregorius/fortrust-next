@@ -36,19 +36,32 @@ export default function PopupBanner() {
     useEffect(() => {
         if (typeof window !== 'undefined' && !isLoading) {
             const now = new Date();
+            console.log('Current time:', now);
+            console.log('Available banners:', popupBanners);
 
             // Find active popup banner within schedule
             const activeBanner = popupBanners.find(banner => {
-                if (banner.always_show) return true; // Always show if flagged
+                console.log('Checking banner:', banner.title, 'always_show:', banner.always_show, 'start_date:', banner.start_date, 'end_date:', banner.end_date);
+                if (banner.always_show) {
+                    console.log('Banner always show: true');
+                    return true; // Always show if flagged
+                }
 
-                if (!banner.start_date || !banner.end_date) return false; // No schedule and not always show
+                if (!banner.start_date || !banner.end_date) {
+                    console.log('Banner has no dates and not always show: false');
+                    return false; // No schedule and not always show
+                }
 
                 const startDate = new Date(banner.start_date);
                 const endDate = new Date(banner.end_date);
+                console.log('Parsed start:', startDate, 'end:', endDate);
 
-                return now >= startDate && now <= endDate;
+                const isInRange = now >= startDate && now <= endDate;
+                console.log('Is in range:', isInRange);
+                return isInRange;
             });
 
+            console.log('Selected active banner:', activeBanner);
             setShowBanner(!!activeBanner);
         }
     }, [popupBanners, isLoading]);
