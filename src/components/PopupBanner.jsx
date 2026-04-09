@@ -7,6 +7,8 @@ import Link from "next/link";
 export default function PopupBanner() {
     const [showBanner, setShowBanner] = useState(false);
     const [popupBanners, setPopupBanners] = useState([]);
+    const [activeBanners, setActiveBanners] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
     const fetchPopupBanners = async () => {
@@ -39,8 +41,8 @@ export default function PopupBanner() {
             console.log('Current time:', now);
             console.log('Available banners:', popupBanners);
 
-            // Find active popup banner within schedule
-            const activeBanner = popupBanners.find(banner => {
+            // Filter active popup banners within schedule
+            const filteredBanners = popupBanners.filter(banner => {
                 console.log('Checking banner:', banner.title, 'always_show:', banner.always_show, 'start_date:', banner.start_date, 'end_date:', banner.end_date);
                 if (banner.always_show) {
                     console.log('Banner always show: true');
@@ -61,34 +63,32 @@ export default function PopupBanner() {
                 return isInRange;
             });
 
-            console.log('Selected active banner:', activeBanner);
-            setShowBanner(!!activeBanner);
+            console.log('Filtered active banners:', filteredBanners);
+            setActiveBanners(filteredBanners);
+            setCurrentIndex(0); // Reset to first banner
+            setShowBanner(filteredBanners.length > 0);
         }
     }, [popupBanners, isLoading]);
 
-    if (isLoading || !showBanner) return null;
+    const handleClose = () => {
+        if (currentIndex < activeBanners.length - 1) {
+            setCurrentIndex(currentIndex + 1);
+        } else {
+            setShowBanner(false);
+        }
+    };
 
-    // Get the active banner (we know it exists since showBanner is true)
-    const activeBanner = popupBanners.find(banner => {
-        if (banner.always_show) return true;
-        if (!banner.start_date || !banner.end_date) return false;
-        const startDate = new Date(banner.start_date);
-        const endDate = new Date(banner.end_date);
-        const now = new Date();
-        return now >= startDate && now <= endDate;
-    });
+    if (isLoading || !showBanner || currentIndex >= activeBanners.length) return null;
 
-    if (!activeBanner) return null;
+    const currentBanner = activeBanners[currentIndex];
 
     return (
-        <div className="popup-modal-overlay" suppressHydrationWarning onClick={() => {
-            setShowBanner(false);
-        }}>
+        <div className="popup-modal-overlay" suppressHydrationWarning onClick={handleClose}>
             <div className="popup-modal" onClick={(e) => e.stopPropagation()}>
-                <Link href={activeBanner.link_url}>
+                <Link href={currentBanner.link_url}>
                     <picture>
-                        <source media="(max-width: 768px)" srcSet={activeBanner.mobile_image_url || activeBanner.image_url} />
-                        <img src={activeBanner.image_url} alt="Popup Banner" width={800} height={600} />
+                        <source media="(max-width: 768px)" srcSet={currentBanner.mobile_image_url || currentBanner.image_url} />
+                        <img src={currentBanner.image_url} alt="Popup Banner" width={800} height={600} />
                     </picture>
                 </Link>
             </div>
