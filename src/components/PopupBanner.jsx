@@ -18,7 +18,7 @@ export default function PopupBanner() {
                 .from("popup_banners")
                 .select("*")
                 .eq("is_active", true)
-                .order("created_at", "desc");
+                .order("display_order", "desc");
             if (error) {
                 console.error("Error fetching popup banners:", error);
             } else {

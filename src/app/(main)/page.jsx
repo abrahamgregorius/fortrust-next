@@ -195,6 +195,10 @@ export default function Home() {
             alt: "University Logo",
         },
         {
+            src: "/universities/Logo/vuow.png",
+            alt: "University Logo",
+        },
+        {
             src: "/universities/Logo/uoauck.jpg",
             alt: "University Logo",
         },
