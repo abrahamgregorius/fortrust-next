@@ -137,7 +137,7 @@ export default function Privacy() {
                             knowingly collect or solicit personal information from anyone under
                             the age of 13. If you believe that we might have any information
                             from or about a child under 13, please contact us at
-                            info@fortrust.com.
+                            information@fortrust.com.
                         </p>
 
                         <h2>Links to Other Web Sites</h2>
@@ -158,7 +158,7 @@ export default function Privacy() {
                         <h2>Contact Us</h2>
                         <p>
                             If you have any questions about this Privacy Policy, please contact
-                            us at info@fortrust.com.
+                            us at information@fortrust.com.
                         </p>
                     </div>
                 </section>

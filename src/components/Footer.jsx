@@ -120,7 +120,7 @@ export default function Footer() {
                         <div className="footer__contact">
                             <h4>Contact Us</h4>
                             <p>
-                                <Mail></Mail> info@fortrust.com
+                                <Mail></Mail> information@fortrust.com
                             </p>
                             <p>
                                 <Phone></Phone> 021-2358 5686

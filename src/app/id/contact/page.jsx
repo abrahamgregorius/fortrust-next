@@ -79,7 +79,7 @@ export default function Contact() {
                                 <Mail></Mail>
                                 <div>
                                     <h4>General Enquiries</h4>
-                                    <p>info@fortrust.com</p>
+                                    <p>information@fortrust.com</p>
                                 </div>
                             </div>
                             <div className="contact-info-item">

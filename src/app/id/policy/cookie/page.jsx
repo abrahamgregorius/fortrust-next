@@ -70,7 +70,7 @@ export default function Cookie() {
                         <h2>Contact Us</h2>
                         <p>
                             If you have any questions about our use of cookies, please contact
-                            us at info@fortrust.com.
+                            us at information@fortrust.com.
                         </p>
                     </div>
                 </section>
