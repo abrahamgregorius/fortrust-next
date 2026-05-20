@@ -72,12 +72,15 @@ export default function CreatePopupBannerPage() {
     start_date: "",
     end_date: "",
   });
+  // Track if display_order has been set from DB
+  const [orderLoaded, setOrderLoaded] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [mobileImageFile, setMobileImageFile] = useState(null);
   const [mobileImagePreview, setMobileImagePreview] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState(null);
   const [events, setEvents] = useState([]);
+
 
   const fetchEvents = async () => {
     const { data, error } = await supabase
@@ -89,6 +92,22 @@ export default function CreatePopupBannerPage() {
     } else {
       setEvents(data || []);
     }
+  };
+
+  // Fetch max display_order of active popup banners
+  const fetchMaxDisplayOrder = async () => {
+    const { data, error } = await supabase
+      .from("popup_banners")
+      .select("display_order")
+      .eq("is_active", true)
+      .order("display_order", { ascending: false })
+      .limit(1);
+    if (!error && data && data.length > 0) {
+      setFormData((prev) => ({ ...prev, display_order: (parseInt(data[0].display_order, 10) || 0) + 1 }));
+    } else {
+      setFormData((prev) => ({ ...prev, display_order: 1 }));
+    }
+    setOrderLoaded(true);
   };
 
   const handleChange = (e) => {
@@ -213,8 +232,17 @@ export default function CreatePopupBannerPage() {
 
   useEffect(() => {
     fetchEvents();
+    fetchMaxDisplayOrder();
   }, []);
 
+  // Prevent form from rendering until display_order is loaded
+  if (!orderLoaded) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <span className="text-gray-500 text-lg">Loading...</span>
+      </div>
+    );
+  }
   return (
     <div className="bg-gray-100 min-h-screen p-4 sm:p-6 lg:p-8 font-sans">
       <div className="max-w-4xl mx-auto">
@@ -413,7 +441,7 @@ export default function CreatePopupBannerPage() {
                 htmlFor="display_order"
                 className="block text-sm font-medium text-gray-700 mb-1"
               >
-                Display Order (Default: 0)
+                Display Order
               </label>
               <input
                 type="number"
