@@ -198,23 +198,27 @@ export default function Banners() {
     }
   };
 
-  const handleMoveToTop = async (id) => {
-    try {
-      // Get the highest current display_order and add 1
-      const maxOrder = banners.length > 0 ? Math.max(...banners.map(b => b.display_order || 0)) : 0;
-      const newOrder = maxOrder + 1;
-
-      const { data, error } = await supabase
-        .from("banners")
-        .update({ display_order: newOrder })
-        .eq("id", id);
-      if (error) {
-        console.error("Error moving banner to top:", error);
-      } else {
-        fetchBanners();
-      }
-    } catch (error) {
-      console.error(error);
+  // Move up/down logic for display order
+  const handleMoveUp = async (id) => {
+    const idx = banners.findIndex(b => b.id === id);
+    if (idx > 0) {
+      const current = banners[idx];
+      const above = banners[idx - 1];
+      // Swap display_order
+      await supabase.from("banners").update({ display_order: above.display_order }).eq("id", current.id);
+      await supabase.from("banners").update({ display_order: current.display_order }).eq("id", above.id);
+      fetchBanners();
+    }
+  };
+  const handleMoveDown = async (id) => {
+    const idx = banners.findIndex(b => b.id === id);
+    if (idx < banners.length - 1) {
+      const current = banners[idx];
+      const below = banners[idx + 1];
+      // Swap display_order
+      await supabase.from("banners").update({ display_order: below.display_order }).eq("id", current.id);
+      await supabase.from("banners").update({ display_order: current.display_order }).eq("id", below.id);
+      fetchBanners();
     }
   };
 
@@ -497,12 +501,24 @@ export default function Banners() {
                               >
                                 <Icon path={ICONS.view} />
                               </button>
+                              <span className="inline-block w-8 text-center font-bold text-gray-700">{banner.display_order}</span>
                               <button
-                                onClick={() => handleMoveToTop(banner.id)}
-                                className="text-gray-500 hover:text-orange-600"
-                                title="Move to Top"
+                                onClick={() => handleMoveUp(banner.id)}
+                                className={`text-gray-500 hover:text-orange-600 ${banners.findIndex(b => b.id === banner.id) === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                                title="Move Up"
+                                disabled={banners.findIndex(b => b.id === banner.id) === 0}
                               >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                </svg>
+                              </button>
+                              <button
+                                onClick={() => handleMoveDown(banner.id)}
+                                className={`text-gray-500 hover:text-orange-600 ${banners.findIndex(b => b.id === banner.id) === banners.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                                title="Move Down"
+                                disabled={banners.findIndex(b => b.id === banner.id) === banners.length - 1}
+                              >
+                                <svg className="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                                 </svg>
                               </button>

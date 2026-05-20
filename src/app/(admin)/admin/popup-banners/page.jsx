@@ -49,6 +49,8 @@ const ICONS = {
 };
 
 export default function PopupBanners() {
+    // Untuk validasi display_order unik
+    const [orderWarning, setOrderWarning] = useState("");
     const [popupBanners, setPopupBanners] = useState([]);
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -147,6 +149,30 @@ export default function PopupBanners() {
         }
     };
 
+    // Move up/down logic for display order
+    const handleMoveUp = async (id) => {
+        const idx = popupBanners.findIndex(b => b.id === id);
+        if (idx > 0) {
+            const current = popupBanners[idx];
+            const above = popupBanners[idx - 1];
+            // Swap display_order
+            await supabase.from("popup_banners").update({ display_order: above.display_order }).eq("id", current.id);
+            await supabase.from("popup_banners").update({ display_order: current.display_order }).eq("id", above.id);
+            fetchPopupBanners();
+        }
+    };
+    const handleMoveDown = async (id) => {
+        const idx = popupBanners.findIndex(b => b.id === id);
+        if (idx < popupBanners.length - 1) {
+            const current = popupBanners[idx];
+            const below = popupBanners[idx + 1];
+            // Swap display_order
+            await supabase.from("popup_banners").update({ display_order: below.display_order }).eq("id", current.id);
+            await supabase.from("popup_banners").update({ display_order: current.display_order }).eq("id", below.id);
+            fetchPopupBanners();
+        }
+    };
+
     const handleEdit = (popupBanner) => {
         setSelectedPopupBanner(popupBanner);
         setEditFormData({
@@ -155,7 +181,7 @@ export default function PopupBanners() {
             link_url: popupBanner.link_url || "",
             mobile_image_url: popupBanner.mobile_image_url || "",
             event_id: popupBanner.event_id || "",
-            display_order: popupBanner.display_order || 0,
+            display_order: popupBanner.display_order || 1,
             is_active: popupBanner.is_active !== undefined ? popupBanner.is_active : true,
             always_show: popupBanner.always_show !== undefined ? popupBanner.always_show : false,
             start_date: popupBanner.start_date ? new Date(popupBanner.start_date).toISOString().slice(0, 16) : "",
@@ -174,6 +200,20 @@ export default function PopupBanners() {
             ...prev,
             [name]: type === "checkbox" ? e.target.checked : value,
         }));
+
+        // Validasi display_order unik hanya untuk field display_order
+        if (name === "display_order") {
+            const val = parseInt(value, 10);
+            // Ambil semua display_order yang sudah dipakai banner aktif lain (kecuali yang sedang diedit)
+            const usedOrders = popupBanners
+                .filter(b => b.is_active && b.id !== selectedPopupBanner?.id)
+                .map(b => b.display_order);
+            if (usedOrders.includes(val)) {
+                setOrderWarning(`Display order ${val} sudah dipakai banner aktif lain. Pilih angka lain.`);
+            } else {
+                setOrderWarning("");
+            }
+        }
     };
 
     const handleEditFileChange = (e) => {
@@ -346,100 +386,115 @@ export default function PopupBanners() {
                                 </a>
                             </div>
 
-                            {/* Popup Banners Table Card */}
-                            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                            {/* Popup Banners Table Card - Actives */}
+                            <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                                <div className="p-4 font-bold text-lg text-green-700">Active Popup Banners</div>
                                 <div className="overflow-x-auto">
                                     <table className="w-full text-sm text-left text-gray-500">
                                         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                             <tr>
-                                                <th scope="col" className="px-6 py-3 min-w-[200px]">
-                                                    Title
-                                                </th>
-                                                <th scope="col" className="px-6 py-3">
-                                                    Image
-                                                </th>
-                                                <th scope="col" className="px-6 py-3">
-                                                    Event
-                                                </th>
-                                                <th scope="col" className="px-6 py-3">
-                                                    Order
-                                                </th>
-                                                <th scope="col" className="px-6 py-3">
-                                                    Always Show
-                                                </th>
-                                                <th scope="col" className="px-6 py-3">
-                                                    Status
-                                                </th>
-                                                <th scope="col" className="px-6 py-3 text-center">
-                                                    Actions
-                                                </th>
+                                                <th scope="col" className="px-6 py-3 min-w-[200px]">Title</th>
+                                                <th scope="col" className="px-6 py-3">Image</th>
+                                                <th scope="col" className="px-6 py-3">Event</th>
+                                                <th scope="col" className="px-6 py-3">Order</th>
+                                                <th scope="col" className="px-6 py-3">Status</th>
+                                                <th scope="col" className="px-6 py-3 text-center">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {popupBanners.map((popupBanner) => (
-                                                <tr
-                                                    key={popupBanner.id}
-                                                    className="bg-white hover:bg-gray-50 transition-colors duration-200"
-                                                >
-                                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                                        {popupBanner.title}
-                                                    </td>
+                                            {popupBanners.filter(b => b.is_active).map((popupBanner) => (
+                                                <tr key={popupBanner.id} className="bg-white hover:bg-gray-50 transition-colors duration-200">
+                                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{popupBanner.title}</td>
+                                                    <td className="px-6 py-4">{popupBanner.image_url && (<img src={popupBanner.image_url} alt={popupBanner.title} className="h-16 w-24 object-cover rounded-md" />)}</td>
+                                                    <td className="px-6 py-4">{popupBanner.events?.name || "-"}</td>
+                                                    <td className="px-6 py-4 text-center font-bold text-gray-700">{popupBanner.display_order}</td>
                                                     <td className="px-6 py-4">
-                                                        {popupBanner.image_url && (
-                                                            <img
-                                                                src={popupBanner.image_url}
-                                                                alt={popupBanner.title}
-                                                                className="h-16 w-24 object-cover rounded-md"
-                                                            />
-                                                        )}
-                                                    </td>
-                                                    <td className="px-6 py-4">
-                                                        {popupBanner.events?.name || "-"}
-                                                    </td>
-                                                    <td className="px-6 py-4">{popupBanner.display_order}</td>
-                                                    <td className="px-6 py-4">
-                                                        <span
-                                                            className={`px-2 py-1 text-xs font-medium rounded-full ${popupBanner.always_show
-                                                                ? "bg-blue-100 text-blue-800"
-                                                                : "bg-gray-100 text-gray-800"
-                                                                }`}
-                                                        >
-                                                            {popupBanner.always_show ? "Always" : "Scheduled"}
-                                                        </span>
-                                                    </td>
-                                                    <td className="px-6 py-4">
-                                                        <span
-                                                            className={`px-2 py-1 text-xs font-medium rounded-full ${popupBanner.is_active
-                                                                ? "bg-green-100 text-green-800"
-                                                                : "bg-gray-100 text-gray-800"
-                                                                }`}
-                                                        >
-                                                            {popupBanner.is_active ? "Active" : "Inactive"}
-                                                        </span>
+                                                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${popupBanner.is_active ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}`}>{popupBanner.is_active ? "Active" : "Inactive"}</span>
                                                     </td>
                                                     <td className="px-6 py-4">
                                                         <div className="flex items-center justify-center space-x-3">
+                                                            <button onClick={() => handleView(popupBanner)} className="text-gray-500 hover:text-blue-600" title="View"><Icon path={ICONS.view} /></button>
                                                             <button
-                                                                onClick={() => handleView(popupBanner)}
-                                                                className="text-gray-500 hover:text-blue-600"
-                                                                title="View"
+                                                                onClick={() => handleMoveUp(popupBanner.id)}
+                                                                className={`text-gray-500 hover:text-orange-600 ${popupBanners.filter(b => b.is_active).findIndex(b => b.id === popupBanner.id) === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                                                                title="Move Up"
+                                                                disabled={popupBanners.filter(b => b.is_active).findIndex(b => b.id === popupBanner.id) === 0}
                                                             >
-                                                                <Icon path={ICONS.view} />
+                                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                                                </svg>
                                                             </button>
                                                             <button
-                                                                onClick={() => handleEdit(popupBanner)}
-                                                                className="text-gray-500 hover:text-green-600"
-                                                                title="Edit"
+                                                                onClick={() => handleMoveDown(popupBanner.id)}
+                                                                className={`text-gray-500 hover:text-orange-600 ${popupBanners.filter(b => b.is_active).findIndex(b => b.id === popupBanner.id) === popupBanners.filter(b => b.is_active).length - 1 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                                                                title="Move Down"
+                                                                disabled={popupBanners.filter(b => b.is_active).findIndex(b => b.id === popupBanner.id) === popupBanners.filter(b => b.is_active).length - 1}
                                                             >
-                                                                <Icon path={ICONS.edit} />
+                                                                <svg className="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                                                </svg>
+                                                            </button>
+                                                            <button onClick={() => handleEdit(popupBanner)} className="text-gray-500 hover:text-green-600" title="Edit"><Icon path={ICONS.edit} /></button>
+                                                            <button onClick={() => handleDelete(popupBanner.id)} className="text-gray-500 hover:text-red-600" title="Delete"><Icon path={ICONS.delete} /></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* Popup Banners Table Card - Inactives */}
+                            <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                                <div className="p-4 font-bold text-lg text-gray-700">Inactive Popup Banners</div>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-sm text-left text-gray-500">
+                                        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                                            <tr>
+                                                <th scope="col" className="px-6 py-3 min-w-[200px]">Title</th>
+                                                <th scope="col" className="px-6 py-3">Image</th>
+                                                <th scope="col" className="px-6 py-3">Event</th>
+                                                <th scope="col" className="px-6 py-3">Order</th>
+                                                <th scope="col" className="px-6 py-3">Status</th>
+                                                <th scope="col" className="px-6 py-3 text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {popupBanners.filter(b => !b.is_active).map((popupBanner) => (
+                                                <tr key={popupBanner.id} className="bg-white hover:bg-gray-50 transition-colors duration-200">
+                                                    <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{popupBanner.title}</td>
+                                                    <td className="px-6 py-4">{popupBanner.image_url && (<img src={popupBanner.image_url} alt={popupBanner.title} className="h-16 w-24 object-cover rounded-md" />)}</td>
+                                                    <td className="px-6 py-4">{popupBanner.events?.name || "-"}</td>
+                                                    <td className="px-6 py-4 text-center font-bold text-gray-700">{popupBanner.display_order}</td>
+                                                    <td className="px-6 py-4">
+                                                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${popupBanner.is_active ? "bg-green-100 text-green-800" : "bg-gray-100 text-gray-800"}`}>{popupBanner.is_active ? "Active" : "Inactive"}</span>
+                                                    </td>
+                                                    <td className="px-6 py-4">
+                                                        <div className="flex items-center justify-center space-x-3">
+                                                            <button onClick={() => handleView(popupBanner)} className="text-gray-500 hover:text-blue-600" title="View"><Icon path={ICONS.view} /></button>
+                                                            <button
+                                                                onClick={() => handleMoveUp(popupBanner.id)}
+                                                                className={`text-gray-500 hover:text-orange-600 ${popupBanners.filter(b => !b.is_active).findIndex(b => b.id === popupBanner.id) === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                                                                title="Move Up"
+                                                                disabled={popupBanners.filter(b => !b.is_active).findIndex(b => b.id === popupBanner.id) === 0}
+                                                            >
+                                                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                                                </svg>
                                                             </button>
                                                             <button
-                                                                onClick={() => handleDelete(popupBanner.id)}
-                                                                className="text-gray-500 hover:text-red-600"
-                                                                title="Delete"
+                                                                onClick={() => handleMoveDown(popupBanner.id)}
+                                                                className={`text-gray-500 hover:text-orange-600 ${popupBanners.filter(b => !b.is_active).findIndex(b => b.id === popupBanner.id) === popupBanners.filter(b => !b.is_active).length - 1 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                                                                title="Move Down"
+                                                                disabled={popupBanners.filter(b => !b.is_active).findIndex(b => b.id === popupBanner.id) === popupBanners.filter(b => !b.is_active).length - 1}
                                                             >
-                                                                <Icon path={ICONS.delete} />
+                                                                <svg className="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                                                                </svg>
                                                             </button>
+                                                            <button onClick={() => handleEdit(popupBanner)} className="text-gray-500 hover:text-green-600" title="Edit"><Icon path={ICONS.edit} /></button>
+                                                            <button onClick={() => handleDelete(popupBanner.id)} className="text-gray-500 hover:text-red-600" title="Delete"><Icon path={ICONS.delete} /></button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -692,14 +747,35 @@ export default function PopupBanners() {
                                             >
                                                 Display Order (Default: 0)
                                             </label>
-                                            <input
-                                                type="number"
-                                                id="edit_display_order"
-                                                name="display_order"
-                                                value={editFormData.display_order}
-                                                onChange={handleEditFormChange}
-                                                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                            />
+                                            <div className="flex items-center space-x-2">
+                                                <button type="button" aria-label="Decrease order" className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300" onClick={() => {
+                                                    let newOrder = parseInt(editFormData.display_order, 10) - 1;
+                                                    if (newOrder < 1) newOrder = 1;
+                                                    // Cari order terdekat ke bawah yang belum dipakai
+                                                    const usedOrders = popupBanners.filter(b => b.is_active && b.id !== selectedPopupBanner?.id).map(b => b.display_order);
+                                                    while (usedOrders.includes(newOrder) && newOrder > 1) newOrder--;
+                                                    handleEditFormChange({ target: { name: 'display_order', value: newOrder, type: 'number' } });
+                                                }}>&uarr;</button>
+                                                <input
+                                                    type="number"
+                                                    id="edit_display_order"
+                                                    name="display_order"
+                                                    value={editFormData.display_order}
+                                                    onChange={handleEditFormChange}
+                                                    className="px-3 py-2 w-24 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-center"
+                                                    min={1}
+                                                />
+                                                <button type="button" aria-label="Increase order" className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300" onClick={() => {
+                                                    let newOrder = parseInt(editFormData.display_order, 10) + 1;
+                                                    // Cari order terdekat ke atas yang belum dipakai
+                                                    const usedOrders = popupBanners.filter(b => b.is_active && b.id !== selectedPopupBanner?.id).map(b => b.display_order);
+                                                    while (usedOrders.includes(newOrder)) newOrder++;
+                                                    handleEditFormChange({ target: { name: 'display_order', value: newOrder, type: 'number' } });
+                                                }}>&darr;</button>
+                                            </div>
+                                            {orderWarning && (
+                                                <div className="text-red-600 text-xs mt-1">{orderWarning}</div>
+                                            )}
                                         </div>
                                     </div>
 
