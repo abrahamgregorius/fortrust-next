@@ -41,6 +41,17 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
 
+          {/* Google tag (gtag.js) */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ13MS774N"></script>
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-TJ13MS774N');
+            `
+          }} />
+
         <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
