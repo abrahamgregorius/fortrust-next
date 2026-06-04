@@ -53,7 +53,7 @@ export default function FloatingWhatsApp() {
 
     return (
         <a
-            href="https://wa.me/62818282817?text=Hello%20Fortrust,%20I%20have%20a%20question."
+            href="https://wa.me/628218119642?text=Hello%20Fortrust,%20I%20have%20a%20question."
             className="floating-whatsapp visible"
             target="_blank"
             aria-label="Chat on WhatsApp"
