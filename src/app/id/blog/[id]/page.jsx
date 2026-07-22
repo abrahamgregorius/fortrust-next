@@ -68,7 +68,7 @@ export default async function BlogPost({ params }) {
                             }
                         </div>
 
-                        <p dangerouslySetInnerHTML={{ __html: data.content }}></p>
+                        <div className="blog-content" dangerouslySetInnerHTML={{ __html: data.content }}></div>
 
                         <div className="content-block">
                             {

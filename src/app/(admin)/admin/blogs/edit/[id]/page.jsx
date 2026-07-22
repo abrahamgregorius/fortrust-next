@@ -1,103 +1,13 @@
 "use client";
 import { supabase } from "@/lib/supabaseClient";
 import React, { useEffect, useState } from "react";
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import RichTextEditor from "@/components/admin/RichTextEditor";
 
-// ICON COMPONENT
 const Icon = ({ path, className = "w-5 h-5" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
         <path d={path} />
     </svg>
 );
-
-// MENUBAR COMPONENT
-const MenuBar = ({ editor }) => {
-    if (!editor) return null;
-    return (
-        <div className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-t-lg bg-gray-50 px-2 py-1">
-            <button
-                onClick={() => editor.chain().focus().toggleBold().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('bold') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                Bold
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleItalic().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('italic') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                Italic
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleStrike().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('strike') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                Strike
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().setParagraph().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('paragraph') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                Paragraph
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 1 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                H1
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 2 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                H2
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 3 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                H3
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleBulletList().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('bulletList') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                • List
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('orderedList') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                1. List
-            </button>
-
-            <button onClick={() => editor.chain().focus().undo().run()} className="px-2 py-1 text-sm text-gray-700 hover:bg-gray-200">
-                Undo
-            </button>
-
-            <button onClick={() => editor.chain().focus().redo().run()} className="px-2 py-1 text-sm text-gray-700 hover:bg-gray-200">
-                Redo
-            </button>
-        </div>
-    );
-};
 
 const ICONS = {
     back: "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
@@ -113,6 +23,17 @@ const uploadFile = async (file, filePath) => {
     if (error) console.error(error);
 };
 
+const slugify = (text) => {
+    return text
+        .toString()
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        || `temp-${Date.now()}`;
+};
+
 // MAIN COMPONENT
 export default function EditBlogPage({ params }) {
     const unwrappedParams = React.use(params);
@@ -123,24 +44,11 @@ export default function EditBlogPage({ params }) {
         category: "",
         content: "",
         youtube_url: "",
+        slug: "",
     });
     const [images, setImages] = useState([]);
     const [existingImages, setExistingImages] = useState([]);
     const [submissionStatus, setSubmissionStatus] = useState(null);
-
-    const editor = useEditor({
-        extensions: [StarterKit],
-        immediatelyRender: false,
-        content: formData.content,
-        onUpdate: ({ editor }) => {
-            setFormData((prev) => ({ ...prev, content: editor.getHTML() }));
-        },
-        editorProps: {
-            attributes: {
-                class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
-            },
-        },
-    });
 
     // FETCH EXISTING BLOG DATA
     useEffect(() => {
@@ -149,25 +57,41 @@ export default function EditBlogPage({ params }) {
             if (error) {
                 console.error("❌ Error fetching blog post:", error);
             } else {
+                const slugFromTitle = slugify(data.title || '');
                 setFormData({
                     title: data.title,
                     author: data.author,
                     category: data.category,
                     content: data.content,
                     youtube_url: data.youtube_url || "",
+                    slug: data.slug || slugFromTitle,
                 });
                 // Load existing images
                 setExistingImages(data.image_urls || []);
-                editor?.commands.setContent(data.content);
             }
         };
         fetchData();
-    }, [id, editor]);
+    }, [id]);
 
     // HANDLE INPUT CHANGE
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData((prev) => {
+            const updated = { ...prev, [name]: value };
+            if (name === 'title') {
+                updated.slug = slugify(value);
+            }
+            return updated;
+        });
+    };
+
+    const handleImageUpload = async (file) => {
+        const slug = formData.slug || `temp-${Date.now()}`;
+        const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const filePath = `blogs/${slug}/${Date.now()}-${safeName}`;
+        const { data: publicUrlData } = supabase.storage.from('public-assets').getPublicUrl(filePath);
+        await uploadFile(file, filePath);
+        return publicUrlData.publicUrl;
     };
 
     const handleFileChange = (e) => {
@@ -207,6 +131,7 @@ export default function EditBlogPage({ params }) {
             const updatedBlog = {
                 ...formData,
                 image_urls: allImageUrls,
+                slug: formData.slug,
                 updated_at: new Date().toISOString(),
             };
 
@@ -219,7 +144,7 @@ export default function EditBlogPage({ params }) {
             if (updateError) throw updateError;
 
             setSubmissionStatus({ message: "Blog post updated successfully!", type: "success" });
-            
+
             // Clear only the newly added images after successful update
             setImages([]);
         } catch (err) {
@@ -299,13 +224,12 @@ export default function EditBlogPage({ params }) {
                     {/* CONTENT */}
                     <div>
                         <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
-                        <div className="border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 min-h-[200px]">
-                            <MenuBar editor={editor} />
-                            <EditorContent 
-                                editor={editor} 
-                                className="max-w-none p-3 min-h-[200px] [&_.ProseMirror]:outline-none [&_.ProseMirror]:border-none [&_.ProseMirror]:shadow-none [&_.ProseMirror]:ring-0 [&_.ProseMirror]:focus:outline-none [&_.ProseMirror]:focus:ring-0 [&_.ProseMirror]:focus:border-none [&_.ProseMirror_p]:margin-0 [&_.ProseMirror_h1]:margin-top-0 [&_.ProseMirror_h2]:margin-top-0 [&_.ProseMirror_h3]:margin-top-0" 
-                            />
-                        </div>
+                        <RichTextEditor
+                            content={formData.content}
+                            onChange={(html) => setFormData(prev => ({ ...prev, content: html }))}
+                            onImageUpload={handleImageUpload}
+                            placeholder="Start writing your blog post..."
+                        />
                     </div>
 
                     {/* IMAGE UPLOAD */}

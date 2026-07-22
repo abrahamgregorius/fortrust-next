@@ -1,3 +1,30 @@
 @import "tailwindcss";
 @import "../../styles/_variables.scss";
 @import "../../styles/_keyframe-animations.scss";
+
+/* ponytail: constrained widths for RichTextEditor content */
+.editor-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.editor-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    display: table;
+}
+
+.editor-content th,
+.editor-content td {
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+.editor-content th {
+    background-color: #eef2ff;
+    color: #3730a3;
+    font-weight: 600;
+}

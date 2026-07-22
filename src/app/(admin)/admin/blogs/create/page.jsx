@@ -1,111 +1,13 @@
 "use client";
 import { supabase } from '@/lib/supabaseClient';
 import React, { useState } from 'react';
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+import RichTextEditor from '@/components/admin/RichTextEditor';
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
         <path d={path} />
     </svg>
 );
-
-const MenuBar = ({ editor }) => {
-    if (!editor) return null;
-
-    return (
-        <div className="flex flex-wrap items-center gap-2 border border-gray-300 rounded-t-lg bg-gray-50 px-2 py-1">
-            <button
-                onClick={() => editor.chain().focus().toggleBold().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('bold') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                Bold
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleItalic().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('italic') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                Italic
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleStrike().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('strike') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                Strike
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().setParagraph().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('paragraph') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                Paragraph
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 1 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                H1
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 2 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                H2
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('heading', { level: 3 }) ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                H3
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleBulletList().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('bulletList') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                • List
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().toggleOrderedList().run()}
-                className={`px-2 py-1 rounded text-sm font-medium ${editor.isActive('orderedList') ? 'bg-indigo-100 text-indigo-700' : 'text-gray-700 hover:bg-gray-200'}`}
-                type="button"
-            >
-                1. List
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().undo().run()}
-                className="px-2 py-1 rounded text-sm text-gray-700 hover:bg-gray-200"
-                type="button"
-            >
-                Undo
-            </button>
-
-            <button
-                onClick={() => editor.chain().focus().redo().run()}
-                className="px-2 py-1 rounded text-sm text-gray-700 hover:bg-gray-200"
-                type="button"
-            >
-                Redo
-            </button>
-        </div>
-    );
-};
-
 
 const ICONS = {
     back: "M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z",
@@ -120,6 +22,17 @@ const uploadFile = async (file, filePath) => {
     if (error) console.error(error);
 };
 
+const slugify = (text) => {
+    return text
+        .toString()
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        || `temp-${Date.now()}`;
+};
+
 export default function CreateBlogPage() {
     const [formData, setFormData] = useState({
         title: '',
@@ -127,27 +40,29 @@ export default function CreateBlogPage() {
         category: '',
         content: '',
         youtube_url: '',
+        slug: '',
     });
-    const [images, setImages] = useState([]);
     const [submissionStatus, setSubmissionStatus] = useState(null);
-
-    const editor = useEditor({
-        immediatelyRender: false,
-        extensions: [StarterKit],
-        content: formData.content,
-        onUpdate: ({ editor }) => {
-            setFormData(prev => ({ ...prev, content: editor.getHTML() }));
-        },
-        editorProps: {
-            attributes: {
-                class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
-            },
-        },
-    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        setFormData(prev => {
+            const updated = { ...prev, [name]: value };
+            if (name === 'title') {
+                updated.slug = slugify(value);
+            }
+            return updated;
+        });
+    };
+
+    const handleImageUpload = async (file) => {
+        const slug = formData.slug || `temp-${Date.now()}`;
+        const ext = file.name.split('.').pop();
+        const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const filePath = `blogs/${slug}/${Date.now()}-${safeName}`;
+        const { data: publicUrlData } = supabase.storage.from('public-assets').getPublicUrl(filePath);
+        await uploadFile(file, filePath);
+        return publicUrlData.publicUrl;
     };
 
     const handleFileChange = (e) => {
@@ -157,30 +72,13 @@ export default function CreateBlogPage() {
         }
     };
 
-    const handleRemoveImage = (indexToRemove) => {
-        setImages(prev => prev.filter((_, index) => index !== indexToRemove));
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmissionStatus({ message: 'Submitting post...', type: 'info' });
 
         try {
-            const uploadedImageUrls = await Promise.all(
-                images.map(async (file) => {
-                    const filePath = `blogs/${Date.now()}-${file.name}`;
-                    await uploadFile(file, filePath);
-                    const { data: publicUrlData } = supabase
-                        .storage
-                        .from('public-assets')
-                        .getPublicUrl(filePath);
-                    return publicUrlData.publicUrl;
-                })
-            );
-
             const blogPost = {
                 ...formData,
-                image_urls: uploadedImageUrls,
                 created_at: new Date().toISOString(),
             };
 
@@ -194,10 +92,8 @@ export default function CreateBlogPage() {
             setSubmissionStatus({ message: 'Blog post submitted successfully!', type: 'success' });
 
             setTimeout(() => {
-                setFormData({ title: '', author: '', category: '', content: '', youtube_url: '' });
-                setImages([]);
+                setFormData({ title: '', author: '', category: '', content: '', youtube_url: '', slug: '' });
                 setSubmissionStatus(null);
-                editor?.commands.setContent('');
             }, 3000);
         } catch (err) {
             console.error('❌ Error submitting post:', err);
@@ -249,47 +145,13 @@ export default function CreateBlogPage() {
                     </div>
 
                     <div>
-                        <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content ({'<'}350 Words)</label>
-                        <div className="border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-indigo-500 min-h-[200px]">
-                            <MenuBar editor={editor} />
-                            <EditorContent 
-                                editor={editor} 
-                                className="max-w-none p-3 min-h-[200px] [&_.ProseMirror]:outline-none [&_.ProseMirror]:border-none [&_.ProseMirror]:shadow-none [&_.ProseMirror]:ring-0 [&_.ProseMirror]:focus:outline-none [&_.ProseMirror]:focus:ring-0 [&_.ProseMirror]:focus:border-none [&_.ProseMirror_p]:margin-0 [&_.ProseMirror_h1]:margin-top-0 [&_.ProseMirror_h2]:margin-top-0 [&_.ProseMirror_h3]:margin-top-0" 
-                            />
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Upload Images</label>
-                        <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                            <div className="space-y-1 text-center">
-                                <Icon path={ICONS.upload} className="mx-auto h-12 w-12 text-gray-400" />
-                                <div className="flex justify-center items-center text-sm text-gray-600">
-                                    <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500">
-                                        <span>Upload files</span>
-                                        <input id="file-upload" name="file-upload" type="file" multiple onChange={handleFileChange} className="sr-only" accept="image/*" />
-                                    </label>
-                                    <p className="pl-1">or drag and drop</p>
-                                </div>
-                                <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                            </div>
-                        </div>
-                        {images.length > 0 && (
-                            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                {images.map((file, index) => (
-                                    <div key={index} className="relative group">
-                                        <img src={URL.createObjectURL(file)} alt={`preview ${index}`} className="h-24 w-full object-cover rounded-md" />
-                                        <button
-                                            type="button"
-                                            onClick={() => handleRemoveImage(index)}
-                                            className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100"
-                                        >
-                                            <Icon path={ICONS.close} className="w-4 h-4" />
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
+                        <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                        <RichTextEditor
+                            content={formData.content}
+                            onChange={(html) => setFormData(prev => ({ ...prev, content: html }))}
+                            onImageUpload={handleImageUpload}
+                            placeholder="Start writing your blog post..."
+                        />
                     </div>
 
                     <div>
