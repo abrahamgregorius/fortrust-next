@@ -12,6 +12,7 @@ export default async function Blog() {
         console.error(error);
     }
 
+    const [featured, ...rest] = data || [];
 
     return (
         <>
@@ -26,40 +27,52 @@ export default async function Blog() {
                 </div>
             </section>
 
-            <section className="stories-section">
+            <section className="blog-magazine">
                 <div className="container">
-                    <div className="story-filters">
-                        <button className="filter-tag active" data-filter="all">
-                            All Stories
-                        </button>
-                    </div>
-
-                    <div className="story-grid">
-                        {data?.map((t) => (
-                            <Link
-                                href={`/blog/${t.id}`}
-                                key={t.id}
-                                className="card story-card rounded-2xl shadow-md overflow-hidden"
-                            >
+                    {featured && (
+                        <Link href={`/blog/${featured.id}`} className="magazine-hero">
+                            <div className="hero-image-wrap">
                                 <img
-                                    src={t.image_urls[0] || "/placeholder.jpg"}
-                                    alt={`Photo of ${t.person_name}`}
-                                    className="w-full h-64 object-cover"
+                                    src={featured.image_urls?.[0] || "/placeholder.jpg"}
+                                    alt={featured.title}
                                 />
-                                <div className="card__content p-4">
-                                    <p className="author font-semibold text-sm text-gray-900">
-                                        {t.title}
-                                    </p>
-                                    by {t.author}
-                                    <div className="tags"><span>{t.category}</span></div>
+                                <div className="hero-overlay">
+                                    <span className="hero-category">{featured.category}</span>
+                                    <h2 className="hero-title">{featured.title}</h2>
+                                    <p className="hero-author">by {featured.author}</p>
                                 </div>
-                            </Link>
-                        ))}
-                    </div>
+                            </div>
+                        </Link>
+                    )}
+
+                    {rest.length > 0 && (
+                        <div className="magazine-grid">
+                            {rest.map((post) => (
+                                <Link href={`/blog/${post.id}`} key={post.id} className="magazine-card">
+                                    <div className="card-image-wrap">
+                                        <img
+                                            src={post.image_urls?.[0] || "/placeholder.jpg"}
+                                            alt={post.title}
+                                        />
+                                    </div>
+                                    <div className="card-body">
+                                        <span className="card-category">{post.category}</span>
+                                        <h3 className="card-title">{post.title}</h3>
+                                        <p className="card-author">by {post.author}</p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
+
+                    {data?.length === 0 && (
+                        <div className="empty-state">
+                            <p>No blog posts yet.</p>
+                        </div>
+                    )}
                 </div>
             </section>
             <Footer></Footer>
-
         </>
     )
 }
