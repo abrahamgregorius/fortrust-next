@@ -1,0 +1,41 @@
+# 1. Allow all major search engines and AI crawlers
+User-agent: *
+Allow: /
+Disallow: /wp-admin/
+Disallow: /admin/
+Disallow: /search/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /api/
+
+# 2. Explicitly allow AI LLM crawlers for AI Search Visibility (Perplexity, ChatGPT, Claude)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# 3. Block aggressive, low-value scraper bots that drain server bandwidth
+User-agent: PetalBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# 4. Point directly to your XML Sitemap
+Sitemap: https://yourwebsite.com
