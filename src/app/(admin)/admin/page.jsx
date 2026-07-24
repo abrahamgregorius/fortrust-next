@@ -242,7 +242,7 @@ export default function App() {
                     <div className="mt-6">
                         <h3 className="text-xl font-semibold text-gray-800 mb-4">Quick Actions</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                            <Link href="/admin/banners/create" className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 flex items-center justify-center">
+                            <Link href="/admin/blogs/create" className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 flex items-center justify-center">
                                 <Icon path={ICONS.products} className="w-6 h-6 mr-2" />
                                 Add New Blog
                             </Link>
