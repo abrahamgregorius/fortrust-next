@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./admin.css"
+import ActivityTracker from "@/components/admin/ActivityTracker";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({ children }) {
                 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
             </head>
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
+                <ActivityTracker />
                 {children}
             </body>
         </html>

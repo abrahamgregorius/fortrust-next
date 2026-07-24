@@ -4,12 +4,20 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
     const { pathname } = request.nextUrl;
     
-    // Check for admin authentication
     const token = request.cookies.get("access_token")?.value;
+    const lastActivity = request.cookies.get("lastActivity")?.value;
     const isAdminRoute = pathname.startsWith("/admin");
 
-    if (isAdminRoute && !token) {
-        return NextResponse.redirect(new URL("/login", request.url));
+    if (isAdminRoute) {
+        if (!token) {
+            return NextResponse.redirect(new URL("/login", request.url));
+        }
+        if (lastActivity && Date.now() - Number(lastActivity) > 3600000) {
+            // ponytail: clear stale session, redirect to login
+            const response = NextResponse.redirect(new URL("/login", request.url));
+            response.cookies.set("access_token", "", { path: "/", maxAge: 0 });
+            return response;
+        }
     }
 
     // Handle locale redirects

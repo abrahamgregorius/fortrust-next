@@ -24,7 +24,10 @@ export default function LoginPage() {
         if (authError) {
             setError(authError.message || 'Login failed. Please try again.');
         } else {
-            document.cookie = `access_token=${data.session.access_token}; path=/; max-age=86400; secure; samesite=lax`;
+            const isProduction = process.env.NODE_ENV === 'production';
+            const secureFlag = isProduction ? '; secure' : '';
+            document.cookie = `access_token=${data.session.access_token}; path=/; max-age=86400${secureFlag}; samesite=lax`;
+            document.cookie = `lastActivity=${Date.now()}; path=/; max-age=86400${secureFlag}; samesite=lax`;
             redirect("/admin");
         }
 
