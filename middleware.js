@@ -1,0 +1,42 @@
+// middleware.js
+import { NextResponse } from "next/server";
+
+export function middleware(request) {
+    const { pathname } = request.nextUrl;
+    
+    const token = request.cookies.get("access_token")?.value;
+    const lastActivity = request.cookies.get("lastActivity")?.value;
+    const isAdminRoute = pathname.startsWith("/admin");
+
+    if (isAdminRoute) {
+        if (!token) {
+            return NextResponse.redirect(new URL("/login", request.url));
+        }
+        if (lastActivity && Date.now() - Number(lastActivity) > 3600000) {
+            // ponytail: clear stale session, redirect to login
+            const response = NextResponse.redirect(new URL("/login", request.url));
+            response.cookies.set("access_token", "", { path: "/", maxAge: 0 });
+            return response;
+        }
+    }
+
+    // Handle locale redirects
+    // If path starts with /id, it's Indonesian - let it through
+    if (pathname.startsWith("/id")) {
+        return NextResponse.next();
+    }
+
+    // If path starts with /en, redirect to root (since 'en' is default)
+    if (pathname.startsWith("/en")) {
+        const newPath = pathname.replace(/^\/en/, "") || "/";
+        return NextResponse.redirect(new URL(newPath, request.url));
+    }
+
+    // For all other paths, they're treated as English (default)
+    return NextResponse.next();
+}
+
+// Run middleware on all routes except static files
+export const config = {
+    matcher: ["/admin/:path*", "/((?!api|_next/static|_next/image|favicon.ico|public).*)"],
+};
