@@ -1,6 +1,8 @@
-# 1. Allow all major search engines and AI crawlers
+# Allow all crawlers including AI
 User-agent: *
 Allow: /
+
+# Block admin/backend
 Disallow: /wp-admin/
 Disallow: /admin/
 Disallow: /search/
@@ -8,7 +10,7 @@ Disallow: /cart/
 Disallow: /checkout/
 Disallow: /api/
 
-# 2. Explicitly allow AI LLM crawlers for AI Search Visibility (Perplexity, ChatGPT, Claude)
+# AI/LLM crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -27,7 +29,7 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-# 3. Block aggressive, low-value scraper bots that drain server bandwidth
+# Block bandwidth-heavy scrapers
 User-agent: PetalBot
 Disallow: /
 
@@ -37,5 +39,5 @@ Disallow: /
 User-agent: Bytespider
 Disallow: /
 
-# 4. Point directly to your XML Sitemap
-Sitemap: https://yourwebsite.com
+# Sitemap
+Sitemap: https://fortrust.edu/sitemap.xml

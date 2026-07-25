@@ -14,21 +14,74 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Fortrust | Study Abroad, Simplified",
-  description: "Fortrust: Study Abroad, Simplified",
+  metadataBase: new URL("https://fortrust.edu"),
+  title: {
+    default: "FORTRUST Education Services — Agen Kuliah ke Luar Negeri | Tinggal Berangkat",
+    template: "%s | FORTRUST",
+  },
+  description:
+    "FORTRUST Education Services — konsultan dan agensi pendidikan internasional sejak 1994. Urus apply university, visa, akomodasi. Anda tinggal berangkat. Konsultasi gratis.",
+  keywords: [
+    "agen kuliah luar negeri",
+    "agen kuliah luar negeri terbaik",
+    "konsultan pendidikan internasional jakarta",
+    "study abroad agent jakarta",
+    "apply university overseas",
+    "student visa agent",
+    "fortrust education services",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    alternateLocale: "en_US",
+    url: "https://fortrust.edu",
+    siteName: "FORTRUST Education Services",
+    title: "FORTRUST Education Services — Agen Kuliah ke Luar Negeri",
+    description: "Konsultan dan agensi pendidikan internasional sejak 1994. Apply, visa, akomodasi — semua kami urus. Anda tinggal berangkat.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "FORTRUST Education Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FORTRUST Education Services",
+    description: "Agen kuliah ke luar negeri. Apply, visa, akomodasi — semua kami urus.",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: "https://fortrust.edu",
+    languages: {
+      "en-US": "https://fortrust.edu/en",
+      "id-ID": "https://fortrust.edu/id",
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "G-TJ13MS774N",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fortrust: Study Abroad, Simplified</title>
-        <meta
-          name="description"
-          content="Get expert counselling, applications, visas, and pre-departure support for studying abroad in Australia, the UK, and more."
-        />
         <link rel="icon" href="/favicon-new.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />
@@ -41,18 +94,44 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
 
-          {/* Google tag (gtag.js) */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ13MS774N"></script>
-          <script dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-TJ13MS774N');
-            `
-          }} />
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ13MS774N"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TJ13MS774N');
+          `
+        }} />
 
         <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+        {/* Organization Schema.org */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "FORTRUST Education Services",
+              "description": "Lembaga konsultan dan agensi pendidikan internasional sejak 1994. Membantu siswa Indonesia apply university overseas — apply, visa, akomodasi. Anda tinggal berangkat.",
+              "url": "https://fortrust.edu",
+              "logo": "https://fortrust.edu/logo-fortrust.png",
+              "telephone": "+622112345678",
+              "email": "info@fortrust.edu",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Jakarta",
+                "addressCountry": "ID"
+              },
+              "sameAs": [
+                "https://instagram.com/fortrustid"
+              ],
+              "foundingDate": "1994"
+            })
+          }}
+        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <LocaleProvider>

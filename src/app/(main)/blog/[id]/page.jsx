@@ -3,8 +3,33 @@ import Navbar from "@/components/Navbar"
 import { supabase } from "@/lib/supabaseClient"
 import Link from "next/link"
 
-// Force dynamic rendering to prevent static generation issues
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({ params }) {
+    const { id } = await params;
+    const { data } = await supabase.from("blogs").select("*").eq("id", id).single();
+
+    if (!data) {
+        return { title: "Blog Post Not Found | FORTRUST" };
+    }
+
+    return {
+        title: data.title,
+        description: data.excerpt || `${data.title} — FORTRUST Education Services`,
+        openGraph: {
+            title: data.title,
+            description: data.excerpt || `${data.title} — FORTRUST Education Services`,
+            type: "article",
+            publishedTime: data.created_at,
+            modifiedTime: data.updated_at,
+            authors: [data.author || "Tim FORTRUST"],
+            images: data.image_urls?.[0] ? [{ url: data.image_urls[0], width: 1200, height: 630 }] : [],
+        },
+        alternates: {
+            canonical: `https://fortrust.edu/blog/${id}`,
+        },
+    };
+}
 
 export default async function BlogPost({ params }) {
     const { id } = await params;
@@ -18,7 +43,7 @@ export default async function BlogPost({ params }) {
                     <section className="page-header">
                         <div className="container">
                             <h1>Blog Post Not Found</h1>
-                            <p>The blog post you're looking for doesn't exist.</p>
+                            <p>The blog post you&apos;re looking for doesn&apos;t exist.</p>
                             <Link href="/blog">Back to Blog</Link>
                         </div>
                     </section>
@@ -36,11 +61,39 @@ export default async function BlogPost({ params }) {
         });
     };
 
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": data.title,
+        "image": data.image_urls?.[0] || "https://fortrust.edu/logo-fortrust.png",
+        "datePublished": data.created_at,
+        "dateModified": data.updated_at || data.created_at,
+        "author": {
+            "@type": "Person",
+            "name": data.author || "Tim FORTRUST",
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "FORTRUST Education Services",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://fortrust.edu/logo-fortrust.png"
+            }
+        },
+        "description": data.excerpt || data.title,
+        "url": `https://fortrust.edu/blog/${id}`,
+    };
 
     return (
         <>
             <Navbar></Navbar>
             <main>
+                {/* Article Schema.org */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+                />
+
                 <section className="page-header">
                     <div className="container">
                         <h1>{data.title}</h1>
@@ -109,11 +162,8 @@ export default async function BlogPost({ params }) {
                         )}
                     </div>
                 </section>
-
-
             </main>
             <Footer></Footer>
-
         </>
     )
 }
