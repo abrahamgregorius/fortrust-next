@@ -17,7 +17,8 @@ import {
   AlignLeft, AlignCenter, AlignRight, AlignJustify,
   Highlighter, List, ListOrdered,
   Heading1, Heading2, Heading3, Heading4,
-  Undo, Redo, Minus, Quote, Terminal, Plus, Trash2
+  Undo, Redo, Minus, Quote, Terminal, Trash2,
+  Columns3, Rows3, XCircle,
 } from 'lucide-react';
 
 const ToolbarButton = ({ onClick, active, disabled, children, title }) => (
@@ -170,28 +171,28 @@ const MenuBar = ({ editor, onImageUpload }) => {
         disabled={!editor?.isActive('table')}
         title="Add Column After"
       >
-        <Plus className="w-4 h-4" />
+        <Columns3 className="w-4 h-4" />
       </ToolbarButton>
       <ToolbarButton
         onClick={() => editor.chain().focus().deleteColumn().run()}
         disabled={!editor?.isActive('table')}
         title="Delete Column"
       >
-        <Trash2 className="w-4 h-4" />
+        <XCircle className="w-4 h-4" />
       </ToolbarButton>
       <ToolbarButton
         onClick={() => editor.chain().focus().addRowAfter().run()}
         disabled={!editor?.isActive('table')}
         title="Add Row Below"
       >
-        <Plus className="w-4 h-4" />
+        <Rows3 className="w-4 h-4" />
       </ToolbarButton>
       <ToolbarButton
         onClick={() => editor.chain().focus().deleteRow().run()}
         disabled={!editor?.isActive('table')}
         title="Delete Row"
       >
-        <Trash2 className="w-4 h-4" />
+        <XCircle className="w-4 h-4" />
       </ToolbarButton>
 
       <div className="w-px h-5 bg-gray-300 mx-1" />
