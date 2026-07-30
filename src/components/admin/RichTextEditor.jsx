@@ -237,6 +237,13 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...', o
     },
   });
 
+  // Sync content prop → editor when data loads after mount
+  React.useEffect(() => {
+    if (editor && content && content !== editor.getHTML()) {
+      editor.commands.setContent(content, false);
+    }
+  }, [content, editor]);
+
   return (
     <div className="border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-1">
       <MenuBar editor={editor} onImageUpload={onImageUpload} />

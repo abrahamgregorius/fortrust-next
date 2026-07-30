@@ -119,7 +119,7 @@ export default function App() {
   };
 
   const handleView = (id) => {
-    redirect(`/blog/${id}`);
+    window.open(`/blog/${id}`, '_blank');
   };
 
   const handleDelete = async (id) => {
