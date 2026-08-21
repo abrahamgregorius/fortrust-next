@@ -37,15 +37,46 @@ const ToolbarButton = ({ onClick, active, disabled, children, title }) => (
   </button>
 );
 
+const LinkInput = ({ onSubmit, onCancel, initialUrl = '' }) => {
+  const [url, setUrl] = React.useState(initialUrl);
+  return (
+    <div className="flex items-center gap-1 px-2 py-1 bg-white border border-gray-300 rounded shadow-sm">
+      <input
+        type="url"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') { e.preventDefault(); onSubmit(url); }
+          if (e.key === 'Escape') onCancel();
+        }}
+        placeholder="https://example.com"
+        autoFocus
+        className="flex-1 text-sm border-none focus:outline-none focus:ring-0 py-0.5 px-1"
+      />
+      <button
+        type="button"
+        onClick={() => onSubmit(url)}
+        className="text-xs px-2 py-0.5 bg-indigo-600 text-white rounded hover:bg-indigo-700"
+      >
+        Apply
+      </button>
+      <button
+        type="button"
+        onClick={onCancel}
+        className="text-xs px-2 py-0.5 text-gray-500 hover:text-gray-700"
+      >
+        ✕
+      </button>
+    </div>
+  );
+};
+
 const MenuBar = ({ editor, onImageUpload }) => {
   if (!editor) return null;
 
   const fileInputRef = React.useRef(null);
-
-  const addLink = () => {
-    const url = window.prompt('Enter URL:');
-    if (url) editor.chain().focus().setLink({ href: url }).run();
-  };
+  const [showLinkInput, setShowLinkInput] = React.useState(false);
+  const [linkUrl, setLinkUrl] = React.useState('');
 
   const addImage = () => {
     if (onImageUpload) {
@@ -76,8 +107,29 @@ const MenuBar = ({ editor, onImageUpload }) => {
     if (editor.isActive('link')) {
       editor.chain().focus().unsetLink().run();
     } else {
-      addLink();
+      const prevUrl = editor.getAttributes('link').href || '';
+      setLinkUrl(prevUrl);
+      setShowLinkInput(true);
+      // Apply link immediately to current selection so user sees it
+      editor.chain().focus().setLink({ href: prevUrl || 'https://' }).run();
     }
+  };
+
+  const applyLink = (url) => {
+    const trimmed = url.trim();
+    if (!trimmed) {
+      editor.chain().focus().unsetLink().run();
+    } else {
+      editor.chain().focus().setLink({ href: trimmed }).run();
+    }
+    setShowLinkInput(false);
+    setLinkUrl('');
+  };
+
+  const cancelLink = () => {
+    editor.chain().focus().unsetLink().run();
+    setShowLinkInput(false);
+    setLinkUrl('');
   };
 
   return (
@@ -102,9 +154,13 @@ const MenuBar = ({ editor, onImageUpload }) => {
       <div className="w-px h-5 bg-gray-300 mx-1" />
 
       {/* Link & Image */}
-      <ToolbarButton onClick={setLink} active={editor.isActive('link')} title="Link">
-        <Link2 className="w-4 h-4" />
-      </ToolbarButton>
+      {showLinkInput ? (
+        <LinkInput onSubmit={applyLink} onCancel={cancelLink} initialUrl={linkUrl} />
+      ) : (
+        <ToolbarButton onClick={setLink} active={editor.isActive('link')} title="Link">
+          <Link2 className="w-4 h-4" />
+        </ToolbarButton>
+      )}
       <ToolbarButton onClick={addImage} title={onImageUpload ? "Upload Image" : "Insert Image"}>
         <ImageIcon className="w-4 h-4" />
       </ToolbarButton>

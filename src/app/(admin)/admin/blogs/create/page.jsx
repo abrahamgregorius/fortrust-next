@@ -1,6 +1,7 @@
 "use client";
 import { supabase } from '@/lib/supabaseClient';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import RichTextEditor from '@/components/admin/RichTextEditor';
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -34,6 +35,7 @@ const slugify = (text) => {
 };
 
 export default function CreateBlogPage() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         title: '',
         author: '',
@@ -92,9 +94,8 @@ export default function CreateBlogPage() {
             setSubmissionStatus({ message: 'Blog post submitted successfully!', type: 'success' });
 
             setTimeout(() => {
-                setFormData({ title: '', author: '', category: '', content: '', youtube_url: '', slug: '' });
-                setSubmissionStatus(null);
-            }, 3000);
+                router.push('/admin/blogs');
+            }, 1500);
         } catch (err) {
             console.error('❌ Error submitting post:', err);
             setSubmissionStatus({ message: `Error: ${err.message}`, type: 'error' });

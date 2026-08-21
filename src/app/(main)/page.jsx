@@ -141,7 +141,13 @@ export default function Home() {
     const fetchEvents = async () => {
         setIsLoadingEvents(true);
         try {
-            const { data, error } = await supabase.from("events").select("*").order("created_at", { ascending: false }).limit(3);
+            const now = new Date().toISOString();
+            const { data, error } = await supabase
+                .from("events")
+                .select("*")
+                .gte("start_at", now)
+                .order("start_at", { ascending: true })
+                .limit(3);
             if (error) {
                 console.error("Error fetching events:", error);
             } else {
@@ -809,55 +815,44 @@ export default function Home() {
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
                                 <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
                             </div>
+                        ) : events.length > 0 ? (
+                            <div className="events__list">
+                                {events.map((event, i) => {
+                                    try {
+                                        const { month, day } = getMonthDayJakarta(event.start_at);
+                                        const timeStr = formatTimeJakarta(event.start_at);
+                                        return (
+                                            <div key={i} className="card event-card">
+                                                {event.image_url && (
+                                                    <div className="event-card__image">
+                                                        <img
+                                                            src={event.image_url}
+                                                            alt={event.name}
+                                                            className="event-image"
+                                                        />
+                                                    </div>
+                                                )}
+                                                <div className="event-card__date">
+                                                    <span className="month">{month}</span><span className="day">{day}</span>
+                                                </div>
+                                                <div className="event-card__info">
+                                                    <h4>{event.name}</h4>
+                                                    <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
+                                                    <p><MapPin size={20}></MapPin> {event.location}</p>
+                                                </div>
+                                                <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
+                                            </div>
+                                        );
+                                    } catch (e) {
+                                        console.error('Error rendering event:', e);
+                                        return null;
+                                    }
+                                })}
+                            </div>
                         ) : (
-                            <>
-                                <div className="events__fallback">
-                                    <p>No upcoming events right now. Join our newsletter for updates!</p>
-                                </div>
-                                <div className="events__list">
-                                    {events.length > 0 ? events.map((event, i) => {
-                                        try {
-                                            const { month, day } = getMonthDayJakarta(event.start_at);
-                                            const timeStr = formatTimeJakarta(event.start_at);
-                                            return (
-                                                <>
-                                                    <div key={i} className="card event-card">
-                                                        {event.image_url && (
-                                                            <div className="event-card__image">
-                                                                <img
-                                                                    src={event.image_url}
-                                                                    alt={event.name}
-                                                                    className="event-image"
-                                                                />
-                                                            </div>
-                                                        )}
-                                                        <div className="event-card__date">
-                                                            <span className="month">{month}</span><span className="day">{day}</span>
-                                                        </div>
-                                                        <div className="event-card__info">
-                                                            <h4>{event.name}</h4>
-                                                            <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
-                                                            <p><MapPin size={20}></MapPin> {event.location}</p>
-                                                        </div>
-                                                        <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
-                                                    </div >
-                                                </>
-                                            );
-                                        } catch (e) {
-                                            console.error('Error rendering event:', e);
-                                            return null;
-                                        }
-                                    }) : (
-                                        <div className="events__fallback">
-                                            <p>No upcoming events right now. Join our newsletter for updates!</p>
-                                        </div>
-                                    )}
-
-                                    <div className="events__fallback">
-                                        <p>No upcoming events right now. Join our newsletter for updates!</p>
-                                    </div>
-                                </div>
-                            </>
+                            <div className="events__fallback">
+                                <p>No upcoming events right now. Join our newsletter for updates!</p>
+                            </div>
                         )}
                     </div>
                 </section>
