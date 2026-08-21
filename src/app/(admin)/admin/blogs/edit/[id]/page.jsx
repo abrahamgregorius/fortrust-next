@@ -1,6 +1,7 @@
 "use client";
 import { supabase } from "@/lib/supabaseClient";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -36,6 +37,7 @@ const slugify = (text) => {
 
 // MAIN COMPONENT
 export default function EditBlogPage({ params }) {
+    const router = useRouter();
     const unwrappedParams = React.use(params);
     const { id } = unwrappedParams;
     const [formData, setFormData] = useState({
@@ -145,8 +147,9 @@ export default function EditBlogPage({ params }) {
 
             setSubmissionStatus({ message: "Blog post updated successfully!", type: "success" });
 
-            // Clear only the newly added images after successful update
-            setImages([]);
+            setTimeout(() => {
+                router.push('/admin/blogs');
+            }, 1500);
         } catch (err) {
             console.error("❌ Error updating post:", err);
             setSubmissionStatus({ message: `Error: ${err.message}`, type: "error" });
