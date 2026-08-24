@@ -1,6 +1,6 @@
 "use client";
 import { supabase } from '@/lib/supabaseClient';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import RichTextEditor from '@/components/admin/RichTextEditor';
 
@@ -39,12 +39,23 @@ export default function CreateBlogPage() {
     const [formData, setFormData] = useState({
         title: '',
         author: '',
-        category: '',
+        designation: '',
+        category_id: '',
         content: '',
         youtube_url: '',
         slug: '',
     });
+    const [categories, setCategories] = useState([]);
     const [submissionStatus, setSubmissionStatus] = useState(null);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            const { data, error } = await supabase.from('categories').select('id, name').order('name');
+            if (error) console.error('❌ Error fetching categories:', error);
+            else setCategories(data || []);
+        };
+        fetchCategories();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -130,12 +141,22 @@ export default function CreateBlogPage() {
                         </div>
 
                         <div>
-                            <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                            <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-1">Designation</label>
+                            <input type="text" id="designation" name="designation" value={formData.designation} onChange={handleChange} className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="e.g., Senior Developer" />
+                        </div>
+
+                        <div>
+                            <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-1">Category</label>
                             <div className="relative">
                                 <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
                                     <Icon path={ICONS.category} />
                                 </span>
-                                <input type="text" id="category" name="category" value={formData.category} onChange={handleChange} className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="e.g., Tech, Health" />
+                                <select id="category_id" name="category_id" value={formData.category_id} onChange={handleChange} className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                    <option value="">Select a category</option>
+                                    {categories.map(cat => (
+                                        <option key={cat.id} value={cat.id}>{cat.name}</option>
+                                    ))}
+                                </select>
                             </div>
                         </div>
                     </div>

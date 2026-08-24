@@ -97,12 +97,13 @@ export default async function BlogPost({ params }) {
                 <section className="page-header">
                     <div className="container">
                         <h1>{data.title}</h1>
-                        <p>
-                            {data.author}, {formatDate(data.created_at)}
-                        </p>
+                        <p><strong>{data.author}</strong>{data.designation ? `, ${data.designation}` : ''}</p>
+                        <p>{formatDate(data.created_at)}</p>
                         <div className="story-grid">
                             <div className="story-card">
-                                <div className="tags tags-blog"><span>{data.category}</span></div>
+                                <div className="tags tags-blog">
+                                    {data.tag?.map ? data.tag.map(t => <span key={t.trim()}>{t.trim()}</span>) : null}
+                                </div>
                             </div>
                         </div>
                     </div>

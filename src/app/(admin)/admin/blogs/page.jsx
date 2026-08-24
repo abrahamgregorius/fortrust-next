@@ -98,16 +98,30 @@ const Header = ({ toggleSidebar }) => {
 
 export default function App() {
   const [blogs, setBlogs] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   const fetchBlogs = async () => {
-    const { data, error } = await supabase.from("blogs").select("*");
+    const [{ data, error }, { data: catData, error: catError }] = await Promise.all([
+      supabase.from("blogs").select("*").order("created_at", { ascending: false }),
+      supabase.from("categories").select("id, name"),
+    ]);
     if (error) {
       console.error("Error fetching blogs:", error);
     } else {
       setBlogs(data || []);
     }
+    if (catError) {
+      console.error("Error fetching categories:", catError);
+    } else {
+      setCategories(catData || []);
+    }
+  };
+
+  const getCategoryName = (categoryId) => {
+    const cat = categories.find(c => c.id === categoryId);
+    return cat ? cat.name : categoryId || '—';
   };
 
   const formatDate = (dateString) => {
@@ -210,7 +224,7 @@ export default function App() {
                           <td className="px-6 py-4">{blog.author}</td>
                           <td className="px-6 py-4">
                             <span className="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
-                              {blog.category}
+                              {getCategoryName(blog.category_id)}
                             </span>
                           </td>
                           <td className="px-6 py-4">
