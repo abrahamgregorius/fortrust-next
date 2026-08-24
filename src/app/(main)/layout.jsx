@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 export const metadata = {
   metadataBase: new URL("https://fortrust.edu"),
   title: {
-    default: "FORTRUST Education Services — Agen Kuliah ke Luar Negeri | Tinggal Berangkat",
-    template: "%s | FORTRUST",
+    default: "Fortrust | Study Abroad, Simplified",
+    template: "%s | Fortrust | Study Abroad, Simplified",
   },
   description:
     "FORTRUST Education Services — konsultan dan agensi pendidikan internasional sejak 1994. Urus apply university, visa, akomodasi. Anda tinggal berangkat. Konsultasi gratis.",
