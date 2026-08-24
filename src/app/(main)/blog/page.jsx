@@ -6,7 +6,10 @@ import { supabase } from "@/lib/supabaseClient"
 import TagFilter from "@/components/TagFilter"
 
 export default async function Blog() {
-    const { data, error } = await supabase.from("blogs").select("*");
+    const [{ data: posts, error }, { data: categories }] = await Promise.all([
+        supabase.from("blogs").select("*"),
+        supabase.from("categories").select("id, name").order("name"),
+    ]);
 
     if (error) {
         console.error(error);
@@ -25,7 +28,7 @@ export default async function Blog() {
                 </div>
             </section>
 
-            <TagFilter posts={data || []} />
+            <TagFilter posts={posts || []} categories={categories || []} />
             <Footer></Footer>
         </>
     )
