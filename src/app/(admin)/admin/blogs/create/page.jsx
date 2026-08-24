@@ -41,10 +41,12 @@ export default function CreateBlogPage() {
         author: '',
         designation: '',
         category_id: '',
+        tag: [],
         content: '',
         youtube_url: '',
         slug: '',
     });
+    const [tagsInput, setTagsInput] = useState('');
     const [categories, setCategories] = useState([]);
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
@@ -158,6 +160,23 @@ export default function CreateBlogPage() {
                                     ))}
                                 </select>
                             </div>
+                        </div>
+
+                        <div>
+                            <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-1">Tags <span className="text-gray-400 font-normal">(SEO)</span></label>
+                            <input
+                                type="text"
+                                id="tags"
+                                name="tag"
+                                value={tagsInput}
+                                onChange={(e) => {
+                                    setTagsInput(e.target.value);
+                                    const tags = e.target.value.split(',').map(t => t.trim()).filter(t => t);
+                                    setFormData(prev => ({ ...prev, tag: tags }));
+                                }}
+                                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                placeholder="study abroad, scholarship, usa (comma-separated)"
+                            />
                         </div>
                     </div>
 

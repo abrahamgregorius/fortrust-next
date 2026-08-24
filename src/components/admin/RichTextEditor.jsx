@@ -17,9 +17,11 @@ import {
   AlignLeft, AlignCenter, AlignRight, AlignJustify,
   Highlighter, List, ListOrdered,
   Heading1, Heading2, Heading3, Heading4,
-  Undo, Redo, Minus, Quote, Terminal, Trash2,
+  Undo, Redo, Minus, Quote, Terminal,
   Columns3, Rows3, XCircle,
 } from 'lucide-react';
+import Subscript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
 
 const ToolbarButton = ({ onClick, active, disabled, children, title }) => (
   <button
@@ -150,6 +152,12 @@ const MenuBar = ({ editor, onImageUpload }) => {
       <ToolbarButton onClick={() => editor.chain().focus().toggleHighlight().run()} active={editor.isActive('highlight')} title="Highlight">
         <Highlighter className="w-4 h-4" />
       </ToolbarButton>
+      <ToolbarButton onClick={() => editor.chain().focus().toggleSubscript().run()} active={editor.isActive('subscript')} title="Subscript">
+        <span className="w-4 h-4 text-xs font-serif">X<sub>2</sub></span>
+      </ToolbarButton>
+      <ToolbarButton onClick={() => editor.chain().focus().toggleSuperscript().run()} active={editor.isActive('superscript')} title="Superscript">
+        <span className="w-4 h-4 text-xs font-serif">X<sup>2</sup></span>
+      </ToolbarButton>
 
       <div className="w-px h-5 bg-gray-300 mx-1" />
 
@@ -275,6 +283,8 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...', o
       Highlight.configure({ multicolor: false }),
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
       Typography,
+      Subscript,
+      Superscript,
       Table.configure({ resizable: true }),
       TableRow,
       TableCell,

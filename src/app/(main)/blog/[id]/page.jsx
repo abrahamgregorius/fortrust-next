@@ -16,6 +16,7 @@ export async function generateMetadata({ params }) {
     return {
         title: data.title,
         description: data.excerpt || `${data.title} — FORTRUST Education Services`,
+        keywords: data.tag || [],
         openGraph: {
             title: data.title,
             description: data.excerpt || `${data.title} — FORTRUST Education Services`,
@@ -81,6 +82,7 @@ export default async function BlogPost({ params }) {
             }
         },
         "description": data.excerpt || data.title,
+        "keywords": data.tag ? data.tag.join(", ") : "",
         "url": `https://fortrust.edu/blog/${id}`,
     };
 

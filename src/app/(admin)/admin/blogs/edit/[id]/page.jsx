@@ -45,10 +45,12 @@ export default function EditBlogPage({ params }) {
         author: "",
         designation: "",
         category_id: "",
+        tag: [],
         content: "",
         youtube_url: "",
         slug: "",
     });
+    const [tagsInput, setTagsInput] = useState('');
     const [categories, setCategories] = useState([]);
     const [images, setImages] = useState([]);
     const [existingImages, setExistingImages] = useState([]);
@@ -65,15 +67,18 @@ export default function EditBlogPage({ params }) {
                 console.error("❌ Error fetching blog post:", blogError);
             } else {
                 const slugFromTitle = slugify(blogData.title || '');
+                const existingTags = blogData.tag || [];
                 setFormData({
                     title: blogData.title,
                     author: blogData.author,
                     designation: blogData.designation || "",
                     category_id: blogData.category_id || "",
+                    tag: existingTags,
                     content: blogData.content,
                     youtube_url: blogData.youtube_url || "",
                     slug: blogData.slug || slugFromTitle,
                 });
+                setTagsInput(existingTags.join(', '));
                 setExistingImages(blogData.image_urls || []);
             }
             if (catError) {
@@ -234,6 +239,23 @@ export default function EditBlogPage({ params }) {
                                     ))}
                                 </select>
                             </div>
+                        </div>
+
+                        <div>
+                            <label htmlFor="tags" className="block text-sm font-medium text-gray-700 mb-1">Tags <span className="text-gray-400 font-normal">(SEO)</span></label>
+                            <input
+                                type="text"
+                                id="tags"
+                                name="tag"
+                                value={tagsInput}
+                                onChange={(e) => {
+                                    setTagsInput(e.target.value);
+                                    const tags = e.target.value.split(',').map(t => t.trim()).filter(t => t);
+                                    setFormData(prev => ({ ...prev, tag: tags }));
+                                }}
+                                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                placeholder="study abroad, scholarship, usa (comma-separated)"
+                            />
                         </div>
                     </div>
 
