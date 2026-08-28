@@ -6,8 +6,8 @@ import Link from "next/link"
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
-    const { id } = await params;
-    const { data } = await supabase.from("blogs").select("*").eq("id", id).single();
+    const { slug } = await params;
+    const { data } = await supabase.from("blogs").select("*").eq("slug", slug).single();
 
     if (!data) {
         return { title: "Blog Post Not Found | FORTRUST" };
@@ -27,14 +27,14 @@ export async function generateMetadata({ params }) {
             images: data.image_urls?.[0] ? [{ url: data.image_urls[0], width: 1200, height: 630 }] : [],
         },
         alternates: {
-            canonical: `https://fortrust.edu/blog/${id}`,
+            canonical: `https://fortrust.edu/blog/${slug}`,
         },
     };
 }
 
 export default async function BlogPost({ params }) {
-    const { id } = await params;
-    const { data, error } = await supabase.from("blogs").select("*").eq("id", id).single();
+    const { slug } = await params;
+    const { data, error } = await supabase.from("blogs").select("*").eq("slug", slug).single();
     const { data: categoryData } = data?.category_id
         ? await supabase.from("categories").select("name").eq("id", data.category_id).single()
         : { data: null };
@@ -46,7 +46,7 @@ export default async function BlogPost({ params }) {
     ]);
     const catMap = Object.fromEntries((allCategories || []).map(c => [c.id, c.name]));
     const relatedArticles = (allBlogs || [])
-        .filter(b => b.id != id)
+        .filter(b => b.slug != slug)
         .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
         .slice(0, 3)
         .map(b => ({ ...b, category: catMap[b.category_id] }));
@@ -98,7 +98,7 @@ export default async function BlogPost({ params }) {
         },
         "description": data.excerpt || data.title,
         "keywords": data.tag ? data.tag.join(", ") : "",
-        "url": `https://fortrust.edu/blog/${id}`,
+        "url": `https://fortrust.edu/blog/${slug}`,
     };
 
     return (
@@ -182,7 +182,7 @@ export default async function BlogPost({ params }) {
                                 <div className="related-articles">
                                     <h3>Related Articles</h3>
                                     {relatedArticles.map((article, i) => (
-                                        <Link key={article.id} href={`/blog/${article.id}`} className="related-article-card">
+                                        <Link key={article.id} href={`/blog/${article.slug}`} className="related-article-card">
                                             <div className="related-article-row">
                                                 {article.image_urls?.[0] && (
                                                     <img src={article.image_urls[0]} alt={article.title} />

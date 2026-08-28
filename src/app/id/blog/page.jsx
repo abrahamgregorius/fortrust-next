@@ -37,7 +37,7 @@ export default async function Blog() {
                     <div className="story-grid">
                         {data?.map((t) => (
                             <Link
-                                href={`/blog/${t.id}`}
+                                href={`/blog/${t.slug}`}
                                 key={t.id}
                                 className="card story-card rounded-2xl shadow-md overflow-hidden"
                             >
