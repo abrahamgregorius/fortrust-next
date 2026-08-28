@@ -132,8 +132,8 @@ export default function App() {
     });
   };
 
-  const handleView = (slug) => {
-    window.open(`/blog/${slug}`, '_blank');
+  const handleView = (id) => {
+    window.open(`/blog/${id}`, '_blank');
   };
 
   const handleDelete = async (id) => {
@@ -233,7 +233,7 @@ export default function App() {
                           <td className="px-6 py-4">
                             <div className="flex items-center justify-center space-x-3">
                               <button
-                                onClick={() => handleView(blog.slug)}
+                                onClick={() => handleView(blog.id)}
                                 className="text-gray-500 hover:text-blue-600"
                                 title="View"
                               >

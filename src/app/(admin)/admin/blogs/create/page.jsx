@@ -186,11 +186,6 @@ export default function CreateBlogPage() {
                     </div>
 
                     <div>
-                        <label htmlFor="slug" className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
-                        <input type="text" id="slug" name="slug" value={formData.slug} onChange={handleChange} className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="auto-generated-from-title" />
-                    </div>
-
-                    <div>
                         <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
                         <RichTextEditor
                             content={formData.content}
