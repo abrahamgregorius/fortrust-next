@@ -5,19 +5,19 @@ import Link from "next/link"
 
 export const dynamic = 'force-dynamic';
 
-export default async function BlogPostContent({ slug, lang = 'en', langPath = '' }) {
-    const [{ data, error }, { data: enTranslation }] = await Promise.all([
-        supabase.from("blogs").select("*").eq("slug", slug).eq("language", lang).single(),
-        lang === 'en' ? { data: null } : supabase.from("blogs").select("id").eq("slug", slug).eq("language", "en").single(),
-    ]);
+export default async function BlogPostContent({ slug }) {
+    const { data, error } = await supabase
+        .from("blogs")
+        .select("*")
+        .eq("slug", slug)
+        .single();
 
     const { data: categoryData } = data?.category_id
         ? await supabase.from("categories").select("name").eq("id", data.category_id).single()
         : { data: null };
 
-    // Related: same language, different slug
     const [{ data: relatedRaw }, { data: allCategories }] = await Promise.all([
-        supabase.from("blogs").select("*").eq("language", lang).neq("slug", slug),
+        supabase.from("blogs").select("*").neq("slug", slug),
         supabase.from("categories").select("id, name"),
     ]);
     const catMap = Object.fromEntries((allCategories || []).map(c => [c.id, c.name]));
@@ -35,7 +35,7 @@ export default async function BlogPostContent({ slug, lang = 'en', langPath = ''
                         <div className="container">
                             <h1>Blog Post Not Found</h1>
                             <p>The blog post you&apos;re looking for doesn&apos;t exist.</p>
-                            <Link href={`${langPath}/blog`}>Back to Blog</Link>
+                            <Link href="/blog">Back to Blog</Link>
                         </div>
                     </section>
                 </main>
@@ -44,21 +44,7 @@ export default async function BlogPostContent({ slug, lang = 'en', langPath = ''
         );
     }
 
-    const canonicalUrl = `https://fortrust.edu${langPath}/blog/${slug}`;
-    const hreflangAlternates = [
-        { lang: 'en', href: `https://fortrust.edu/blog/${slug}` },
-        { lang: 'ne', href: `https://fortrust.edu/ne/blog/${slug}` },
-        { lang: 'hi', href: `https://fortrust.edu/hi/blog/${slug}` },
-    ];
-
-    const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString(lang === 'ne' ? 'ne-NP' : lang === 'hi' ? 'hi-IN' : 'en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        });
-    };
-
+    const canonicalUrl = `https://fortrust.edu/blog/${slug}`;
     const articleSchema = {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -83,17 +69,22 @@ export default async function BlogPostContent({ slug, lang = 'en', langPath = ''
         "url": canonicalUrl,
     };
 
+    const formatDate = (dateString) => {
+        return new Date(dateString).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+    };
+
     return (
         <>
             <Navbar />
             <main>
-                {/* Schema.org */}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
                 />
-
-                {/* hreflang links injected via metadata — handled by parent page */}
 
                 <section className="page-header blog-post-header">
                     <div className="container">
@@ -104,11 +95,6 @@ export default async function BlogPostContent({ slug, lang = 'en', langPath = ''
                         <div className="tags-blog">
                             {data.tag?.map ? data.tag.map(t => <span key={t.trim()}>{t.trim()}</span>) : null}
                         </div>
-                        {enTranslation && (
-                            <a href={`/blog/${slug}`} className="btn btn--secondary" style={{ marginTop: '1rem', display: 'inline-block' }}>
-                                Translate to English
-                            </a>
-                        )}
                     </div>
                 </section>
 
@@ -167,7 +153,7 @@ export default async function BlogPostContent({ slug, lang = 'en', langPath = ''
                                 <div className="related-articles">
                                     <h3>Related Articles</h3>
                                     {relatedArticles.map((article) => (
-                                        <Link key={article.id} href={`${langPath}/blog/${article.slug}`} className="related-article-card">
+                                        <Link key={article.id} href={`/blog/${article.slug}`} className="related-article-card">
                                             <div className="related-article-row">
                                                 {article.image_urls?.[0] && (
                                                     <img src={article.image_urls[0]} alt={article.title} />

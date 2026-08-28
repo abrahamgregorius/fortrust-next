@@ -41,7 +41,7 @@ export default function TagFilter({ posts, categories }) {
             <section className="blog-magazine">
                 <div className="container">
                     {featured && (
-                        <Link href={`/blog/${featured.id}`} className="magazine-hero">
+                        <Link href={`/blog/${featured.slug}`} className="magazine-hero">
                             <div className="hero-image-wrap">
                                 <img
                                     src={featured.image_urls?.[0] || "/placeholder.jpg"}
@@ -64,7 +64,7 @@ export default function TagFilter({ posts, categories }) {
                     {rest.length > 0 && (
                         <div className="magazine-grid">
                             {rest.map((post) => (
-                                <Link href={`/blog/${post.id}`} key={post.id} className="magazine-card">
+                                <Link href={`/blog/${post.slug}`} key={post.id} className="magazine-card">
                                     <div className="card-image-wrap">
                                         <img
                                             src={post.image_urls?.[0] || "/placeholder.jpg"}
