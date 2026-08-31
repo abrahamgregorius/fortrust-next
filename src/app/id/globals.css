@@ -280,6 +280,60 @@ ul {
     font-size: 1.2rem;
 }
 
+/* Blog post header - left aligned */
+.page-header.blog-post-header {
+    text-align: left;
+    padding: 3rem 0;
+}
+.page-header.blog-post-header .category-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--bg);
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+.page-header.blog-post-header h1 {
+    color: var(--bg);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+.page-header.blog-post-header .author-line {
+    color: var(--bg);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.page-header.blog-post-header .author-line strong {
+    font-weight: 600;
+}
+.page-header.blog-post-header .date-line {
+    color: var(--bg);
+    opacity: 0.7;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+.page-header.blog-post-header .tags-blog {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.page-header.blog-post-header .tags-blog span {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--bg);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    backdrop-filter: blur(4px);
+}
+.page-header.blog-post-header .story-grid,
+.page-header.blog-post-header .story-card {
+    margin: 0;
+    padding: 0;
+}
+
 /* 5. HOME PAGE SECTIONS */
 /* ------------------------- */
 .hero {
@@ -592,6 +646,11 @@ ul {
     gap: var(--space-2);
     color: var(--neutral-400);
     font-size: 0.9rem;
+}
+.event-card__info p svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
 }
 .event-card__info i {
     width: 16px;
@@ -1368,6 +1427,240 @@ ul {
     color: var(--brand-700);
     font-size: 0.8rem;
     border-radius: var(--radius-pill);
+}
+
+/* CATEGORY PICKER */
+.category-picker {
+    padding: 1.5rem 0;
+    background: var(--brand-100);
+    border-bottom: 1px solid rgba(42, 58, 106, 0.1);
+}
+
+.category-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.category-tabs button {
+    padding: 0.5rem 1.25rem;
+    border: 2px solid transparent;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--brand-700);
+    transition: all 0.2s ease;
+}
+
+.category-tabs button:hover {
+    background: var(--brand-700);
+    color: #fff;
+}
+
+.category-tabs button.active {
+    background: var(--brand-700);
+    border-color: var(--brand-700);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(42, 58, 106, 0.3);
+}
+
+.tag-chip {
+    background: var(--accent);
+    color: var(--neutral-900);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-pill);
+    display: inline-block;
+    text-transform: uppercase;
+    box-shadow: 0 1px 3px rgba(184, 212, 52, 0.3);
+}
+
+.hero-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.card-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+/* 11. BLOG MAGAZINE LAYOUT */
+.blog-magazine {
+    padding: 3rem 0;
+}
+
+.magazine-hero {
+    display: block;
+    margin-bottom: 3rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    height: 480px;
+}
+
+.magazine-hero .hero-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.magazine-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.magazine-hero .hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem 2rem 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+    color: #fff;
+}
+
+.magazine-hero .hero-category {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--brand-700);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+}
+
+.magazine-hero .hero-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 0.5rem;
+    color: #fff;
+}
+
+.magazine-hero .hero-author {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.magazine-hero .hero-date {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin: 0.25rem 0 0;
+}
+
+.magazine-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.magazine-card {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1.5px solid var(--neutral-100);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.magazine-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+}
+
+.magazine-card .card-image-wrap {
+    height: 200px;
+    overflow: hidden;
+}
+
+.magazine-card .card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.magazine-card:hover .card-image-wrap img {
+    transform: scale(1.05);
+}
+
+.magazine-card .card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.magazine-card .card-category {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--brand-700);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.6rem;
+    align-self: flex-start;
+}
+
+.magazine-card .card-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.3;
+    margin: 0 0 0.5rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.magazine-card .card-author {
+    font-size: 0.8rem;
+    color: var(--neutral-400);
+    margin: 0;
+}
+
+.magazine-card .card-date {
+    font-size: 0.75rem;
+    color: var(--neutral-400);
+    opacity: 0.7;
+    margin: 0.25rem 0 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .magazine-card .card-title {
+        color: #ffffff;
+    }
+}
+
+.blog-magazine .empty-state {
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--neutral-400);
 }
 
 /* 12. EVENTS PAGE */
@@ -3076,3 +3369,250 @@ ul {
     object-fit: cover;
     object-position: center;
 }
+
+/* Blog content rendering — matches Tiptap output */
+.blog-content {
+    color: var(--neutral-700);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.blog-content > * + * {
+    margin-top: 1.25rem;
+}
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+    color: var(--brand-700);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.blog-content h1 { font-size: 2rem; }
+.blog-content h2 { font-size: 1.6rem; }
+.blog-content h3 { font-size: 1.3rem; }
+.blog-content h4 { font-size: 1.1rem; }
+
+.blog-content p {
+    margin-bottom: 0;
+}
+
+.blog-content ul,
+.blog-content ol {
+    padding-left: 1.5rem;
+    margin: 0.75rem 0;
+}
+
+.blog-content ul { list-style: disc; }
+.blog-content ol { list-style: decimal; }
+.blog-content li { margin-bottom: 0.35rem; }
+
+.blog-content ul[data-type="taskList"] {
+    list-style: none;
+    padding-left: 0;
+}
+
+.blog-content ul[data-type="taskList"] li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.blog-content ul[data-type="taskList"] li > label {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+.blog-content ul[data-type="taskList"] li > label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--brand-500);
+}
+
+.blog-content blockquote {
+    border-left: 4px solid var(--brand-500);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    color: var(--neutral-700);
+    font-style: italic;
+}
+
+.blog-content pre {
+    background-color: var(--neutral-900);
+    color: #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.blog-content code {
+    background-color: var(--neutral-100);
+    border-radius: 0.25rem;
+    padding: 0.15em 0.35em;
+    font-size: 0.875em;
+    color: var(--brand-700);
+}
+
+.blog-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+}
+
+.blog-content mark {
+    background-color: #fef9c3;
+    color: inherit;
+    border-radius: 0.15rem;
+    padding: 0.05em 0.15em;
+}
+
+.blog-content hr {
+    border: none;
+    border-top: 2px solid var(--neutral-100);
+    margin: 2rem 0;
+}
+
+.blog-content a {
+    color: var(--brand-500);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.blog-content a:hover {
+    color: var(--brand-700);
+}
+
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    display: block;
+}
+
+@layer components {
+    :where(.blog-content) table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin: 1.5rem 0 !important;
+        font-size: 0.95rem;
+    }
+
+    :where(.blog-content) th,
+    :where(.blog-content) td {
+        border: 1px solid #e5e7eb !important;
+        padding: 0.75rem 1rem !important;
+        text-align: left !important;
+    }
+
+    :where(.blog-content) th {
+        background-color: #eef1f8 !important;
+        color: #2a3a6a !important;
+        font-weight: 600 !important;
+    }
+}
+
+.blog-content tr:hover td {
+    background-color: rgba(238, 241, 248, 0.5);
+}
+
+.blog-content [style*="text-align: center"] { text-align: center; }
+.blog-content [style*="text-align: right"] { text-align: right; }
+.blog-content [style*="text-align: justify"] { text-align: justify; }
+
+/* Blog 2-column layout */
+.blog-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 3rem;
+    align-items: start;
+}
+
+.blog-main-content {
+    min-width: 0;
+}
+
+.blog-sidebar {
+    position: sticky;
+    top: 2rem;
+    border-left: 1px solid var(--color-primary);
+    padding-left: 2rem;
+}
+
+.related-articles h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+}
+
+.related-articles {
+    border-top: 2px solid var(--color-primary);
+    padding-top: 0.75rem;
+}
+
+.related-article-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.75rem 0;
+    transition: opacity 0.2s;
+}
+
+.related-article-card:hover {
+    opacity: 0.8;
+}
+
+.related-article-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.related-article-row img {
+    width: 120px;
+    height: 86px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.related-article-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.related-article-info h4 {
+    font-size: 0.9rem;
+    color: var(--color-dark);
+    line-height: 1.3;
+    margin: 0;
+}
+
+.related-article-meta,
+.related-article-date {
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+@media (max-width: 1024px) {
+    .blog-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .blog-sidebar {
+        position: static;
+    }
+}
+

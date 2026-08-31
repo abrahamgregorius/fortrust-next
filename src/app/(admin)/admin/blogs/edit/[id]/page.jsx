@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabaseClient";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/admin/RichTextEditor";
+import TranslateButton from "@/components/TranslateButton";
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -49,7 +50,11 @@ export default function EditBlogPage({ params }) {
         content: "",
         youtube_url: "",
         slug: "",
+        title_en: "",
+        slug_en: "",
+        content_en: "",
     });
+    const [activeTab, setActiveTab] = useState('id');
     const [tagsInput, setTagsInput] = useState('');
     const [categories, setCategories] = useState([]);
     const [images, setImages] = useState([]);
@@ -77,6 +82,9 @@ export default function EditBlogPage({ params }) {
                     content: blogData.content,
                     youtube_url: blogData.youtube_url || "",
                     slug: blogData.slug || slugFromTitle,
+                    title_en: blogData.title_en || "",
+                    slug_en: blogData.slug_en || "",
+                    content_en: blogData.content_en || "",
                 });
                 setTagsInput(existingTags.join(', '));
                 setExistingImages(blogData.image_urls || []);
@@ -97,6 +105,9 @@ export default function EditBlogPage({ params }) {
             const updated = { ...prev, [name]: value };
             if (name === 'title') {
                 updated.slug = slugify(value);
+            }
+            if (name === 'title_en') {
+                updated.slug_en = slugify(value);
             }
             return updated;
         });
@@ -126,6 +137,15 @@ export default function EditBlogPage({ params }) {
         setExistingImages((prev) => prev.filter((_, index) => index !== indexToRemove));
     };
 
+    const handleTranslated = (data) => {
+        setFormData(prev => ({
+            ...prev,
+            title_en: data.title_en || prev.title_en,
+            slug_en: data.slug_en || prev.slug_en,
+            content_en: data.content_en || prev.content_en,
+        }));
+    };
+
     // HANDLE SUBMIT (UPDATE EXISTING POST)
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -146,9 +166,18 @@ export default function EditBlogPage({ params }) {
             const allImageUrls = [...existingImages, ...uploadedImageUrls];
 
             const updatedBlog = {
-                ...formData,
-                image_urls: allImageUrls,
+                title: formData.title,
+                author: formData.author,
+                designation: formData.designation,
+                category_id: formData.category_id,
+                tag: formData.tag,
+                content: formData.content,
+                youtube_url: formData.youtube_url,
                 slug: formData.slug,
+                image_urls: allImageUrls,
+                title_en: formData.title_en,
+                slug_en: formData.slug_en,
+                content_en: formData.content_en,
                 updated_at: new Date().toISOString(),
             };
 
@@ -259,43 +288,103 @@ export default function EditBlogPage({ params }) {
                         </div>
                     </div>
 
-                    {/* TITLE */}
+                    {/* LANGUAGE TABS */}
                     <div>
-                        <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">Title</label>
-                        <input
-                            type="text"
-                            id="title"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleChange}
-                            required
-                            className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-                        />
-                    </div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
+                        <div className="border-b border-gray-200 mb-4">
+                            <nav className="flex gap-6">
+                                <button
+                                    type="button"
+                                    onClick={() => setActiveTab('id')}
+                                    className={`pb-2 text-sm font-medium border-b-2 transition-colors ${activeTab === 'id' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+                                >
+                                    🇮🇩 Indonesian
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setActiveTab('en')}
+                                    className={`pb-2 text-sm font-medium border-b-2 transition-colors ${activeTab === 'en' ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700'}`}
+                                >
+                                    🇬🇧 English
+                                </button>
+                            </nav>
+                        </div>
 
-                    {/* SLUG */}
-                    <div>
-                        <label htmlFor="slug" className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
-                        <input
-                            type="text"
-                            id="slug"
-                            name="slug"
-                            value={formData.slug}
-                            onChange={handleChange}
-                            className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-                            placeholder="auto-generated-from-title"
-                        />
-                    </div>
+                        {activeTab === 'id' && (
+                            <div className="space-y-4">
+                                <div>
+                                    <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                                    <input
+                                        type="text"
+                                        id="title"
+                                        name="title"
+                                        value={formData.title}
+                                        onChange={handleChange}
+                                        required
+                                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="slug" className="block text-sm font-medium text-gray-700 mb-1">Slug</label>
+                                    <input
+                                        type="text"
+                                        id="slug"
+                                        name="slug"
+                                        value={formData.slug}
+                                        onChange={handleChange}
+                                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                        placeholder="auto-generated-from-title"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                                    <RichTextEditor
+                                        content={formData.content}
+                                        onChange={(html) => setFormData(prev => ({ ...prev, content: html }))}
+                                        onImageUpload={handleImageUpload}
+                                        placeholder="Start writing your blog post..."
+                                    />
+                                </div>
+                            </div>
+                        )}
 
-                    {/* CONTENT */}
-                    <div>
-                        <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">Content</label>
-                        <RichTextEditor
-                            content={formData.content}
-                            onChange={(html) => setFormData(prev => ({ ...prev, content: html }))}
-                            onImageUpload={handleImageUpload}
-                            placeholder="Start writing your blog post..."
-                        />
+                        {activeTab === 'en' && (
+                            <div className="space-y-4">
+                                <div>
+                                    <label htmlFor="title_en" className="block text-sm font-medium text-gray-700 mb-1">Title (EN)</label>
+                                    <input
+                                        type="text"
+                                        id="title_en"
+                                        name="title_en"
+                                        value={formData.title_en}
+                                        onChange={handleChange}
+                                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                        placeholder="English blog post title"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="slug_en" className="block text-sm font-medium text-gray-700 mb-1">Slug (EN)</label>
+                                    <input
+                                        type="text"
+                                        id="slug_en"
+                                        name="slug_en"
+                                        value={formData.slug_en}
+                                        onChange={handleChange}
+                                        className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                        placeholder="english-blog-post-slug"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="content_en" className="block text-sm font-medium text-gray-700 mb-1">Content (EN)</label>
+                                    <RichTextEditor
+                                        content={formData.content_en}
+                                        onChange={(html) => setFormData(prev => ({ ...prev, content_en: html }))}
+                                        onImageUpload={handleImageUpload}
+                                        placeholder="Write the English content..."
+                                    />
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {/* IMAGE UPLOAD */}
@@ -387,10 +476,15 @@ export default function EditBlogPage({ params }) {
                     )}
 
                     {/* ACTION BUTTONS */}
-                    <div className="flex justify-end space-x-4 pt-4 border-t border-gray-200">
+                    <div className="flex justify-end items-center gap-4 pt-4 border-t border-gray-200">
                         <a href="/admin/blogs" className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-100">
                             Cancel
                         </a>
+                        <TranslateButton
+                            title={formData.title}
+                            content={formData.content}
+                            onTranslated={handleTranslated}
+                        />
                         <button type="submit" className="px-6 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700">
                             Save Changes
                         </button>

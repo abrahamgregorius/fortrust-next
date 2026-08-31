@@ -60,6 +60,16 @@ export function LocaleProvider({ children }) {
             newPath = pathname.replace(/^\/en/, "");
         }
 
+        // Use correct slug for the target locale from stored blog slug pair
+        const slugPair = typeof window !== "undefined" ? window.__blogSlugPair : null;
+        if (slugPair) {
+            if (newLocale === "id" && slugPair.idSlug) {
+                newPath = `/blog/${slugPair.idSlug}`;
+            } else if (newLocale === "en" && slugPair.enSlug) {
+                newPath = `/blog/${slugPair.enSlug}`;
+            }
+        }
+
         // Add new locale prefix (only if not 'en', since 'en' is default)
         if (newLocale === "id") {
             newPath = `/id${newPath || "/"}`;

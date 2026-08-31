@@ -5,11 +5,11 @@ import Link from "next/link"
 
 export const dynamic = 'force-dynamic';
 
-export default async function BlogPostContent({ slug }) {
+export default async function BlogPostContent({ slug, locale = "en", slugField = "slug" }) {
     const { data, error } = await supabase
         .from("blogs")
         .select("*")
-        .eq("slug", slug)
+        .eq(slugField, slug)
         .single();
 
     const { data: categoryData } = data?.category_id
@@ -35,7 +35,7 @@ export default async function BlogPostContent({ slug }) {
                         <div className="container">
                             <h1>Blog Post Not Found</h1>
                             <p>The blog post you&apos;re looking for doesn&apos;t exist.</p>
-                            <Link href="/blog">Back to Blog</Link>
+                            <Link href={`/${locale === "id" ? "id/blog" : "blog"}`}>Back to Blog</Link>
                         </div>
                     </section>
                 </main>
@@ -44,11 +44,18 @@ export default async function BlogPostContent({ slug }) {
         );
     }
 
+    const displayTitle = locale === "id" ? data.title : (data.title_en || data.title);
+    const displayContent = locale === "id" ? data.content : (data.content_en || data.content);
+
+    const slugPair = { idSlug: data.slug, enSlug: data.slug_en };
+
     const canonicalUrl = `https://fortrust.edu/blog/${slug}`;
+    const hreflangId = `https://fortrust.edu/id/blog/${slug}`;
+    const hreflangEn = `https://fortrust.edu/blog/${slug}`;
     const articleSchema = {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": data.title,
+        "headline": displayTitle,
         "image": data.image_urls?.[0] || "https://fortrust.edu/logo-fortrust.png",
         "datePublished": data.created_at,
         "dateModified": data.updated_at || data.created_at,
@@ -64,7 +71,7 @@ export default async function BlogPostContent({ slug }) {
                 "url": "https://fortrust.edu/logo-fortrust.png"
             }
         },
-        "description": data.excerpt || data.title,
+        "description": data.excerpt || displayTitle,
         "keywords": data.tag ? data.tag.join(", ") : "",
         "url": canonicalUrl,
     };
@@ -85,11 +92,29 @@ export default async function BlogPostContent({ slug }) {
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
                 />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.__blogSlugPair = ${JSON.stringify(slugPair)}`,
+                    }}
+                />
+                <link rel="alternate" hrefLang="en" href={hreflangEn} />
+                <link rel="alternate" hrefLang="id" href={hreflangId} />
+                <link rel="alternate" hrefLang="x-default" href={hreflangEn} />
 
                 <section className="page-header blog-post-header">
                     <div className="container">
+                        <a
+                            href={`/${locale === "id" ? "id/blog" : "blog"}`}
+                            className="back-button"
+                            style={{ display: 'inline-flex', alignItems: 'center', marginBottom: "1rem", gap: '0.5rem', opacity: 0.6, color: 'currentColor', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }}
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M19 12H5M12 19l-7-7 7-7" />
+                            </svg>
+                            Back
+                        </a>
                         {categoryData?.name && <p className="category-label">{categoryData.name}</p>}
-                        <h1>{data.title}</h1>
+                        <h1>{displayTitle}</h1>
                         <p className="author-line"><strong>{data.author}</strong>{data.designation ? `, ${data.designation}` : ''}</p>
                         <p className="date-line">{formatDate(data.created_at)}</p>
                         <div className="tags-blog">
@@ -110,7 +135,7 @@ export default async function BlogPostContent({ slug }) {
                                     )}
                                 </div>
 
-                                <div className="blog-content" dangerouslySetInnerHTML={{ __html: data.content }}></div>
+                                <div className="blog-content" dangerouslySetInnerHTML={{ __html: displayContent }}></div>
 
                                 <div className="content-block">
                                     {data.image_urls && data.image_urls.length > 1 ? (
@@ -153,7 +178,7 @@ export default async function BlogPostContent({ slug }) {
                                 <div className="related-articles">
                                     <h3>Related Articles</h3>
                                     {relatedArticles.map((article) => (
-                                        <Link key={article.id} href={`/blog/${article.slug}`} className="related-article-card">
+                                        <Link key={article.id} href={`/${locale === "id" ? "id/blog" : "blog"}/${locale === "en" ? (article.slug_en || article.slug) : article.slug}`} className="related-article-card">
                                             <div className="related-article-row">
                                                 {article.image_urls?.[0] && (
                                                     <img src={article.image_urls[0]} alt={article.title} />

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-export default function TagFilter({ posts, categories }) {
+export default function TagFilter({ posts, categories, locale = "en" }) {
     const [selected, setSelected] = useState('all');
 
     const getCategoryName = (categoryId) => {
@@ -41,11 +41,11 @@ export default function TagFilter({ posts, categories }) {
             <section className="blog-magazine">
                 <div className="container">
                     {featured && (
-                        <Link href={`/blog/${featured.slug}`} className="magazine-hero">
+                        <Link href={`/${locale === "id" ? "id/blog" : "blog"}/${locale === "en" ? (featured.slug_en || featured.slug) : featured.slug}`} className="magazine-hero">
                             <div className="hero-image-wrap">
                                 <img
                                     src={featured.image_urls?.[0] || "/placeholder.jpg"}
-                                    alt={featured.title}
+                                    alt={locale === "en" ? (featured.title_en || featured.title) : featured.title}
                                 />
                                 <div className="hero-overlay">
                                     <div className="hero-tags">
@@ -53,7 +53,7 @@ export default function TagFilter({ posts, categories }) {
                                             <span className="tag-chip">{getCategoryName(featured.category_id)}</span>
                                         )}
                                     </div>
-                                    <h2 className="hero-title">{featured.title}</h2>
+                                    <h2 className="hero-title">{locale === "en" ? (featured.title_en || featured.title) : featured.title}</h2>
                                     <p className="hero-author"><strong>by {featured.author}{featured.designation ? `, ${featured.designation}` : ''}</strong></p>
                                     <p className="hero-date">{new Date(featured.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
                                 </div>
@@ -63,12 +63,14 @@ export default function TagFilter({ posts, categories }) {
 
                     {rest.length > 0 && (
                         <div className="magazine-grid">
-                            {rest.map((post) => (
-                                <Link href={`/blog/${post.slug}`} key={post.id} className="magazine-card">
+                            {rest.map((post) => {
+                                const displayTitle = locale === "en" ? (post.title_en || post.title) : post.title;
+                                return (
+                                <Link href={`/${locale === "id" ? "id/blog" : "blog"}/${locale === "en" ? (post.slug_en || post.slug) : post.slug}`} key={post.id} className="magazine-card">
                                     <div className="card-image-wrap">
                                         <img
                                             src={post.image_urls?.[0] || "/placeholder.jpg"}
-                                            alt={post.title}
+                                            alt={displayTitle}
                                         />
                                     </div>
                                     <div className="card-body">
@@ -77,12 +79,13 @@ export default function TagFilter({ posts, categories }) {
                                                 <span className="tag-chip">{getCategoryName(post.category_id)}</span>
                                             )}
                                         </div>
-                                        <h3 className="card-title">{post.title}</h3>
+                                        <h3 className="card-title">{displayTitle}</h3>
                                         <p className="card-author"><strong>by {post.author}{post.designation ? `, ${post.designation}` : ''}</strong></p>
                                         <p className="card-date">{new Date(post.created_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
                                     </div>
                                 </Link>
-                            ))}
+                                );
+                            })}
                         </div>
                     )}
 

@@ -133,7 +133,7 @@ export default function App() {
   };
 
   const handleView = (slug) => {
-    window.open(`/blog/${slug}`, '_blank');
+    window.open(`/id/blog/${slug}`, '_blank');
   };
 
   const handleDelete = async (id) => {
