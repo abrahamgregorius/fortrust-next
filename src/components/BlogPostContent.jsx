@@ -103,7 +103,7 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
 
                 <section className="page-header blog-post-header">
                     <div className="container">
-                        <a
+                        {/* <a
                             href={`/${locale === "id" ? "id/blog" : "blog"}`}
                             className="back-button"
                             style={{ display: 'inline-flex', alignItems: 'center', marginBottom: "1rem", gap: '0.5rem', opacity: 0.6, color: 'currentColor', textDecoration: 'none', fontSize: '0.875rem', fontWeight: 500 }}
@@ -112,7 +112,7 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
                                 <path d="M19 12H5M12 19l-7-7 7-7" />
                             </svg>
                             Back
-                        </a>
+                        </a> */}
                         {categoryData?.name && <p className="category-label">{categoryData.name}</p>}
                         <h1>{displayTitle}</h1>
                         <p className="author-line"><strong>{data.author}</strong>{data.designation ? `, ${data.designation}` : ''}</p>
