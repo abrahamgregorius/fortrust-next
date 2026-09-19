@@ -122,9 +122,10 @@ export default function Contact() {
                             <div className="office-location">
                                 <h4>Gading Serpong, ID</h4>
                                 <p>
-                                    South Tangerang Ruko Graha Boulevard Blok A No
-                                    16, Gading Serpong, Banten 15810
-                                    <br />Phone: +6221 3529 3447 <br />Mobile:
+                                    Ruko Alicante Blok A No. 29,
+                                    Jl. Alicante Boulevard, Medang, Pagedangan.
+                                    Tangerang, Banten 15334
+                                    <br />Phone: +62 815 1701 6115 <br />Mobile:
                                     +62811 158 1818
                                 </p>
                             </div>
