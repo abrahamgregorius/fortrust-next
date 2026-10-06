@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Your Next.js configuration here
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "korasssprzuarfcfctte.supabase.co",
+                pathname: "/storage/v1/object/public/**",
+            },
+        ],
+    },
 };
 
 export default nextConfig;
