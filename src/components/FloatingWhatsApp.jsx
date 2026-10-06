@@ -1,55 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 export default function FloatingWhatsApp() {
     const [buttonStyle, setButtonStyle] = useState({});
+    const rafRef = useRef(null);
 
-    useEffect(() => {
-        const handleScroll = () => {
+    const handleScroll = useCallback(() => {
+        if (rafRef.current) return;
+        rafRef.current = requestAnimationFrame(() => {
+            rafRef.current = null;
             const footer = document.querySelector('.footer');
             if (!footer) return;
 
             const footerRect = footer.getBoundingClientRect();
             const windowHeight = window.innerHeight;
-            const buttonHeight = 60; // Approximate button height
-            const buttonBottomMargin = 24; // Current bottom value
+            const buttonBottomMargin = 24;
 
-            // Check if footer is visible in viewport
             if (footerRect.top < windowHeight) {
-                // Footer is visible, calculate how much to move button up
                 const overlap = windowHeight - footerRect.top;
                 const newBottom = buttonBottomMargin + overlap;
-                
-                setButtonStyle({
-                    position: 'fixed',
-                    bottom: `${newBottom}px`,
-                    right: '24px',
-                    transition: 'bottom 0.3s ease'
-                });
+                setButtonStyle({ position: 'fixed', bottom: `${newBottom}px`, right: '24px', transition: 'bottom 0.3s ease' });
             } else {
-                // Footer not visible, keep button at original position
-                setButtonStyle({
-                    position: 'fixed',
-                    bottom: '24px',
-                    right: '24px',
-                    transition: 'bottom 0.3s ease'
-                });
+                setButtonStyle({ position: 'fixed', bottom: '24px', right: '24px', transition: 'bottom 0.3s ease' });
             }
-        };
+        });
+    }, []);
 
-        // Run on mount
+    useEffect(() => {
         handleScroll();
-
-        // Add scroll listener
-        window.addEventListener('scroll', handleScroll);
-        window.addEventListener('resize', handleScroll);
-
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('resize', handleScroll, { passive: true });
         return () => {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', handleScroll);
+            if (rafRef.current) cancelAnimationFrame(rafRef.current);
         };
-    }, []);
+    }, [handleScroll]);
 
     return (
         <a

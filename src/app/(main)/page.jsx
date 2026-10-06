@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
     ArrowRight,
@@ -22,39 +23,52 @@ export default function Home() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [banners, setBanners] = useState([]);
     const [isLoadingBanners, setIsLoadingBanners] = useState(true);
-    const [imagesLoaded, setImagesLoaded] = useState(false);
 
-    const fetchBanners = async () => {
-        setIsLoadingBanners(true);
-        try {
-            const { data, error } = await supabase
-                .from("banners")
-                .select("*")
-                .eq("is_active", true)
-                .order("display_order", { ascending: false });
-            if (error) {
-                console.error("Error fetching banners:", error);
-            } else {
-                // Filter banners based on schedule and always_show
-                const now = new Date();
-                const filteredBanners = (data || []).filter(banner => {
-                    if (banner.always_show) return true; // Always show if flagged
+    // FIX 1: Single parallel fetch instead of 3 sequential useEffects
+    useEffect(() => {
+        const fetchAll = async () => {
+            const now = new Date().toISOString();
+            const [bannersRes, testimonialsRes, eventsRes] = await Promise.all([
+                supabase
+                    .from("banners")
+                    .select("*")
+                    .eq("is_active", true)
+                    .order("display_order", { ascending: false }),
+                supabase.from("testimonials").select("*"),
+                supabase
+                    .from("events")
+                    .select("*")
+                    .gte("start_at", now)
+                    .order("start_at", { ascending: true })
+                    .limit(3),
+            ]);
 
-                    if (!banner.start_date || !banner.end_date) return false; // No schedule and not always show
-
-                    const startDate = new Date(banner.start_date);
-                    const endDate = new Date(banner.end_date);
-
-                    return now >= startDate && now <= endDate;
+            // Process banners with schedule filter
+            if (!bannersRes.error && bannersRes.data) {
+                const filtered = bannersRes.data.filter(banner => {
+                    if (banner.always_show) return true;
+                    if (!banner.start_date || !banner.end_date) return false;
+                    const now = new Date();
+                    const start = new Date(banner.start_date);
+                    const end = new Date(banner.end_date);
+                    return now >= start && now <= end;
                 });
-                setBanners(filteredBanners);
+                setBanners(filtered);
             }
-        } catch (err) {
-            console.error("Fetch banners failed:", err);
-        } finally {
             setIsLoadingBanners(false);
-        }
-    };
+
+            if (!testimonialsRes.error) {
+                setTestimonials(testimonialsRes.data || []);
+            }
+            setIsLoadingTestimonials(false);
+
+            if (!eventsRes.error) {
+                setEvents(eventsRes.data || []);
+            }
+            setIsLoadingEvents(false);
+        };
+        fetchAll();
+    }, []);
 
     // Hardcoded slides
     const hardcodedSlides = [
@@ -70,95 +84,22 @@ export default function Home() {
 
     // Convert banners to slide format
     const bannerSlides = banners
-        .filter(banner => banner.image_url) // Only include banners with image_url
+        .filter(banner => banner.image_url)
         .map(banner => ({
-            id: `banner-${banner.id}`, // Unique id to avoid conflict
+            id: `banner-${banner.id}`,
             title: banner.title,
-            subtitle: "", // Could add subtitle field to database later
+            subtitle: "",
             img: banner.image_url,
-            mobileImg: banner.mobile_image_url || banner.image_url, // Use mobile image if available
+            mobileImg: banner.mobile_image_url || banner.image_url,
             link: banner.link_url,
         }));
 
-    // Use database banners if available, otherwise use hardcoded
     const slides = bannerSlides.length > 0 ? bannerSlides : hardcodedSlides;
-
-    // Preload images
-    useEffect(() => {
-        if (slides.length > 0 && !isLoadingBanners) {
-            const preloadImages = async () => {
-                // Collect all unique image URLs to preload
-                const imageUrls = new Set();
-                slides.forEach(slide => {
-                    imageUrls.add(slide.img);
-                    if (slide.mobileImg && slide.mobileImg !== slide.img) {
-                        imageUrls.add(slide.mobileImg);
-                    }
-                });
-
-                const imagePromises = Array.from(imageUrls).map(url => {
-                    return new Promise((resolve, reject) => {
-                        const img = new Image();
-                        img.onload = () => resolve(url);
-                        img.onerror = () => reject(url);
-                        img.src = url;
-                    });
-                });
-
-                try {
-                    await Promise.all(imagePromises);
-                    setImagesLoaded(true);
-                } catch (error) {
-                    console.error('Error preloading images:', error);
-                    // Still show the carousel even if some images fail to load
-                    setImagesLoaded(true);
-                }
-            };
-            preloadImages();
-        }
-    }, [slides, isLoadingBanners]);
 
     const [testimonials, setTestimonials] = useState([]);
     const [isLoadingTestimonials, setIsLoadingTestimonials] = useState(true);
-    const fetchTestimonials = async () => {
-        setIsLoadingTestimonials(true);
-        try {
-            const { data, error } = await supabase.from("testimonials").select("*");
-            if (error) {
-                console.error("Error fetching testimonials:", error);
-            } else {
-                setTestimonials(data || []);
-            }
-        } catch (err) {
-            console.error("Fetch testimonials failed:", err);
-        } finally {
-            setIsLoadingTestimonials(false);
-        }
-    };
-
     const [events, setEvents] = useState([]);
     const [isLoadingEvents, setIsLoadingEvents] = useState(true);
-    const fetchEvents = async () => {
-        setIsLoadingEvents(true);
-        try {
-            const now = new Date().toISOString();
-            const { data, error } = await supabase
-                .from("events")
-                .select("*")
-                .gte("start_at", now)
-                .order("start_at", { ascending: true })
-                .limit(3);
-            if (error) {
-                console.error("Error fetching events:", error);
-            } else {
-                setEvents(data || []);
-            }
-        } catch (err) {
-            console.error("Fetch events failed:", err);
-        } finally {
-            setIsLoadingEvents(false);
-        }
-    };
 
     const formatTimeJakarta = (isoString) => {
         try {
@@ -169,7 +110,6 @@ export default function Home() {
                 hour12: true,
                 timeZone: "Asia/Jakarta",
             }).format(d);
-            // Convert 1:00 PM -> 1.00 PM
             return t.replace(":", ".");
         } catch (_) {
             return isoString;
@@ -196,118 +136,34 @@ export default function Home() {
     };
 
     const universities = [
-        {
-            src: "/universities/Logo/oaut.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/vuow.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/uoauck.jpg",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/uotago.jpg",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/UTS.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/apu.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/arizona.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/bhms.jpg",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/coventry.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/curtin.webp",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/deakin.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/falmouth.jpg",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/griffith.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/icm.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/jcu.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/lancaster.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/lincoln.jpg",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/manchester.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/massey.jpg",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/newcastle.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/osu.webp",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/SPJ.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/teesside.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/ucic.jpg",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/UIC.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/uwell.jpg",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/waikatopng.png",
-            alt: "University Logo",
-        },
-        {
-            src: "/universities/Logo/wsu.png",
-            alt: "University Logo",
-        },
+        { src: "/universities/Logo/oaut.png", alt: "University Logo" },
+        { src: "/universities/Logo/vuow.png", alt: "University Logo" },
+        { src: "/universities/Logo/uoauck.jpg", alt: "University Logo" },
+        { src: "/universities/Logo/uotago.jpg", alt: "University Logo" },
+        { src: "/universities/Logo/UTS.png", alt: "University Logo" },
+        { src: "/universities/Logo/apu.png", alt: "University Logo" },
+        { src: "/universities/Logo/arizona.png", alt: "University Logo" },
+        { src: "/universities/Logo/bhms.jpg", alt: "University Logo" },
+        { src: "/universities/Logo/coventry.png", alt: "University Logo" },
+        { src: "/universities/Logo/curtin.webp", alt: "University Logo" },
+        { src: "/universities/Logo/deakin.png", alt: "University Logo" },
+        { src: "/universities/Logo/falmouth.jpg", alt: "University Logo" },
+        { src: "/universities/Logo/griffith.png", alt: "University Logo" },
+        { src: "/universities/Logo/icm.png", alt: "University Logo" },
+        { src: "/universities/Logo/jcu.png", alt: "University Logo" },
+        { src: "/universities/Logo/lancaster.png", alt: "University Logo" },
+        { src: "/universities/Logo/lincoln.jpg", alt: "University Logo" },
+        { src: "/universities/Logo/manchester.png", alt: "University Logo" },
+        { src: "/universities/Logo/massey.jpg", alt: "University Logo" },
+        { src: "/universities/Logo/newcastle.png", alt: "University Logo" },
+        { src: "/universities/Logo/osu.webp", alt: "University Logo" },
+        { src: "/universities/Logo/SPJ.png", alt: "University Logo" },
+        { src: "/universities/Logo/teesside.png", alt: "University Logo" },
+        { src: "/universities/Logo/ucic.jpg", alt: "University Logo" },
+        { src: "/universities/Logo/UIC.png", alt: "University Logo" },
+        { src: "/universities/Logo/uwell.jpg", alt: "University Logo" },
+        { src: "/universities/Logo/waikatopng.png", alt: "University Logo" },
+        { src: "/universities/Logo/wsu.png", alt: "University Logo" },
     ];
 
     const [isDragging, setIsDragging] = useState(false);
@@ -354,21 +210,9 @@ export default function Home() {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 8000);
+        }, 8000);
         return () => clearInterval(timer);
     }, [slides.length]);
-
-    useEffect(() => {
-        fetchTestimonials();
-    }, [])
-
-    useEffect(() => {
-        fetchEvents();
-    }, [])
-
-    useEffect(() => {
-        fetchBanners();
-    }, [])
 
     return (
         <>
@@ -388,7 +232,7 @@ export default function Home() {
                         onTouchEnd={handleTouchEnd}
                         style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
                     >
-                        {isLoadingBanners || !imagesLoaded ? (
+                        {isLoadingBanners ? (
                             <div className="carousel-slide active" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                                 <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
                             </div>
@@ -400,20 +244,17 @@ export default function Home() {
                                 >
                                     <picture>
                                         <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
-                                        <img src={slide.img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }} onClick={() => window.location.href = slide.link || "/contact"} />
+                                        <img
+                                            src={slide.img}
+                                            alt=""
+                                            loading={idx === 0 ? "eager" : "lazy"}
+                                            decoding="async"
+                                            fetchPriority={idx === 0 ? "high" : "low"}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }}
+                                            onClick={() => window.location.href = slide.link || "/contact"}
+                                        />
                                     </picture>
-                                    <div className="slide-content">
-                                        {/* <h1>{slide.title}</h1> */}
-                                        {/* <p className="subhead">{slide.subtitle}</p> */}
-                                        {/* <div className="hero__cta">
-                                            <a
-                                                href={slide.link || "/contact"}
-                                                className="btn btn--primary btn--large"
-                                            >
-                                                Start Your Journey
-                                            </a>
-                                        </div> */}
-                                    </div>
+                                    <div className="slide-content" />
                                 </div>
                             ))
                         )}
@@ -575,15 +416,9 @@ export default function Home() {
                         </p>
                         <div className="partners__scroller">
                             <div className="partners__logos">
-                                {universities?.map((uni, i) => {
-                                    return (
-                                        <img
-                                            key={i}
-                                            src={uni.src}
-                                            alt={uni.alt}
-                                        />
-                                    );
-                                })}
+                                {universities?.map((uni, i) => (
+                                    <Image key={i} src={uni.src} alt={uni.alt} width={80} height={40} loading="lazy" />
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -608,9 +443,12 @@ export default function Home() {
                                         <div key={t.id} className="flip-card">
                                             <div className="flip-card-inner">
                                                 <div className="flip-card-front">
-                                                    <img
+                                                    <Image
                                                         src={t.image_url || "/placeholder.jpg"}
                                                         alt={`Photo of ${t.person_name}`}
+                                                        fill
+                                                        loading="lazy"
+                                                        sizes="(max-width: 768px) 100vw, 340px"
                                                         className="w-full h-full object-cover"
                                                     />
                                                 </div>
@@ -655,147 +493,75 @@ export default function Home() {
                         </div>
                         <div className="destinations__grid">
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/australia.jpg"
-                                    alt="Scenic view of Sydney, Australia"
-                                />
+                                <Image src="/destinations/australia.jpg" alt="Scenic view of Sydney, Australia" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>Australia</h3>
-                                    <p>
-                                        World-class education, vibrant cities,
-                                        and stunning natural landscapes.
-                                    </p>
-                                    <a href="/destinations/australia">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>World-class education, vibrant cities, and stunning natural landscapes.</p>
+                                    <a href="/destinations/australia">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/canada.jpg"
-                                    alt="Scenic view of Canada"
-                                />
+                                <Image src="/destinations/canada.jpg" alt="Scenic view of Canada" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>Canada</h3>
-                                    <p>
-                                        World-class education, vibrant cities,
-                                        and stunning natural landscapes.
-                                    </p>
-                                    <a href="/destinations/canada">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>World-class education, vibrant cities, and stunning natural landscapes.</p>
+                                    <a href="/destinations/canada">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/china.jpg"
-                                    alt="Scenic view of China"
-                                />
+                                <Image src="/destinations/china.jpg" alt="Scenic view of China" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>China</h3>
-                                    <p>
-                                        World-class education, vibrant cities,
-                                        and stunning natural landscapes.
-                                    </p>
-                                    <a href="/destinations/china">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>World-class education, vibrant cities, and stunning natural landscapes.</p>
+                                    <a href="/destinations/china">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/malaysia.jpg"
-                                    alt="Scenic view of Malaysia"
-                                />
+                                <Image src="/destinations/malaysia.jpg" alt="Scenic view of Malaysia" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>Malaysia</h3>
-                                    <p>
-                                        World-class education, vibrant cities,
-                                        and stunning natural landscapes.
-                                    </p>
-                                    <a href="/destinations/malaysia">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>World-class education, vibrant cities, and stunning natural landscapes.</p>
+                                    <a href="/destinations/malaysia">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/newzealand.jpg"
-                                    alt="Beautiful landscape of New Zealand"
-                                />
+                                <Image src="/destinations/newzealand.jpg" alt="Beautiful landscape of New Zealand" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>New Zealand</h3>
-                                    <p>
-                                        Innovative learning in one of the safest
-                                        and most beautiful countries.
-                                    </p>
-                                    <a href="/destinations/newzealand">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>Innovative learning in one of the safest and most beautiful countries.</p>
+                                    <a href="/destinations/newzealand">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/singapore.jpg"
-                                    alt="Modern skyline of Singapore"
-                                />
+                                <Image src="/destinations/singapore.jpg" alt="Modern skyline of Singapore" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>Singapore</h3>
-                                    <p>
-                                        A global hub of technology, finance, and
-                                        multicultural experiences.
-                                    </p>
-                                    <a href="/destinations/singapore">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>A global hub of technology, finance, and multicultural experiences.</p>
+                                    <a href="/destinations/singapore">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/switzerland.jpg"
-                                    alt="Modern skyline of Switzerland"
-                                />
+                                <Image src="/destinations/switzerland.jpg" alt="Modern skyline of Switzerland" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>Switzerland</h3>
-                                    <p>
-                                        A global hub of technology, finance, and
-                                        multicultural experiences.
-                                    </p>
-                                    <a href="/destinations/switzerland">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>A global hub of technology, finance, and multicultural experiences.</p>
+                                    <a href="/destinations/switzerland">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/uk.jpg"
-                                    alt="Iconic view of London, UK"
-                                />
+                                <Image src="/destinations/uk.jpg" alt="Iconic view of London, UK" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>United Kingdom</h3>
-                                    <p>
-                                        Home to historic universities with a
-                                        legacy of academic excellence.
-                                    </p>
-                                    <a href="/destinations/uk">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>Home to historic universities with a legacy of academic excellence.</p>
+                                    <a href="/destinations/uk">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img
-                                    src="/destinations/usa.jpg"
-                                    alt="Iconic view of United States of America"
-                                />
+                                <Image src="/destinations/usa.jpg" alt="Iconic view of United States of America" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
                                 <div className="card__content">
                                     <h3>United States of America</h3>
-                                    <p>
-                                        Home to historic universities with a
-                                        legacy of academic excellence.
-                                    </p>
-                                    <a href="/destinations/usa">
-                                        Learn More <ArrowRight></ArrowRight>
-                                    </a>
+                                    <p>Home to historic universities with a legacy of academic excellence.</p>
+                                    <a href="/destinations/usa">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                         </div>
@@ -825,11 +591,7 @@ export default function Home() {
                                             <div key={i} className="card event-card">
                                                 {event.image_url && (
                                                     <div className="event-card__image">
-                                                        <img
-                                                            src={event.image_url}
-                                                            alt={event.name}
-                                                            className="event-image"
-                                                        />
+                                                        <Image src={event.image_url} alt={event.name} fill loading="lazy" sizes="(max-width: 768px) 100vw, 400px" className="event-image" />
                                                     </div>
                                                 )}
                                                 <div className="event-card__date">
