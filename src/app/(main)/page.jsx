@@ -210,7 +210,7 @@ export default function Home() {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
-        }, 8000);
+    }, 8000);
         return () => clearInterval(timer);
     }, [slides.length]);
 
@@ -417,7 +417,10 @@ export default function Home() {
                         <div className="partners__scroller">
                             <div className="partners__logos">
                                 {universities?.map((uni, i) => (
-                                    <Image key={i} src={uni.src} alt={uni.alt} width={80} height={40} loading="lazy" />
+                                    <img key={`first-${i}`} src={uni.src} alt={uni.alt} loading="lazy" />
+                                ))}
+                                {universities?.map((uni, i) => (
+                                    <img key={`second-${i}`} src={uni.src} alt={uni.alt} loading="lazy" />
                                 ))}
                             </div>
                         </div>
@@ -493,74 +496,74 @@ export default function Home() {
                         </div>
                         <div className="destinations__grid">
                             <div className="card dest-card">
-                                <Image src="/destinations/australia.jpg" alt="Scenic view of Sydney, Australia" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/australia.jpg" alt="Scenic view of Sydney, Australia" loading="lazy" />
                                 <div className="card__content">
                                     <h3>Australia</h3>
-                                    <p>World-class education, vibrant cities, and stunning natural landscapes.</p>
+                                    <p>Pendidikan kelas dunia dengan biaya hidup yang terjangkau dan budaya yang kaya.</p>
                                     <a href="/destinations/australia">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <Image src="/destinations/canada.jpg" alt="Scenic view of Canada" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/canada.jpg" alt="Scenic view of Canada" loading="lazy" />
                                 <div className="card__content">
                                     <h3>Canada</h3>
-                                    <p>World-class education, vibrant cities, and stunning natural landscapes.</p>
+                                    <p>Pendidikan berkualitas tinggi dengan lingkungan multikultural yang ramah dan aman.</p>
                                     <a href="/destinations/canada">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <Image src="/destinations/china.jpg" alt="Scenic view of China" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/china.jpg" alt="Scenic view of China" loading="lazy" />
                                 <div className="card__content">
                                     <h3>China</h3>
-                                    <p>World-class education, vibrant cities, and stunning natural landscapes.</p>
+                                    <p>Pendidikan modern dengan biaya terjangkau dan akses ke teknologi terdepan.</p>
                                     <a href="/destinations/china">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <Image src="/destinations/malaysia.jpg" alt="Scenic view of Malaysia" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/malaysia.jpg" alt="Scenic view of Malaysia" loading="lazy" />
                                 <div className="card__content">
                                     <h3>Malaysia</h3>
-                                    <p>World-class education, vibrant cities, and stunning natural landscapes.</p>
+                                    <p>Pendidikan bertaraf internasional dengan biaya hidup yang rendah dan lokasi strategis.</p>
                                     <a href="/destinations/malaysia">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <Image src="/destinations/newzealand.jpg" alt="Beautiful landscape of New Zealand" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/newzealand.jpg" alt="Beautiful landscape of New Zealand" loading="lazy" />
                                 <div className="card__content">
                                     <h3>New Zealand</h3>
-                                    <p>Innovative learning in one of the safest and most beautiful countries.</p>
+                                    <p>Pembelajaran inovatif di salah satu negara teraman dengan alam yang menakjubkan.</p>
                                     <a href="/destinations/newzealand">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <Image src="/destinations/singapore.jpg" alt="Modern skyline of Singapore" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/singapore.jpg" alt="Modern skyline of Singapore" loading="lazy" />
                                 <div className="card__content">
                                     <h3>Singapore</h3>
-                                    <p>A global hub of technology, finance, and multicultural experiences.</p>
+                                    <p>Pusat pendidikan global dengan fasilitas modern dan peluang karier internasional.</p>
                                     <a href="/destinations/singapore">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <Image src="/destinations/switzerland.jpg" alt="Modern skyline of Switzerland" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/switzerland.jpg" alt="Modern skyline of Switzerland" loading="lazy" />
                                 <div className="card__content">
                                     <h3>Switzerland</h3>
-                                    <p>A global hub of technology, finance, and multicultural experiences.</p>
+                                    <p>Pendidikan berkualitas dengan pemandangan alam Alps yang menakjubkan dan standar hidup tinggi.</p>
                                     <a href="/destinations/switzerland">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <Image src="/destinations/uk.jpg" alt="Iconic view of London, UK" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/uk.jpg" alt="Iconic view of London, UK" loading="lazy" />
                                 <div className="card__content">
                                     <h3>United Kingdom</h3>
-                                    <p>Home to historic universities with a legacy of academic excellence.</p>
+                                    <p>Universitas bersejarah dunia dengan warisan keunggulan akademik yang prestisius.</p>
                                     <a href="/destinations/uk">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <Image src="/destinations/usa.jpg" alt="Iconic view of United States of America" fill loading="lazy" sizes="(max-width: 768px) 100vw, 33vw" />
+                                <img src="/destinations/usa.jpg" alt="Iconic view of United States of America" loading="lazy" />
                                 <div className="card__content">
                                     <h3>United States of America</h3>
-                                    <p>Home to historic universities with a legacy of academic excellence.</p>
+                                    <p>Pendidikan universitas ternama dunia dengan fasilitas riset dan inovasi terdepan.</p>
                                     <a href="/destinations/usa">Learn More <ArrowRight></ArrowRight></a>
                                 </div>
                             </div>

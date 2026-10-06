@@ -406,8 +406,8 @@ ul {
 }
 .partners__logos img {
     height: 40px;
-    object-fit: cover;
-    object-position: center;
+    width: auto;
+    object-fit: contain;
     filter: grayscale(100%);
     opacity: 0.6;
     transition: all 0.3s ease;
@@ -558,6 +558,9 @@ ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-8);
+}
+.dest-card {
+    position: relative;
 }
 .dest-card img {
     width: 100%;
@@ -1568,6 +1571,18 @@ ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .magazine-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .magazine-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .magazine-card {
