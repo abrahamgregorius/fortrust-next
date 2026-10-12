@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import RichTextEditor from '@/components/admin/RichTextEditor';
 import TranslateButton from '@/components/TranslateButton';
+import AiBlogWriter from '@/components/admin/AiBlogWriter';
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -104,6 +105,23 @@ export default function CreateBlogPage() {
         }));
     };
 
+    // An AI draft fills the form; it is saved only when Save Post is pressed.
+    const handleGenerated = (article) => {
+        setFormData(prev => ({
+            ...prev,
+            title: article.title || prev.title,
+            slug: article.title ? slugify(article.title) : prev.slug,
+            title_en: article.title_en || prev.title_en,
+            slug_en: article.title_en ? slugify(article.title_en) : prev.slug_en,
+            content: article.content || prev.content,
+            content_en: article.content_en || prev.content_en,
+            tag: article.tags?.length ? article.tags : prev.tag,
+            category_id: article.category_id ? String(article.category_id) : prev.category_id,
+        }));
+        if (article.tags?.length) setTagsInput(article.tags.join(', '));
+        setActiveTab('id');
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmissionStatus({ message: 'Submitting post...', type: 'info' });
@@ -151,6 +169,8 @@ export default function CreateBlogPage() {
                         Back to Blog List
                     </a>
                 </div>
+
+                <AiBlogWriter onGenerated={handleGenerated} />
 
                 <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-xl shadow-md space-y-6">
                     <div>
