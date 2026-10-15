@@ -16,18 +16,21 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PopupBanner from "@/components/PopupBanner";
 import { supabase } from "@/lib/supabaseClient";
 
 export default function Home() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [banners, setBanners] = useState([]);
     const [isLoadingBanners, setIsLoadingBanners] = useState(true);
+    const [latestBlogs, setLatestBlogs] = useState([]);
 
     // FIX 1: Single parallel fetch instead of 3 sequential useEffects
     useEffect(() => {
         const fetchAll = async () => {
             const now = new Date().toISOString();
-            const [bannersRes, testimonialsRes, eventsRes] = await Promise.all([
+            const [blogsRes, bannersRes, testimonialsRes, eventsRes] = await Promise.all([
+                supabase.from("blogs").select("*").order("created_at", { ascending: false }).limit(3),
                 supabase
                     .from("banners")
                     .select("*")
@@ -68,6 +71,13 @@ export default function Home() {
                 setEvents(eventsRes.data || []);
             }
             setIsLoadingEvents(false);
+
+            if (!blogsRes.error && blogsRes.data) {
+                const sorted = (blogsRes.data || []).sort(
+                    (a, b) => new Date(b.created_at) - new Date(a.created_at)
+                );
+                setLatestBlogs(sorted.slice(0, 3));
+            }
         };
         fetchAll();
     }, []);
@@ -219,6 +229,7 @@ export default function Home() {
             <Navbar></Navbar>
 
             <main suppressHydrationWarning>
+                <PopupBanner />
                 <section className="hero-carousel">
                     <div
                         className="carousel-wrapper"
@@ -398,6 +409,37 @@ export default function Home() {
                                 </div>
                             </>
                         )}
+                    </div>
+                </section>
+
+                <section className="latest-blogs">
+                    <div className="container">
+                        <div className="section-header">
+                            <h2>Artikel Terbaru dari Blog Kami</h2>
+                            <p>Wawasan, tips, dan cerita untuk membantu Anda merencanakan perjalanan studi ke luar negeri.</p>
+                        </div>
+                        <div className="latest-blogs__grid">
+                            {latestBlogs.map((blog) => (
+                                <Link key={blog.id} href={`/id/blog/${blog.slug}`} className="latest-blog-card">
+                                    {blog.image_urls?.[0] && (
+                                        <div className="latest-blog-card__image">
+                                            <img src={blog.image_urls[0]} alt={blog.title} loading="lazy" />
+                                        </div>
+                                    )}
+                                    <div className="latest-blog-card__content">
+                                        <span className="latest-blog-card__date">
+                                            {new Date(blog.created_at).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}
+                                        </span>
+                                        <h3>{blog.title}</h3>
+                                        <p>{blog.excerpt || ""}</p>
+                                        <span className="latest-blog-card__cta">Baca Selengkapnya <ArrowRight size={14} /></span>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                        <div style={{ textAlign: "center", marginTop: "2rem" }}>
+                            <Link href="/id/blog" className="btn btn--secondary">Lihat Semua Artikel</Link>
+                        </div>
                     </div>
                 </section>
 
