@@ -29,7 +29,6 @@
     --radius-pill: 999px;
     --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-medium: 0 8px 24px rgba(15, 45, 92, 0.1);
-    --shadow-large: 0 10px 40px rgba(15, 45, 92, 0.15);
 }
 
 *,
@@ -50,6 +49,7 @@ body {
     color: var(--neutral-700);
     line-height: 1.6;
     font-size: 16px;
+    overflow-x: hidden;
 }
 .container {
     max-width: 1200px;
@@ -161,7 +161,7 @@ ul {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--neutral-100);
     padding: var(--space-2) 0;
@@ -187,40 +187,36 @@ ul {
 .header__logo img {
     object-fit: cover;
     object-position: 0%;
-    height: 40px;
 }
 
-/* Desktop navigation - compact with icons */
+/* Desktop navigation is now the default */
 .nav__list {
     display: flex;
-    gap: var(--space-2);
+    gap: var(--space-1);
+    align-items: center;
 }
 .nav__link {
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.875rem;
+    font-weight: 500;
     color: var(--neutral-600);
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-1) var(--space-2);
     position: relative;
     display: flex;
     align-items: center;
     gap: 6px;
-    border-radius: 8px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-.nav__link svg {
-    opacity: 0.7;
-    flex-shrink: 0;
+    border-radius: 6px;
+    transition: color 0.2s ease, background-color 0.2s ease;
 }
 .nav__link.active,
 .nav__link:hover {
     color: var(--brand-600);
-    background-color: var(--neutral-50);
-}
-.nav__link.active svg,
-.nav__link:hover svg {
-    opacity: 1;
+    background-color: var(--neutral-100);
 }
 .nav__link::after {
+    display: none;
+}
+.nav__link.active::after,
+.nav__link:hover::after {
     display: none;
 }
 .header__actions {
@@ -229,7 +225,7 @@ ul {
     gap: var(--space-3);
 }
 .lang-switcher {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--neutral-400);
 }
@@ -2121,57 +2117,33 @@ ul {
 .dropdown-menu {
     display: none;
     position: absolute;
-    top: calc(100% + 8px);
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
+    top: 100%;
     background-color: var(--bg);
-    border-radius: 14px;
-    box-shadow: var(--shadow-large, 0 10px 40px rgba(0,0,0,0.12));
-    padding: var(--space-3);
-    min-width: 340px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-medium);
+    padding: var(--space-2);
+    min-width: 240px;
     z-index: 1010;
     opacity: 0;
+    transform: translateY(8px);
     transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.dropdown-menu--right {
+    left: 0;
+}
+.dropdown-menu--left {
+    right: 0;
+    left: auto;
 }
 
 .nav-item--dropdown:hover .dropdown-menu {
     display: block;
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
 }
 
 .nav-item--dropdown:hover .dropdown-icon {
     transform: rotate(180deg);
-}
-
-/* Grid layout for dropdown */
-.dropdown-menu--grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-1);
-}
-
-.dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    color: var(--neutral-700);
-    border-radius: 10px;
-    font-weight: 500;
-    font-size: 0.85rem;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-.dropdown-item svg {
-    color: var(--brand-500);
-    flex-shrink: 0;
-}
-.dropdown-item:hover {
-    background-color: var(--brand-50);
-    color: var(--brand-700);
-}
-.dropdown-item:hover svg {
-    color: var(--brand-600);
 }
 
 .dropdown-menu a {
@@ -2200,18 +2172,6 @@ ul {
 /* ------------------------- */
 
 @media (max-width: 1024px) {
-    /* Compact nav on tablet */
-    .nav__list {
-        gap: var(--space-1);
-    }
-    .nav__link {
-        font-size: 0.9rem;
-        padding: var(--space-2);
-    }
-    .nav__link--icon svg:first-child {
-        display: none;
-    }
-
     /* Hapus aturan yang menyembunyikan dropdown di mobile */
     .nav-item--dropdown:hover .dropdown-menu {
         display: block;
@@ -2246,23 +2206,13 @@ ul {
             padding-bottom 0.4s ease-in-out;
     }
 
-    /* Grid reset for mobile */
-    .dropdown-menu--grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-1);
-    }
-
     /* Styling untuk item di dalam mobile dropdown */
-    .dropdown-item {
+    .dropdown-menu a {
         background-color: rgba(0, 0, 0, 0.03);
-        padding: 12px 40px;
+        padding: 12px 40px; /* Beri indentasi */
         text-align: center;
         font-size: 1rem;
         font-weight: 400;
-        justify-content: center;
-    }
-    .dropdown-item svg {
-        display: none;
     }
 
     /* Tampilkan dropdown saat parent-nya aktif */
@@ -2410,6 +2360,36 @@ ul {
     .final-cta .btn--primary:hover {
         background-color: var(--neutral-900);
         color: var(--accent);
+    }
+
+    /* Latest Blogs - adapt to dark mode */
+    .latest-blogs {
+        background: var(--neutral-100) !important;
+    }
+
+    .latest-blogs .latest-blog-card {
+        background: var(--bg) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .latest-blogs .latest-blog-card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .latest-blogs .latest-blog-card__date {
+        color: var(--accent) !important;
+    }
+
+    .latest-blogs .latest-blog-card__content h3 {
+        color: var(--neutral-900) !important;
+    }
+
+    .latest-blogs .latest-blog-card__content p {
+        color: var(--neutral-400) !important;
+    }
+
+    .latest-blogs .latest-blog-card__cta {
+        color: var(--accent) !important;
     }
 }
 
@@ -3705,6 +3685,7 @@ ul {
 .latest-blogs {
     padding: 4rem 0;
     background: var(--neutral-50, #fafafa);
+    overflow-x: hidden;
 }
 
 .latest-blogs__grid {
@@ -3724,6 +3705,8 @@ ul {
     text-decoration: none;
     color: inherit;
     transition: transform 0.2s, box-shadow 0.2s;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .latest-blog-card:hover {
@@ -3734,10 +3717,12 @@ ul {
 .latest-blog-card__image {
     height: 200px;
     overflow: hidden;
+    max-width: 100%;
 }
 
 .latest-blog-card__image img {
     width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
 }
