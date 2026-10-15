@@ -125,8 +125,7 @@ export default function Contact() {
                                     Ruko Alicante Blok A No. 29,
                                     Jl. Alicante Boulevard, Medang, Pagedangan.
                                     Tangerang, Banten 15334
-                                    <br />Phone: +62 815 1701 6115 <br />Mobile:
-                                    +62811 158 1818
+                                    <br />Phone: +62 815 1701 6115 <br />
                                 </p>
                             </div>
                             <div className="office-location">
