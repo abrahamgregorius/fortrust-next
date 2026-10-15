@@ -229,7 +229,8 @@ export default function Navbar() {
                     </nav>
 
                     <div className="header__actions">
-                        <div className="lang-switcher">
+                        {!pathname.startsWith("/blog") && !pathname.startsWith("/id/blog") && (
+                            <div className="lang-switcher">
                             <button
                                 onClick={() => switchLocale("en")}
                                 className={locale === "en" ? "active" : ""}
@@ -264,6 +265,7 @@ export default function Navbar() {
                                 ID
                             </button>
                         </div>
+                        )}
                         <Link href={`${localePrefix}/contact`} className="btn btn--primary">
                             Free Consultation
                         </Link>
