@@ -3640,6 +3640,10 @@ ul {
     text-decoration: underline;
     margin-bottom: 1rem;
 }
+.lang-toggle-btn:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
 
 /* Latest blog showcase section */
 .latest-blogs {
