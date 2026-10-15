@@ -117,6 +117,12 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
                         <h1>{displayTitle}</h1>
                         <p className="author-line"><strong>{data.author}</strong>{data.designation ? `, ${data.designation}` : ''}</p>
                         <p className="date-line">{formatDate(data.created_at)}</p>
+                        <a
+                            href={locale === "en" ? `/id/blog/${slugPair.idSlug}` : `/blog/${slugPair.enSlug}`}
+                            className="lang-toggle-btn"
+                        >
+                            {locale === "en" ? "Baca dalam Bahasa Indonesia" : "Read in English"}
+                        </a>
                         <div className="tags-blog">
                             {data.tag?.map ? data.tag.map(t => <span key={t.trim()}>{t.trim()}</span>) : null}
                         </div>
