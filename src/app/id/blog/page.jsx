@@ -24,6 +24,7 @@ export default async function Blog() {
                     <p>
                         Simak pengalaman yang telah sukses menjalani perjalanan studi mereka di luar negeri bersama kami.
                     </p>
+                    <a href="/blog" className="lang-toggle-btn">Read in English</a>
                 </div>
             </section>
 

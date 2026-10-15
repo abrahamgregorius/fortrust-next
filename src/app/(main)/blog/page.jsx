@@ -25,6 +25,7 @@ export default async function Blog() {
                         Hear from students who have successfully navigated their study
                         abroad journey with us.
                     </p>
+                    <a href="/id/blog" className="lang-toggle-btn">Baca dalam Bahasa Indonesia</a>
                 </div>
             </section>
 
