@@ -100,6 +100,7 @@ export default function App() {
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const [statusFilter, setStatusFilter] = useState("ALL");
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   const fetchBlogs = async () => {
@@ -191,6 +192,32 @@ export default function App() {
 
               {/* Blog Table Card */}
               <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                {/* Status Filter Tabs */}
+                <div className="flex items-center gap-2 px-6 py-4 border-b border-gray-200">
+                  {["ALL", "DRAFT", "PUBLISHED", "ARCHIVED"].map((status) => (
+                    <button
+                      key={status}
+                      onClick={() => setStatusFilter(status)}
+                      className={`px-3 py-1.5 text-sm font-medium rounded-full transition-colors ${
+                        statusFilter === status
+                          ? status === "ALL"
+                            ? "bg-indigo-600 text-white"
+                            : status === "DRAFT"
+                            ? "bg-yellow-500 text-white"
+                            : status === "PUBLISHED"
+                            ? "bg-green-600 text-white"
+                            : "bg-gray-600 text-white"
+                          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                      }`}
+                    >
+                      {status}
+                    </button>
+                  ))}
+                  <span className="ml-auto text-sm text-gray-500">
+                    {blogs.filter(b => statusFilter === "ALL" || b.status === statusFilter).length} posts
+                  </span>
+                </div>
+
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -216,7 +243,9 @@ export default function App() {
                       </tr>
                     </thead>
                     <tbody>
-                      {blogs.map((blog) => (
+                      {blogs
+                        .filter(b => statusFilter === "ALL" || b.status === statusFilter)
+                        .map((blog) => (
                         <tr
                           key={blog.id}
                           className="bg-white hover:bg-gray-50 transition-colors duration-200"
@@ -271,6 +300,13 @@ export default function App() {
                           </td>
                         </tr>
                       ))}
+                      {blogs.filter(b => statusFilter === "ALL" || b.status === statusFilter).length === 0 && (
+                        <tr>
+                          <td colSpan="6" className="px-6 py-12 text-center text-gray-500">
+                            No posts found for this status.
+                          </td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>
