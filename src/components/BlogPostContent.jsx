@@ -10,6 +10,7 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
         .from("blogs")
         .select("*")
         .eq(slugField, slug)
+        .eq("status", "PUBLISHED")
         .single();
 
     const { data: categoryData } = data?.category_id
@@ -17,7 +18,7 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
         : { data: null };
 
     const [{ data: relatedRaw }, { data: allCategories }] = await Promise.all([
-        supabase.from("blogs").select("*").neq("slug", slug),
+        supabase.from("blogs").select("*").eq("status", "PUBLISHED").neq("slug", slug),
         supabase.from("categories").select("id, name"),
     ]);
     const catMap = Object.fromEntries((allCategories || []).map(c => [c.id, c.name]));

@@ -7,7 +7,7 @@ import TagFilter from "@/components/TagFilter"
 
 export default async function Blog() {
     const [{ data: posts, error }, { data: categories }] = await Promise.all([
-        supabase.from("blogs").select("*"),
+        supabase.from("blogs").select("*").eq("status", "PUBLISHED"),
         supabase.from("categories").select("id, name").order("name"),
     ]);
 

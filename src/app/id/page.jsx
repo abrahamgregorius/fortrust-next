@@ -30,7 +30,7 @@ export default function Home() {
         const fetchAll = async () => {
             const now = new Date().toISOString();
             const [blogsRes, bannersRes, testimonialsRes, eventsRes] = await Promise.all([
-                supabase.from("blogs").select("*").order("created_at", { ascending: false }).limit(3),
+                supabase.from("blogs").select("*").eq("status", "PUBLISHED").order("created_at", { ascending: false }).limit(3),
                 supabase
                     .from("banners")
                     .select("*")
