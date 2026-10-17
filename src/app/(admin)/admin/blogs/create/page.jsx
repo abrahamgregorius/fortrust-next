@@ -44,6 +44,7 @@ export default function CreateBlogPage() {
         designation: '',
         category_id: '',
         tag: [],
+        status: 'DRAFT',
         content: '',
         youtube_url: '',
         slug: '',
@@ -133,6 +134,7 @@ export default function CreateBlogPage() {
                 designation: formData.designation,
                 category_id: formData.category_id,
                 tag: formData.tag,
+                status: formData.status,
                 content: formData.content,
                 youtube_url: formData.youtube_url,
                 slug: formData.slug,
@@ -224,6 +226,21 @@ export default function CreateBlogPage() {
                                 className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="study abroad, scholarship, usa (comma-separated)"
                             />
+                        </div>
+
+                        <div>
+                            <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select
+                                id="status"
+                                name="status"
+                                value={formData.status}
+                                onChange={handleChange}
+                                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            >
+                                <option value="DRAFT">DRAFT</option>
+                                <option value="PUBLISHED">PUBLISHED</option>
+                                <option value="ARCHIVED">ARCHIVED</option>
+                            </select>
                         </div>
                     </div>
 
