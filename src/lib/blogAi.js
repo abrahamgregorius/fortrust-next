@@ -165,3 +165,87 @@ export function cleanBlogHtml(raw) {
     while (open.length) out.push(`</${open.pop()}>`);
     return out.join("").trim();
 }
+
+// ---------------------------------------------------------------------------
+// AI Article Generator — research topics + write articles
+// ---------------------------------------------------------------------------
+
+import { RESEARCH_SYSTEM_PROMPT, RESEARCH_USER_PROMPT } from "./prompts/researchPrompt";
+import { ARTICLE_SYSTEM_PROMPT, ARTICLE_USER_PROMPT } from "./prompts/articlePrompt";
+
+const GEMINI_URL_GEN = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+
+/** Generate content without Google Search (plain generation) */
+async function askGemini(prompt, systemPrompt = null) {
+    const key = process.env.GEMINI_API_KEY;
+    if (!key) throw new Error("GEMINI_API_KEY is not set");
+
+    const contents = [{ role: "user", parts: [{ text: prompt }] }];
+    if (systemPrompt) {
+        contents.unshift({ role: "model", parts: [{ text: systemPrompt }] });
+    }
+
+    const res = await fetch(GEMINI_URL_GEN, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+        body: JSON.stringify({ contents }),
+    });
+    if (!res.ok) {
+        throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
+    }
+    const data = await res.json();
+    const text = (data.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+    return text;
+}
+
+/** Research trending topics using Gemini with Google Search grounding */
+export async function researchTopics(count = 5) {
+    const fullPrompt = `${RESEARCH_USER_PROMPT}\n\nReturn exactly ${count} topics.`;
+    const { text } = await askGeminiWithSearch(`${RESEARCH_SYSTEM_PROMPT}\n\n${fullPrompt}`);
+    const cleaned = (text || "").replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+    const topics = parseModelJson(cleaned);
+    return (Array.isArray(topics) ? topics : []).slice(0, count);
+}
+
+/** Generate a single article for a given topic */
+export async function generateArticle(topic) {
+    const prompt = ARTICLE_USER_PROMPT(topic);
+    const text = await askGemini(prompt, ARTICLE_SYSTEM_PROMPT);
+    const cleaned = (text || "").replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+    const article = parseModelJson(cleaned);
+
+    return {
+        title: article.title || topic.title,
+        title_en: article.title_en || topic.title_en,
+        slug: article.slug || "",
+        slug_en: article.slug_en || "",
+        content: cleanBlogHtml(article.content || ""),
+        content_en: cleanBlogHtml(article.content_en || ""),
+        topic_notes: topic.topic_notes || "",
+        keywords: topic.keywords || [],
+    };
+}
+
+/** Generate multiple articles (default 5) */
+export async function generateAllArticles(count = 5) {
+    // Step 1: Research topics
+    const topics = await researchTopics(count);
+    if (!topics.length) throw new Error("No topics generated");
+
+    // Step 2: Generate each article
+    const articles = [];
+    for (const topic of topics) {
+        try {
+            const article = await generateArticle(topic);
+            articles.push({
+                ...article,
+                status: "DRAFT",
+            });
+        } catch (e) {
+            console.error(`Failed to generate article for topic: ${topic.title}`, e.message);
+            // Continue with other articles
+        }
+    }
+
+    return articles;
+}
