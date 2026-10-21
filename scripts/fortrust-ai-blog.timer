@@ -1,0 +1,13 @@
+[Unit]
+Description=Run Fortrust AI Blog Generator daily at 00:00 WIB (Asia/Jakarta)
+
+[Timer]
+# 00:00 in Jakarta, every day
+OnCalendar=*-*-* 00:00:00
+# Re-run if the machine was asleep/off at the scheduled time
+Persistent=true
+# Small random delay so we do not hit the API at the exact same second as everyone else
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target
