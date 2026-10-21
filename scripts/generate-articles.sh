@@ -9,7 +9,8 @@
 #
 # Optional:
 #   ARTICLE_COUNT - number of articles to generate (default 5)
-#   LOG_FILE      - where to append the output (default /var/log/fortrust-ai-blog.log)
+#   LOG_FILE      - extra log file. Leave empty to log to stdout only
+#                  (systemd captures stdout into the journal).
 
 set -euo pipefail
 
@@ -17,11 +18,16 @@ set -euo pipefail
 : "${CRON_SECRET:?CRON_SECRET is required}"
 
 ARTICLE_COUNT="${ARTICLE_COUNT:-5}"
-LOG_FILE="${LOG_FILE:-/var/log/fortrust-ai-blog.log}"
+LOG_FILE="${LOG_FILE:-}"
 ENDPOINT="${APP_URL%/}/api/ai/generate-articles"
 
 log() {
-  echo "[$(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*" | tee -a "$LOG_FILE"
+  local line="[$(date -u '+%Y-%m-%dT%H:%M:%SZ')] $*"
+  if [ -n "$LOG_FILE" ]; then
+    echo "$line" | tee -a "$LOG_FILE"
+  else
+    echo "$line"
+  fi
 }
 
 log "--- AI blog generation starting (count=${ARTICLE_COUNT}) ---"

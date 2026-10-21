@@ -2,8 +2,8 @@
 Description=Run Fortrust AI Blog Generator daily at 00:00 WIB (Asia/Jakarta)
 
 [Timer]
-# 00:00 in Jakarta, every day
-OnCalendar=*-*-* 00:00:00
+# 00:00 WIB. Timezone is pinned so it does not depend on the server clock.
+OnCalendar=*-*-* 00:00:00 Asia/Jakarta
 # Re-run if the machine was asleep/off at the scheduled time
 Persistent=true
 # Small random delay so we do not hit the API at the exact same second as everyone else

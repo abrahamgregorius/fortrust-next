@@ -3,6 +3,9 @@ Description=Fortrust AI Blog Generator
 Documentation=https://github.com/abrahamgregorius/fortrust-next
 After=network-online.target
 Wants=network-online.target
+# Allow the unit to be started again soon after a failure
+StartLimitIntervalSec=3600
+StartLimitBurst=5
 
 [Service]
 Type=oneshot
