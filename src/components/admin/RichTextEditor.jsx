@@ -12,6 +12,10 @@ import TableRow from '@tiptap/extension-table-row';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import Placeholder from '@tiptap/extension-placeholder';
+import Subscript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
+import { ImageUploadNode } from '@/components/tiptap-node/image-upload-node';
+import { MAX_FILE_SIZE } from '@/lib/tiptap-utils';
 import {
   Bold, Italic, Strikethrough, Code, Link2, ImageIcon, Table2,
   AlignLeft, AlignCenter, AlignRight, AlignJustify,
@@ -20,8 +24,6 @@ import {
   Undo, Redo, Minus, Quote, Terminal,
   Columns3, Rows3, XCircle,
 } from 'lucide-react';
-import Subscript from '@tiptap/extension-subscript';
-import Superscript from '@tiptap/extension-superscript';
 
 const ToolbarButton = ({ onClick, active, disabled, children, title }) => (
   <button
@@ -30,8 +32,7 @@ const ToolbarButton = ({ onClick, active, disabled, children, title }) => (
     disabled={disabled}
     title={title}
     className={`p-1.5 rounded text-sm transition-colors ${
-      active
-        ? 'bg-indigo-100 text-indigo-700'
+      active ? 'bg-indigo-100 text-indigo-700'
         : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
     } ${disabled ? 'opacity-40 cursor-not-allowed' : ''}`}
   >
@@ -76,33 +77,26 @@ const LinkInput = ({ onSubmit, onCancel, initialUrl = '' }) => {
 const MenuBar = ({ editor, onImageUpload }) => {
   if (!editor) return null;
 
-  const fileInputRef = React.useRef(null);
   const [showLinkInput, setShowLinkInput] = React.useState(false);
   const [linkUrl, setLinkUrl] = React.useState('');
 
+  // Inserts the drag-and-drop upload node. The node renders a dropzone that
+  // accepts a dropped file and also opens the file picker when clicked.
   const addImage = () => {
     if (onImageUpload) {
-      fileInputRef.current?.click();
+      editor
+        .chain()
+        .focus()
+        .setImageUploadNode({
+          accept: 'image/*',
+          limit: 3,
+          maxSize: MAX_FILE_SIZE,
+        })
+        .run();
     } else {
       const url = window.prompt('Enter image URL:');
       if (url) editor.chain().focus().setImage({ src: url }).run();
     }
-  };
-
-  const handleFileChange = async (e) => {
-    const file = e.target.files?.[0];
-    if (!file || !onImageUpload) return;
-    try {
-      const url = await onImageUpload(file);
-      editor.chain().focus().setImage({ src: url }).run();
-    } catch (err) {
-      console.error('Image upload failed:', err);
-    }
-    e.target.value = '';
-  };
-
-  const addTable = () => {
-    editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run();
   };
 
   const setLink = () => {
@@ -153,10 +147,10 @@ const MenuBar = ({ editor, onImageUpload }) => {
         <Highlighter className="w-4 h-4" />
       </ToolbarButton>
       <ToolbarButton onClick={() => editor.chain().focus().toggleSubscript().run()} active={editor.isActive('subscript')} title="Subscript">
-        <span className="w-4 h-4 text-xs font-serif">X<sub>2</sub></span>
+        <span className="text-xs font-serif">X<sub>2</sub></span>
       </ToolbarButton>
       <ToolbarButton onClick={() => editor.chain().focus().toggleSuperscript().run()} active={editor.isActive('superscript')} title="Superscript">
-        <span className="w-4 h-4 text-xs font-serif">X<sup>2</sup></span>
+        <span className="text-xs font-serif">X<sup>2</sup></span>
       </ToolbarButton>
 
       <div className="w-px h-5 bg-gray-300 mx-1" />
@@ -169,10 +163,9 @@ const MenuBar = ({ editor, onImageUpload }) => {
           <Link2 className="w-4 h-4" />
         </ToolbarButton>
       )}
-      <ToolbarButton onClick={addImage} title={onImageUpload ? "Upload Image" : "Insert Image"}>
+      <ToolbarButton onClick={addImage} title={onImageUpload ? "Upload Image (click to browse, or drag a file onto the editor)" : "Insert Image"}>
         <ImageIcon className="w-4 h-4" />
       </ToolbarButton>
-      <input type="file" ref={fileInputRef} onChange={handleFileChange} accept="image/*" className="hidden" />
 
       <div className="w-px h-5 bg-gray-300 mx-1" />
 
@@ -272,25 +265,67 @@ const MenuBar = ({ editor, onImageUpload }) => {
   );
 };
 
+// A drag that carries files, as opposed to moving text inside the editor.
+const carriesFiles = (event) =>
+  Array.from(event.dataTransfer?.types || []).includes('Files');
+
 const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...', onImageUpload }) => {
+  // The uploader is passed in as a prop and is a new function on every render,
+  // so it is kept in a ref. The editor extension reads it at upload time and
+  // therefore never has to be rebuilt.
+  const uploaderRef = React.useRef(onImageUpload);
+  React.useEffect(() => {
+    uploaderRef.current = onImageUpload;
+  }, [onImageUpload]);
+
+  const [uploadError, setUploadError] = React.useState('');
+  const [isDragOver, setIsDragOver] = React.useState(false);
+  // dragenter/dragleave fire for every child element, so the depth is counted
+  // to know when the pointer actually left the editor.
+  const dragDepth = React.useRef(0);
+
+  // Signature expected by the image upload node: (file, onProgress, signal).
+  const upload = React.useCallback(async (file, onProgress, signal) => {
+    const uploader = uploaderRef.current;
+    if (!uploader) throw new Error('Image upload is not available.');
+    if (signal?.aborted) throw new Error('Upload cancelled.');
+    if (file.size > MAX_FILE_SIZE) {
+      throw new Error(`File is larger than ${MAX_FILE_SIZE / 1024 / 1024}MB.`);
+    }
+    onProgress?.({ progress: 40 });
+    const url = await uploader(file);
+    if (signal?.aborted) throw new Error('Upload cancelled.');
+    onProgress?.({ progress: 100 });
+    return url;
+  }, []);
+
+  const extensions = React.useMemo(() => [
+    StarterKit.configure({
+      heading: { levels: [1, 2, 3, 4] },
+    }),
+    Image.configure({ inline: false, allowBase64: true }),
+    Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-indigo-600 underline hover:text-indigo-800' } }),
+    Highlight.configure({ multicolor: false }),
+    TextAlign.configure({ types: ['heading', 'paragraph'] }),
+    Typography,
+    Subscript,
+    Superscript,
+    Table.configure({ resizable: true }),
+    TableRow,
+    TableCell,
+    TableHeader,
+    Placeholder.configure({ placeholder }),
+    ImageUploadNode.configure({
+      accept: 'image/*',
+      maxSize: MAX_FILE_SIZE,
+      limit: 3,
+      upload,
+      onError: (error) => setUploadError(error.message || 'Image upload failed.'),
+    }),
+  ], [placeholder, upload]);
+
   const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        heading: { levels: [1, 2, 3, 4] },
-      }),
-      Image.configure({ inline: false, allowBase64: true }),
-      Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-indigo-600 underline hover:text-indigo-800' } }),
-      Highlight.configure({ multicolor: false }),
-      TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      Typography,
-      Subscript,
-      Superscript,
-      Table.configure({ resizable: true }),
-      TableRow,
-      TableCell,
-      TableHeader,
-      Placeholder.configure({ placeholder }),
-    ],
+    extensions,
     content,
     immediatelyRender: false,
     onUpdate: ({ editor }) => {
@@ -310,10 +345,102 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...', o
     }
   }, [content, editor]);
 
+  const handleDragEnter = (event) => {
+    if (!carriesFiles(event)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    dragDepth.current += 1;
+    setIsDragOver(true);
+  };
+
+  const handleDragOver = (event) => {
+    if (!carriesFiles(event)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    event.dataTransfer.dropEffect = 'copy';
+  };
+
+  const handleDragLeave = (event) => {
+    if (!carriesFiles(event)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    dragDepth.current = Math.max(0, dragDepth.current - 1);
+    if (dragDepth.current === 0) setIsDragOver(false);
+  };
+
+  // Dropping a file straight onto the editor body: upload it and insert the
+  // image at the caret. The capture phase is used so ProseMirror's own drop
+  // handler does not also try to handle the file.
+  const handleDrop = async (event) => {
+    if (!carriesFiles(event)) return;
+    event.preventDefault();
+    event.stopPropagation();
+    dragDepth.current = 0;
+    setIsDragOver(false);
+
+    const files = Array.from(event.dataTransfer.files || []);
+    const images = files.filter((file) => file.type.startsWith('image/'));
+    if (!images.length) {
+      setUploadError('Only image files can be dropped here.');
+      return;
+    }
+    if (!editor) return;
+
+    setUploadError('');
+    const nodes = [];
+    for (const file of images) {
+      try {
+        const url = await upload(file);
+        nodes.push({ type: 'image', attrs: { src: url, alt: file.name } });
+      } catch (error) {
+        setUploadError(error.message || 'Image upload failed.');
+      }
+    }
+    if (nodes.length) {
+      const { from } = editor.state.selection;
+      editor.chain().focus().insertContentAt(from, nodes).run();
+    }
+  };
+
   return (
     <div className="border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-1">
       <MenuBar editor={editor} onImageUpload={onImageUpload} />
-      <EditorContent editor={editor} />
+      <div
+        className="relative"
+        onDragEnterCapture={handleDragEnter}
+        onDragOverCapture={handleDragOver}
+        onDragLeaveCapture={handleDragLeave}
+        onDropCapture={handleDrop}
+      >
+        <EditorContent editor={editor} />
+
+        {isDragOver && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center rounded-b-lg bg-indigo-50/95 border-2 border-dashed border-indigo-400 pointer-events-none">
+            <div className="text-center px-4">
+              <ImageIcon className="w-10 h-10 mx-auto text-indigo-500" />
+              <p className="mt-2 text-sm font-semibold text-indigo-700">
+                Drop images here to upload
+              </p>
+              <p className="text-xs text-indigo-500 mt-0.5">
+                PNG, JPG, GIF, WEBP · max {MAX_FILE_SIZE / 1024 / 1024}MB
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {uploadError && (
+        <div className="px-4 py-2 bg-red-50 border-t border-red-200 text-sm text-red-700 flex items-center justify-between gap-3">
+          <span>{uploadError}</span>
+          <button
+            type="button"
+            onClick={() => setUploadError('')}
+            className="text-red-500 hover:text-red-700 font-medium"
+          >
+            ✕
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import TranslateButton from "@/components/TranslateButton";
+import { stripUploadPlaceholders } from "@/lib/stripUploadPlaceholders";
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
@@ -22,7 +23,10 @@ const ICONS = {
 // FILE UPLOAD
 const uploadFile = async (file, filePath) => {
     const { data, error } = await supabase.storage.from("public-assets").upload(filePath, file);
-    if (error) console.error(error);
+    // Thrown so the editor can show the failure instead of silently
+    // inserting a broken image URL.
+    if (error) throw new Error(error.message || "Image upload failed.");
+    return data;
 };
 
 const slugify = (text) => {
@@ -174,13 +178,13 @@ export default function EditBlogPage({ params }) {
                 category_id: formData.category_id,
                 tag: formData.tag,
                 status: formData.status,
-                content: formData.content,
+                content: stripUploadPlaceholders(formData.content),
                 youtube_url: formData.youtube_url,
                 slug: formData.slug,
                 image_urls: allImageUrls,
                 title_en: formData.title_en,
                 slug_en: formData.slug_en,
-                content_en: formData.content_en,
+                content_en: stripUploadPlaceholders(formData.content_en),
                 updated_at: new Date().toISOString(),
             };
 
