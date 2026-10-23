@@ -1,12 +1,29 @@
-"use client"
+"use client";
 import { useEffect } from "react";
+import { touchSession } from "@/lib/sessionCookie";
+
+// How often the idle timer is refreshed. The middleware signs an admin out
+// after an hour without any activity, so an open tab has to say it is still
+// being used.
+const TOUCH_INTERVAL_MS = 60 * 1000;
 
 export default function ActivityTracker() {
     useEffect(() => {
-        // Refresh lastActivity on every page visit
-        const isProduction = process.env.NODE_ENV === 'production';
-        const secureFlag = isProduction ? '; secure' : '';
-        document.cookie = `lastActivity=${Date.now()}; path=/; max-age=86400${secureFlag}; samesite=lax`;
+        let active = true;
+
+        const ping = () => {
+            if (!active) return;
+            // A failed refresh must never break the page.
+            touchSession().catch(() => {});
+        };
+
+        ping();
+        const id = setInterval(ping, TOUCH_INTERVAL_MS);
+
+        return () => {
+            active = false;
+            clearInterval(id);
+        };
     }, []);
 
     return null;

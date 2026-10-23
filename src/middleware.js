@@ -1,21 +1,33 @@
 // middleware.js
 import { NextResponse } from "next/server";
 
+// How long an admin session may sit untouched before it is dropped.
+const IDLE_TIMEOUT_MS = 60 * 60 * 1000; // 1 hour
+
 export function middleware(request) {
     const { pathname } = request.nextUrl;
-    
+
     const token = request.cookies.get("access_token")?.value;
     const lastActivity = request.cookies.get("lastActivity")?.value;
     const isAdminRoute = pathname.startsWith("/admin");
 
     if (isAdminRoute) {
         if (!token) {
-            return NextResponse.redirect(new URL("/login", request.url));
+            // Remember where the admin wanted to go, so a deep link survives
+            // the round trip through /login.
+            const login = new URL("/login", request.url);
+            login.searchParams.set("next", pathname + request.nextUrl.search);
+            return NextResponse.redirect(login);
         }
-        if (lastActivity && Date.now() - Number(lastActivity) > 3600000) {
-            // ponytail: clear stale session, redirect to login
-            const response = NextResponse.redirect(new URL("/login", request.url));
+
+        const last = Number(lastActivity);
+        if (lastActivity && Number.isFinite(last) && Date.now() - last > IDLE_TIMEOUT_MS) {
+            // Idle for too long: drop the session and start over.
+            const login = new URL("/login", request.url);
+            login.searchParams.set("next", pathname + request.nextUrl.search);
+            const response = NextResponse.redirect(login);
             response.cookies.set("access_token", "", { path: "/", maxAge: 0 });
+            response.cookies.set("lastActivity", "", { path: "/", maxAge: 0 });
             return response;
         }
     }

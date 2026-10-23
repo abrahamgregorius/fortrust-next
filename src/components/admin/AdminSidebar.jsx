@@ -1,6 +1,8 @@
 "use client";
 
-import { redirect, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { supabase } from "@/lib/supabaseClient";
+import { endSession } from "@/lib/sessionCookie";
 
 // Helper component for SVG icons
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -44,10 +46,20 @@ const AdminSidebar = ({ isSidebarOpen, toggleSidebar }) => {
         { href: "/admin/testimonials", icon: ICONS.users, name: "Testimonials" },
     ];
 
-    const handleLogout = () => {
-        document.cookie = "access_token=; path=/; max-age=0; samesite=lax";
-        document.cookie = "lastActivity=; path=/; max-age=0; samesite=lax";
-        redirect("/login");
+    const handleLogout = async () => {
+        // The session cookies are HttpOnly, so the server has to remove them.
+        try {
+            await endSession();
+        } catch (e) {
+            // Still sign out below, so the page is not left in a half state.
+        }
+        try {
+            await supabase.auth.signOut();
+        } catch (e) {
+            // Ignore: the local session is cleared on the next page load too.
+        }
+        // Full page load, so nothing is served from the router cache.
+        window.location.assign("/login");
     }
 
     return (

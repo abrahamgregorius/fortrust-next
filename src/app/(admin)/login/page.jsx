@@ -2,7 +2,22 @@
 import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
-import { redirect } from 'next/navigation';
+import { startSession } from '@/lib/sessionCookie';
+
+/**
+ * Where to go after signing in. The middleware puts the originally requested
+ * admin page in ?next=..., so a deep link survives the round trip to /login.
+ * Only admin paths are accepted, to keep this from turning into an open
+ * redirect.
+ */
+function safeNextPath() {
+    if (typeof window === "undefined") return "/admin";
+    const raw = new URLSearchParams(window.location.search).get("next");
+    if (!raw) return "/admin";
+    if (!raw.startsWith("/admin")) return "/admin";
+    if (raw.startsWith("//")) return "/admin";
+    return raw;
+}
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
@@ -13,25 +28,41 @@ export default function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (loading) return;
+
         setError('');
         setLoading(true);
 
-        const { data, error: authError } = await supabase.auth.signInWithPassword({
-            email,
-            password
-        });
+        try {
+            const { data, error: authError } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            });
 
-        if (authError) {
-            setError(authError.message || 'Login failed. Please try again.');
-        } else {
-            const isProduction = process.env.NODE_ENV === 'production';
-            const secureFlag = isProduction ? '; secure' : '';
-            document.cookie = `access_token=${data.session.access_token}; path=/; max-age=86400${secureFlag}; samesite=lax`;
-            document.cookie = `lastActivity=${Date.now()}; path=/; max-age=86400${secureFlag}; samesite=lax`;
-            redirect("/admin");
+            if (authError) {
+                setError(authError.message || 'Login failed. Please try again.');
+                setLoading(false);
+                return;
+            }
+
+            const token = data?.session?.access_token;
+            if (!token) {
+                setError('Sign-in did not return a session. Check whether your email address is confirmed.');
+                setLoading(false);
+                return;
+            }
+
+            // Hand the token to the server: it replies with the HttpOnly
+            // session cookie that the middleware reads.
+            await startSession(token);
+
+            // A full page load, so the request that hits the middleware
+            // definitely carries the cookie that was just set.
+            window.location.assign(safeNextPath());
+        } catch (err) {
+            setError(err?.message || 'Login failed. Please try again.');
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
     return (
@@ -116,7 +147,7 @@ export default function LoginPage() {
 
                     {/* Submit Button */}
                     <button
-                        onClick={handleSubmit}
+                        type="submit"
                         disabled={loading}
                         className="w-full bg-gray-900 text-white py-2.5 rounded-lg font-medium hover:bg-gray-800 transition mt-6 disabled:bg-gray-600 disabled:cursor-not-allowed"
                     >
