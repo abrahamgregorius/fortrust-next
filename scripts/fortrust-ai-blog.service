@@ -9,9 +9,21 @@ StartLimitBurst=5
 
 [Service]
 Type=oneshot
+
+# Patch these three when installing by hand.
+# scripts/install.sh rewrites them to match the real paths automatically.
 User=www-data
 WorkingDirectory=/var/www/fortrust
+
+# Credentials for the cron call. REQUIRED — a missing file makes the unit
+# fail with "Failed to load environment files". Install with:
+#   sudo bash scripts/install.sh
+# Contents:
+#   APP_URL=https://fortrust.com
+#   CRON_SECRET=<same value as the app's CRON_SECRET>
+#   ARTICLE_COUNT=5
 EnvironmentFile=/etc/fortrust/ai-blog.env
+
 ExecStart=/bin/bash /var/www/fortrust/scripts/generate-articles.sh
 TimeoutStartSec=1800
 

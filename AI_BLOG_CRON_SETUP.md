@@ -55,6 +55,28 @@ Kalau muncul `"skipped": true, "reason": "Daily limit reached"` → hari itu sud
 
 Paling reliable, ada retry + log + jalan otomatis setelah reboot.
 
+### Cara cepat (satu command)
+
+```bash
+cd /var/www/fortrust     # atau path repo kamu
+git pull
+sudo bash scripts/install.sh
+```
+
+Installer ini: bikin `/etc/fortrust/ai-blog.env`, cek `CRON_SECRET` +
+`GEMINI_API_KEY` di env app, pasang unit dengan **path repo yang sebenarnya**
+(nggak hardcode `/var/www/fortrust`), `daemon-reload`, lalu `enable --now` timer.
+
+Isi env file yang dibikin, lalu test:
+
+```bash
+sudo nano /etc/fortrust/ai-blog.env
+sudo systemctl start fortrust-ai-blog
+journalctl -u fortrust-ai-blog -f
+```
+
+### Cara manual
+
 ```bash
 # 1. Copy repo ke VPS (atau pull kalau sudah ada)
 cd /var/www/fortrust
@@ -88,6 +110,12 @@ sudo systemctl enable --now fortrust-ai-blog.timer
 # 6. Cek jadwal
 systemctl list-timers fortrust-ai-blog.timer
 ```
+
+> **Penting**: `EnvironmentFile=/etc/fortrust/ai-blog.env` di `.service` itu
+> **wajib ada**. Kalau filenya hilang, systemd gagal start dengan
+> `Failed to load environment files: No such file or directory` dan unit
+> **tidak pernah** memanggil API-nya. Cek cepat:
+> `ls -la /etc/fortrust/ai-blog.env`
 
 Log:
 
