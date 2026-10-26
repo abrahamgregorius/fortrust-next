@@ -50,7 +50,9 @@ export default function Home() {
             if (!bannersRes.error && bannersRes.data) {
                 const filtered = bannersRes.data.filter(banner => {
                     if (banner.always_show) return true;
-                    if (!banner.start_date || !banner.end_date) return false;
+                    // An active banner with no schedule is treated as always visible
+                    // instead of silently falling back to the hardcoded default.
+                    if (!banner.start_date || !banner.end_date) return true;
                     const now = new Date();
                     const start = new Date(banner.start_date);
                     const end = new Date(banner.end_date);
@@ -216,8 +218,15 @@ export default function Home() {
         setIsDragging(false);
     };
 
-    // Auto play carousel
+    // Keep the slide index valid if the slide count shrinks (e.g. a banner
+    // is deactivated or expires), otherwise no slide would have "active".
     useEffect(() => {
+        setCurrentSlide((prev) => (prev >= slides.length ? 0 : prev));
+    }, [slides.length]);
+
+    // Auto play carousel (only useful with more than one slide)
+    useEffect(() => {
+        if (slides.length <= 1) return;
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 8000);
@@ -353,42 +362,46 @@ export default function Home() {
                         </div>
                     </div> */}
 
-                    <div className="carousel-nav">
-                        <button
-                            className="carousel-btn prev"
-                            onClick={() =>
-                                setCurrentSlide(
-                                    (prev) =>
-                                        (prev - 1 + slides.length) %
-                                        slides.length
-                                )
-                            }
-                        >
-                            <ChevronLeft />
-                        </button>
-                        <button
-                            className="carousel-btn next"
-                            onClick={() =>
-                                setCurrentSlide(
-                                    (prev) => (prev + 1) % slides.length
-                                )
-                            }
-                        >
-                            <ChevronRight />
-                        </button>
-                    </div>
+                    {slides.length > 1 && (
+                        <div className="carousel-nav">
+                            <button
+                                className="carousel-btn prev"
+                                onClick={() =>
+                                    setCurrentSlide(
+                                        (prev) =>
+                                            (prev - 1 + slides.length) %
+                                            slides.length
+                                    )
+                                }
+                            >
+                                <ChevronLeft />
+                            </button>
+                            <button
+                                className="carousel-btn next"
+                                onClick={() =>
+                                    setCurrentSlide(
+                                        (prev) => (prev + 1) % slides.length
+                                    )
+                                }
+                            >
+                                <ChevronRight />
+                            </button>
+                        </div>
+                    )}
 
-                    {/* Carousel Dots */}
-                    <div className="carousel-dots">
-                        {slides.map((_, idx) => (
-                            <span
-                                key={idx}
-                                className={`dot ${idx === currentSlide ? "active" : ""
-                                    }`}
-                                onClick={() => setCurrentSlide(idx)}
-                            />
-                        ))}
-                    </div>
+                    {/* Carousel Dots (hidden when there is only one slide) */}
+                    {slides.length > 1 && (
+                        <div className="carousel-dots">
+                            {slides.map((_, idx) => (
+                                <span
+                                    key={idx}
+                                    className={`dot ${idx === currentSlide ? "active" : ""
+                                        }`}
+                                    onClick={() => setCurrentSlide(idx)}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </section>
 
                 <section className="pillars">

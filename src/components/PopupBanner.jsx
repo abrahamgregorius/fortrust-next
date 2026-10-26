@@ -38,34 +38,16 @@ export default function PopupBanner() {
     useEffect(() => {
         if (typeof window !== 'undefined' && !isLoading) {
             const now = new Date();
-            console.log('Current time:', now);
-            console.log('Available banners:', popupBanners);
 
-            // Refactored: Filter active popup banners within schedule (logic unchanged)
             const filteredBanners = popupBanners.filter(banner => {
-                console.log('Checking banner:', banner.title, 'always_show:', banner.always_show, 'start_date:', banner.start_date, 'end_date:', banner.end_date);
-                if (banner.always_show) {
-                    console.log('Banner always show: true');
-                    return true; // Always show if flagged
-                }
-
-                // If no schedule and not always show
-                if (!banner.start_date || !banner.end_date) {
-                    console.log('Banner has no dates and not always show: false');
-                    return false;
-                }
-
-                // Check if now is within the scheduled range
+                if (banner.always_show) return true;
+                // An active popup with no schedule is treated as always visible.
+                if (!banner.start_date || !banner.end_date) return true;
                 const startDate = new Date(banner.start_date);
                 const endDate = new Date(banner.end_date);
-                console.log('Parsed start:', startDate, 'end:', endDate);
-
-                const isInRange = now >= startDate && now <= endDate;
-                console.log('Is in range:', isInRange);
-                return isInRange;
+                return now >= startDate && now <= endDate;
             });
 
-            console.log('Filtered active banners:', filteredBanners);
             setActiveBanners(filteredBanners);
             setCurrentIndex(0); // Reset to first banner
             setShowBanner(filteredBanners.length > 0);
