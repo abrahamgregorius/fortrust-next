@@ -177,6 +177,24 @@ export default function Banners() {
     });
   };
 
+  // Mirrors the homepage schedule filter so admins can see why a banner
+  // might not be appearing on the site.
+  const getScheduleWarning = (banner) => {
+    if (!banner.is_active) return null;
+    if (banner.always_show) return null;
+    if (!banner.start_date || !banner.end_date) {
+      return { label: "No schedule set", className: "bg-yellow-100 text-yellow-800" };
+    }
+    const now = new Date();
+    if (now < new Date(banner.start_date)) {
+      return { label: "Not started yet", className: "bg-yellow-100 text-yellow-800" };
+    }
+    if (now > new Date(banner.end_date)) {
+      return { label: "Schedule expired", className: "bg-yellow-100 text-yellow-800" };
+    }
+    return null;
+  };
+
   const handleView = (banner) => {
     setSelectedBanner(banner);
     setIsViewModalOpen(true);
@@ -198,29 +216,39 @@ export default function Banners() {
     }
   };
 
-  // Move up/down logic for display order
-  const handleMoveUp = async (id) => {
-    const idx = banners.findIndex(b => b.id === id);
-    if (idx > 0) {
-      const current = banners[idx];
-      const above = banners[idx - 1];
-      // Swap display_order
-      await supabase.from("banners").update({ display_order: above.display_order }).eq("id", current.id);
-      await supabase.from("banners").update({ display_order: current.display_order }).eq("id", above.id);
-      fetchBanners();
+  // Move up/down logic for display order.
+  // Instead of swapping raw values (which is a no-op when two banners share
+  // the same display_order, e.g. both 0), we reorder the list locally and
+  // re-persist a unique display_order for every row.
+  const persistBannerOrder = async (orderedBanners) => {
+    const updates = orderedBanners.map((banner, idx) => ({
+      id: banner.id,
+      display_order: orderedBanners.length - idx,
+    }));
+    for (const update of updates) {
+      const { error } = await supabase
+        .from("banners")
+        .update({ display_order: update.display_order })
+        .eq("id", update.id);
+      if (error) {
+        console.error("Error updating display order:", error);
+      }
     }
   };
-  const handleMoveDown = async (id) => {
+
+  const moveBanner = async (id, direction) => {
     const idx = banners.findIndex(b => b.id === id);
-    if (idx < banners.length - 1) {
-      const current = banners[idx];
-      const below = banners[idx + 1];
-      // Swap display_order
-      await supabase.from("banners").update({ display_order: below.display_order }).eq("id", current.id);
-      await supabase.from("banners").update({ display_order: current.display_order }).eq("id", below.id);
-      fetchBanners();
-    }
+    const targetIdx = idx + direction;
+    if (idx === -1 || targetIdx < 0 || targetIdx >= banners.length) return;
+    const next = [...banners];
+    [next[idx], next[targetIdx]] = [next[targetIdx], next[idx]];
+    setBanners(next); // optimistic update
+    await persistBannerOrder(next);
+    fetchBanners();
   };
+
+  const handleMoveUp = (id) => moveBanner(id, -1);
+  const handleMoveDown = (id) => moveBanner(id, 1);
 
   const handleEdit = (banner) => {
     setSelectedBanner(banner);
@@ -473,24 +501,44 @@ export default function Banners() {
                           </td>
                           <td className="px-6 py-4">{banner.display_order}</td>
                           <td className="px-6 py-4">
-                            <span
-                              className={`px-2 py-1 text-xs font-medium rounded-full ${banner.always_show
-                                  ? "bg-blue-100 text-blue-800"
-                                  : "bg-gray-100 text-gray-800"
-                                }`}
-                            >
-                              {banner.always_show ? "Always" : "Scheduled"}
-                            </span>
+                            <div className="flex flex-col items-start gap-1">
+                              <span
+                                className={`px-2 py-1 text-xs font-medium rounded-full ${banner.always_show
+                                    ? "bg-blue-100 text-blue-800"
+                                    : "bg-gray-100 text-gray-800"
+                                  }`}
+                              >
+                                {banner.always_show ? "Always" : "Scheduled"}
+                              </span>
+                              {!banner.always_show && (banner.start_date || banner.end_date) && (
+                                <span className="text-xs text-gray-500 whitespace-nowrap">
+                                  {banner.start_date ? formatDate(banner.start_date) : "—"}
+                                  {" → "}
+                                  {banner.end_date ? formatDate(banner.end_date) : "—"}
+                                </span>
+                              )}
+                            </div>
                           </td>
                           <td className="px-6 py-4">
-                            <span
-                              className={`px-2 py-1 text-xs font-medium rounded-full ${banner.is_active
-                                  ? "bg-green-100 text-green-800"
-                                  : "bg-gray-100 text-gray-800"
-                                }`}
-                            >
-                              {banner.is_active ? "Active" : "Inactive"}
-                            </span>
+                            <div className="flex flex-col items-start gap-1">
+                              <span
+                                className={`px-2 py-1 text-xs font-medium rounded-full ${banner.is_active
+                                    ? "bg-green-100 text-green-800"
+                                    : "bg-gray-100 text-gray-800"
+                                  }`}
+                              >
+                                {banner.is_active ? "Active" : "Inactive"}
+                              </span>
+                              {(() => {
+                                const warning = getScheduleWarning(banner);
+                                if (!warning) return null;
+                                return (
+                                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${warning.className}`}>
+                                    {warning.label}
+                                  </span>
+                                );
+                              })()}
+                            </div>
                           </td>
                           <td className="px-6 py-4">
                             <div className="flex items-center justify-center space-x-3">

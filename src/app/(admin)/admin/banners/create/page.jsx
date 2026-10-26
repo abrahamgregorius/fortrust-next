@@ -213,6 +213,20 @@ export default function CreateBannerPage() {
 
   useEffect(() => {
     fetchEvents();
+    // Default new banners to the next display_order (highest + 1) so they
+    // don't collide with existing ones at 0, which breaks move up/down.
+    const fetchNextDisplayOrder = async () => {
+      const { data, error } = await supabase
+        .from("banners")
+        .select("display_order")
+        .order("display_order", { ascending: false })
+        .limit(1);
+      if (!error && data && data.length > 0) {
+        const maxOrder = data[0].display_order || 0;
+        setFormData((prev) => ({ ...prev, display_order: maxOrder + 1 }));
+      }
+    };
+    fetchNextDisplayOrder();
   }, []);
 
   return (
