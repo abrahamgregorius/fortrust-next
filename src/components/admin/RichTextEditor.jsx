@@ -75,10 +75,21 @@ const LinkInput = ({ onSubmit, onCancel, initialUrl = '' }) => {
 };
 
 const MenuBar = ({ editor, onImageUpload }) => {
-  if (!editor) return null;
-
+  // Hooks must run on every render, so the "no editor yet" guard lives
+  // below them, not above.
   const [showLinkInput, setShowLinkInput] = React.useState(false);
   const [linkUrl, setLinkUrl] = React.useState('');
+
+  if (!editor) return null;
+
+  // Inserts a small starter table at the caret.
+  const addTable = () => {
+    editor
+      .chain()
+      .focus()
+      .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+      .run();
+  };
 
   // Inserts the drag-and-drop upload node. The node renders a dropzone that
   // accepts a dropped file and also opens the file picker when clicked.
@@ -300,8 +311,12 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...', o
   }, []);
 
   const extensions = React.useMemo(() => [
+    // `link: false` — StarterKit v3 ships its own Link extension; it must be
+    // disabled here or the configured Link below would register twice
+    // ("Duplicate extension names found: ['link']").
     StarterKit.configure({
       heading: { levels: [1, 2, 3, 4] },
+      link: false,
     }),
     Image.configure({ inline: false, allowBase64: true }),
     Link.configure({ openOnClick: false, HTMLAttributes: { class: 'text-indigo-600 underline hover:text-indigo-800' } }),
