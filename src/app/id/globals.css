@@ -609,6 +609,8 @@ ul {
 }
 
 .event-card__image {
+    position: relative; /* containment for <Image fill> — without it the absolutely
+                           positioned event image escapes and covers the viewport */
     flex-shrink: 0;
     width: 80px;
     height: 80px;
