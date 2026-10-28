@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireAdmin, askGeminiWithSearch, parseModelJson, cleanBlogHtml } from "@/lib/blogAi";
 
-// Research plus two ~900-word articles: allow well over a minute.
+// Research plus two compact articles: allow well over a minute.
 export const maxDuration = 180;
 
 /**
@@ -41,7 +41,8 @@ Research it with Google Search first and use only what the sources say.
 
 Rules:
 - Indonesian version: friendly but professional, address the reader as "kamu",
-  700 to 1000 words. Then a faithful English version of the same article.
+  300 to 500 words. Then a faithful English version of the same article at a
+  similar length. Keep it compact: only the points that matter, no filler.
 - Start with a short intro paragraph that answers the question directly.
 - Structure with <h2>/<h3> headings, <p> paragraphs, <ul>/<ol> lists and
   <strong>. No <h1>, no images, no links, no inline styles, no tables.
@@ -52,12 +53,20 @@ Rules:
 - End with one short paragraph inviting the reader to consult Fortrust for
   personal guidance. No hard selling.
 
+Also write "image_prompt": a prompt for a text-to-image model to create this
+article's hero image. The image must look editorial, professional and like
+high-end quality photography — describe the subject, setting, composition,
+lighting, mood and colour palette, with camera feel (lens, depth of field).
+It must relate directly to the article topic and Indonesian study-abroad
+life. No text, watermarks or logos in the image.
+
 Return ONLY one JSON object, no markdown:
 {
   "title": "Indonesian title, max 90 characters, contains the main search keyword",
   "title_en": "English title",
   "content": "Indonesian article as HTML",
   "content_en": "English article as HTML",
+  "image_prompt": "one paragraph image prompt in English",
   "tags": ["3 to 6 short tags"],
   "category": "exactly one of: ${categoryNames}"
 }`;
@@ -86,6 +95,7 @@ Return ONLY one JSON object, no markdown:
                 .map((t) => String(t).trim().slice(0, 50))
                 .filter(Boolean)
                 .slice(0, 8),
+            image_prompt: String(article.image_prompt || "").trim(),
             category_id: categoryId,
             sources,
         });

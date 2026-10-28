@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import RichTextEditor from '@/components/admin/RichTextEditor';
 import TranslateButton from '@/components/TranslateButton';
 import AiBlogWriter from '@/components/admin/AiBlogWriter';
+import BlogImagesUploader from '@/components/admin/BlogImagesUploader';
 import { stripUploadPlaceholders } from '@/lib/stripUploadPlaceholders';
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -59,6 +60,11 @@ export default function CreateBlogPage() {
     const [activeTab, setActiveTab] = useState('id');
     const [tagsInput, setTagsInput] = useState('');
     const [categories, setCategories] = useState([]);
+    const [images, setImages] = useState([]);
+    // Hero-image prompt written by "Write with AI"; shown below YouTube URL
+    // for the admin to copy into an image generator. Not saved to the DB.
+    const [aiImagePrompt, setAiImagePrompt] = useState('');
+    const [promptCopied, setPromptCopied] = useState(false);
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
     useEffect(() => {
@@ -94,11 +100,8 @@ export default function CreateBlogPage() {
         return publicUrlData.publicUrl;
     };
 
-    const handleFileChange = (e) => {
-        if (e.target.files) {
-            const newFiles = Array.from(e.target.files);
-            setImages(prev => [...prev, ...newFiles]);
-        }
+    const handleRemoveImage = (indexToRemove) => {
+        setImages(prev => prev.filter((_, index) => index !== indexToRemove));
     };
 
     const handleTranslated = (data) => {
@@ -123,8 +126,20 @@ export default function CreateBlogPage() {
             tag: article.tags?.length ? article.tags : prev.tag,
             category_id: article.category_id ? String(article.category_id) : prev.category_id,
         }));
+        setAiImagePrompt(article.image_prompt || '');
+        setPromptCopied(false);
         if (article.tags?.length) setTagsInput(article.tags.join(', '));
         setActiveTab('id');
+    };
+
+    const copyImagePrompt = async () => {
+        try {
+            await navigator.clipboard.writeText(aiImagePrompt);
+            setPromptCopied(true);
+            setTimeout(() => setPromptCopied(false), 2000);
+        } catch {
+            // Clipboard blocked (e.g. non-HTTPS); the textarea stays selectable.
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -132,6 +147,16 @@ export default function CreateBlogPage() {
         setSubmissionStatus({ message: 'Submitting post...', type: 'info' });
 
         try {
+            // Upload any images added below the editor before saving the post.
+            const uploadedImageUrls = await Promise.all(
+                images.map(async (file) => {
+                    const filePath = `blogs/${Date.now()}-${file.name}`;
+                    await uploadFile(file, filePath);
+                    const { data: publicUrlData } = supabase.storage.from('public-assets').getPublicUrl(filePath);
+                    return publicUrlData.publicUrl;
+                })
+            );
+
             const blogPost = {
                 title: formData.title,
                 author: formData.author,
@@ -142,6 +167,8 @@ export default function CreateBlogPage() {
                 content: stripUploadPlaceholders(formData.content),
                 youtube_url: formData.youtube_url,
                 slug: formData.slug,
+                image_urls: uploadedImageUrls,
+                image_prompt: aiImagePrompt,
                 title_en: formData.title_en,
                 slug_en: formData.slug_en,
                 content_en: stripUploadPlaceholders(formData.content_en),
@@ -315,10 +342,43 @@ export default function CreateBlogPage() {
                         )}
                     </div>
 
+                    {/* IMAGE UPLOAD (below the content editor) */}
+                    <BlogImagesUploader
+                        newImages={images}
+                        onAddFiles={(files) => setImages(prev => [...prev, ...files])}
+                        onRemoveNew={handleRemoveImage}
+                    />
+
                     <div>
                         <label htmlFor="youtube_url" className="block text-sm font-medium text-gray-700 mb-1">YouTube URL</label>
                         <input type="text" id="youtube_url" name="youtube_url" value={formData.youtube_url} onChange={handleChange} className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Your YouTube video URL" />
                     </div>
+
+                    {/* AI IMAGE PROMPT */}
+                    {aiImagePrompt && (
+                        <div>
+                            <div className="flex items-center justify-between mb-1">
+                                <label htmlFor="ai_image_prompt" className="block text-sm font-medium text-gray-700">
+                                    AI Image Prompt
+                                    <span className="ml-2 text-xs font-normal text-gray-400">saved with the post — copy into your image generator (Midjourney, DALL·E, …)</span>
+                                </label>
+                                <button
+                                    type="button"
+                                    onClick={copyImagePrompt}
+                                    className="shrink-0 px-3 py-1 text-xs font-semibold border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
+                                >
+                                    {promptCopied ? 'Copied!' : 'Copy prompt'}
+                                </button>
+                            </div>
+                            <textarea
+                                id="ai_image_prompt"
+                                readOnly
+                                rows={4}
+                                value={aiImagePrompt}
+                                className="px-3 py-2 w-full border border-gray-300 rounded-lg text-sm text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-y"
+                            />
+                        </div>
+                    )}
 
                     {submissionStatus && (
                         <div className={`p-4 rounded-md text-sm ${submissionStatus.type === 'success'

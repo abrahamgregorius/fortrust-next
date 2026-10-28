@@ -221,6 +221,7 @@ export async function generateArticle(topic) {
         slug_en: article.slug_en || "",
         content: cleanBlogHtml(article.content || ""),
         content_en: cleanBlogHtml(article.content_en || ""),
+        image_prompt: String(article.image_prompt || "").trim(),
         topic_notes: topic.topic_notes || "",
         keywords: topic.keywords || [],
     };

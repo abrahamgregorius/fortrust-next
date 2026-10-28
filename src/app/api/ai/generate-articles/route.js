@@ -80,6 +80,7 @@ export async function POST(request) {
                     slug_en: article.slug_en || `${article.title?.toLowerCase().replace(/\s+/g, "-")}`,
                     content: article.content,
                     content_en: article.content_en,
+                    image_prompt: article.image_prompt || null,
                     topic_notes: article.topic_notes,
                     status: "DRAFT",
                 })

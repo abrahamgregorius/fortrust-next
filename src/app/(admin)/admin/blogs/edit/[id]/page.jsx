@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import TranslateButton from "@/components/TranslateButton";
+import BlogImagesUploader from "@/components/admin/BlogImagesUploader";
 import { stripUploadPlaceholders } from "@/lib/stripUploadPlaceholders";
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -64,6 +65,9 @@ export default function EditBlogPage({ params }) {
     const [categories, setCategories] = useState([]);
     const [images, setImages] = useState([]);
     const [existingImages, setExistingImages] = useState([]);
+    // Hero-image prompt stored with the post; shown read-only below YouTube URL.
+    const [imagePrompt, setImagePrompt] = useState("");
+    const [promptCopied, setPromptCopied] = useState(false);
     const [submissionStatus, setSubmissionStatus] = useState(null);
 
     // FETCH EXISTING BLOG DATA
@@ -94,6 +98,7 @@ export default function EditBlogPage({ params }) {
                 });
                 setTagsInput(existingTags.join(', '));
                 setExistingImages(blogData.image_urls || []);
+                setImagePrompt(blogData.image_prompt || "");
             }
             if (catError) {
                 console.error("❌ Error fetching categories:", catError);
@@ -126,13 +131,6 @@ export default function EditBlogPage({ params }) {
         const { data: publicUrlData } = supabase.storage.from('public-assets').getPublicUrl(filePath);
         await uploadFile(file, filePath);
         return publicUrlData.publicUrl;
-    };
-
-    const handleFileChange = (e) => {
-        if (e.target.files) {
-            const newFiles = Array.from(e.target.files);
-            setImages((prev) => [...prev, ...newFiles]);
-        }
     };
 
     const handleRemoveImage = (indexToRemove) => {
@@ -410,64 +408,13 @@ export default function EditBlogPage({ params }) {
                     </div>
 
                     {/* IMAGE UPLOAD */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Upload Images</label>
-                        <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                            <div className="space-y-1 text-center">
-                                <Icon path={ICONS.upload} className="mx-auto h-12 w-12 text-gray-400" />
-                                <div className="flex justify-center items-center text-sm text-gray-600">
-                                    <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500">
-                                        <span>Upload files</span>
-                                        <input id="file-upload" name="file-upload" type="file" multiple onChange={handleFileChange} className="sr-only" accept="image/*" />
-                                    </label>
-                                    <p className="pl-1">or drag and drop</p>
-                                </div>
-                                <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                            </div>
-                        </div>
-
-                        {/* EXISTING IMAGES */}
-                        {existingImages.length > 0 && (
-                            <div className="mt-4">
-                                <h4 className="text-sm font-medium text-gray-700 mb-2">Existing Images</h4>
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                    {existingImages.map((imageUrl, index) => (
-                                        <div key={`existing-${index}`} className="relative group">
-                                            <img src={imageUrl} alt={`existing ${index}`} className="h-24 w-full object-cover rounded-md" />
-                                            <button
-                                                type="button"
-                                                onClick={() => handleRemoveExistingImage(index)}
-                                                className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                                            >
-                                                <Icon path={ICONS.close} className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* NEW IMAGES */}
-                        {images.length > 0 && (
-                            <div className="mt-4">
-                                <h4 className="text-sm font-medium text-gray-700 mb-2">New Images</h4>
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                    {images.map((file, index) => (
-                                        <div key={`new-${index}`} className="relative group">
-                                            <img src={URL.createObjectURL(file)} alt={`preview ${index}`} className="h-24 w-full object-cover rounded-md" />
-                                            <button
-                                                type="button"
-                                                onClick={() => handleRemoveImage(index)}
-                                                className="absolute top-1 right-1 bg-red-600 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                                            >
-                                                <Icon path={ICONS.close} className="w-4 h-4" />
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                    <BlogImagesUploader
+                        existingImages={existingImages}
+                        onRemoveExisting={handleRemoveExistingImage}
+                        newImages={images}
+                        onAddFiles={(files) => setImages((prev) => [...prev, ...files])}
+                        onRemoveNew={handleRemoveImage}
+                    />
 
                     {/* YOUTUBE URL */}
                     <div>
@@ -482,6 +429,40 @@ export default function EditBlogPage({ params }) {
                             placeholder="Your YouTube video URL"
                         />
                     </div>
+
+                    {/* AI IMAGE PROMPT (read-only, stored with the post) */}
+                    {imagePrompt && (
+                        <div>
+                            <div className="flex items-center justify-between mb-1">
+                                <label htmlFor="ai_image_prompt" className="block text-sm font-medium text-gray-700">
+                                    AI Image Prompt
+                                    <span className="ml-2 text-xs font-normal text-gray-400">saved with the post — copy into your image generator (Midjourney, DALL·E, …)</span>
+                                </label>
+                                <button
+                                    type="button"
+                                    onClick={async () => {
+                                        try {
+                                            await navigator.clipboard.writeText(imagePrompt);
+                                            setPromptCopied(true);
+                                            setTimeout(() => setPromptCopied(false), 2000);
+                                        } catch {
+                                            // Clipboard blocked; the textarea stays selectable.
+                                        }
+                                    }}
+                                    className="shrink-0 px-3 py-1 text-xs font-semibold border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100"
+                                >
+                                    {promptCopied ? 'Copied!' : 'Copy prompt'}
+                                </button>
+                            </div>
+                            <textarea
+                                id="ai_image_prompt"
+                                readOnly
+                                rows={4}
+                                value={imagePrompt}
+                                className="px-3 py-2 w-full border border-gray-300 rounded-lg text-sm text-gray-700 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-y"
+                            />
+                        </div>
+                    )}
 
                     {/* STATUS */}
                     {submissionStatus && (
