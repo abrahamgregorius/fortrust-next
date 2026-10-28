@@ -105,7 +105,9 @@ export default function App() {
 
   const fetchBlogs = async () => {
     const [{ data, error }, { data: catData, error: catError }] = await Promise.all([
-      supabase.from("blogs").select("*").order("created_at", { ascending: false }),
+      supabase.from("blogs").select("*")
+        .order("featured_rank", { ascending: true, nullsFirst: false })
+        .order("created_at", { ascending: false }),
       supabase.from("categories").select("id, name"),
     ]);
     if (error) {
@@ -155,6 +157,40 @@ export default function App() {
 
   const handleEdit = (id) => {
     redirect(`/admin/blogs/edit/${id}`);
+  };
+
+  // Featured ordering: a lower number sits higher on /blog (1 = the big hero
+  // at the top); empty means not featured and falls back to newest-first.
+  // The draft lives here so the admin can type freely; it is committed on blur.
+  const [rankDrafts, setRankDrafts] = useState({});
+
+  const commitRank = async (id) => {
+    const raw = String(rankDrafts[id] ?? "").trim();
+    if (!raw) return; // blur without typing
+    setRankDrafts((prev) => ({ ...prev, [id]: undefined }));
+    const rank = parseInt(raw, 10);
+    if (Number.isNaN(rank) || rank < 1) {
+      alert("Featured order must be a number of 1 or more (empty = not featured).");
+      return;
+    }
+    const { error } = await supabase.from("blogs").update({ featured_rank: rank }).eq("id", id);
+    if (error) {
+      console.error("Error saving featured rank:", error);
+      alert(`Could not save featured order: ${error.message}`);
+      return;
+    }
+    setBlogs((prev) => prev.map((b) => (b.id === id ? { ...b, featured_rank: rank } : b)));
+  };
+
+  const clearRank = async (id) => {
+    setRankDrafts((prev) => ({ ...prev, [id]: undefined }));
+    const { error } = await supabase.from("blogs").update({ featured_rank: null }).eq("id", id);
+    if (error) {
+      console.error("Error clearing featured rank:", error);
+      alert(`Could not clear featured order: ${error.message}`);
+      return;
+    }
+    setBlogs((prev) => prev.map((b) => (b.id === id ? { ...b, featured_rank: null } : b)));
   };
 
   useEffect(() => {
@@ -237,6 +273,9 @@ export default function App() {
                         <th scope="col" className="px-6 py-3">
                           Status
                         </th>
+                        <th scope="col" className="px-6 py-3 text-center" title="Lower number = higher on the blog page. 1 = the big post at the top. Empty = not featured.">
+                          Featured
+                        </th>
                         <th scope="col" className="px-6 py-3 text-center">
                           Actions
                         </th>
@@ -274,6 +313,33 @@ export default function App() {
                             </span>
                           </td>
                           <td className="px-6 py-4">
+                            <div className="flex items-center justify-center gap-1">
+                              <input
+                                type="number"
+                                min="1"
+                                value={rankDrafts[blog.id] ?? blog.featured_rank ?? ""}
+                                onChange={(e) => setRankDrafts((prev) => ({ ...prev, [blog.id]: e.target.value }))}
+                                onBlur={() => commitRank(blog.id)}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") e.target.blur();
+                                }}
+                                placeholder="—"
+                                title="Lower number = higher on the blog page. 1 = the big post at the top. Empty = not featured."
+                                className="w-16 px-2 py-1 border border-gray-300 rounded text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                              />
+                              {blog.featured_rank != null && (
+                                <button
+                                  type="button"
+                                  onClick={() => clearRank(blog.id)}
+                                  title="Remove from featured"
+                                  className="text-gray-400 hover:text-red-600"
+                                >
+                                  <Icon path={ICONS.close} className="w-4 h-4" />
+                                </button>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
                             <div className="flex items-center justify-center space-x-3">
                               <button
                                 onClick={() => handleView(blog.slug)}
@@ -302,7 +368,7 @@ export default function App() {
                       ))}
                       {blogs.filter(b => statusFilter === "ALL" || b.status === statusFilter).length === 0 && (
                         <tr>
-                          <td colSpan="6" className="px-6 py-12 text-center text-gray-500">
+                          <td colSpan="7" className="px-6 py-12 text-center text-gray-500">
                             No posts found for this status.
                           </td>
                         </tr>

@@ -49,6 +49,9 @@ export default function TagFilter({ posts, categories, locale = "en" }) {
                                 />
                                 <div className="hero-overlay">
                                     <div className="hero-tags">
+                                        {featured.featured_rank != null && (
+                                            <span className="tag-chip">{locale === "id" ? "Unggulan" : "Featured"}</span>
+                                        )}
                                         {getCategoryName(featured.category_id) && (
                                             <span className="tag-chip">{getCategoryName(featured.category_id)}</span>
                                         )}
@@ -75,6 +78,9 @@ export default function TagFilter({ posts, categories, locale = "en" }) {
                                     </div>
                                     <div className="card-body">
                                         <div className="card-tags">
+                                            {post.featured_rank != null && (
+                                                <span className="tag-chip">{locale === "id" ? "Unggulan" : "Featured"}</span>
+                                            )}
                                             {getCategoryName(post.category_id) && (
                                                 <span className="tag-chip">{getCategoryName(post.category_id)}</span>
                                             )}
