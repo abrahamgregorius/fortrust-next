@@ -4,9 +4,10 @@
 ALTER TABLE blogs ADD COLUMN IF NOT EXISTS view_count INTEGER NOT NULL DEFAULT 0;
 
 -- One row per page view, with the context needed for analysis.
+-- blog_id is UUID because blogs.id is a UUID in this schema.
 CREATE TABLE IF NOT EXISTS blog_views (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    blog_id INTEGER NOT NULL REFERENCES blogs(id) ON DELETE CASCADE,
+    blog_id UUID NOT NULL REFERENCES blogs(id) ON DELETE CASCADE,
     path TEXT,
     locale TEXT,
     referrer TEXT,
