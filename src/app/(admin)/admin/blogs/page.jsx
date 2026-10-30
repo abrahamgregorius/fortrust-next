@@ -127,6 +127,18 @@ export default function App() {
     return cat ? cat.name : categoryId || '—';
   };
 
+  // All categories of a post (category_ids array, falling back to the
+  // legacy single category_id column).
+  const getCategoryNames = (blog) => {
+    const ids = blog.category_ids || (blog.category_id ? [blog.category_id] : []);
+    return ids
+      .map((id) => {
+        const cat = categories.find(c => c.id === id);
+        return cat ? cat.name : null;
+      })
+      .filter(Boolean);
+  };
+
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -267,6 +279,9 @@ export default function App() {
                         <th scope="col" className="px-6 py-3">
                           Category
                         </th>
+                        <th scope="col" className="px-6 py-3 text-center" title="Total page views recorded on the public blog post page.">
+                          Views
+                        </th>
                         <th scope="col" className="px-6 py-3">
                           Date Created
                         </th>
@@ -294,8 +309,17 @@ export default function App() {
                           </td>
                           <td className="px-6 py-4">{blog.author}</td>
                           <td className="px-6 py-4">
-                            <span className="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
-                              {getCategoryName(blog.category_id)}
+                            <div className="flex flex-wrap gap-1">
+                              {getCategoryNames(blog).map((name) => (
+                                <span key={name} className="px-2 py-1 text-xs font-medium rounded-full bg-blue-100 text-blue-800">
+                                  {name}
+                                </span>
+                              ))}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            <span className="px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">
+                              {(blog.view_count ?? 0).toLocaleString()}
                             </span>
                           </td>
                           <td className="px-6 py-4">
@@ -368,7 +392,7 @@ export default function App() {
                       ))}
                       {blogs.filter(b => statusFilter === "ALL" || b.status === statusFilter).length === 0 && (
                         <tr>
-                          <td colSpan="7" className="px-6 py-12 text-center text-gray-500">
+                          <td colSpan="8" className="px-6 py-12 text-center text-gray-500">
                             No posts found for this status.
                           </td>
                         </tr>

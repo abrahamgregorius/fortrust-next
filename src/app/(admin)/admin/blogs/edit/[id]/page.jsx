@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import TranslateButton from "@/components/TranslateButton";
 import BlogImagesUploader from "@/components/admin/BlogImagesUploader";
+import MultiCategorySelect from "@/components/admin/MultiCategorySelect";
 import { stripUploadPlaceholders } from "@/lib/stripUploadPlaceholders";
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -50,7 +51,7 @@ export default function EditBlogPage({ params }) {
         title: "",
         author: "",
         designation: "",
-        category_id: "",
+        category_ids: [],
         tag: [],
         status: "DRAFT",
         content: "",
@@ -86,7 +87,8 @@ export default function EditBlogPage({ params }) {
                     title: blogData.title,
                     author: blogData.author,
                     designation: blogData.designation || "",
-                    category_id: blogData.category_id || "",
+                    category_ids: blogData.category_ids
+                        || (blogData.category_id ? [blogData.category_id] : []),
                     tag: existingTags,
                     status: blogData.status || "DRAFT",
                     content: blogData.content,
@@ -173,7 +175,10 @@ export default function EditBlogPage({ params }) {
                 title: formData.title,
                 author: formData.author,
                 designation: formData.designation,
-                category_id: formData.category_id,
+                category_ids: formData.category_ids,
+                // Keep the legacy single-category column in sync (first
+                // selection = primary) for anything not yet migrated.
+                category_id: formData.category_ids[0] ?? null,
                 tag: formData.tag,
                 status: formData.status,
                 content: stripUploadPlaceholders(formData.content),
@@ -255,23 +260,17 @@ export default function EditBlogPage({ params }) {
                         </div>
 
                         <div>
-                            <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                            <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-1">Categories</label>
                             <div className="relative">
-                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 z-10">
                                     <Icon path={ICONS.category} />
                                 </span>
-                                <select
-                                    id="category_id"
-                                    name="category_id"
-                                    value={formData.category_id}
-                                    onChange={handleChange}
-                                    className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-                                >
-                                    <option value="">Select a category</option>
-                                    {categories.map(cat => (
-                                        <option key={cat.id} value={cat.id}>{cat.name}</option>
-                                    ))}
-                                </select>
+                                <MultiCategorySelect
+                                    categories={categories}
+                                    value={formData.category_ids}
+                                    onChange={(ids) => setFormData((prev) => ({ ...prev, category_ids: ids }))}
+                                    placeholder="Select one or more categories…"
+                                />
                             </div>
                         </div>
 

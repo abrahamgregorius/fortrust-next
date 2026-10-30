@@ -6,17 +6,25 @@ import Link from 'next/link';
 export default function TagFilter({ posts, categories, locale = "en" }) {
     const [selected, setSelected] = useState('all');
 
+    const postCategoryIds = (p) =>
+        p.category_ids || (p.category_id ? [p.category_id] : []);
+
     const getCategoryName = (categoryId) => {
         const cat = categories.find(c => c.id === categoryId);
         return cat ? cat.name : categoryId || null;
     };
+
+    const getCategoryNames = (p) =>
+        postCategoryIds(p).map(getCategoryName).filter(Boolean);
 
     const uniqueCategories = [
         { id: 'all', name: 'All' },
         ...categories.map(c => ({ id: c.id, name: c.name })),
     ];
 
-    const filtered = selected === 'all' ? posts : posts.filter(p => p.category_id === selected);
+    const filtered = selected === 'all'
+        ? posts
+        : posts.filter(p => postCategoryIds(p).includes(selected));
 
     const [featured, ...rest] = filtered;
 
@@ -52,9 +60,9 @@ export default function TagFilter({ posts, categories, locale = "en" }) {
                                         {featured.featured_rank != null && (
                                             <span className="tag-chip">{locale === "id" ? "Unggulan" : "Featured"}</span>
                                         )}
-                                        {getCategoryName(featured.category_id) && (
-                                            <span className="tag-chip">{getCategoryName(featured.category_id)}</span>
-                                        )}
+                                        {getCategoryNames(featured).map((name) => (
+                                            <span key={name} className="tag-chip">{name}</span>
+                                        ))}
                                     </div>
                                     <h2 className="hero-title">{locale === "en" ? (featured.title_en || featured.title) : featured.title}</h2>
                                     <p className="hero-author"><strong>by {featured.author}{featured.designation ? `, ${featured.designation}` : ''}</strong></p>
@@ -81,9 +89,9 @@ export default function TagFilter({ posts, categories, locale = "en" }) {
                                             {post.featured_rank != null && (
                                                 <span className="tag-chip">{locale === "id" ? "Unggulan" : "Featured"}</span>
                                             )}
-                                            {getCategoryName(post.category_id) && (
-                                                <span className="tag-chip">{getCategoryName(post.category_id)}</span>
-                                            )}
+                                            {getCategoryNames(post).map((name) => (
+                                                <span key={name} className="tag-chip">{name}</span>
+                                            ))}
                                         </div>
                                         <h3 className="card-title">{displayTitle}</h3>
                                         <p className="card-author"><strong>by {post.author}{post.designation ? `, ${post.designation}` : ''}</strong></p>

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import { supabase } from "@/lib/supabaseClient"
 import TagFilter from "@/components/TagFilter"
+import BlogSearch from "@/components/BlogSearch"
 
 export default async function Blog() {
     const [{ data: posts, error }, { data: categories }] = await Promise.all([
@@ -28,7 +29,8 @@ export default async function Blog() {
                         abroad journey with us.
                     </p>
                     <a href="/id/blog" className="lang-toggle-btn">Baca dalam Bahasa Indonesia</a>
-                </div>
+                    <BlogSearch posts={posts || []} categories={categories || []} locale="en" />
+                    </div>
             </section>
 
             <TagFilter posts={posts || []} categories={categories || []} locale="en" />

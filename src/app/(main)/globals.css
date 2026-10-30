@@ -281,6 +281,102 @@ ul {
     font-size: 1.2rem;
 }
 
+/* Blog search (in the blog page header) */
+.blog-search {
+    position: relative;
+    max-width: 520px;
+    margin: 1.75rem auto 0;
+    text-align: left;
+}
+.blog-search__box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.blog-search__icon {
+    position: absolute;
+    left: 14px;
+    color: #6b7280;
+    pointer-events: none;
+}
+.blog-search__input {
+    width: 100%;
+    padding: 0.8rem 2.6rem;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    outline: none;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+.blog-search__input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.55), 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+.blog-search__clear {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    font-size: 0.9rem;
+    padding: 4px;
+}
+.blog-search__results {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    z-index: 20;
+    list-style: none;
+    margin: 0;
+    padding: 4px;
+}
+.blog-search__item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1f2937;
+}
+.blog-search__item:hover {
+    background: #f3f4f6;
+}
+.blog-search__thumb {
+    width: 56px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+.blog-search__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.blog-search__title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #111827;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.blog-search__meta {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+.blog-search__empty {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
 /* Blog post header - left aligned */
 .page-header.blog-post-header {
     text-align: left;

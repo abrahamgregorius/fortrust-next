@@ -6,6 +6,7 @@ import RichTextEditor from '@/components/admin/RichTextEditor';
 import TranslateButton from '@/components/TranslateButton';
 import AiBlogWriter from '@/components/admin/AiBlogWriter';
 import BlogImagesUploader from '@/components/admin/BlogImagesUploader';
+import MultiCategorySelect from '@/components/admin/MultiCategorySelect';
 import { stripUploadPlaceholders } from '@/lib/stripUploadPlaceholders';
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -47,7 +48,7 @@ export default function CreateBlogPage() {
         title: '',
         author: '',
         designation: '',
-        category_id: '',
+        category_ids: [],
         tag: [],
         status: 'DRAFT',
         content: '',
@@ -124,7 +125,9 @@ export default function CreateBlogPage() {
             content: article.content || prev.content,
             content_en: article.content_en || prev.content_en,
             tag: article.tags?.length ? article.tags : prev.tag,
-            category_id: article.category_id ? String(article.category_id) : prev.category_id,
+            category_ids: article.category_id
+                ? [...new Set([...(prev.category_ids || []), Number(article.category_id)])]
+                : prev.category_ids,
         }));
         setAiImagePrompt(article.image_prompt || '');
         setPromptCopied(false);
@@ -161,7 +164,10 @@ export default function CreateBlogPage() {
                 title: formData.title,
                 author: formData.author,
                 designation: formData.designation,
-                category_id: formData.category_id,
+                category_ids: formData.category_ids,
+                // Keep the legacy single-category column in sync (first
+                // selection = primary) for anything not yet migrated.
+                category_id: formData.category_ids[0] ?? null,
                 tag: formData.tag,
                 status: formData.status,
                 content: stripUploadPlaceholders(formData.content),
@@ -228,17 +234,17 @@ export default function CreateBlogPage() {
                         </div>
 
                         <div>
-                            <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                            <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-1">Categories</label>
                             <div className="relative">
-                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 z-10">
                                     <Icon path={ICONS.category} />
                                 </span>
-                                <select id="category_id" name="category_id" value={formData.category_id} onChange={handleChange} className="pl-10 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                                    <option value="">Select a category</option>
-                                    {categories.map(cat => (
-                                        <option key={cat.id} value={cat.id}>{cat.name}</option>
-                                    ))}
-                                </select>
+                                <MultiCategorySelect
+                                    categories={categories}
+                                    value={formData.category_ids}
+                                    onChange={(ids) => setFormData(prev => ({ ...prev, category_ids: ids }))}
+                                    placeholder="Select one or more categories…"
+                                />
                             </div>
                         </div>
 
