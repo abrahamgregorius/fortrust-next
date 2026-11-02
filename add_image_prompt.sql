@@ -1,1 +1,0 @@
-ALTER TABLE blogs ADD COLUMN IF NOT EXISTS image_prompt TEXT;

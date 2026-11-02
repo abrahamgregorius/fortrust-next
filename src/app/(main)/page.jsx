@@ -25,13 +25,19 @@ export default function Home() {
     const [banners, setBanners] = useState([]);
     const [isLoadingBanners, setIsLoadingBanners] = useState(true);
     const [latestBlogs, setLatestBlogs] = useState([]);
+    const [blogCategories, setBlogCategories] = useState([]);
+    const [blogsLoaded, setBlogsLoaded] = useState(false);
 
     // FIX 1: Single parallel fetch instead of 3 sequential useEffects
     useEffect(() => {
         const fetchAll = async () => {
             const now = new Date().toISOString();
-            const [blogsRes, bannersRes, testimonialsRes, eventsRes] = await Promise.all([
-                supabase.from("blogs").select("*").eq("status", "PUBLISHED").order("created_at", { ascending: false }).limit(3),
+            const [blogsRes, bannersRes, testimonialsRes, eventsRes, categoriesRes] = await Promise.all([
+                // Featured (lowest featured_rank) first, then newest — same
+                // ordering as the blog listing page. 4 posts = 1 featured + 3 secondary.
+                supabase.from("blogs").select("*").eq("status", "PUBLISHED")
+                    .order("featured_rank", { ascending: true, nullsFirst: false })
+                    .order("created_at", { ascending: false }).limit(4),
                 supabase
                     .from("banners")
                     .select("*")
@@ -76,11 +82,36 @@ export default function Home() {
                 const sorted = (blogsRes.data || []).sort(
                     (a, b) => new Date(b.created_at) - new Date(a.created_at)
                 );
-                setLatestBlogs(sorted.slice(0, 3));
+                setLatestBlogs(sorted.slice(0, 4));
             }
+            if (!categoriesRes.error && categoriesRes.data) {
+                setBlogCategories(categoriesRes.data);
+            }
+            setBlogsLoaded(true);
         };
         fetchAll();
     }, []);
+
+    // Primary category name for a post (category_ids array, falling back to
+    // the legacy single category_id column).
+    const blogCategoryName = (blog) => {
+        const ids = blog.category_ids || (blog.category_id ? [blog.category_id] : []);
+        return ids
+            .map((id) => blogCategories.find((c) => c.id === id)?.name)
+            .filter(Boolean)[0] || null;
+    };
+
+    // Featured excerpt: stored excerpt first, otherwise plain text pulled
+    // from the article body (display content never modified, only trimmed).
+    const featuredExcerpt = (blog) => {
+        if (blog.excerpt) return blog.excerpt;
+        const body = (blog.content_en || blog.content || "")
+            .replace(/<[^>]*>/g, " ")
+            .replace(/\s+/g, " ")
+            .trim();
+        if (!body) return null;
+        return body.length > 180 ? `${body.slice(0, 180).trimEnd()}…` : body;
+    };
 
     // Hardcoded slides
     const hardcodedSlides = [
@@ -433,25 +464,72 @@ export default function Home() {
                             <h2>Latest from Our Blog</h2>
                             <p>Insights, tips, and stories to help you plan your study abroad journey.</p>
                         </div>
-                        <div className="latest-blogs__grid">
-                            {latestBlogs.map((blog) => (
-                                <Link key={blog.id} href={`/blog/${blog.slug_en || blog.slug}`} className="latest-blog-card">
-                                    {blog.image_urls?.[0] && (
-                                        <div className="latest-blog-card__image">
-                                            <img src={blog.image_urls[0]} alt={blog.title} loading="lazy" />
+                        {blogsLoaded && latestBlogs.length === 0 ? (
+                            <p className="latest-blogs__empty">No articles published yet — check back soon.</p>
+                        ) : !blogsLoaded ? (
+                            <div className="latest-blogs__editorial latest-blogs__skeleton" aria-hidden="true">
+                                <div className="latest-blogs__skeleton-featured">
+                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-image" />
+                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "35%" }} />
+                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "90%" }} />
+                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "75%" }} />
+                                </div>
+                                <div className="latest-blogs__skeleton-list">
+                                    {[0, 1, 2].map((i) => (
+                                        <div key={i} className="latest-blog-secondary">
+                                            <div className="latest-blogs__skeleton-box latest-blogs__skeleton-thumb" />
+                                            <div className="latest-blogs__skeleton-lines">
+                                                <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "50%" }} />
+                                                <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "95%" }} />
+                                            </div>
                                         </div>
-                                    )}
-                                    <div className="latest-blog-card__content">
-                                        <span className="latest-blog-card__date">
-                                            {new Date(blog.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-                                        </span>
-                                        <h3>{blog.title_en || blog.title}</h3>
-                                        <p>{blog.excerpt || ""}</p>
-                                        <span className="latest-blog-card__cta">Read More <ArrowRight size={14} /></span>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                        <div className="latest-blogs__editorial">
+                            <Link
+                                href={`/blog/${latestBlogs[0].slug_en || latestBlogs[0].slug}`}
+                                className="latest-blog-featured"
+                            >
+                                {latestBlogs[0].image_urls?.[0] && (
+                                    <div className="latest-blog-featured__image">
+                                        <img src={latestBlogs[0].image_urls[0]} alt={latestBlogs[0].title_en || latestBlogs[0].title} loading="lazy" />
                                     </div>
-                                </Link>
-                            ))}
+                                )}
+                                <div className="latest-blog-featured__content">
+                                    <span className="latest-blog-featured__meta">
+                                        {blogCategoryName(latestBlogs[0]) && (
+                                            <span className="latest-blog-featured__category">{blogCategoryName(latestBlogs[0])}</span>
+                                        )}
+                                        {new Date(latestBlogs[0].created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                                    </span>
+                                    <h3>{latestBlogs[0].title_en || latestBlogs[0].title}</h3>
+                                    {featuredExcerpt(latestBlogs[0]) && <p>{featuredExcerpt(latestBlogs[0])}</p>}
+                                </div>
+                            </Link>
+                            <div className="latest-blogs__secondary">
+                                {latestBlogs.slice(1).map((blog) => (
+                                    <Link key={blog.id} href={`/blog/${blog.slug_en || blog.slug}`} className="latest-blog-secondary">
+                                        {blog.image_urls?.[0] && (
+                                            <div className="latest-blog-secondary__thumb">
+                                                <img src={blog.image_urls[0]} alt={blog.title_en || blog.title} loading="lazy" />
+                                            </div>
+                                        )}
+                                        <div className="latest-blog-secondary__info">
+                                            <span className="latest-blog-secondary__meta">
+                                                {blogCategoryName(blog) && (
+                                                    <span className="latest-blog-secondary__category">{blogCategoryName(blog)}</span>
+                                                )}
+                                                {new Date(blog.created_at).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+                                            </span>
+                                            <h4>{blog.title_en || blog.title}</h4>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
+                        )}
                         <div style={{ textAlign: "center", marginTop: "2rem" }}>
                             <Link href="/blog" className="btn btn--secondary">View All Articles</Link>
                         </div>
