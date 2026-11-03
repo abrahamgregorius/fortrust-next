@@ -26,9 +26,12 @@ export default function BlogSearch({ posts, categories = [], locale = "en" }) {
         return posts
             .filter((p) => {
                 const title = locale === "en" ? (p.title_en || p.title) : p.title;
+                const tags = locale === "en" && Array.isArray(p.tag_en) && p.tag_en.length
+                    ? [...p.tag, ...p.tag_en]
+                    : p.tag;
                 const haystack = [
                     title,
-                    (p.tag || []).join(" "),
+                    (tags || []).join(" "),
                     postCategories(p).join(" "),
                 ]
                     .join(" ")

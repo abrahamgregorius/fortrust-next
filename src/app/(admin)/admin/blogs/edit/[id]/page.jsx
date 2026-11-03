@@ -53,6 +53,7 @@ export default function EditBlogPage({ params }) {
         designation: "",
         category_ids: [],
         tag: [],
+        tag_en: [],
         status: "DRAFT",
         content: "",
         youtube_url: "",
@@ -63,6 +64,7 @@ export default function EditBlogPage({ params }) {
     });
     const [activeTab, setActiveTab] = useState('id');
     const [tagsInput, setTagsInput] = useState('');
+    const [tagsEnInput, setTagsEnInput] = useState('');
     const [categories, setCategories] = useState([]);
     const [images, setImages] = useState([]);
     const [existingImages, setExistingImages] = useState([]);
@@ -83,6 +85,7 @@ export default function EditBlogPage({ params }) {
             } else {
                 const slugFromTitle = slugify(blogData.title || '');
                 const existingTags = blogData.tag || [];
+                const existingTagsEn = blogData.tag_en || [];
                 setFormData({
                     title: blogData.title,
                     author: blogData.author,
@@ -90,6 +93,7 @@ export default function EditBlogPage({ params }) {
                     category_ids: blogData.category_ids
                         || (blogData.category_id ? [blogData.category_id] : []),
                     tag: existingTags,
+                    tag_en: existingTagsEn,
                     status: blogData.status || "DRAFT",
                     content: blogData.content,
                     youtube_url: blogData.youtube_url || "",
@@ -99,6 +103,7 @@ export default function EditBlogPage({ params }) {
                     content_en: blogData.content_en || "",
                 });
                 setTagsInput(existingTags.join(', '));
+                setTagsEnInput(existingTagsEn.join(', '));
                 setExistingImages(blogData.image_urls || []);
                 setImagePrompt(blogData.image_prompt || "");
             }
@@ -180,6 +185,7 @@ export default function EditBlogPage({ params }) {
                 // selection = primary) for anything not yet migrated.
                 category_id: formData.category_ids[0] ?? null,
                 tag: formData.tag,
+                tag_en: formData.tag_en,
                 status: formData.status,
                 content: stripUploadPlaceholders(formData.content),
                 youtube_url: formData.youtube_url,
@@ -285,6 +291,23 @@ export default function EditBlogPage({ params }) {
                                     setTagsInput(e.target.value);
                                     const tags = e.target.value.split(',').map(t => t.trim()).filter(t => t);
                                     setFormData(prev => ({ ...prev, tag: tags }));
+                                }}
+                                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                placeholder="belajar di luar negeri, beasiswa, usa (comma-separated)"
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="tags_en" className="block text-sm font-medium text-gray-700 mb-1">Tags (EN) <span className="text-gray-400 font-normal">(SEO, shown on the English page)</span></label>
+                            <input
+                                type="text"
+                                id="tags_en"
+                                name="tag_en"
+                                value={tagsEnInput}
+                                onChange={(e) => {
+                                    setTagsEnInput(e.target.value);
+                                    const tags = e.target.value.split(',').map(t => t.trim()).filter(t => t);
+                                    setFormData(prev => ({ ...prev, tag_en: tags }));
                                 }}
                                 className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="study abroad, scholarship, usa (comma-separated)"

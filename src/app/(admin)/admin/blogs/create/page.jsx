@@ -50,6 +50,7 @@ export default function CreateBlogPage() {
         designation: '',
         category_ids: [],
         tag: [],
+        tag_en: [],
         status: 'DRAFT',
         content: '',
         youtube_url: '',
@@ -60,6 +61,7 @@ export default function CreateBlogPage() {
     });
     const [activeTab, setActiveTab] = useState('id');
     const [tagsInput, setTagsInput] = useState('');
+    const [tagsEnInput, setTagsEnInput] = useState('');
     const [categories, setCategories] = useState([]);
     const [images, setImages] = useState([]);
     // Hero-image prompt written by "Write with AI"; shown below YouTube URL
@@ -125,6 +127,7 @@ export default function CreateBlogPage() {
             content: article.content || prev.content,
             content_en: article.content_en || prev.content_en,
             tag: article.tags?.length ? article.tags : prev.tag,
+            tag_en: article.tags_en?.length ? article.tags_en : prev.tag_en,
             category_ids: article.category_id
                 ? [...new Set([...(prev.category_ids || []), Number(article.category_id)])]
                 : prev.category_ids,
@@ -132,6 +135,7 @@ export default function CreateBlogPage() {
         setAiImagePrompt(article.image_prompt || '');
         setPromptCopied(false);
         if (article.tags?.length) setTagsInput(article.tags.join(', '));
+        if (article.tags_en?.length) setTagsEnInput(article.tags_en.join(', '));
         setActiveTab('id');
     };
 
@@ -169,6 +173,7 @@ export default function CreateBlogPage() {
                 // selection = primary) for anything not yet migrated.
                 category_id: formData.category_ids[0] ?? null,
                 tag: formData.tag,
+                tag_en: formData.tag_en,
                 status: formData.status,
                 content: stripUploadPlaceholders(formData.content),
                 youtube_url: formData.youtube_url,
@@ -259,6 +264,23 @@ export default function CreateBlogPage() {
                                     setTagsInput(e.target.value);
                                     const tags = e.target.value.split(',').map(t => t.trim()).filter(t => t);
                                     setFormData(prev => ({ ...prev, tag: tags }));
+                                }}
+                                className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                placeholder="belajar di luar negeri, beasiswa, usa (comma-separated)"
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="tags_en" className="block text-sm font-medium text-gray-700 mb-1">Tags (EN) <span className="text-gray-400 font-normal">(SEO, shown on the English page)</span></label>
+                            <input
+                                type="text"
+                                id="tags_en"
+                                name="tag_en"
+                                value={tagsEnInput}
+                                onChange={(e) => {
+                                    setTagsEnInput(e.target.value);
+                                    const tags = e.target.value.split(',').map(t => t.trim()).filter(t => t);
+                                    setFormData(prev => ({ ...prev, tag_en: tags }));
                                 }}
                                 className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 placeholder="study abroad, scholarship, usa (comma-separated)"

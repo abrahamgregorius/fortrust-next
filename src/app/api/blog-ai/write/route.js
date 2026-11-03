@@ -67,7 +67,8 @@ Return ONLY one JSON object, no markdown:
   "content": "Indonesian article as HTML",
   "content_en": "English article as HTML",
   "image_prompt": "one paragraph image prompt in English",
-  "tags": ["3 to 6 short tags"],
+  "tags": ["3 to 6 short tags in Indonesian"],
+  "tags_en": ["English translation of each tag, same order"],
   "category": "exactly one of: ${categoryNames}"
 }`;
 
@@ -92,6 +93,10 @@ Return ONLY one JSON object, no markdown:
             content,
             content_en: cleanBlogHtml(article.content_en),
             tags: (Array.isArray(article.tags) ? article.tags : [])
+                .map((t) => String(t).trim().slice(0, 50))
+                .filter(Boolean)
+                .slice(0, 8),
+            tags_en: (Array.isArray(article.tags_en) ? article.tags_en : [])
                 .map((t) => String(t).trim().slice(0, 50))
                 .filter(Boolean)
                 .slice(0, 8),

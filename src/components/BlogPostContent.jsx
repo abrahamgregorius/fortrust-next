@@ -36,6 +36,11 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
 
     const displayTitle = locale === "id" ? data.title : (data.title_en || data.title);
     const displayContent = locale === "id" ? data.content : (data.content_en || data.content);
+    // Tags are authored in Indonesian by default; the EN page shows the
+    // English translations when available, falling back to the originals.
+    const displayTags = locale === "en" && Array.isArray(data.tag_en) && data.tag_en.length
+        ? data.tag_en
+        : (data.tag || []);
 
     const { data: allCategories } = await supabase.from("categories").select("id, name");
     const catMap = Object.fromEntries((allCategories || []).map(c => [c.id, c.name]));
@@ -107,7 +112,7 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
             }
         },
         "description": data.excerpt || displayTitle,
-        "keywords": data.tag ? data.tag.join(", ") : "",
+        "keywords": displayTags.length ? displayTags.join(", ") : "",
         "url": canonicalUrl,
     };
 
@@ -160,7 +165,7 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
                             {locale === "en" ? "Baca dalam Bahasa Indonesia" : "Read in English"}
                         </a>
                         <div className="tags-blog">
-                            {data.tag?.map ? data.tag.map(t => <span key={t.trim()}>{t.trim()}</span>) : null}
+                            {displayTags.length ? displayTags.map(t => <span key={t.trim()}>{t.trim()}</span>) : null}
                         </div>
                     </div>
                 </section>
