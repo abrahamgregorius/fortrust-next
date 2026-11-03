@@ -3825,6 +3825,7 @@ ul {
 }
 
 .latest-blog-featured__image {
+    position: relative; /* anchor for next/image fill */
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: 10px;
@@ -3861,6 +3862,7 @@ ul {
 }
 
 .latest-blog-secondary__thumb {
+    position: relative; /* anchor for next/image fill */
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
