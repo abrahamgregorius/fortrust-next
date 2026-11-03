@@ -112,17 +112,26 @@ export default function Home() {
             .filter(Boolean)[0] || null;
     };
 
-    // Featured excerpt: stored excerpt first, otherwise plain text pulled
-    // from the article body (display content never modified, only trimmed).
-    const featuredExcerpt = (blog) => {
+    // Excerpt: stored excerpt first, otherwise plain text pulled from the
+    // article body (display content never modified, only trimmed).
+    const featuredExcerpt = (blog, maxLen = 180) => {
         if (blog.excerpt) return blog.excerpt;
         const body = (blog.content || "")
             .replace(/<[^>]*>/g, " ")
             .replace(/\s+/g, " ")
             .trim();
         if (!body) return null;
-        return body.length > 180 ? `${body.slice(0, 180).trimEnd()}…` : body;
+        return body.length > maxLen ? `${body.slice(0, maxLen).trimEnd()}…` : body;
     };
+
+    // Estimated reading time from the article body (~200 wpm).
+    const readingTime = (blog) => {
+        const body = (blog.content || "").replace(/<[^>]*>/g, " ");
+        const minutes = Math.max(1, Math.round(body.split(/\s+/).filter(Boolean).length / 200));
+        return `${minutes} menit baca`;
+    };
+
+    const blogTags = (blog) => (Array.isArray(blog.tag) ? blog.tag.filter(Boolean) : []);
 
     const hardcodedSlides = [
         {
@@ -477,19 +486,18 @@ export default function Home() {
                         ) : !blogsLoaded ? (
                             <div className="latest-blogs__editorial latest-blogs__skeleton" aria-hidden="true">
                                 <div className="latest-blogs__skeleton-featured">
-                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-image" />
-                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "35%" }} />
                                     <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "90%" }} />
-                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "75%" }} />
+                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "35%" }} />
+                                    <div className="latest-blogs__skeleton-box latest-blogs__skeleton-image" />
                                 </div>
                                 <div className="latest-blogs__skeleton-list">
                                     {[0, 1, 2].map((i) => (
                                         <div key={i} className="latest-blog-secondary">
-                                            <div className="latest-blogs__skeleton-box latest-blogs__skeleton-thumb" />
                                             <div className="latest-blogs__skeleton-lines">
                                                 <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "50%" }} />
                                                 <div className="latest-blogs__skeleton-box latest-blogs__skeleton-line" style={{ width: "95%" }} />
                                             </div>
+                                            <div className="latest-blogs__skeleton-box latest-blogs__skeleton-thumb" />
                                         </div>
                                     ))}
                                 </div>
@@ -500,39 +508,49 @@ export default function Home() {
                                 href={`/id/blog/${latestBlogs[0].slug}`}
                                 className="latest-blog-featured"
                             >
+                                <div className="latest-blog-featured__content">
+                                    <h3>{latestBlogs[0].title}</h3>
+                                    <span className="latest-blog-featured__meta">
+                                        {blogCategoryName(latestBlogs[0]) && (
+                                            <span className="latest-blog-featured__category">{blogCategoryName(latestBlogs[0])}</span>
+                                        )}
+                                        {`${new Date(latestBlogs[0].created_at).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })} · ${readingTime(latestBlogs[0])}`}
+                                    </span>
+                                </div>
                                 {latestBlogs[0].image_urls?.[0] && (
                                     <div className="latest-blog-featured__image">
                                         <img src={latestBlogs[0].image_urls[0]} alt={latestBlogs[0].title} loading="lazy" />
                                     </div>
                                 )}
-                                <div className="latest-blog-featured__content">
-                                    <span className="latest-blog-featured__meta">
-                                        {blogCategoryName(latestBlogs[0]) && (
-                                            <span className="latest-blog-featured__category">{blogCategoryName(latestBlogs[0])}</span>
-                                        )}
-                                        {new Date(latestBlogs[0].created_at).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}
-                                    </span>
-                                    <h3>{latestBlogs[0].title}</h3>
-                                    {featuredExcerpt(latestBlogs[0]) && <p>{featuredExcerpt(latestBlogs[0])}</p>}
-                                </div>
                             </Link>
                             <div className="latest-blogs__secondary">
                                 {latestBlogs.slice(1).map((blog) => (
                                     <Link key={blog.id} href={`/id/blog/${blog.slug}`} className="latest-blog-secondary">
+                                        <div className="latest-blog-secondary__info">
+                                            <h4>{blog.title}</h4>
+                                            {featuredExcerpt(blog, 110) && <p className="latest-blog-secondary__excerpt">{featuredExcerpt(blog, 110)}</p>}
+                                            <span className="latest-blog-secondary__meta">
+                                                {blogCategoryName(blog) && (
+                                                    <span className="latest-blog-secondary__category">{blogCategoryName(blog)}</span>
+                                                )}
+                                                {`${new Date(blog.created_at).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })} · ${readingTime(blog)}`}
+                                            </span>
+                                            {blogTags(blog).length > 0 && (
+                                                <div className="latest-blog-secondary__tags">
+                                                    {blogTags(blog).slice(0, 3).map((t) => (
+                                                        <span key={t} className="latest-blog-secondary__tag">{t}</span>
+                                                    ))}
+                                                    {blogTags(blog).length > 3 && (
+                                                        <span className="latest-blog-secondary__tag-more">+{blogTags(blog).length - 3}</span>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
                                         {blog.image_urls?.[0] && (
                                             <div className="latest-blog-secondary__thumb">
                                                 <img src={blog.image_urls[0]} alt={blog.title} loading="lazy" />
                                             </div>
                                         )}
-                                        <div className="latest-blog-secondary__info">
-                                            <span className="latest-blog-secondary__meta">
-                                                {blogCategoryName(blog) && (
-                                                    <span className="latest-blog-secondary__category">{blogCategoryName(blog)}</span>
-                                                )}
-                                                {new Date(blog.created_at).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}
-                                            </span>
-                                            <h4>{blog.title}</h4>
-                                        </div>
                                     </Link>
                                 ))}
                             </div>
