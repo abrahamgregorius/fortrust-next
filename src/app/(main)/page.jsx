@@ -32,28 +32,37 @@ export default function Home() {
     useEffect(() => {
         const fetchAll = async () => {
             const now = new Date().toISOString();
-            const [blogsRes, bannersRes, testimonialsRes, eventsRes, categoriesRes] = await Promise.all([
-                // Featured (lowest featured_rank) first, then newest — same
-                // ordering as the blog listing page. 4 posts = 1 featured + 3 secondary.
-                supabase.from("blogs").select("*").eq("status", "PUBLISHED")
-                    .order("featured_rank", { ascending: true, nullsFirst: false })
-                    .order("created_at", { ascending: false }).limit(4),
-                supabase
-                    .from("banners")
-                    .select("*")
-                    .eq("is_active", true)
-                    .order("display_order", { ascending: false }),
-                supabase.from("testimonials").select("*"),
-                supabase
-                    .from("events")
-                    .select("*")
-                    .gte("start_at", now)
-                    .order("start_at", { ascending: true })
-                    .limit(3),
-            ]);
+
+            // One failed request must never blank the page, so results are
+            // unpacked defensively (any of them can be undefined).
+            let blogsRes, bannersRes, testimonialsRes, eventsRes, categoriesRes;
+            try {
+                [blogsRes, bannersRes, testimonialsRes, eventsRes, categoriesRes] = await Promise.all([
+                    // Featured (lowest featured_rank) first, then newest — same
+                    // ordering as the blog listing page. 4 posts = 1 featured + 3 secondary.
+                    supabase.from("blogs").select("*").eq("status", "PUBLISHED")
+                        .order("featured_rank", { ascending: true, nullsFirst: false })
+                        .order("created_at", { ascending: false }).limit(4),
+                    supabase
+                        .from("banners")
+                        .select("*")
+                        .eq("is_active", true)
+                        .order("display_order", { ascending: false }),
+                    supabase.from("testimonials").select("*"),
+                    supabase
+                        .from("events")
+                        .select("*")
+                        .gte("start_at", now)
+                        .order("start_at", { ascending: true })
+                        .limit(3),
+                    supabase.from("categories").select("id, name").order("name"),
+                ]);
+            } catch (err) {
+                console.error("Home data fetch failed:", err);
+            }
 
             // Process banners with schedule filter
-            if (!bannersRes.error && bannersRes.data) {
+            if (!bannersRes?.error && bannersRes?.data) {
                 const filtered = bannersRes.data.filter(banner => {
                     if (banner.always_show) return true;
                     // An active banner with no schedule is treated as always visible
@@ -68,23 +77,23 @@ export default function Home() {
             }
             setIsLoadingBanners(false);
 
-            if (!testimonialsRes.error) {
+            if (!testimonialsRes?.error) {
                 setTestimonials(testimonialsRes.data || []);
             }
             setIsLoadingTestimonials(false);
 
-            if (!eventsRes.error) {
+            if (!eventsRes?.error) {
                 setEvents(eventsRes.data || []);
             }
             setIsLoadingEvents(false);
 
-            if (!blogsRes.error && blogsRes.data) {
+            if (!blogsRes?.error && blogsRes?.data) {
                 const sorted = (blogsRes.data || []).sort(
                     (a, b) => new Date(b.created_at) - new Date(a.created_at)
                 );
                 setLatestBlogs(sorted.slice(0, 4));
             }
-            if (!categoriesRes.error && categoriesRes.data) {
+            if (!categoriesRes?.error && categoriesRes?.data) {
                 setBlogCategories(categoriesRes.data);
             }
             setBlogsLoaded(true);
