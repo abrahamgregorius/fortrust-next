@@ -129,8 +129,6 @@ export default function Home() {
         return `${minutes} min read`;
     };
 
-    const blogTags = (blog) => (Array.isArray(blog.tag) ? blog.tag.filter(Boolean) : []);
-
     // Hardcoded slides
     const hardcodedSlides = [
         {
@@ -536,16 +534,6 @@ export default function Home() {
                                                 )}
                                                 {`${new Date(blog.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} · ${readingTime(blog)}`}
                                             </span>
-                                            {blogTags(blog).length > 0 && (
-                                                <div className="latest-blog-secondary__tags">
-                                                    {blogTags(blog).slice(0, 3).map((t) => (
-                                                        <span key={t} className="latest-blog-secondary__tag">{t}</span>
-                                                    ))}
-                                                    {blogTags(blog).length > 3 && (
-                                                        <span className="latest-blog-secondary__tag-more">+{blogTags(blog).length - 3}</span>
-                                                    )}
-                                                </div>
-                                            )}
                                         </div>
                                         {blog.image_urls?.[0] && (
                                             <div className="latest-blog-secondary__thumb">

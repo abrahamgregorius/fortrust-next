@@ -3933,27 +3933,6 @@ ul {
     color: #666;
 }
 
-.latest-blog-secondary__tags {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.375rem;
-    margin-top: 0.1rem;
-}
-
-.latest-blog-secondary__tag {
-    font-size: 0.6875rem;
-    color: var(--neutral-700, #334155);
-    background: var(--neutral-100, #f1f5f9);
-    padding: 0.125rem 0.5rem;
-    border-radius: 999px;
-    line-height: 1.4;
-}
-
-.latest-blog-secondary__tag-more {
-    font-size: 0.6875rem;
-    color: #666;
-}
 
 /* Loading skeleton (matches the editorial layout) */
 .latest-blogs__skeleton-featured {
@@ -4065,9 +4044,4 @@ ul {
     }
 }
 
-/* Very small screens: drop tags to keep items compact */
-@media (max-width: 480px) {
-    .latest-blog-secondary__tags {
-        display: none;
-    }
-}
+
