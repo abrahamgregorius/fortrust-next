@@ -83,7 +83,18 @@ export default function Home() {
             setIsLoadingTestimonials(false);
 
             if (!eventsRes?.error) {
-                setEvents(eventsRes.data || []);
+                // Duplicate rows (the same event name entered twice) would
+                // make the featured headline reappear in the upcoming grid,
+                // so only the first (earliest) row of each name is kept.
+                const seenNames = new Set();
+                setEvents(
+                    (eventsRes.data || []).filter((e) => {
+                        const key = (e.name || "").trim().toLowerCase();
+                        if (!key || seenNames.has(key)) return false;
+                        seenNames.add(key);
+                        return true;
+                    })
+                );
             }
             setIsLoadingEvents(false);
 

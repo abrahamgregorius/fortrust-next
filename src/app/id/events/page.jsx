@@ -70,9 +70,20 @@ export default async function Events() {
     const eventDescription = (e) =>
         (e.description || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
+    // Duplicate rows (the same event name entered twice) would make the
+    // featured headline reappear in the upcoming grid, so only the first
+    // (earliest) row of each name is kept.
+    const seenNames = new Set();
+    const uniqueEvents = (events || []).filter((e) => {
+        const key = (e.name || "").trim().toLowerCase();
+        if (!key || seenNames.has(key)) return false;
+        seenNames.add(key);
+        return true;
+    });
+
     // Nearest upcoming event is the featured one; the rest are compact cards.
-    const featured = events?.[0] || null;
-    const secondary = events?.slice(1) || [];
+    const featured = uniqueEvents[0] || null;
+    const secondary = uniqueEvents.slice(1);
 
     return (
         <>
