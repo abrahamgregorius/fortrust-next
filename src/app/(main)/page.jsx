@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import SkeletonImage from "@/components/SkeletonImage";
 import { useEffect, useRef, useState } from "react";
 import {
     ArrowRight,
@@ -435,13 +436,10 @@ export default function Home() {
                                         <div key={t.id} className="flip-card">
                                             <div className="flip-card-inner">
                                                 <div className="flip-card-front">
-                                                    <Image
+                                                    <SkeletonImage
                                                         src={t.image_url || "/placeholder.jpg"}
                                                         alt={`Photo of ${t.person_name}`}
-                                                        fill
-                                                        loading="lazy"
                                                         sizes="(max-width: 768px) 100vw, 340px"
-                                                        className="w-full h-full object-cover"
                                                     />
                                                 </div>
                                                 <div className="flip-card-back">
@@ -518,13 +516,10 @@ export default function Home() {
                                 </div>
                                 {latestBlogs[0].image_urls?.[0] && (
                                     <div className="latest-blog-featured__image">
-                                        <Image
+                                        <SkeletonImage
                                             src={latestBlogs[0].image_urls[0]}
                                             alt={latestBlogs[0].title_en || latestBlogs[0].title}
-                                            fill
-                                            loading="lazy"
                                             sizes="(max-width: 767px) 100vw, (max-width: 1199px) 55vw, 50vw"
-                                            className="latest-blog-featured__img"
                                         />
                                     </div>
                                 )}
@@ -544,13 +539,10 @@ export default function Home() {
                                         </div>
                                         {blog.image_urls?.[0] && (
                                             <div className="latest-blog-secondary__thumb">
-                                                <Image
+                                                <SkeletonImage
                                                     src={blog.image_urls[0]}
                                                     alt={blog.title_en || blog.title}
-                                                    fill
-                                                    loading="lazy"
                                                     sizes="(max-width: 767px) 34vw, (max-width: 1199px) 15vw, 16vw"
-                                                    className="latest-blog-featured__img"
                                                 />
                                             </div>
                                         )}
@@ -576,7 +568,13 @@ export default function Home() {
                         </div>
                         <div className="destinations__grid">
                             <div className="card dest-card">
-                                <img src="/destinations/australia.webp" alt="Scenic view of Sydney, Australia" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/australia.webp"
+                                        alt="Scenic view of Sydney, Australia"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>Australia</h3>
                                     <p>Pendidikan kelas dunia dengan biaya hidup yang terjangkau dan budaya yang kaya.</p>
@@ -584,7 +582,13 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img src="/destinations/canada.webp" alt="Scenic view of Canada" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/canada.webp"
+                                        alt="Scenic view of Canada"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>Canada</h3>
                                     <p>Pendidikan berkualitas tinggi dengan lingkungan multikultural yang ramah dan aman.</p>
@@ -592,7 +596,13 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img src="/destinations/china.webp" alt="Scenic view of China" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/china.webp"
+                                        alt="Scenic view of China"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>China</h3>
                                     <p>Pendidikan modern dengan biaya terjangkau dan akses ke teknologi terdepan.</p>
@@ -600,7 +610,13 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img src="/destinations/malaysia.webp" alt="Scenic view of Malaysia" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/malaysia.webp"
+                                        alt="Scenic view of Malaysia"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>Malaysia</h3>
                                     <p>Pendidikan bertaraf internasional dengan biaya hidup yang rendah dan lokasi strategis.</p>
@@ -608,7 +624,13 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img src="/destinations/newzealand.webp" alt="Beautiful landscape of New Zealand" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/newzealand.webp"
+                                        alt="Beautiful landscape of New Zealand"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>New Zealand</h3>
                                     <p>Pembelajaran inovatif di salah satu negara teraman dengan alam yang menakjubkan.</p>
@@ -616,7 +638,13 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img src="/destinations/singapore.webp" alt="Modern skyline of Singapore" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/singapore.webp"
+                                        alt="Modern skyline of Singapore"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>Singapore</h3>
                                     <p>Pusat pendidikan global dengan fasilitas modern dan peluang karier internasional.</p>
@@ -624,7 +652,13 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img src="/destinations/switzerland.webp" alt="Modern skyline of Switzerland" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/switzerland.webp"
+                                        alt="Modern skyline of Switzerland"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>Switzerland</h3>
                                     <p>Pendidikan berkualitas dengan pemandangan alam Alps yang menakjubkan dan standar hidup tinggi.</p>
@@ -632,7 +666,13 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img src="/destinations/uk.webp" alt="Iconic view of London, UK" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/uk.webp"
+                                        alt="Iconic view of London, UK"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>United Kingdom</h3>
                                     <p>Universitas bersejarah dunia dengan warisan keunggulan akademik yang prestisius.</p>
@@ -640,7 +680,13 @@ export default function Home() {
                                 </div>
                             </div>
                             <div className="card dest-card">
-                                <img src="/destinations/usa.webp" alt="Iconic view of United States of America" loading="lazy" />
+                                <div className="dest-card__media">
+                                    <SkeletonImage
+                                        src="/destinations/usa.webp"
+                                        alt="Iconic view of United States of America"
+                                        sizes="(max-width: 767px) 100vw, (max-width: 1199px) 45vw, 30vw"
+                                    />
+                                </div>
                                 <div className="card__content">
                                     <h3>United States of America</h3>
                                     <p>Pendidikan universitas ternama dunia dengan fasilitas riset dan inovasi terdepan.</p>

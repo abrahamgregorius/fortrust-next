@@ -659,9 +659,14 @@ ul {
 .dest-card {
     position: relative;
 }
-.dest-card img {
-    width: 100%;
+.dest-card__media {
+    position: relative; /* anchor for next/image fill */
     height: 200px;
+    overflow: hidden;
+}
+.dest-card__media img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 .dest-card .card__content {
@@ -2993,6 +2998,7 @@ ul {
 }
 
 .flip-card-front {
+    position: relative; /* anchor for next/image fill */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4046,4 +4052,21 @@ ul {
     }
 }
 
+/* Skeleton shimmer shown while content images are downloading */
+.img-skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: img-skeleton-shimmer 1.4s ease-in-out infinite;
+}
 
+.skeleton-img {
+    object-fit: cover;
+}
+
+@keyframes img-skeleton-shimmer {
+    to {
+        background-position: -200% 0;
+    }
+}
