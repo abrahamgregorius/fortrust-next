@@ -1,7 +1,8 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import SkeletonImage from "@/components/SkeletonImage";
 import { supabase } from "@/lib/supabaseClient";
-import { Clock, MapPin, Newspaper } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 // Force dynamic rendering to prevent static generation issues
 export const dynamic = 'force-dynamic';
@@ -16,7 +17,7 @@ export default async function Events() {
 
     if (error) {
         console.error(error)
-        return <p>Error loading testimonials.</p>
+        return <p>Error loading events.</p>
     }
 
     const formatTimeJakarta = (isoString) => {
@@ -35,24 +36,45 @@ export default async function Events() {
         }
     };
 
-    const getMonthDayJakarta = (isoString) => {
+    // ---- Events (editorial showcase) helpers — same as the homepage ----
+    // The events table has no type column; webinars are recognised from the
+    // event name/topics so the editorial meta row can label them correctly.
+    const eventTypeLabel = (e) => {
+        const hay = `${e.name || ""} ${e.topics || ""}`;
+        return /webinar/i.test(hay) ? "WEBINAR" : "EVENT";
+    };
+
+    const eventDateLabel = (e) => {
         try {
-            const d = new Date(isoString);
-            const month = new Intl.DateTimeFormat("en-US", {
+            return new Intl.DateTimeFormat("en-US", {
                 month: "short",
+                day: "numeric",
+                year: "numeric",
                 timeZone: "Asia/Jakarta",
             })
-                .format(d)
+                .format(new Date(e.start_at))
                 .toUpperCase();
-            const day = new Intl.DateTimeFormat("en-US", {
-                day: "2-digit",
-                timeZone: "Asia/Jakarta",
-            }).format(d);
-            return { month, day };
         } catch (_) {
-            return { month: "---", day: "--" };
+            return "";
         }
     };
+
+    const eventTimeLabel = (e) => `${formatTimeJakarta(e.start_at)} WIB`;
+
+    // Online events show "Online"; physical venues are shortened to the
+    // building/area before the first comma (full addresses are too long).
+    const eventVenueLabel = (e) => {
+        const loc = (e.location || "").trim();
+        if (!loc || /^online\b/i.test(loc)) return "Online";
+        return loc.split(",")[0].trim();
+    };
+
+    const eventDescription = (e) =>
+        (e.description || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+
+    // Nearest upcoming event is the featured one; the rest are compact cards.
+    const featured = events?.[0] || null;
+    const secondary = events?.slice(1) || [];
 
     return (
         <>
@@ -61,7 +83,7 @@ export default async function Events() {
             <main>
                 <section className="page-header">
                     <div className="container">
-                        <h1>Events & Webinars</h1>
+                        <h1>Events &amp; Webinars</h1>
                         <p>
                             Connect with us and our university partners at our free online and
                             in-person events.
@@ -71,56 +93,97 @@ export default async function Events() {
 
                 <section className="events-page-section">
                     <div className="container">
-                        <div className="section-header">
-                            <h2>Events</h2>
-                        </div>
-                        <div className="events__list">
-                            {
-                                events?.length > 0 ? events.map((event, i) => {
-                                    const { month, day } = getMonthDayJakarta(event.start_at);
-                                    const timeStr = formatTimeJakarta(event.start_at);
-                                    return (
-                                        <div key={i} className="card event-card">
-                                            <div className="event-card__date">
-                                                <span className="month">{month}</span><span className="day">{day}</span>
-                                            </div>
-                                            <div className="event-card__info">
-                                                <h4>{event.name}</h4>
-                                                <p><Clock></Clock> {timeStr} (Asia/Jakarta)</p>
-                                                <p><MapPin></MapPin> At {event.location}</p>
-                                            </div>
-                                            <a
-                                                href={event.registration_link}
-                                                className="btn btn--secondary"
-                                            >RSVP Now</a>
+                        {events?.length > 0 && featured ? (
+                            <>
+                                {/* Featured event: nearest upcoming, full-width */}
+                                <article className="event-feature">
+                                    {featured.image_url && (
+                                        <div className="event-feature__media">
+                                            <SkeletonImage
+                                                src={featured.image_url}
+                                                alt={featured.name}
+                                                sizes="(max-width: 767px) 100vw, 40vw"
+                                            />
                                         </div>
-
-                                        // id, name, description, start_at, end_at, is_public, metadata, created_at, updated_at, deleted_at, registration_link, status
-                                    );
-                                }) : (
-                                    <div className="no-events-message">
-                                        <p>No upcoming events at the moment.</p>
+                                    )}
+                                    <div className="event-feature__info">
+                                        <span className="event-feature__meta">
+                                            <span className="event-feature__type">{eventTypeLabel(featured)}</span>
+                                            <span>{eventDateLabel(featured)}</span>
+                                            <span>{eventTimeLabel(featured)}</span>
+                                        </span>
+                                        <h3 className="event-feature__title">{featured.name}</h3>
+                                        {eventDescription(featured) && (
+                                            <p className="event-feature__desc">{eventDescription(featured)}</p>
+                                        )}
+                                        <div className="event-action-row">
+                                            <span className="event-action-row__venue">
+                                                <MapPin size={15} /> {eventVenueLabel(featured)}
+                                            </span>
+                                            <a
+                                                href={featured.registration_link}
+                                                className="event-rsvp"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                RSVP Now <ArrowRight size={15} />
+                                            </a>
+                                        </div>
                                     </div>
-                                )
-                            }
+                                </article>
 
-                        </div>
-                    </div>
-                </section>
-
-                <section
-                    className="events-page-section"
-                    style={{ backgroundColor: "var(--neutral-100)" }}
-                >
-                    <div className="container">
-                        <div className="section-header">
-                            <h2>Events Articles</h2>
-                        </div>
-                        <div className="events__list">
-                            <div className="card event-card" style={{ display: 'flex', justifyContent: 'center', padding: '2rem' }}>
-                                <a href="/blog" className="btn btn--secondary-outline">View Latest Events</a>
+                                {secondary.length > 0 && (
+                                    <>
+                                        <div className="events__subheading">
+                                            <h3>Upcoming Events</h3>
+                                        </div>
+                                        <div className="events__grid">
+                                            {secondary.map((event, i) => (
+                                                <article key={i} className="event-compact">
+                                                    {event.image_url && (
+                                                        <div className="event-compact__media">
+                                                            <SkeletonImage
+                                                                src={event.image_url}
+                                                                alt={event.name}
+                                                                sizes="(max-width: 767px) 38vw, 240px"
+                                                            />
+                                                        </div>
+                                                    )}
+                                                    <div className="event-compact__info">
+                                                        <span className="event-compact__meta">
+                                                            <span className="event-compact__type">{eventTypeLabel(event)}</span>
+                                                            <span>{eventDateLabel(event)}</span>
+                                                            <span>{eventTimeLabel(event)}</span>
+                                                        </span>
+                                                        <h4 className="event-compact__title">{event.name}</h4>
+                                                        {eventDescription(event) && (
+                                                            <p className="event-compact__desc">{eventDescription(event)}</p>
+                                                        )}
+                                                        <div className="event-action-row">
+                                                            <span className="event-action-row__venue">
+                                                                <MapPin size={14} /> {eventVenueLabel(event)}
+                                                            </span>
+                                                            <a
+                                                                href={event.registration_link}
+                                                                className="event-rsvp event-rsvp--compact"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                            >
+                                                                RSVP Now <ArrowRight size={14} />
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
+                            </>
+                        ) : (
+                            <div className="no-events-message">
+                                <p>No upcoming events at the moment.</p>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </section>
             </main>

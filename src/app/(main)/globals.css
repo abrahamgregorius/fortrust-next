@@ -4314,6 +4314,11 @@ ul {
     font-size: 0.95rem;
 }
 
+/* Events page (listing) — room around the editorial cards */
+.events-page-section {
+    padding: 3rem 0 4rem;
+}
+
 /* Loading skeletons mirroring the editorial layout */
 .events-skeleton__feature {
     display: grid;

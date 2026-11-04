@@ -4479,3 +4479,8 @@ ul {
         background-position: -200% 0;
     }
 }
+
+/* Events page (listing) — room around the editorial cards */
+.events-page-section {
+    padding: 3rem 0 4rem;
+}
