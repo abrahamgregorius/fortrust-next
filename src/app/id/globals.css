@@ -2986,11 +2986,10 @@ ul {
 
 .flip-card-front,
 .flip-card-back {
+    /* Both faces are pinned inside .flip-card-inner so they always occupy
+       the exact same box — a flip can never displace either face. */
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 12px;
@@ -3000,7 +2999,6 @@ ul {
 }
 
 .flip-card-front {
-    position: relative; /* anchor for next/image fill */
     display: flex;
     align-items: center;
     justify-content: center;
