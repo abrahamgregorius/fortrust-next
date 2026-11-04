@@ -9,7 +9,6 @@ import {
     ChevronDown,
     ChevronLeft,
     ChevronRight,
-    Clock,
     MapPin,
     Medal,
     PackageCheck,
@@ -194,6 +193,42 @@ export default function Home() {
             return { month: "---", day: "--" };
         }
     };
+
+    // ---- Events (editorial showcase) helpers ----
+    // The events table has no type column; webinars are recognised from the
+    // event name/topics so the editorial meta row can label them correctly.
+    const eventTypeLabel = (e) => {
+        const hay = `${e.name || ""} ${e.topics || ""}`;
+        return /webinar/i.test(hay) ? "WEBINAR" : "EVENT";
+    };
+
+    const eventDateLabel = (e) => {
+        try {
+            return new Intl.DateTimeFormat("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+                timeZone: "Asia/Jakarta",
+            })
+                .format(new Date(e.start_at))
+                .toUpperCase();
+        } catch (_) {
+            return "";
+        }
+    };
+
+    const eventTimeLabel = (e) => `${formatTimeJakarta(e.start_at)} WIB`;
+
+    // Online events show "Online"; physical venues are shortened to the
+    // building/area before the first comma (full addresses are too long).
+    const eventVenueLabel = (e) => {
+        const loc = (e.location || "").trim();
+        if (!loc || /^online\b/i.test(loc)) return "Online";
+        return loc.split(",")[0].trim();
+    };
+
+    const eventDescription = (e) =>
+        (e.description || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
     const universities = [
         { src: "/universities/Logo/oaut.png", alt: "University Logo" },
@@ -700,46 +735,128 @@ export default function Home() {
                 <section className="events" suppressHydrationWarning>
                     <div className="container events__container">
                         <div className="section-header">
-                            <h2>Events & Webinars</h2>
+                            <h2>Events &amp; Webinars</h2>
                             <p>
                                 Join our free sessions to get all your questions
                                 answered.
                             </p>
                         </div>
                         {isLoadingEvents ? (
-                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '200px' }}>
-                                <div className="spinner" style={{ border: '4px solid #f3f3f3', borderTop: '4px solid #3498db', borderRadius: '50%', width: '50px', height: '50px', animation: 'spin 1s linear infinite' }}></div>
+                            <div className="events-skeleton" aria-hidden="true">
+                                <div className="events-skeleton__feature">
+                                    <div className="events-skeleton__poster skel-shimmer" />
+                                    <div className="events-skeleton__lines">
+                                        <div className="skel-shimmer events-skeleton__line" style={{ width: "30%" }} />
+                                        <div className="skel-shimmer events-skeleton__line" style={{ width: "82%" }} />
+                                        <div className="skel-shimmer events-skeleton__line" style={{ width: "95%" }} />
+                                        <div className="skel-shimmer events-skeleton__line" style={{ width: "55%" }} />
+                                    </div>
+                                </div>
+                                <div className="events-skeleton__row">
+                                    {[0, 1].map((i) => (
+                                        <div key={i} className="events-skeleton__card">
+                                            <div className="events-skeleton__poster-sm skel-shimmer" />
+                                            <div className="events-skeleton__lines">
+                                                <div className="skel-shimmer events-skeleton__line" style={{ width: "45%" }} />
+                                                <div className="skel-shimmer events-skeleton__line" style={{ width: "88%" }} />
+                                                <div className="skel-shimmer events-skeleton__line" style={{ width: "60%" }} />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         ) : events.length > 0 ? (
-                            <div className="events__list">
-                                {events.map((event, i) => {
-                                    try {
-                                        const { month, day } = getMonthDayJakarta(event.start_at);
-                                        const timeStr = formatTimeJakarta(event.start_at);
-                                        return (
-                                            <div key={i} className="card event-card">
-                                                {event.image_url && (
-                                                    <div className="event-card__image">
-                                                        <Image src={event.image_url} alt={event.name} fill loading="lazy" sizes="(max-width: 768px) 100vw, 400px" className="event-image" />
+                            <>
+                                {/* Featured event: nearest upcoming, full-width */}
+                                <article className="event-feature">
+                                    {events[0].image_url && (
+                                        <div className="event-feature__media">
+                                            <SkeletonImage
+                                                src={events[0].image_url}
+                                                alt={events[0].name}
+                                                sizes="(max-width: 767px) 100vw, 40vw"
+                                            />
+                                        </div>
+                                    )}
+                                    <div className="event-feature__info">
+                                        <span className="event-feature__meta">
+                                            <span className="event-feature__type">{eventTypeLabel(events[0])}</span>
+                                            <span>{eventDateLabel(events[0])}</span>
+                                            <span>{eventTimeLabel(events[0])}</span>
+                                        </span>
+                                        <h3 className="event-feature__title">{events[0].name}</h3>
+                                        {eventDescription(events[0]) && (
+                                            <p className="event-feature__desc">{eventDescription(events[0])}</p>
+                                        )}
+                                        <div className="event-action-row">
+                                            <span className="event-action-row__venue">
+                                                <MapPin size={15} /> {eventVenueLabel(events[0])}
+                                            </span>
+                                            <a
+                                                href={events[0].registration_link}
+                                                className="event-rsvp"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                RSVP Now <ArrowRight size={15} />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                {events.length > 1 && (
+                                    <>
+                                        <div className="events__subheading">
+                                            <h3>Upcoming Events</h3>
+                                        </div>
+                                        <div className={`events__grid${events.length === 2 ? " events__grid--single" : ""}`}>
+                                            {events.slice(1).map((event, i) => (
+                                                <article key={i} className="event-compact">
+                                                    {event.image_url && (
+                                                        <div className="event-compact__media">
+                                                            <SkeletonImage
+                                                                src={event.image_url}
+                                                                alt={event.name}
+                                                                sizes="(max-width: 767px) 38vw, 240px"
+                                                            />
+                                                        </div>
+                                                    )}
+                                                    <div className="event-compact__info">
+                                                        <span className="event-compact__meta">
+                                                            <span className="event-compact__type">{eventTypeLabel(event)}</span>
+                                                            <span>{eventDateLabel(event)}</span>
+                                                            <span>{eventTimeLabel(event)}</span>
+                                                        </span>
+                                                        <h4 className="event-compact__title">{event.name}</h4>
+                                                        {eventDescription(event) && (
+                                                            <p className="event-compact__desc">{eventDescription(event)}</p>
+                                                        )}
+                                                        <div className="event-action-row">
+                                                            <span className="event-action-row__venue">
+                                                                <MapPin size={14} /> {eventVenueLabel(event)}
+                                                            </span>
+                                                            <a
+                                                                href={event.registration_link}
+                                                                className="event-rsvp event-rsvp--compact"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                            >
+                                                                RSVP Now <ArrowRight size={14} />
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                )}
-                                                <div className="event-card__date">
-                                                    <span className="month">{month}</span><span className="day">{day}</span>
-                                                </div>
-                                                <div className="event-card__info">
-                                                    <h4>{event.name}</h4>
-                                                    <p><Clock size={20}></Clock> {timeStr} (Asia/Jakarta)</p>
-                                                    <p><MapPin size={20}></MapPin> {event.location}</p>
-                                                </div>
-                                                <a href={event.registration_link} className="btn btn--secondary">RSVP Now</a>
-                                            </div>
-                                        );
-                                    } catch (e) {
-                                        console.error('Error rendering event:', e);
-                                        return null;
-                                    }
-                                })}
-                            </div>
+                                                </article>
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
+
+                                <div className="events__viewall">
+                                    <a href="/events">
+                                        View All Events <ArrowRight size={15} />
+                                    </a>
+                                </div>
+                            </>
                         ) : (
                             <div className="events__fallback">
                                 <p>No upcoming events right now. Join our newsletter for updates!</p>
