@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SkeletonImage from "@/components/SkeletonImage";
 import { supabase } from "@/lib/supabaseClient";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, Clock, MapPin, Mic } from "lucide-react";
 
 // Force dynamic rendering to prevent static generation issues
 export const dynamic = 'force-dynamic';
@@ -59,15 +59,39 @@ export default async function Events() {
         }
     };
 
-    const eventTimeLabel = (e) => `${formatTimeJakarta(e.start_at)} WIB`;
+    // Full time range in WIB when end_at is available.
+    const eventTimeRangeLabel = (e) => {
+        let end = "";
+        if (e.end_at) {
+            try {
+                if (new Date(e.end_at) > new Date(e.start_at)) {
+                    end = formatTimeJakarta(e.end_at);
+                }
+            } catch (_) {
+                /* ignore malformed end_at */
+            }
+        }
+        const start = formatTimeJakarta(e.start_at);
+        return end ? `${start} \u2013 ${end} WIB` : `${start} WIB`;
+    };
 
-    // Online events show "Online"; physical venues are shortened to the
-    // building/area before the first comma (full addresses are too long).
+    // Online events show "Online"; physical venues keep the full address
+    // (wrapped to two lines by CSS) since it carries useful detail.
     const eventVenueLabel = (e) => {
         const loc = (e.location || "").trim();
         if (!loc || /^online\b/i.test(loc)) return "Online";
-        return loc.split(",")[0].trim();
+        return loc;
     };
+
+    // Topic chips from the comma-separated topics field, capitalized and
+    // capped at three so the cards never overflow.
+    const eventTopics = (e) =>
+        (e.topics || "")
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean)
+            .slice(0, 3)
+            .map((t) => t.charAt(0).toUpperCase() + t.slice(1));
 
     const eventDescription = (e) =>
         (e.description || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
@@ -121,12 +145,31 @@ export default async function Events() {
                                         <span className="event-feature__meta">
                                             <span className="event-feature__type">{eventTypeLabel(featured)}</span>
                                             <span>{eventDateLabel(featured)}</span>
-                                            <span>{eventTimeLabel(featured)}</span>
                                         </span>
                                         <h3 className="event-feature__title">{featured.name}</h3>
-                                        <span className="event-venue event-venue--lg">
-                                            <MapPin size={15} /> {eventVenueLabel(featured)}
-                                        </span>
+                                        <div className="event-info event-info--lg">
+                                            <span className="event-info__row">
+                                                <MapPin size={15} />
+                                                <span className="event-info__text">{eventVenueLabel(featured)}</span>
+                                            </span>
+                                            <span className="event-info__row">
+                                                <Clock size={15} />
+                                                <span className="event-info__text">{eventTimeRangeLabel(featured)}</span>
+                                            </span>
+                                            {featured.speaker && (
+                                                <span className="event-info__row">
+                                                    <Mic size={15} />
+                                                    <span className="event-info__text">{featured.speaker}</span>
+                                                </span>
+                                            )}
+                                            {eventTopics(featured).length > 0 && (
+                                                <span className="event-info__chips">
+                                                    {eventTopics(featured).map((topic) => (
+                                                        <span key={topic} className="event-info__chip">{topic}</span>
+                                                    ))}
+                                                </span>
+                                            )}
+                                        </div>
                                         {eventDescription(featured) && (
                                             <p className="event-feature__desc">{eventDescription(featured)}</p>
                                         )}
@@ -164,12 +207,31 @@ export default async function Events() {
                                                         <span className="event-compact__meta">
                                                             <span className="event-compact__type">{eventTypeLabel(event)}</span>
                                                             <span>{eventDateLabel(event)}</span>
-                                                            <span>{eventTimeLabel(event)}</span>
                                                         </span>
                                                         <h4 className="event-compact__title">{event.name}</h4>
-                                                        <span className="event-venue">
-                                                            <MapPin size={14} /> {eventVenueLabel(event)}
-                                                        </span>
+                                                        <div className="event-info">
+                                                            <span className="event-info__row">
+                                                                <MapPin size={14} />
+                                                                <span className="event-info__text">{eventVenueLabel(event)}</span>
+                                                            </span>
+                                                            <span className="event-info__row">
+                                                                <Clock size={14} />
+                                                                <span className="event-info__text">{eventTimeRangeLabel(event)}</span>
+                                                            </span>
+                                                            {event.speaker && (
+                                                                <span className="event-info__row">
+                                                                    <Mic size={14} />
+                                                                    <span className="event-info__text">{event.speaker}</span>
+                                                                </span>
+                                                            )}
+                                                            {eventTopics(event).length > 0 && (
+                                                                <span className="event-info__chips">
+                                                                    {eventTopics(event).map((topic) => (
+                                                                        <span key={topic} className="event-info__chip">{topic}</span>
+                                                                    ))}
+                                                                </span>
+                                                            )}
+                                                        </div>
                                                         {eventDescription(event) && (
                                                             <p className="event-compact__desc">{eventDescription(event)}</p>
                                                         )}
