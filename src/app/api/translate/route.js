@@ -22,19 +22,75 @@ function parseModelJson(text) {
 // POST /api/translate
 // Translates Indonesian title + HTML content to English using Gemini.
 // Keeps the HTML structure intact in the content field.
+// Also accepts { tags: [...] } to translate SEO keywords only (used when a
+// post is saved with tags but no English translation of them yet).
 // ---------------------------------------------------------------------------
 
 export async function POST(request) {
     try {
-        const { title, content } = await request.json();
+        const { title, content, tags } = await request.json();
 
-        if (!title && !content) {
-            return NextResponse.json({ error: "title or content required" }, { status: 400 });
+        const hasArticle = Boolean(title || content);
+        const hasTags = Array.isArray(tags) && tags.length > 0;
+
+        if (!hasArticle && !hasTags) {
+            return NextResponse.json({ error: "title, content or tags required" }, { status: 400 });
         }
 
         const key = process.env.GEMINI_API_KEY;
         if (!key) {
             return NextResponse.json({ error: "GEMINI_API_KEY is not configured" }, { status: 500 });
+        }
+
+        // --- SEO keywords only: a small, cheap call -----------------------
+        let tag_en;
+        if (hasTags) {
+            const tagsPrompt = `
+You are a professional translator. Translate the following Indonesian SEO keywords to English.
+
+Rules:
+- Translate EACH keyword below to its natural English equivalent.
+- Keep the SAME NUMBER of keywords, in the SAME ORDER.
+- Keep them short (max 5 words each); these are blog tags/keywords.
+- Do NOT add, merge or drop keywords.
+- Return ONLY a JSON object, no markdown, no explanation:
+{ "tag_en": ["keyword 1", "keyword 2", ...] }
+
+Input keywords:
+<tags>
+${tags.join("\n")}
+</tags>
+`.trim();
+
+            const res = await fetch(GEMINI_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+                body: JSON.stringify({
+                    contents: [{ role: "user", parts: [{ text: tagsPrompt }] }],
+                }),
+            });
+
+            if (!res.ok) {
+                const errText = await res.text();
+                throw new Error(`Gemini ${res.status}: ${errText.slice(0, 300)}`);
+            }
+
+            const data = await res.json();
+            const rawText = (data.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+            const parsed = parseModelJson(rawText);
+
+            // Same normalization as the AI writer: trim, cap length, cap count.
+            tag_en = (Array.isArray(parsed.tag_en) ? parsed.tag_en : [])
+                .map((t) => String(t).trim().slice(0, 50))
+                .filter(Boolean)
+                .slice(0, 8);
+
+            if (!tag_en.length) throw new Error("model returned no tags");
+        }
+
+        // --- Article body (existing behaviour) ----------------------------
+        if (!hasArticle) {
+            return NextResponse.json({ tag_en });
         }
 
         // Build a prompt that tells Gemini to translate both fields and return clean JSON.
@@ -86,7 +142,7 @@ Input:
             .replace(/\-\-+/g, "-")
             || `blog-${Date.now()}`;
 
-        return NextResponse.json({ title_en, slug_en, content_en });
+        return NextResponse.json({ title_en, slug_en, content_en, ...(tag_en ? { tag_en } : {}) });
     } catch (err) {
         console.error("[/api/translate]", err);
         return NextResponse.json({ error: err.message || "Translation failed" }, { status: 500 });

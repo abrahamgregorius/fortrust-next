@@ -154,6 +154,27 @@ export default function CreateBlogPage() {
         setSubmissionStatus({ message: 'Submitting post...', type: 'info' });
 
         try {
+            // Auto-translate Indonesian keywords to English when Tags (EN) is
+            // empty, so the English pages never fall back to Indonesian tags.
+            // Best-effort: the post still saves if the translation fails.
+            let tagEn = formData.tag_en;
+            if (formData.tag.length && !tagEn.length) {
+                try {
+                    setSubmissionStatus({ message: 'Translating keywords to English...', type: 'info' });
+                    const res = await fetch('/api/translate', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ tags: formData.tag }),
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (Array.isArray(data.tag_en) && data.tag_en.length) tagEn = data.tag_en;
+                    }
+                } catch {
+                    // keep going with an empty tag_en
+                }
+            }
+
             // Upload any images added below the editor before saving the post.
             const uploadedImageUrls = await Promise.all(
                 images.map(async (file) => {
@@ -173,7 +194,7 @@ export default function CreateBlogPage() {
                 // selection = primary) for anything not yet migrated.
                 category_id: formData.category_ids[0] ?? null,
                 tag: formData.tag,
-                tag_en: formData.tag_en,
+                tag_en: tagEn,
                 status: formData.status,
                 content: stripUploadPlaceholders(formData.content),
                 youtube_url: formData.youtube_url,
