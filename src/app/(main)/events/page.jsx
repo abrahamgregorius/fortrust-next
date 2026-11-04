@@ -124,13 +124,13 @@ export default async function Events() {
                                             <span>{eventTimeLabel(featured)}</span>
                                         </span>
                                         <h3 className="event-feature__title">{featured.name}</h3>
+                                        <span className="event-venue event-venue--lg">
+                                            <MapPin size={15} /> {eventVenueLabel(featured)}
+                                        </span>
                                         {eventDescription(featured) && (
                                             <p className="event-feature__desc">{eventDescription(featured)}</p>
                                         )}
                                         <div className="event-action-row">
-                                            <span className="event-action-row__venue">
-                                                <MapPin size={15} /> {eventVenueLabel(featured)}
-                                            </span>
                                             <a
                                                 href={featured.registration_link}
                                                 className="event-rsvp"
@@ -167,13 +167,13 @@ export default async function Events() {
                                                             <span>{eventTimeLabel(event)}</span>
                                                         </span>
                                                         <h4 className="event-compact__title">{event.name}</h4>
+                                                        <span className="event-venue">
+                                                            <MapPin size={14} /> {eventVenueLabel(event)}
+                                                        </span>
                                                         {eventDescription(event) && (
                                                             <p className="event-compact__desc">{eventDescription(event)}</p>
                                                         )}
                                                         <div className="event-action-row">
-                                                            <span className="event-action-row__venue">
-                                                                <MapPin size={14} /> {eventVenueLabel(event)}
-                                                            </span>
                                                             <a
                                                                 href={event.registration_link}
                                                                 className="event-rsvp event-rsvp--compact"

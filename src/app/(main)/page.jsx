@@ -796,13 +796,13 @@ export default function Home() {
                                             <span>{eventTimeLabel(events[0])}</span>
                                         </span>
                                         <h3 className="event-feature__title">{events[0].name}</h3>
+                                        <span className="event-venue event-venue--lg">
+                                            <MapPin size={15} /> {eventVenueLabel(events[0])}
+                                        </span>
                                         {eventDescription(events[0]) && (
                                             <p className="event-feature__desc">{eventDescription(events[0])}</p>
                                         )}
                                         <div className="event-action-row">
-                                            <span className="event-action-row__venue">
-                                                <MapPin size={15} /> {eventVenueLabel(events[0])}
-                                            </span>
                                             <a
                                                 href={events[0].registration_link}
                                                 className="event-rsvp"
@@ -839,13 +839,13 @@ export default function Home() {
                                                             <span>{eventTimeLabel(event)}</span>
                                                         </span>
                                                         <h4 className="event-compact__title">{event.name}</h4>
+                                                        <span className="event-venue">
+                                                            <MapPin size={14} /> {eventVenueLabel(event)}
+                                                        </span>
                                                         {eventDescription(event) && (
                                                             <p className="event-compact__desc">{eventDescription(event)}</p>
                                                         )}
                                                         <div className="event-action-row">
-                                                            <span className="event-action-row__venue">
-                                                                <MapPin size={14} /> {eventVenueLabel(event)}
-                                                            </span>
                                                             <a
                                                                 href={event.registration_link}
                                                                 className="event-rsvp event-rsvp--compact"

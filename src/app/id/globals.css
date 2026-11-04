@@ -4154,21 +4154,25 @@ ul {
     padding-top: 1rem;
 }
 
-.event-action-row__venue {
+/* Venue line sits directly under the event title */
+.event-venue {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.4rem;
-    min-width: 0;
+    margin-top: 0.45rem;
     font-size: 0.8125rem;
+    line-height: 1.45;
     color: rgba(226, 232, 240, 0.8);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.event-action-row__venue svg {
+.event-venue svg {
     flex-shrink: 0;
+    margin-top: 0.15em;
     color: #b8d434;
+}
+
+.event-venue--lg {
+    font-size: 0.875rem;
 }
 
 .event-rsvp {
@@ -4317,6 +4321,11 @@ ul {
     color: rgba(226, 232, 240, 0.75);
     padding: 2.5rem 0 1rem;
     font-size: 0.95rem;
+}
+
+/* Events page (listing) — room around the editorial cards */
+.events-page-section {
+    padding: 3rem 0 4rem;
 }
 
 /* Loading skeletons mirroring the editorial layout */
@@ -4478,9 +4487,4 @@ ul {
     to {
         background-position: -200% 0;
     }
-}
-
-/* Events page (listing) — room around the editorial cards */
-.events-page-section {
-    padding: 3rem 0 4rem;
 }
