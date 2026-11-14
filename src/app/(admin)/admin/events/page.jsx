@@ -151,6 +151,13 @@ export default function Events() {
     });
   };
 
+  // "pending" or any unexpected status renders as-is; blank falls back to Inactive.
+  const statusLabel = (status) => {
+    if (status === "active") return "Active";
+    if (status === "inactive") return "Inactive";
+    return status || "Inactive";
+  };
+
   const handleView = (event) => {
     setSelectedEvent(event);
     setIsViewModalOpen(true);
@@ -385,7 +392,7 @@ export default function Events() {
                                 : "bg-gray-100 text-gray-800"
                                 }`}
                             >
-                              {event.status === "active" ? "Active" : "Inactive"}
+                              {statusLabel(event.status)}
                             </span>
                           </td>
                           <td className="px-6 py-4">
@@ -498,7 +505,7 @@ export default function Events() {
                                 : "bg-gray-100 text-gray-800"
                                 }`}
                             >
-                              {event.status === "active" ? "Active" : "Inactive"}
+                              {statusLabel(event.status)}
                             </span>
                           </td>
                           <td className="px-6 py-4">
@@ -820,7 +827,7 @@ export default function Events() {
                           : "bg-gray-100 text-gray-800"
                           }`}
                       >
-                        {selectedEvent.status === "active" ? "Active" : "Inactive"}
+                        {statusLabel(selectedEvent.status)}
                       </span>
                     </div>
                   </div>

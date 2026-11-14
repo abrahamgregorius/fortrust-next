@@ -44,7 +44,7 @@ export default function CreateEventsPage() {
     end_at: "",
     location: "",
     registration_link: "",
-    status: "pending",
+    status: "active",
     speaker: "",
     topics: "",
   });
@@ -134,7 +134,7 @@ export default function CreateEventsPage() {
           end_at: "",
           location: "",
           registration_link: "",
-          status: "pending",
+          status: "active",
           speaker: "",
           topics: "",
         });

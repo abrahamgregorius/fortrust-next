@@ -54,7 +54,9 @@ export default function Home() {
                     supabase
                         .from("events")
                         .select("*")
-                        .gte("start_at", now)
+                        .eq("status", "active")
+                        // Keep events visible until they finish (not just until they start).
+                        .or(`start_at.gte.${now},end_at.gte.${now}`)
                         .order("start_at", { ascending: true })
                         .limit(3),
                     supabase.from("categories").select("id, name").order("name"),
