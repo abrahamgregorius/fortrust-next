@@ -36,6 +36,30 @@ const uploadFile = async (file, filePath) => {
   return data;
 };
 
+// Storage keys must be URL-safe: files re-uploaded from browser downloads
+// can contain literal "%20" sequences that double-encode inside getPublicUrl
+// and produce dead image URLs. Decode what we can, then keep only A-Z a-z
+// 0-9 and hyphens in the stored key (extension kept separately).
+const buildImageKey = (file) => {
+  let name = file.name;
+  try {
+    name = decodeURIComponent(name);
+  } catch {
+    // Malformed percent sequences — sanitize the raw name below instead.
+  }
+  const dot = name.lastIndexOf(".");
+  const base = (dot > 0 ? name.slice(0, dot) : name)
+    .replace(/[^A-Za-z0-9]+/g, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
+  const ext =
+    dot > -1
+      ? name.slice(dot + 1).replace(/[^A-Za-z0-9]/g, "").toLowerCase()
+      : "";
+  return `events/${Date.now()}-${base || "image"}${ext ? `.${ext}` : ""}`;
+};
+
 export default function CreateEventsPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -83,7 +107,7 @@ export default function CreateEventsPage() {
 
       // Upload image if file is selected
       if (imageFile) {
-        const filePath = `events/${Date.now()}-${imageFile.name}`;
+        const filePath = buildImageKey(imageFile);
         const uploadResult = await uploadFile(imageFile, filePath);
 
         if (uploadResult) {
