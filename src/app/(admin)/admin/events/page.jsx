@@ -313,8 +313,9 @@ export default function Events() {
                 </a>
               </div>
 
-              {/* Blog Table Card */}
-              <div className="bg-white rounded-xl shadow-md overflow-hidden">
+              {/* Events Table Card - Actives */}
+              <div className="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                <div className="p-4 font-bold text-lg text-green-700">Active Events</div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50">
@@ -349,7 +350,7 @@ export default function Events() {
                       </tr>
                     </thead>
                     <tbody>
-                      {events.map((event) => (
+                      {events.filter((event) => event.status === "active").map((event) => (
                         <tr
                           key={event.id}
                           className="bg-white hover:bg-gray-50 transition-colors duration-200"
@@ -381,10 +382,123 @@ export default function Events() {
                             <span
                               className={`px-2 py-1 text-xs font-medium rounded-full ${event.status === "active"
                                 ? "bg-green-100 text-green-800"
-                                : "bg-yellow-100 text-yellow-800"
+                                : "bg-gray-100 text-gray-800"
                                 }`}
                             >
-                              {event.status}
+                              {event.status === "active" ? "Active" : "Inactive"}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.start_at ? formatDate(event.start_at) : "-"}
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.end_at ? formatDate(event.end_at) : "-"}
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center justify-center space-x-3">
+                              <button
+                                onClick={() => handleView(event)}
+                                className="text-gray-500 hover:text-blue-600"
+                                title="View"
+                              >
+                                <Icon path={ICONS.view} />
+                              </button>
+                              <button
+                                onClick={() => handleEdit(event)}
+                                className="text-gray-500 hover:text-green-600"
+                                title="Edit"
+                              >
+                                <Icon path={ICONS.edit} />
+                              </button>
+                              <button
+                                onClick={() => handleDelete(event.id)}
+                                className="text-gray-500 hover:text-red-600"
+                                title="Delete"
+                              >
+                                <Icon path={ICONS.delete} />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Events Table Card - Inactives */}
+              <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                <div className="p-4 font-bold text-lg text-gray-700">Inactive Events</div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm text-left text-gray-500">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                      <tr>
+                        <th scope="col" className="px-6 py-3 min-w-[200px]">
+                          Event Name
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Image
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Location
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Speaker
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Topics
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Status
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Start Date
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          End Date
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {events.filter((event) => event.status !== "active").map((event) => (
+                        <tr
+                          key={event.id}
+                          className="bg-white hover:bg-gray-50 transition-colors duration-200"
+                        >
+                          <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {event.name}
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.image_url ? (
+                              <img
+                                src={event.image_url}
+                                alt={event.name}
+                                className="w-16 h-16 object-cover rounded"
+                              />
+                            ) : (
+                              "No image"
+                            )}
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.location || "-"}
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.speaker || "-"}
+                          </td>
+                          <td className="px-6 py-4">
+                            {event.topics || "-"}
+                          </td>
+                          <td className="px-6 py-4">
+                            <span
+                              className={`px-2 py-1 text-xs font-medium rounded-full ${event.status === "active"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-gray-100 text-gray-800"
+                                }`}
+                            >
+                              {event.status === "active" ? "Active" : "Inactive"}
                             </span>
                           </td>
                           <td className="px-6 py-4">
@@ -703,10 +817,10 @@ export default function Events() {
                       <span
                         className={`px-2 py-1 text-xs font-medium rounded-full ${selectedEvent.status === "active"
                           ? "bg-green-100 text-green-800"
-                          : "bg-yellow-100 text-yellow-800"
+                          : "bg-gray-100 text-gray-800"
                           }`}
                       >
-                        {selectedEvent.status}
+                        {selectedEvent.status === "active" ? "Active" : "Inactive"}
                       </span>
                     </div>
                   </div>
