@@ -412,6 +412,7 @@ export default function HomeClientId({ initialBanners = null }) {
                         <div className="carousel-nav">
                             <button
                                 className="carousel-btn prev"
+                                aria-label="Previous slide"
                                 onClick={() =>
                                     setCurrentSlide((prev) =>
                                         (prev - 1 + slides.length) % slides.length
@@ -422,6 +423,7 @@ export default function HomeClientId({ initialBanners = null }) {
                             </button>
                             <button
                                 className="carousel-btn next"
+                                aria-label="Next slide"
                                 onClick={() =>
                                     setCurrentSlide((prev) => (prev + 1) % slides.length)
                                 }
@@ -539,10 +541,10 @@ export default function HomeClientId({ initialBanners = null }) {
                                     ))}
                                 </div>
                                 <div className="alumni-nav">
-                                    <button className="alumni-btn alumni-btn--prev" onClick={() => document.getElementById('alumni-scroll').scrollTo({ left: document.getElementById('alumni-scroll').scrollLeft - 340, behavior: 'smooth' })}>
+                                    <button className="alumni-btn alumni-btn--prev" aria-label="Gulir alumni ke kiri" onClick={() => document.getElementById('alumni-scroll').scrollTo({ left: document.getElementById('alumni-scroll').scrollLeft - 340, behavior: 'smooth' })}>
                                         <ChevronLeft />
                                     </button>
-                                    <button className="alumni-btn alumni-btn--next" onClick={() => document.getElementById('alumni-scroll').scrollTo({ left: document.getElementById('alumni-scroll').scrollLeft + 340, behavior: 'smooth' })}>
+                                    <button className="alumni-btn alumni-btn--next" aria-label="Gulir alumni ke kanan" onClick={() => document.getElementById('alumni-scroll').scrollTo({ left: document.getElementById('alumni-scroll').scrollLeft + 340, behavior: 'smooth' })}>
                                         <ChevronRight />
                                     </button>
                                 </div>
@@ -607,7 +609,7 @@ export default function HomeClientId({ initialBanners = null }) {
                                 {latestBlogs.slice(1).map((blog) => (
                                     <Link key={blog.id} href={`/id/blog/${blog.slug}`} className="latest-blog-secondary">
                                         <div className="latest-blog-secondary__info">
-                                            <h4>{blog.title}</h4>
+                                            <h3>{blog.title}</h3>
                                             {featuredExcerpt(blog, 110) && <p className="latest-blog-secondary__excerpt">{featuredExcerpt(blog, 110)}</p>}
                                             <span className="latest-blog-secondary__meta">
                                                 {blogCategoryName(blog) && (
@@ -887,7 +889,7 @@ export default function HomeClientId({ initialBanners = null }) {
                                                             <span className="event-compact__type">{eventTypeLabel(event)}</span>
                                                             <span>{eventDateLabel(event)}</span>
                                                         </span>
-                                                        <h4 className="event-compact__title">{event.name}</h4>
+                                                        <h3 className="event-compact__title">{event.name}</h3>
                                                         <div className="event-info">
                                                             <span className="event-info__row">
                                                                 <MapPin size={14} />

@@ -185,8 +185,9 @@ ul {
 }
 
 .header__logo img {
-    object-fit: cover;
-    object-position: 0%;
+    height: 45px;
+    width: auto; /* keep natural 2363x828 aspect — stretching trips the aspect-ratio audit */
+    object-fit: contain;
 }
 
 /* Desktop navigation is now the default */
@@ -1248,7 +1249,7 @@ ul {
     gap: var(--space-12);
     margin-bottom: var(--space-12);
 }
-.footer h4 {
+.footer h3 {
     color: var(--bg);
     margin-bottom: var(--space-4);
     font-size: 1.1rem;
@@ -2145,7 +2146,7 @@ ul {
     bottom: 24px;
     right: 24px;
     z-index: 1000;
-    background-color: #25d366; /* Warna hijau WhatsApp */
+    background-color: #075e54; /* WhatsApp dark teal — white text passes AA (7.6:1) */
     color: white;
     border-radius: var(--radius-pill);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -2467,16 +2468,32 @@ ul {
 
     .latest-blogs .latest-blog-featured__category,
     .latest-blogs .latest-blog-secondary__category {
-        color: var(--accent) !important;
+        color: var(--brand-500) !important; /* lime: ~10:1 on the dark section bg */
     }
 
     .latest-blogs .latest-blog-featured:hover .latest-blog-featured__content h3,
-    .latest-blogs .latest-blog-secondary:hover .latest-blog-secondary__info h4 {
-        color: var(--accent) !important;
+    .latest-blogs .latest-blog-secondary:hover .latest-blog-secondary__info h3 {
+        color: var(--brand-500) !important;
     }
 
     .latest-blogs .latest-blogs__empty {
-        color: var(--neutral-400) !important;
+        color: var(--neutral-700) !important;
+    }
+
+    /* AA contrast fixes for the inverted dark palette */
+    .category-tabs button.active {
+        color: var(--neutral-100); /* dark navy text on the light-lime active bg */
+    }
+
+    .latest-blog-featured__meta,
+    .latest-blog-secondary__meta,
+    .latest-blog-secondary__excerpt {
+        color: var(--neutral-700); /* light slate on the dark section bg */
+    }
+
+    .footer p,
+    .footer a {
+        color: #475569; /* the footer turns light in dark mode; darken its text */
     }
 }
 
@@ -2928,11 +2945,11 @@ ul {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    color: rgba(255, 255, 255, 0.8);
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.78);
     padding: 8px 16px;
     border-radius: 20px;
     backdrop-filter: blur(4px);
@@ -3819,7 +3836,7 @@ ul {
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #666;
+    color: #555;
 }
 
 .latest-blog-featured__category {
@@ -3829,7 +3846,7 @@ ul {
 .latest-blog-featured__category::after {
     content: "·";
     margin: 0 0.5rem;
-    color: #666;
+    color: inherit;
 }
 
 .latest-blog-featured__image {
@@ -3902,7 +3919,7 @@ ul {
     min-width: 0;
 }
 
-.latest-blog-secondary__info h4 {
+.latest-blog-secondary__info h3 {
     font-size: 1.0625rem; /* 17px */
     font-weight: 600;
     line-height: 1.35;
@@ -3910,13 +3927,13 @@ ul {
     transition: color 0.2s;
 }
 
-.latest-blog-secondary:hover .latest-blog-secondary__info h4 {
+.latest-blog-secondary:hover .latest-blog-secondary__info h3 {
     color: var(--brand-500);
 }
 
 .latest-blog-secondary__excerpt {
     font-size: 0.8125rem;
-    color: #666;
+    color: #555;
     line-height: 1.45;
     margin: 0;
     display: -webkit-box;
@@ -3930,7 +3947,7 @@ ul {
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #666;
+    color: #555;
 }
 
 .latest-blog-secondary__category {
@@ -3940,7 +3957,7 @@ ul {
 .latest-blog-secondary__category::after {
     content: "·";
     margin: 0 0.4rem;
-    color: #666;
+    color: inherit;
 }
 
 
@@ -4017,7 +4034,7 @@ ul {
         gap: 0.875rem;
     }
 
-    .latest-blog-secondary__info h4 {
+    .latest-blog-secondary__info h3 {
         font-size: 0.9375rem;
     }
 
@@ -4042,7 +4059,7 @@ ul {
         gap: 0.75rem;
     }
 
-    .latest-blog-secondary__info h4 {
+    .latest-blog-secondary__info h3 {
         font-size: 0.9375rem;
     }
 

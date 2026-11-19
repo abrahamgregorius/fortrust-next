@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="container footer__container">
                     <div className="footer__main">
                         <div className="footer__about">
-                            <h4>
+                            <h3>
                                 <img
                                     src="/logo-fortrust.png"
                                     className="logo-dark"
@@ -22,7 +22,7 @@ export default function Footer() {
                                     height="50"
                                     alt=""
                                 />
-                            </h4>
+                            </h3>
                             <p>
                                 Your trusted partner in international education
                                 for over 30 years.
@@ -57,7 +57,7 @@ export default function Footer() {
                             </div>
                         </div>
                         <div className="footer__links">
-                            <h4>Quick Links</h4>
+                            <h3>Quick Links</h3>
                             <ul>
                                 <li>
                                     <Link href="/about">About Us</Link>
@@ -74,7 +74,7 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div className="footer__links">
-                            <h4>Destinations</h4>
+                            <h3>Destinations</h3>
                             <ul>
                                 <li>
                                     <Link href="/destinations/australia">
@@ -118,7 +118,7 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div className="footer__contact">
-                            <h4>Contact Us</h4>
+                            <h3>Contact Us</h3>
                             <p>
                                 <Mail></Mail> information@fortrust.com
                             </p>

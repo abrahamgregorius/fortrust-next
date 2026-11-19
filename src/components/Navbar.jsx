@@ -44,13 +44,14 @@ export default function Navbar() {
                             src="/logo-fortrust.png"
                             className="logo-light"
                             height="45"
-                            alt=""
+                            alt="Fortrust"
                         />
                         <img
                             src="/logo-white.png"
                             className="logo-dark"
                             height="45"
                             alt=""
+                            aria-hidden="true"
                         />
                     </Link>
 
