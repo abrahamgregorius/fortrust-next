@@ -3785,7 +3785,9 @@ ul {
     display: grid;
     grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); /* ~57% / 43% */
     gap: 2rem;
-    align-items: start;
+    /* stretch (not start): the secondary column must grow to the same
+       height as the featured article so its rows can be distributed. */
+    align-items: stretch;
     margin-top: 2rem;
     width: 100%;
 }
@@ -3857,16 +3859,21 @@ ul {
 
 /* Secondary articles (right column): information LEFT, thumbnail RIGHT */
 .latest-blogs__secondary {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    /* Three equal-height rows that together stretch to match the featured
+       article's height (the left column drives the overall height). */
+    grid-template-rows: repeat(3, 1fr);
     gap: 1.375rem;
+    /* Top-align each article within its equal-height row. */
+    align-items: start;
 }
 
 .latest-blog-secondary {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 38%;
     gap: 1rem;
-    align-items: center;
+    /* Content and thumbnail aligned at the top of each row. */
+    align-items: start;
     min-width: 0;
     text-decoration: none;
     color: inherit;
@@ -3955,9 +3962,10 @@ ul {
 }
 
 .latest-blogs__skeleton-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
     gap: 1.375rem;
+    align-items: start;
 }
 
 .latest-blogs__skeleton-thumb {
