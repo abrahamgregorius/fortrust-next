@@ -1,15 +1,14 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import "./globals.css"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Self-hosted via next/font: no render-blocking Google Fonts requests, no
+// duplicate downloads, and no reliance on unpkg/font CDNs.
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata = {
@@ -82,16 +81,6 @@ export default function RootLayout({ children }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon-new.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"true"} />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-          rel="stylesheet"
-        />
 
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ13MS774N"></script>
@@ -103,8 +92,6 @@ export default function RootLayout({ children }) {
             gtag('config', 'G-TJ13MS774N');
           `
         }} />
-
-        <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
         {/* Organization Schema.org */}
         <script
@@ -132,7 +119,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${montserrat.variable}`}>
         <LocaleProvider>
           {children}
         </LocaleProvider>

@@ -16,7 +16,7 @@
     --neutral-400: #94a3b8;
     --neutral-100: #f1f5f9;
     --bg: #ffffff;
-    --font-primary: "Montserrat", sans-serif;
+    --font-primary: var(--font-montserrat), "Montserrat", sans-serif;
     --space-1: 4px;
     --space-2: 8px;
     --space-3: 12px;
@@ -819,7 +819,7 @@ ul {
     padding: var(--space-3) var(--space-4);
     border-radius: 12px;
     font-weight: 600;
-    font-family: "Montserrat", sans-serif;
+    font-family: var(--font-montserrat), "Montserrat", sans-serif;
     color: var(--neutral-700);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1651,7 +1651,7 @@ ul {
 }
 
 .magazine-hero .hero-title {
-    font-family: "Montserrat", sans-serif;
+    font-family: var(--font-montserrat), "Montserrat", sans-serif;
     font-size: 2rem;
     font-weight: 700;
     line-height: 1.2;
@@ -1744,7 +1744,7 @@ ul {
 }
 
 .magazine-card .card-title {
-    font-family: "Montserrat", sans-serif;
+    font-family: var(--font-montserrat), "Montserrat", sans-serif;
     font-size: 1rem;
     font-weight: 700;
     color: var(--accent);
