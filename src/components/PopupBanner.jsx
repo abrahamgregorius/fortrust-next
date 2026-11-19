@@ -66,15 +66,23 @@ export default function PopupBanner() {
 
     const currentBanner = activeBanners[currentIndex];
 
+    const bannerImage = (
+        <picture>
+            <source media="(max-width: 768px)" srcSet={currentBanner.mobile_image_url || currentBanner.image_url} />
+            <img src={currentBanner.image_url} alt="Popup Banner" width={800} height={600} />
+        </picture>
+    );
+
     return (
         <div className="popup-modal-overlay" suppressHydrationWarning onClick={handleClose}>
             <div className="popup-modal" onClick={(e) => e.stopPropagation()}>
-                <Link href={currentBanner.link_url}>
-                    <picture>
-                        <source media="(max-width: 768px)" srcSet={currentBanner.mobile_image_url || currentBanner.image_url} />
-                        <img src={currentBanner.image_url} alt="Popup Banner" width={800} height={600} />
-                    </picture>
-                </Link>
+                {/* next/link crashes on a null href, so banners without a
+                    link_url render as plain (unlinked) images. */}
+                {currentBanner.link_url ? (
+                    <Link href={currentBanner.link_url}>{bannerImage}</Link>
+                ) : (
+                    bannerImage
+                )}
             </div>
             <div className="popup-modal-hint">
                 Click dark area to close
