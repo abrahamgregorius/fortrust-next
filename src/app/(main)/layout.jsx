@@ -76,7 +76,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id">
+    // next/font variable must sit on <html>, not <body>: the :root-scoped
+    // --font-primary chain in globals.css resolves var(--font-montserrat)
+    // at :root, so the variable must exist there.
+    <html lang="id" className={`${montserrat.variable}`}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -119,7 +122,8 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={`${montserrat.variable}`}>
+      <body>
+
         <LocaleProvider>
           {children}
         </LocaleProvider>
