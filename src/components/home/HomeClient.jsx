@@ -821,6 +821,7 @@ export default function HomeClient({ initialBanners = null }) {
                                         <div className="event-feature__media">
                                             <SkeletonImage
                                                 src={events[0].image_url}
+                                                mobileSrc={events[0].mobile_image_url || undefined}
                                                 alt={events[0].name}
                                                 sizes="(max-width: 767px) 100vw, 40vw"
                                             />
@@ -883,6 +884,7 @@ export default function HomeClient({ initialBanners = null }) {
                                                         <div className="event-compact__media">
                                                             <SkeletonImage
                                                                 src={event.image_url}
+                                                                mobileSrc={event.mobile_image_url || undefined}
                                                                 alt={event.name}
                                                                 sizes="(max-width: 767px) 38vw, 240px"
                                                             />

@@ -154,6 +154,8 @@ export default function Events() {
   });
   const [editImageFile, setEditImageFile] = useState(null);
   const [editImagePreview, setEditImagePreview] = useState(null);
+  const [editMobileImageFile, setEditMobileImageFile] = useState(null);
+  const [editMobileImagePreview, setEditMobileImagePreview] = useState(null);
   const [editStatus, setEditStatus] = useState(null);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
@@ -221,6 +223,7 @@ export default function Events() {
       topics: event.topics || "",
     });
     setEditImagePreview(event.image_url || null);
+    setEditMobileImagePreview(event.mobile_image_url || null);
     setIsEditModalOpen(true);
   };
 
@@ -246,6 +249,23 @@ export default function Events() {
     setEditImagePreview(selectedEvent?.image_url || null);
   };
 
+  const handleEditMobileFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditMobileImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEditMobileImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleEditRemoveMobileImage = () => {
+    setEditMobileImageFile(null);
+    setEditMobileImagePreview(selectedEvent?.mobile_image_url || null);
+  };
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     setEditStatus({ message: "Updating event...", type: "info" });
@@ -268,6 +288,23 @@ export default function Events() {
         }
       }
 
+      let mobileImageUrl = selectedEvent.mobile_image_url || null; // Keep existing mobile banner by default
+
+      // Upload new mobile banner if file is selected
+      if (editMobileImageFile) {
+        const filePath = buildImageKey(editMobileImageFile);
+        const uploadResult = await uploadFile(editMobileImageFile, filePath);
+
+        if (uploadResult) {
+          const { data: publicUrlData } = supabase.storage
+            .from("public-assets")
+            .getPublicUrl(filePath);
+          mobileImageUrl = publicUrlData.publicUrl;
+        } else {
+          throw new Error("Failed to upload mobile banner");
+        }
+      }
+
       const { data, error } = await supabase
         .from("events")
         .update({
@@ -285,6 +322,7 @@ export default function Events() {
           speaker: editFormData.speaker,
           topics: editFormData.topics,
           image_url: imageUrl,
+          mobile_image_url: mobileImageUrl,
           updated_at: new Date().toISOString(),
         })
         .eq("id", selectedEvent.id)
@@ -303,6 +341,8 @@ export default function Events() {
         setSelectedEvent(null);
         setEditImageFile(null);
         setEditImagePreview(null);
+        setEditMobileImageFile(null);
+        setEditMobileImagePreview(null);
         setEditStatus(null);
       }, 2000);
     } catch (err) {
@@ -754,38 +794,72 @@ export default function Events() {
                     </div>
                   </div>
 
-                  {/* Image Upload Section */}
+                  {/* Banner Upload Section */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Event Image
+                      Event Banners
                     </label>
-                    <div className="space-y-3">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleEditFileChange}
-                        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
-                      />
-                      {editImagePreview && (
-                        <div className="relative inline-block">
-                          <img
-                            src={editImagePreview}
-                            alt="Preview"
-                            className="w-32 h-32 object-cover rounded-lg border border-gray-300"
-                          />
-                          <button
-                            type="button"
-                            onClick={handleEditRemoveImage}
-                            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
-                          >
-                            ×
-                          </button>
-                        </div>
-                      )}
-                      <p className="text-xs text-gray-500">
-                        Upload a new image to replace the current one. Supported formats: JPG, PNG, GIF, WebP. Max size: 5MB.
-                      </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-3">
+                        <span className="block text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                          Desktop banner
+                        </span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleEditFileChange}
+                          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                        />
+                        {editImagePreview && (
+                          <div className="relative inline-block">
+                            <img
+                              src={editImagePreview}
+                              alt="Desktop banner preview"
+                              className="w-32 h-32 object-cover rounded-lg border border-gray-300"
+                            />
+                            <button
+                              type="button"
+                              onClick={handleEditRemoveImage}
+                              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                      <div className="space-y-3">
+                        <span className="block text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                          Mobile banner (optional)
+                        </span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleEditMobileFileChange}
+                          className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                        />
+                        {editMobileImagePreview && (
+                          <div className="relative inline-block">
+                            <img
+                              src={editMobileImagePreview}
+                              alt="Mobile banner preview"
+                              className="w-32 h-32 object-cover rounded-lg border border-gray-300"
+                            />
+                            <button
+                              type="button"
+                              onClick={handleEditRemoveMobileImage}
+                              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
+                    <p className="text-xs text-gray-500 mt-2">
+                      Upload a new file to replace the current one. The mobile banner is shown
+                      to visitors on phones (screen width ≤ 767px); if empty, the desktop
+                      banner is used on all devices.
+                    </p>
                   </div>
 
                   {editStatus && (
@@ -876,6 +950,19 @@ export default function Events() {
                         src={selectedEvent.image_url}
                         alt={selectedEvent.name}
                         className="w-full max-w-md h-auto rounded-lg shadow-md"
+                      />
+                    </div>
+                  )}
+
+                  {selectedEvent.mobile_image_url && (
+                    <div>
+                      <h4 className="text-sm font-medium text-gray-700 mb-2">
+                        Mobile Banner:
+                      </h4>
+                      <img
+                        src={selectedEvent.mobile_image_url}
+                        alt={`${selectedEvent.name} (mobile)`}
+                        className="w-full max-w-xs h-auto rounded-lg shadow-md"
                       />
                     </div>
                   )}

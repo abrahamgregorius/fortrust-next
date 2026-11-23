@@ -74,6 +74,8 @@ export default function CreateEventsPage() {
   });
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [mobileImageFile, setMobileImageFile] = useState(null);
+  const [mobileImagePreview, setMobileImagePreview] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState(null);
 
   const handleChange = (e) => {
@@ -98,12 +100,30 @@ export default function CreateEventsPage() {
     setImagePreview(null);
   };
 
+  const handleMobileFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMobileImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setMobileImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveMobileImage = () => {
+    setMobileImageFile(null);
+    setMobileImagePreview(null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmissionStatus({ message: "Submitting event...", type: "info" });
 
     try {
       let imageUrl = null;
+      let mobileImageUrl = null;
 
       // Upload image if file is selected
       if (imageFile) {
@@ -117,6 +137,21 @@ export default function CreateEventsPage() {
           imageUrl = publicUrlData.publicUrl;
         } else {
           throw new Error("Failed to upload image");
+        }
+      }
+
+      // Upload mobile banner (optional) if file is selected
+      if (mobileImageFile) {
+        const filePath = buildImageKey(mobileImageFile);
+        const uploadResult = await uploadFile(mobileImageFile, filePath);
+
+        if (uploadResult) {
+          const { data: publicUrlData } = supabase.storage
+            .from("public-assets")
+            .getPublicUrl(filePath);
+          mobileImageUrl = publicUrlData.publicUrl;
+        } else {
+          throw new Error("Failed to upload mobile banner");
         }
       }
 
@@ -135,6 +170,7 @@ export default function CreateEventsPage() {
         speaker: formData.speaker,
         topics: formData.topics,
         image_url: imageUrl,
+        mobile_image_url: mobileImageUrl,
         created_at: new Date().toISOString(),
       };
 
@@ -164,6 +200,8 @@ export default function CreateEventsPage() {
         });
         setImageFile(null);
         setImagePreview(null);
+        setMobileImageFile(null);
+        setMobileImagePreview(null);
       }, 2000);
     } catch (err) {
       console.error("❌ Error submitting event:", err);
@@ -394,55 +432,108 @@ export default function CreateEventsPage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Event Image
+              Event Banners
             </label>
-            <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-              <div className="space-y-1 text-center">
-                {imagePreview ? (
-                  <div className="relative">
-                    <img
-                      src={imagePreview}
-                      alt="Event preview"
-                      className="mx-auto h-32 w-auto object-cover rounded-md"
-                    />
-                    <button
-                      type="button"
-                      onClick={handleRemoveImage}
-                      className="absolute top-0 right-0 bg-red-600 text-white rounded-full p-1 transform translate-x-2 -translate-y-2"
-                    >
-                      <Icon path={ICONS.close} className="w-4 h-4" />
-                    </button>
-                  </div>
-                ) : (
-                  <>
-                    <Icon
-                      path={ICONS.upload}
-                      className="mx-auto h-12 w-12 text-gray-400"
-                    />
-                    <div className="flex justify-center items-center text-sm text-gray-600">
-                      <label
-                        htmlFor="file-upload"
-                        className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+              <div className="flex justify-center px-4 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div className="space-y-1 text-center">
+                  {imagePreview ? (
+                    <div className="relative">
+                      <img
+                        src={imagePreview}
+                        alt="Desktop banner preview"
+                        className="mx-auto h-32 w-auto object-cover rounded-md"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleRemoveImage}
+                        className="absolute top-0 right-0 bg-red-600 text-white rounded-full p-1 transform translate-x-2 -translate-y-2"
                       >
-                        <span>Upload file</span>
-                        <input
-                          id="file-upload"
-                          name="file-upload"
-                          type="file"
-                          onChange={handleFileChange}
-                          className="sr-only"
-                          accept="image/*"
-                        />
-                      </label>
-                      <p className="pl-1">or drag and drop</p>
+                        <Icon path={ICONS.close} className="w-4 h-4" />
+                      </button>
                     </div>
-                    <p className="text-xs text-gray-500">
-                      PNG, JPG, GIF up to 10MB
-                    </p>
-                  </>
-                )}
+                  ) : (
+                    <>
+                      <Icon
+                        path={ICONS.upload}
+                        className="mx-auto h-12 w-12 text-gray-400"
+                      />
+                      <div className="flex justify-center items-center text-sm text-gray-600">
+                        <label
+                          htmlFor="file-upload"
+                          className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500"
+                        >
+                          <span>Upload desktop banner</span>
+                          <input
+                            id="file-upload"
+                            name="file-upload"
+                            type="file"
+                            onChange={handleFileChange}
+                            className="sr-only"
+                            accept="image/*"
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        Desktop (16:9 or wider). PNG, JPG, GIF up to 10MB
+                      </p>
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="flex justify-center px-4 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div className="space-y-1 text-center">
+                  {mobileImagePreview ? (
+                    <div className="relative">
+                      <img
+                        src={mobileImagePreview}
+                        alt="Mobile banner preview"
+                        className="mx-auto h-32 w-auto object-cover rounded-md"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleRemoveMobileImage}
+                        className="absolute top-0 right-0 bg-red-600 text-white rounded-full p-1 transform translate-x-2 -translate-y-2"
+                      >
+                        <Icon path={ICONS.close} className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <Icon
+                        path={ICONS.upload}
+                        className="mx-auto h-12 w-12 text-gray-400"
+                      />
+                      <div className="flex justify-center items-center text-sm text-gray-600">
+                        <label
+                          htmlFor="mobile-file-upload"
+                          className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500"
+                        >
+                          <span>Upload mobile banner</span>
+                          <input
+                            id="mobile-file-upload"
+                            name="mobile-file-upload"
+                            type="file"
+                            onChange={handleMobileFileChange}
+                            className="sr-only"
+                            accept="image/*"
+                          />
+                        </label>
+                        <p className="pl-1">or drag and drop</p>
+                      </div>
+                      <p className="text-xs text-gray-500">
+                        Optional. PNG, JPG, GIF up to 10MB
+                      </p>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
+            <p className="text-xs text-gray-500 mt-2">
+              The mobile banner is shown to visitors on phones (screen width ≤ 767px).
+              If left empty, the desktop banner is used on all devices.
+            </p>
           </div>
 
           {submissionStatus && (

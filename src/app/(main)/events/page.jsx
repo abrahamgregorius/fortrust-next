@@ -139,6 +139,7 @@ export default async function Events() {
                                         <div className="event-feature__media">
                                             <SkeletonImage
                                                 src={featured.image_url}
+                                                mobileSrc={featured.mobile_image_url || undefined}
                                                 alt={featured.name}
                                                 sizes="(max-width: 767px) 100vw, 40vw"
                                             />
@@ -201,6 +202,7 @@ export default async function Events() {
                                                         <div className="event-compact__media">
                                                             <SkeletonImage
                                                                 src={event.image_url}
+                                                                mobileSrc={event.mobile_image_url || undefined}
                                                                 alt={event.name}
                                                                 sizes="(max-width: 767px) 38vw, 240px"
                                                             />
