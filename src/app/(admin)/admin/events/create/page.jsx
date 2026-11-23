@@ -523,7 +523,7 @@ export default function CreateEventsPage() {
                         <p className="pl-1">or drag and drop</p>
                       </div>
                       <p className="text-xs text-gray-500">
-                        Optional. PNG, JPG, GIF up to 10MB
+                        Optional. Mobile (3:4 portrait, e.g. 1152&times;1536). PNG, JPG, GIF up to 10MB
                       </p>
                     </>
                   )}

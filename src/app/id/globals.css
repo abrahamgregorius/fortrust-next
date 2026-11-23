@@ -4478,7 +4478,7 @@ ul {
     }
 
     .event-feature__media {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 3 / 4;
     }
 
     .event-feature__info {
@@ -4530,7 +4530,7 @@ ul {
     }
 
     .events-skeleton__poster {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 3 / 4;
         min-height: 0;
     }
 

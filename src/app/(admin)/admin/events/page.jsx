@@ -856,9 +856,9 @@ export default function Events() {
                       </div>
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
-                      Upload a new file to replace the current one. The mobile banner is shown
-                      to visitors on phones (screen width ≤ 767px); if empty, the desktop
-                      banner is used on all devices.
+                      Upload a new file to replace the current one. The mobile banner (ideally
+                      3:4 portrait, e.g. 1152&times;1536) is shown to visitors on phones
+                      (screen width ≤ 767px); if empty, the desktop banner is used on all devices.
                     </p>
                   </div>
 
