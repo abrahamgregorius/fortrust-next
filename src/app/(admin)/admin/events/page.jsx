@@ -634,20 +634,22 @@ export default function Events() {
         {/* Edit Modal */}
         {isEditModalOpen && (
           <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-bold text-gray-800">
-                    Edit Event
-                  </h2>
-                  <button
-                    onClick={() => setIsEditModalOpen(false)}
-                    className="text-gray-500 hover:text-gray-700"
-                  >
-                    <Icon path={ICONS.x} className="w-6 h-6" />
-                  </button>
-                </div>
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+              {/* Pinned header — title and close button stay put while the
+                  body below scrolls */}
+              <div className="flex justify-between items-center shrink-0 px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-800">
+                  Edit Event
+                </h2>
+                <button
+                  onClick={() => setIsEditModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-700 shrink-0"
+                >
+                  <Icon path={ICONS.x} className="w-6 h-6" />
+                </button>
+              </div>
 
+              <div className="overflow-y-auto p-6 pt-4">
                 <form onSubmit={handleEditSubmit} className="space-y-4">
                   <div>
                     <label
@@ -918,20 +920,22 @@ export default function Events() {
         {/* View Modal */}
         {isViewModalOpen && selectedEvent && (
           <div className="fixed inset-0 bg-black/30 z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-xl font-bold text-gray-800">
-                    Event Details
-                  </h2>
-                  <button
-                    onClick={() => setIsViewModalOpen(false)}
-                    className="text-gray-500 hover:text-gray-700"
-                  >
-                    <Icon path={ICONS.x} className="w-6 h-6" />
-                  </button>
-                </div>
+            <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+              {/* Pinned header — title and close button stay put while the
+                  body below scrolls */}
+              <div className="flex justify-between items-center shrink-0 px-6 py-4 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-800">
+                  Event Details
+                </h2>
+                <button
+                  onClick={() => setIsViewModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-700 shrink-0"
+                >
+                  <Icon path={ICONS.x} className="w-6 h-6" />
+                </button>
+              </div>
 
+              <div className="overflow-y-auto p-6 pt-4">
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-lg font-semibold text-gray-800">
