@@ -1,6 +1,8 @@
 "use client";
 import { supabase } from "@/lib/supabaseClient";
 import React, { useState } from "react";
+import RichTextEditor from "@/components/admin/RichTextEditor";
+import { isEmptyRichText } from "@/lib/htmlToPlainText";
 
 const Icon = ({ path, className = "w-5 h-5" }) => (
   <svg
@@ -60,6 +62,18 @@ const buildImageKey = (file) => {
   return `events/${Date.now()}-${base || "image"}${ext ? `.${ext}` : ""}`;
 };
 
+// Uploader handed to the rich-text editor so images dropped/inserted into the
+// description land in the same public-assets bucket as the banners.
+const handleEditorImageUpload = async (file) => {
+  const filePath = buildImageKey(file);
+  const uploadResult = await uploadFile(file, filePath);
+  if (!uploadResult) throw new Error("Failed to upload image");
+  const { data: publicUrlData } = supabase.storage
+    .from("public-assets")
+    .getPublicUrl(filePath);
+  return publicUrlData.publicUrl;
+};
+
 export default function CreateEventsPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -77,6 +91,9 @@ export default function CreateEventsPage() {
   const [mobileImageFile, setMobileImageFile] = useState(null);
   const [mobileImagePreview, setMobileImagePreview] = useState(null);
   const [submissionStatus, setSubmissionStatus] = useState(null);
+  // Bumped after a successful submit so the rich-text editor remounts empty
+  // (its content-sync effect ignores empty strings by design).
+  const [editorResetKey, setEditorResetKey] = useState(0);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -157,7 +174,11 @@ export default function CreateEventsPage() {
 
       const eventData = {
         name: formData.name,
-        description: formData.description,
+        // "<p></p>" from an emptied editor is stored as "" so the
+        // no-description fallbacks on the public pages keep working.
+        description: isEmptyRichText(formData.description)
+          ? ""
+          : formData.description,
         start_at: formData.start_at
           ? new Date(formData.start_at).toISOString()
           : null,
@@ -198,6 +219,7 @@ export default function CreateEventsPage() {
           speaker: "",
           topics: "",
         });
+        setEditorResetKey((k) => k + 1);
         setImageFile(null);
         setImagePreview(null);
         setMobileImageFile(null);
@@ -289,17 +311,15 @@ export default function CreateEventsPage() {
             >
               Description
             </label>
-            <div className="relative">
-              <textarea
-                id="description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                rows={4}
-                className="pl-3 pr-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="Short description of the event"
-              />
-            </div>
+            <RichTextEditor
+              key={editorResetKey}
+              content={formData.description}
+              onChange={(html) =>
+                setFormData((prev) => ({ ...prev, description: html }))
+              }
+              onImageUpload={handleEditorImageUpload}
+              placeholder="Short description of the event"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

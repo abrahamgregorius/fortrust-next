@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SkeletonImage from "@/components/SkeletonImage";
 import { supabase } from "@/lib/supabaseClient";
+import { htmlToPlainText } from "@/lib/htmlToPlainText";
 import { ArrowRight, Clock, MapPin, Mic } from "lucide-react";
 
 // Force dynamic rendering to prevent static generation issues
@@ -94,8 +95,7 @@ export default async function Events() {
             .slice(0, 3)
             .map((t) => t.charAt(0).toUpperCase() + t.slice(1));
 
-    const eventDescription = (e) =>
-        (e.description || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    const eventDescription = (e) => htmlToPlainText(e.description);
 
     // Duplicate rows (the same event name entered twice) would make the
     // featured headline reappear in the upcoming grid, so only the first

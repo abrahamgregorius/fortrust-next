@@ -4,6 +4,8 @@ import { supabase } from "@/lib/supabaseClient";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import AdminSidebar from "@/components/admin/AdminSidebar";
+import RichTextEditor from "@/components/admin/RichTextEditor";
+import { isEmptyRichText } from "@/lib/htmlToPlainText";
 
 // Helper component for SVG icons
 const Icon = ({ path, className = "w-5 h-5" }) => (
@@ -232,6 +234,18 @@ export default function Events() {
     setEditFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Uploader handed to the rich-text editor so images inserted into the
+  // description land in the same public-assets bucket as the banners.
+  const handleEditorImageUpload = async (file) => {
+    const filePath = buildImageKey(file);
+    const uploadResult = await uploadFile(file, filePath);
+    if (!uploadResult) throw new Error("Failed to upload image");
+    const { data: publicUrlData } = supabase.storage
+      .from("public-assets")
+      .getPublicUrl(filePath);
+    return publicUrlData.publicUrl;
+  };
+
   const handleEditFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -309,7 +323,6 @@ export default function Events() {
         .from("events")
         .update({
           name: editFormData.name,
-          description: editFormData.description,
           start_at: editFormData.start_at
             ? new Date(editFormData.start_at).toISOString()
             : null,
@@ -321,6 +334,11 @@ export default function Events() {
           status: editFormData.status,
           speaker: editFormData.speaker,
           topics: editFormData.topics,
+          // "<p></p>" from an emptied editor is stored as "" so the
+          // no-description fallbacks on the public pages keep working.
+          description: isEmptyRichText(editFormData.description)
+            ? ""
+            : editFormData.description,
           image_url: imageUrl,
           mobile_image_url: mobileImageUrl,
           updated_at: new Date().toISOString(),
@@ -656,14 +674,15 @@ export default function Events() {
                     >
                       Description
                     </label>
-                    <textarea
-                      id="edit_description"
-                      name="description"
-                      value={editFormData.description}
-                      onChange={handleEditFormChange}
-                      rows="3"
-                      className="px-3 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    ></textarea>
+                    <RichTextEditor
+                      key={selectedEvent?.id || "edit"}
+                      content={editFormData.description}
+                      onChange={(html) =>
+                        setEditFormData((prev) => ({ ...prev, description: html }))
+                      }
+                      onImageUpload={handleEditorImageUpload}
+                      placeholder="Short description of the event"
+                    />
                   </div>
 
                   <div>
@@ -935,9 +954,14 @@ export default function Events() {
                       <h4 className="text-sm font-medium text-gray-700 mb-2">
                         Description:
                       </h4>
-                      <p className="text-gray-800 bg-gray-50 p-4 rounded-lg">
-                        {selectedEvent.description}
-                      </p>
+                      {/* Admin-authored rich text (same trust level as the
+                          blogs editor) — rendered as HTML with editor styles. */}
+                      <div
+                        className="editor-content max-w-none text-gray-800 bg-gray-50 p-4 rounded-lg [&_p]:my-1"
+                        dangerouslySetInnerHTML={{
+                          __html: selectedEvent.description,
+                        }}
+                      />
                     </div>
                   )}
 

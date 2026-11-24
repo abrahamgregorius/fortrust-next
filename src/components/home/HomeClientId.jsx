@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import SkeletonImage from "@/components/SkeletonImage";
+import { htmlToPlainText } from "@/lib/htmlToPlainText";
 import { useEffect, useRef, useState } from "react";
 import {
     ArrowRight,
@@ -272,8 +273,7 @@ export default function HomeClientId({ initialBanners = null }) {
             .slice(0, 3)
             .map((t) => t.charAt(0).toUpperCase() + t.slice(1));
 
-    const eventDescription = (e) =>
-        (e.description || "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    const eventDescription = (e) => htmlToPlainText(e.description);
 
     const universities = [
         { src: "/universities/Logo/oaut.png", alt: "University Logo" },
