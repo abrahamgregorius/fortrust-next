@@ -1,5 +1,18 @@
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+    title: "Blog & Artikel",
+    description:
+        "Panduan dan insight kuliah di luar negeri — apply universitas, beasiswa, visa, dan kehidupan mahasiswa. Ditulis oleh konsultan Fortrust.",
+    alternates: {
+        canonical: "/id/blog",
+        languages: {
+            "en-US": "/blog",
+            "id-ID": "/id/blog",
+        },
+    },
+};
+
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import { supabase } from "@/lib/supabaseClient"

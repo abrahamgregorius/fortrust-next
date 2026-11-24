@@ -8,6 +8,19 @@ import { ArrowRight, Clock, MapPin, Mic } from "lucide-react";
 // Force dynamic rendering to prevent static generation issues
 export const dynamic = 'force-dynamic';
 
+export const metadata = {
+    title: "Events & Webinars",
+    description:
+        "Webinars, education fairs, and campus visits from Fortrust. Meet us and get free consultation for your study abroad plans.",
+    alternates: {
+        canonical: "/events",
+        languages: {
+            "en-US": "/events",
+            "id-ID": "/id/events",
+        },
+    },
+};
+
 export default async function Events() {
     const now = new Date().toISOString();
     const { data: events, error } = await supabase

@@ -12,8 +12,19 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Fortrust | Studi ke Luar Negeri, Disederhanakan",
-  description: "Fortrust: Studi ke Luar Negeri, Disederhanakan",
+  metadataBase: new URL("https://fortrust.edu"),
+  title: {
+    default: "Fortrust | Studi ke Luar Negeri, Disederhanakan",
+    template: "%s | Fortrust | Studi ke Luar Negeri, Disederhanakan",
+  },
+  description:
+    "Dapatkan konsultasi ahli, aplikasi, visa, dan dukungan pra-keberangkatan untuk studi ke luar negeri di Australia, UK, dan lainnya.",
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    alternateLocale: "en_US",
+    siteName: "FORTRUST Education Services",
+  },
 };
 
 export default function IndonesianLayout({ children }) {
@@ -25,11 +36,9 @@ export default function IndonesianLayout({ children }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fortrust: Studi ke Luar Negeri, Disederhanakan</title>
-        <meta
-          name="description"
-          content="Dapatkan konsultasi ahli, aplikasi, visa, dan dukungan pra-keberangkatan untuk studi ke luar negeri di Australia, UK, dan lainnya."
-        />
+        {/* Title + description come from the metadata export above — a
+            hardcoded <title> here would duplicate (and shadow) the
+            per-page titles from the metadata system. */}
         <link rel="icon" href="/favicon-new.ico" />
       </head>
       <body>

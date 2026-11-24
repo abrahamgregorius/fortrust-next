@@ -1,5 +1,18 @@
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+    title: "Blog & Articles",
+    description:
+        "Guides and insights on studying abroad — university applications, scholarships, visas, and student life. Written by Fortrust education consultants.",
+    alternates: {
+        canonical: "/blog",
+        languages: {
+            "en-US": "/blog",
+            "id-ID": "/id/blog",
+        },
+    },
+};
+
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import { supabase } from "@/lib/supabaseClient"
