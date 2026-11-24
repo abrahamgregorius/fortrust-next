@@ -40,7 +40,6 @@ export default function RootLayout({ children }) {
                     rel="stylesheet"
                 />
 
-                <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
             </head>
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
                 <ActivityTracker />

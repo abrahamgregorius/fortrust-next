@@ -1,10 +1,10 @@
-// middleware.js
+// proxy.js — Next 16 renamed the "middleware" convention to "proxy".
 import { NextResponse } from "next/server";
 
 // How long an admin session may sit untouched before it is dropped.
 const IDLE_TIMEOUT_MS = 60 * 60 * 1000; // 1 hour
 
-export function middleware(request) {
+export function proxy(request) {
     const { pathname } = request.nextUrl;
 
     const token = request.cookies.get("access_token")?.value;

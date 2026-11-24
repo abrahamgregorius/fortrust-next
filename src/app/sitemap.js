@@ -56,18 +56,19 @@ export default async function sitemap() {
     const entries = [];
 
     // Static marketing pages in both locales.
+    // No lastModified here: we can't derive real per-route dates for static
+    // pages, and an always-fresh timestamp ("changed today" on every build)
+    // trains crawlers to distrust lastmod. Blog posts below keep real DB
+    // timestamps.
     for (const section of SECTIONS) {
         const path = section ? `/${section}` : "";
-        const lastModified = new Date();
         entries.push({
             url: `${BASE}${path || "/"}`,
-            lastModified,
             changeFrequency: frequencyFor(section),
             priority: priorityFor(section),
         });
         entries.push({
             url: `${BASE}/id${path}`,
-            lastModified,
             changeFrequency: frequencyFor(section),
             priority: priorityFor(section),
         });

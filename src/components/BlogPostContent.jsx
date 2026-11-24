@@ -111,7 +111,9 @@ export default async function BlogPostContent({ slug, locale = "en", slugField =
                 "url": "https://fortrust.edu/logo-fortrust.png"
             }
         },
-        "description": data.excerpt || displayTitle,
+        // The blogs table has no excerpt column — the page title is the
+        // stable description source here.
+        "description": displayTitle,
         "keywords": displayTags.length ? displayTags.join(", ") : "",
         "url": canonicalUrl,
     };

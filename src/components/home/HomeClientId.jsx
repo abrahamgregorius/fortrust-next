@@ -136,10 +136,9 @@ export default function HomeClientId({ initialBanners = null }) {
             .filter(Boolean)[0] || null;
     };
 
-    // Excerpt: stored excerpt first, otherwise plain text pulled from the
-    // article body (display content never modified, only trimmed).
+    // Excerpt: plain text pulled from the article body (display content
+    // never modified, only trimmed). There is no stored excerpt column.
     const featuredExcerpt = (blog, maxLen = 180) => {
-        if (blog.excerpt) return blog.excerpt;
         const body = (blog.content || "")
             .replace(/<[^>]*>/g, " ")
             .replace(/\s+/g, " ")
