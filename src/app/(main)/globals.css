@@ -2002,8 +2002,31 @@ ul {
     padding: 0 0 5rem;
     text-align: center;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out, visibility 0s linear 1s;
     position: absolute;
+    /* Slides are stacked; invisible ones must not intercept clicks meant
+       for the active slide (opacity: 0 alone stays pointer-interactive,
+       which made every banner navigate to the last slide's link). */
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* Full-bleed anchor around each banner image (real link: SEO, keyboard,
+   open-in-new-tab) */
+.carousel-slide__link {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide__link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .carousel-slide-text {
@@ -2025,6 +2048,11 @@ ul {
 
 .carousel-slide.active {
     opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    /* Visibility flips immediately when becoming active, but waits for the
+       1s fade to finish when deactivating (base rule delays it). */
+    transition: opacity 1s ease-in-out, visibility 0s;
 }
 
 /* Overlay gelap agar teks terbaca */

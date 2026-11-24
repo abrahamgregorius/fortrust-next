@@ -391,18 +391,28 @@ export default function HomeClient({ initialBanners = null }) {
                                     key={slide.id}
                                     className={`carousel-slide ${idx === currentSlide ? "active" : ""}`}
                                 >
-                                    <picture>
-                                        <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
-                                        <img
-                                            src={slide.img}
-                                            alt=""
-                                            loading={idx === 0 ? "eager" : "lazy"}
-                                            decoding="async"
-                                            fetchPriority={idx === 0 ? "high" : "low"}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0, cursor: 'pointer' }}
-                                            onClick={() => window.location.href = slide.link || "/contact"}
-                                        />
-                                    </picture>
+                                    {/* Real anchor instead of an img onClick:
+                                       crawlable, keyboard-accessible, and
+                                       open-in-new-tab works. Only the active
+                                       slide is clickable (pointer-events on
+                                       inactive slides is disabled in CSS). */}
+                                    <a
+                                        href={slide.link || "/contact"}
+                                        className="carousel-slide__link"
+                                        draggable={false}
+                                    >
+                                        <picture>
+                                            <source media="(max-width: 768px)" srcSet={slide.mobileImg || slide.img} />
+                                            <img
+                                                src={slide.img}
+                                                alt={slide.title || ""}
+                                                loading={idx === 0 ? "eager" : "lazy"}
+                                                decoding="async"
+                                                fetchPriority={idx === 0 ? "high" : "low"}
+                                                draggable={false}
+                                            />
+                                        </picture>
+                                    </a>
                                     <div className="slide-content" />
                                 </div>
                             ))
